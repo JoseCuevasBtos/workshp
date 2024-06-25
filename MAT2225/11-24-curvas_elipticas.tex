@@ -1,0 +1,80 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+% \DeclareFieldFormat[book]{title}{\textit{#1}\addperiod}
+
+\title{Curvas elípticas}
+% \subtitle{Guía para el autoestopista diofántico}
+\date{24 de noviembre de 2023}
+
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\Per}{Per}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2225}
+\professor{Héctor Pastén}
+
+\begin{document}
+
+\maketitle
+
+\section{Con Sage}
+Una \strong{curva elíptica} $E$ sobre un cuerpo $k$ admite varias definiciones equivalentes:
+\begin{enumerate}
+	\item Es una curva proyectiva, suave, con un punto $k$-racional isomorfa a una curva de la forma $\VV_+(f) \subseteq \PP^2(k)$,
+		donde $f$ es homogéneo de grado 3.
+	\item Es una subvariedad suave de $\PP^2(k)$ dada por una ecuación de Weierstrass:
+		$$ y^2z + a_1xyz = x^3 + a_2x^2z + a_4xz^2 + a_6z^3. $$
+	\item Es una curva proyectiva cuyos puntos $K$-racionales forman un grupo abeliano
+		(en particular, $E(K)$ debe ser no vacío, pues los grupos son no vacíos).
+\end{enumerate}
+\begin{thm}[Mordell-Weil, 1929]
+	Sea $E$ una curva elíptica sobre $\Q$.
+	Entonces su grupo de puntos racionales $E(\Q)$ es finitamente generado.
+\end{thm}
+
+\begin{mydef}
+	Un elemento $g$ de un grupo abeliano $G$ se dice \strong{de torsión} si $g + \cdots + g = n\cdot g = 0$ para algún $n \ge 1$.
+\end{mydef}
+El siguiente criterio es útil:
+\begin{thm}[débil de Lutz-Nagell, 1937]
+	Sea $E$ una curva elíptica sobre $\Q$ dada por una ecuación de Weierstrass en $\PP^2(\Q)$.
+	Todos los puntos racionales de torsión tienen coordenadas enteras.
+\end{thm}
+
+\begin{enumerate}
+	% \item \textbf{Cotas débiles de Hasse-Weil:}
+	% 	Sea $p$ un primo\footnotemark{} que se escribe de la forma $p = a^2 + 3b^2$, donde $a \equiv 2 \pmod 2$, y sea $g$ una raíz primitiva
+	% 	módulo $p$ (vid. ayudantía del 29 de sept.).
+	% 	\footnotetext{Por la teoría de formas cuadráticas, todo primo $p \equiv 1 \pmod 3$ admite susodicha representación.}
+	% 	Considere la curva afín $E_\ell \colon x^2 = y^3 + \ell$, donde $p \nmid \ell$, y llamamemos $N_p(\ell)$ a la cantidad de puntos
+	% 	de $E_\ell$.
+	% 	\begin{enumerate}
+	% 		\item Definiendo
+	% 			$$ S_\ell = \sum_{n=1}^{p} \binom{n^3 + \ell}{p}, $$
+	% 			donde $\binom{0}{p} := 0$.
+	% 			Demuestre que $N_p(\ell) = p + S_\ell$.
+	% 		\item Sea $L := \ell r^3$ y defínase $T_\ell := \binom{\ell}{p} S_\ell$.
+	% 			Demuestre que $T_L \equiv T_\ell$.
+	% 	\end{enumerate}
+	\item Encuentre una fórmula para todas las sucesiones de tres cuadrados en progresión aritmética.
+	\item Demuestre que no hay cuatro cuadrados en progresión aritmética.
+	\item Encuentre todas las sucesiones de tres cubos coprimos en progresión aritmética.
+\end{enumerate}
+
+\section{Sin Sage}
+\begin{enumerate}[resume]
+	\item Encuentre una ecuación de Weierstrass para la curva elíptica $E \colon x^3 + y^3 = z^3$.
+	\item Demuestre que la curva elíptica $y^2 = x^3 + x^2 + 4$ tiene infinitas soluciones.
+\end{enumerate}
+
+\nocite{silverman:elliptic}
+\printbibliography[title={Referencias y lecturas adicionales}]
+
+\end{document}

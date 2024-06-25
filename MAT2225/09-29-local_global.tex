@@ -1,0 +1,139 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+% \usepackage{diagbox}
+
+\title{Principio local-global}
+% \subtitle{Roth, Thue y ¿$abc$?}
+\date{29 de septiembre de 2023}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2225}
+\professor{Héctor Pastén}
+
+\begin{document}
+
+\maketitle
+
+\section{Reciprocidad cuadrática}
+Comenzaremos por presentar unos ejercicios básicos de reciprocidad cuadrática para poder sacarle mayor provecho a los resultados del principio local-global.
+\begin{mydef}
+	Sea $n > 0$ un entero.
+	Una \strong{raíz primitiva módulo $n$} es un número $g$ coprimo a $n$,
+	tal que para todo número coprimo $a$ a $n$ existe algún $m > 0$ tal que $g^m \equiv a \pmod n$.
+\end{mydef}
+Otra manera de verlo es que el conjunto $U_n := (\Z/n\Z)^\times$ unidades módulo $n$ está formado precisamente por las clases de congruencia coprimas con $n$
+y que es un grupo con el producto.
+Una raíz primitiva es, entonces, un generador de $U_n$.
+
+\begin{enumerate}
+	\item Demuestre las siguientes afirmaciones:
+		\begin{enumerate}
+			\item Para todo primo $p$ existe una raíz primitiva módulo $p$.
+				\begin{hint}
+					Emplee el pequeño teorema de Fermat.
+				\end{hint}
+			\item Si $g$ es una raíz primitiva módulo $p$, entonces $g$ o $g + p$ es una raíz primitiva módulo $p^2$.
+			\item No obstante, no todos los enteros admiten una raíz primitiva módulo $n$; de un ejemplo.
+		\end{enumerate}
+\end{enumerate}
+
+\begin{mydef}
+	Sea $g$ una raíz primitiva módulo $n$.
+	Dado $a$ coprimo con $n$ defina%
+	\footnote{A veces se denota $\log_g$ y se llama \textit{logaritmo discreto}.}
+	$\ind_g(a) := m$ como el mínimo natural (incluyendo $m = 0$) tal que $g^a \equiv 1 \pmod n$.
+\end{mydef}
+\begin{enumerate}[resume]
+	\item Demuestre que si $g_1, g_2$ son dos raíces primitivas módulo $n > 2$,
+		entonces para todo $h$ coprimo con $n$, se cumple que $\ind_{g_1}(h), \ind_{g_2}(h)$ tienen igual paridad.
+\end{enumerate}
+
+\begin{mydef}
+	Sea $p$ un número primo y sea $g$ una raíz primitiva módulo $p$.
+	Se define el \strong{símbolo de Legendre} como:
+	$$ \left( \frac{a}{p} \right) :=
+	\begin{cases}
+		0, & p \mid a, \\
+		(-1)^{\ind_g(a)}, & p \nmid a.
+	\end{cases} $$
+\end{mydef}
+El ejercicio anterior prueba que el símbolo de Legendre está bien definido.
+
+\begin{enumerate}[resume]
+	\item Sea $p$ un número primo. Demuestre las siguientes:
+		\begin{enumerate}
+			\item Para un número $a$ coprimo a $n$ tenemos que $(a/p) = 1$ syss existe un número $h$ tal que $h^2 \equiv a \pmod p$.
+				En este caso, decimos que $a$ es un \strong{residuo cuadrático módulo $p$}.
+			\item Para $a, b$ coprimos a $n$ se tiene que $(ab/p) = (a/p) (b/p)$.
+			\item Demuestre que si $p \equiv 1 \pmod 4$, entonces $-1$ es un residuo cuadrático módulo $p$.
+		\end{enumerate}
+\end{enumerate}
+
+\section{Principio local-global}
+% Sea $f(\vec x) = 0$ una ecuación diofántica.
+\begin{mydef}
+	Una \strong{H-solución módulo $p$} de $f(x) = 0$ es un entero $a$ tal que $f(a) \equiv 0 \pmod p$, pero $f'(a) \not\equiv 0 \pmod p$;
+	donde $f'(x)$ es la derivada (formal) de $f(x)$.
+\end{mydef}
+
+Un \strong{principio local-global} es un criterio bajo el cual una determinada ecuación diofántica $f(x_1, \dots, x_n) = 0$,
+donde $f(\vec x)$ tiene coeficientes en $\Z$, tiene soluciones enteras si tiene soluciones en $\R$ y tiene H-soluciones módulo $p$
+para todo $p$.
+Recuérdese:
+\begin{thm}[Hasse-Minkowski]
+	Las formas cuadráticas satisfacen un principio local-global.
+	% Vale decir, dado un polinomio $f(x_1, \dots, x_n) = 0$ 
+\end{thm}
+
+\begin{enumerate}[resume]
+	\item 
+		\begin{enumerate}
+			\item Empleando el principio local-global demuestre que todo primo $p \equiv 1 \pmod 4$ es suma de dos cuadrados.
+				(Aquí puede asumir que la existencia de una solución racional implica la existencia de una solución entera.)
+			\item Empleando la identidad
+				\begin{equation}
+					(a^2 + b^2)(c^2 + d^2) = (ac - bd)^2 + (ad + bc)^2,
+					\label{eqn:two_squares}
+				\end{equation}
+				concluya una mejor clase de números que se pueden escribir como suma de dos cuadrados.
+		\end{enumerate}
+	\item Demuestre que el principio local-global falla en la ecuación
+		$$ (x^2 - 2)(x^2 - 17)(x^2 - 34) = 0, $$
+		es decir, que admite soluciones reales y H-soluciones para todo $p$, pero no admite soluciones racionales.
+	\item Demuestre que el principio local-global falla en la ecuación $x^2 + 11y^2 = 3$.
+\end{enumerate}
+
+\section{Comentarios adicionales}
+La expresión <<H-solución>> es de mi autoría y está allí para referenciar un uso escondido del \textit{lema de Hensel}.
+Una versión más precisa del principio local-global es que relaciona la existencia de soluciones en los enteros $p$-ádicos $\Z_p$ con soluciones enteras.
+Una buena introducción, a mi juicio, yace en el libro \citeauthor{cassels:local_fields}~\cite{cassels:local_fields}.
+
+El ejemplo de una \textit{forma} (i.e., polinomio homogéneo) aguda que contradice el principio local-global es el \strong{ejemplo de Selmer}:
+$$ 3x^3 + 4y^3 + 5z^3 = 0, $$
+pero la demostración es más larga e involucra un mejor manejo del lema de Hensel (cfr. \citeauthor{conrad:local_global}~\cite{conrad:local_global}).
+
+El paso de <<existe solución racional>> a <<existe solución entera>> puede formalizarse mejor con el siguiente resultado:
+\begin{lem}[Davenport-Cassels]
+	Sea $a \in \Z$ tal que la ecuación $a = x_1^2 + \cdots + x_n^2$ tiene soluciones en $\Q$.
+	Entonces la misma ecuación tiene soluciones en $\Z$.
+\end{lem}
+No obstante, se suele escribir este resultado para $n = 3$ ya que para $n = 4$ es un teorema de Legendre que la ecuación siempre admite solución;
+para $n = 1$ es trivial y para $n = 2$ es conocida la clasificación de los enteros que son sumas de dos cuadrados.
+La demostración se puede ver en \citeauthor{rajwade:squares}~\cite{rajwade:squares}.
+
+Finalmente, la identidad~\eqref{eqn:two_squares} pierde cierto misterio si pensamos $a^2 + b^2 = |a + \ui b|^2$, donde $\ui = \sqrt{-1}$.
+Si hacemos el mismo juego en los cuaterniones y en los octoniones, obtendremos identidades parecidas para sumas de 4 y de 8 cuadrados resp.;
+la busqueda de estas identidades es un problema interesante conocido como el \textit{problema de Hurwitz}, ya resuelto y expuesto de manera elemental
+en \cite{rajwade:squares}.
+
+\nocite{cassels:local_fields, conrad:local_global, rajwade:squares}
+\printbibliography[title={Referencias y lecturas adicionales}]
+
+\end{document}

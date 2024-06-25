@@ -1,0 +1,152 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+% \usepackage{diagbox}
+
+\title{Pell y sus amigos}
+% \subtitle{Roth, Thue y ¿$abc$?}
+\date{15 de septiembre de 2023}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2225}
+\professor{Héctor Pastén}
+
+\begin{document}
+
+\maketitle
+
+\section{La ecuación de Pell}
+Dado $d > 0$ libre de cuadrados, una \strong{ecuación de Pell} es una ecuación diofántica del tipo $x^2 - dy^2 = 1$
+y nos interesan soluciones enteras de $x, y$, donde las soluciones \textit{triviales} son $(x, y) := (\pm 1, 0)$.
+Un aspecto interesante de la ecuación de Pell es que existe una <<operación>> para construir más soluciones:
+\begin{equation}
+	(a, b) * (x, y) := (ax - dby, ay + bx).
+	\label{eqn:pell_operation}
+\end{equation}
+
+\begin{enumerate}
+	\item Considere la ecuación de Pell negativa dada por
+		\[
+			\mathcal{P}_-\colon \quad x^2 - dy^2 = -1.
+		\]
+		\begin{enumerate}
+			\item Demuestre que la operación \eqref{eqn:pell_operation} aplicada a dos soluciones de $\mathcal{P}_-$
+				nos da una solución de la ecuación de Pell usual (con $+1$).
+			\item No obstante, esta condición no es muy buena.
+				Encuentre algún $d$ para el cual la ecuación de Pell negativa no posee soluciones.
+			\item Más generalmente, nótese que si $u^2 + dv^2 = a$ y $x^2 + dy^2 = b$, entonces
+				$$ (ux - dvy)^2 + d(vx + uy)^2 = ab. $$
+				De modo que las ecuaciones de Pell generalizadas $x^2 + dy^2 = b$ pueden o no tener soluciones o tener infinitas.
+		\end{enumerate}
+	\item Sea $d$ libre de cubos.
+		Demuestre que la ecuación $x^n - dy^n = 1$ con $n \ge 3$ admite a lo sumo finitas soluciones.
+	\item La \strong{ecuación de Markoff}\index{ecuación!de Markoff} está dada por
+		\begin{equation}
+			x^2 + y^2 + z^2 = 3xyz,
+			\label{eqn:markoff}
+		\end{equation}
+		donde la \textit{solución trivial} es $(x, y, z) = (0, 0, 0)$.
+		Demuestre lo siguiente:
+		\begin{enumerate}
+			\item Dada una solución $(a, b, c)$ de \eqref{eqn:markoff}, entonces $(a, b, 3ab - c)$ es otra solución.
+			\item Todas las soluciones positivas no triviales a la ecuación de Markoff están generadas por $(1, 1, 1)$
+				empleando la regla del inciso anterior.
+		\end{enumerate}
+\end{enumerate}
+
+% \section{<<Mejor>> perspectiva}
+\textbf{<<Mejor>> perspectiva.}
+¿Por qué la ecuación de Pell tiene una estructura de grupo asociada?
+Quizá algo que desvele un poco el misterio está en trabajar en $\Z[ \sqrt{d} ] = \{ x + y\sqrt{d} : x, y\in\Z \} \subseteq \C$.
+Aquí la ecuación de Pell se revela como que
+$$ 1 = x^2 - dy^2 = (x - y\sqrt{d})(x + y\sqrt{d}) =: \galnorm(x + y\sqrt{d}). $$
+Nótese que si $\alpha, \beta \in \Z[ \sqrt{d} ]$ entonces $\galnorm(\alpha \beta) = \galnorm(\alpha) \galnorm(\beta)$ (esto es el contenido del ejercicio 1.$c$).
+
+\begin{enumerate}[resume]
+	\item \hard
+		\textbf{Resolver la ecuación de Pell generalizada.} Sea $\omega = u + v\sqrt{d} \in \Z[ \sqrt{d} ]$ tal que $\galnorm(\omega) = 1$
+		(es decir, es una solución de la ecuación de Pell) con $u, v > 0$.
+		Demuestre que toda solución a la ecuación de Pell generalizada $x^2 - dy^2 = n$ es de la forma $(a + b\sqrt{d}) \omega^2$ donde
+		$$ |a| \le \frac{ \sqrt{|n|}(\sqrt{\omega} + 1) }{2},
+		\qquad |b| \le \frac{ \sqrt{|n|}(\sqrt{\omega} + 1) }{2\sqrt{d}}. $$
+		\begin{enumerate}
+			\item Para el primer paso defina $L(x + y\sqrt{d}) := ( \log|x + y\sqrt{d}|, \log|x - y\sqrt{d}| )$
+				y verifique que $L(\alpha \beta) = L(\alpha) + L(\beta)$.
+			\item Verifique que el conjunto $\{ L(\alpha) : \alpha \in \Z[ \sqrt{d} ] \}$ es cerrado bajo adición y multiplicación
+				por escalares en $\Z$.
+			\item Si ahora multiplicamos por $\R$, demuestre que el conjunto $\{ r \, L(\alpha) : \alpha \in \Z[\sqrt{d}], r \in \R \}$
+				es un $\R$-espacio vectorial.
+				Más aún, argumente el por qué es $\R^2$ y dé una base.
+			\item Demuestre que una solución $x^2 - dy^2 = n$ satisface:
+				$$ L(x + y \sqrt{d}) = \frac{\log|n|}{2}(1, 1) + c \, L(\omega), $$
+				para algún $c \in \R$.
+			\item Empleando el inciso anterior aproxime adecuadamente $L((x + y\sqrt{d}) \omega^k)$ (osea elija un $k$ apropiado)
+				para concluir el enunciado.
+		\end{enumerate}
+\end{enumerate}
+
+\section{El multiverso de Pell}
+Aquí incluímos problemas en los que la ecuación de Pell hace una aparición eventual y llamativa.
+\begin{enumerate}[resume]
+	\item Un \strong{número triangular} es aquello de la forma
+		$$ n = 1 + 2 + \cdots + m = \frac{m(m + 1)}{2}. $$
+		Deduzca un método para encontrar \textit{todos} los números triangulares que son cuadrados perfectos.
+
+		\begin{hint}
+			Para agilizar calculos, le adelantamos que los dos primeros números triangulares que son cuadrados son 1 y
+			\begin{equation}
+				36 = 1 + 2 + 3 + \cdots + 8 = \frac{8 \cdot 9}{2}.
+				\tqedhere
+			\end{equation}
+		\end{hint}
+
+	\item Demuestre que existen infinitas ternas de números consecutivos $(a, a+1, a+2)$ tales que cada uno es suma de dos cuadrados.
+		Encuentre alguna terna distinta de $(0, 1, 2)$.
+\end{enumerate}
+
+\section{Comentarios adicionales}
+La escritura matemática dedicada al estudio de la ecuación de Pell es bastante rica.
+Comencemos por un tecnicismo: es probable que el nombre <<ecuación de Pell>> sea poco acertado pues Pell no aportó mucho a las ecuaciones,
+y aquellas que sí trató tampoco eran ninguna hazaña;
+al parecer el nombre fue popularizado por Euler, quien lo confundió al leer el libro de Álgebra de Wallis, quien cita varias veces a Pell.
+Históricamente los griegos ya conocían casos particulares de la ecuación de Pell, Teón de Esmirna trató la ecuación $x^2 - 2y^2 = 1$ y
+descubrió su operación en este caso; y Diofanto describió las ecuaciones con $d \in \{ 26, 30 \}$.
+Luego de ellos, el indio Brahmagupta descubrió en toda su generalidad la operación subyacente y otros matemáticos indios descubrieron el método
+\textit{chakravala} para encontrar eficientemente soluciones.
+Finalmente, cabe destacar el aporte de Fermat al demostrar que las ecuaciones de Pell siempre admiten alguna solución no trivial que,
+aplicando la operación, induce la existencia de infinitas soluciones.
+Algunos le llaman a la ecuación <<de Pell-Fermat>>, pero tratar de cambiarle el nombre sería como tratar de cambiarle el nombre América porque Vespucio
+no fue el primer conquistador en llegar.
+
+\begin{itemize}
+	\item ¿Cómo se encuentra eficientemente una solución no trivial de la ecuación de Pell?
+		Inmediatamante notamos que la solución satisface
+		\[
+			\left( \frac{x}{y} - \sqrt{d} \right)\left( \frac{x}{y} + \sqrt{d} \right) = \frac{x^2}{y^2} - d = \frac{1}{y^2},
+		\]
+		de modo que $\pm x$ satisface que $\left| \frac{x}{y} - \sqrt{d} \right| \le \frac{1}{y^2}$.
+		Es decir, una solución de Pell está relacionada con una buena aproximación de $\sqrt{d}$ y, coincidentalmente, la teoría de las fracciones continuas
+		ofrece tales aproximaciones.
+		Para más información revise \citeauthor{granville:masterclass}~\cite[427-435]{granville:masterclass}, \S11B.
+
+	\item La demostración del ejercicio 3 puede mejorarse ligeramente a
+		$$ |a| \le \frac{ \sqrt{|n|}(\sqrt{\omega} + 1/\sqrt{\omega})}{2}, \qquad |b| \le \frac{ \sqrt{|n|}(\sqrt{\omega} + 1/\sqrt{\omega})}{2\sqrt{d}}; $$
+		véase \citeauthor{conrad:pell}~\cite{conrad:pell}.
+
+	\item El ejercicio 4 es parte de una pregunta diofantina más general: ¿cuándo es un coeficiente binomial un cuadrado?
+		Los casos triviales son $\binom{n}{0} = 1^2$, y $\binom{n^2}{1} = n^2$.
+		Es fácil notar que uno no pierde generalidad estudiando $\binom{n + k}{k}$ con $k \le n$, en este contexto nosotros estudiamos $\binom{n + 2}{2}$.
+		El caso $\binom{n + 3}{3}$ induce una curva elíptica tras cambios de coordenadas y uno puede probar que $\binom{n + j}{j}$ con $j \ge 4$
+		solo admite finitas soluciones.
+\end{itemize}
+
+\nocite{granville:masterclass}
+\printbibliography[title={Referencias y lecturas adicionales}]
+
+\end{document}

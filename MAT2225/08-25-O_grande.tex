@@ -1,0 +1,171 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+% \usepackage{diagbox}
+
+\title{$O$ grande, $o$ chica}
+\date{25 de agosto de 2023}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2225}
+\professor{Héctor Pastén}
+
+\begin{document}
+
+\maketitle
+
+\section{Órdenes de magnitud}
+\begin{enumerate}
+	\item (Ejemplo iluminador) Demuestre que
+		$$ \sum_{n \le x} \frac{1}{2^n} = 1 + O\left( \frac{1}{2^x} \right). $$
+	\item Empleando sumas parciales, demuestre que:
+		\begin{enumerate}
+			\item $\displaystyle H(x) := \sum_{n \le x} \frac{1}{n} = \log x + \gamma + O\left( \frac{1}{x} \right),$ donde $ \gamma$ es una constante
+				llamada la \textit{constante de Euler-Mascheroni}.
+			\item $\displaystyle T(x) := \sum_{n \le x} \log n = x\log x - x + O(\log x)$.
+		\end{enumerate}
+
+	\item \textbf{Problema del círculo de Gauss:} Sea $r(n)$ la cantidad de formas de escribir $n$ como suma de dos cuadrados
+		(e.g., para $n = 5$ tenemos que $r(5) = 8$ pues $(\pm 1)^2 + (\pm 4)^2 = 5$ nos da cuatro formas e intercambiar
+		los factores nos da cuatro más).
+		Demuestre que:
+		$$ \frac{1}{x} \sum_{n\le x} r(n) = \pi + O\left( \frac{1}{\sqrt{x}} \right). $$
+
+		\begin{hint}
+			El nombre \textit{problema del \underline{círculo}} es sugerente.
+		\end{hint}
+	\item Demuestre que, para $s > 1$ se tiene la siguiente identidad:
+		$$ \sum_{n=1}^{\infty} \frac{\mu(n)}{n^s} = \frac{1}{\zeta(s)}. $$
+\end{enumerate}
+
+\begin{thm}[cotas de Chebyshev]
+	Para $x$ suficientemente grande se tiene
+	$$ c_1 \le \frac{\pi(x)}{x / \log x} \le c_2, $$
+	para algunos $0 < c_1 < c_2$.%
+	\footnote{\citeauthor{hua:number}~\cite[82]{hua:number} lo demuestra con $c_1 = 1/8$ y $c_2 = 12$.
+	Dependiendo del autor, las cotas varían, pero lo interesante es que varias aplicaciones no dependen del valor exacto.}
+	En consecuencia, $\pi(x) \asymp x/\log x$.%
+	\footnote{Recuérdese que $\log x$ \textit{siempre} denota el logaritmo natural.}
+\end{thm}
+Las cotas de Chebyshev tienen la facultad de ser <<elementales>> (en el sentido de que no requieren métodos complejos, por ejemplo)
+y ser una buena versión preliminar del teorema de los números primos.
+Como consecuencia:
+
+\begin{enumerate}[resume]
+	\item \hard
+		\textbf{Primer teorema de Mertens:} Demuestre que
+		$$ \sum_{p\le x} \frac{\log p}{p} = \log x + O(1), $$
+		(donde el subíndice $p$ siempre recorre los números primos.)
+
+		Para facilitar el ejercicio realice los siguientes pasos:
+		\begin{enumerate}[(i)]
+			\item Demuestre que cuando $n$ es entero
+				$$ T(n) = \log(n!) = \sum_{p \le x} \left( \left\lfloor \frac np \right\rfloor + \left\lfloor \frac{n}{p^2} \right\rfloor
+				+ \cdots \right) \log p. $$
+			\item Demuestre que
+				$$ \frac{x}{p} - 1 < \left\lfloor \frac np \right\rfloor + \left\lfloor \frac{n}{p^2} \right\rfloor + \cdots
+				< \frac{x}{p} + \frac{x}{p(p - 1)}. $$
+			\item Demuestre que $\sum_{p \le x} \log p \le c_2 x$.
+			\item Concluya el enunciado.
+		\end{enumerate}
+
+	\item \hard
+		\textbf{Segundo teorema de Mertens:} Demuestre que
+		$$ \sum_{p\le x} \frac{1}{p} = \log\log x + M + O\left( \frac{1}{\log x} \right), $$
+		donde $M$ es una constante llamada la \textit{constante de Mertens}.
+\end{enumerate}
+
+\section{Aplicaciones del teorema de los números primos}
+Las cotas de Chebyshev nos dan un acercamiento al siguiente resultado:
+\begin{thm}[de los números primos]
+	$\displaystyle \pi(x) \sim \frac{x}{\log x}$.
+\end{thm}
+
+Hay varias demostraciones del resultado anterior.
+Las primeras, originales de J. Hadamard y C. J. de la Vallée Poussin, siguen la línea de B. Riemann empleando métodos de análisis complejo.
+Años más tarde, A. Selberg y P. Erd\H os dieron una demostración \textit{elemental} (sin análisis complejo), pero que se considera mucho menos ilustrativa.
+Una exposición breve y elemental del teorema se encuentra en \citeauthor{richter21PNT}~\cite{richter21PNT}.
+
+Veamos algunas aplicaciones:
+\begin{enumerate}[resume]
+	\item Sea $p_n$ la sucesión de los números primos en orden creciente.
+		Demuestre que $p_n \sim n\log n$.
+	\item Para todo $\epsilon > 0$ existe $x_0 > 0$ tal que para todo $x \ge x_0$
+		siempre existe un primo $p$ tal que $x < p \le (1 + \epsilon)x$.
+	\item Para cada natural $N$ existe un primo tal que (en base decimal) sus primeras cifras coinciden con (todas) las de $N$.
+\end{enumerate}
+
+\section{Comentarios adicionales y problemas abiertos}
+\begin{itemize}
+	\item Los números $H(x)$ se conocen como \textit{números harmónicos}.
+	\item La constante de Euler-Mascheroni vale $\gamma \approx 0.5772156649...$
+		Se cree que $\gamma$ es trascendente y, por tanto, irracional; pero ambas afirmaciones están sin demostrar.
+	\item La constante de Mertens $M \approx 0.261497212847642...$ sufre de la misma suerte: también se desconoce si es irracional o trascendente.
+	\item Existen grandes carreras por optimizar aproximaciones en la teoría analítica de números.
+		Vamos a dar el ejemplo con el problema del círculo de Gauss.
+		Se cree que
+		$$ \sum_{n \le x} r(n) = \pi x + O\left( x^{\frac{1}{4} + \epsilon} \right). $$
+	\item Más aún, se cree que la cota anterior es lo más aguda posible, es decir, se cree que es falso:
+		$$ \sum_{n \le x} r(n) \ne \pi x + O\left( x^{\frac{1}{4} - \epsilon} \right). $$
+	\item El problema 8 puede considerarse una especie de refinamiento del postulado de Bertrand:
+
+		\begin{thm}[postulado de Bertrand]
+			Para todo $n \ge 2$ existe un primo $p$ tal que $n \le p < 2n$.
+		\end{thm}
+
+		Este resultado se puede demostrar mediante técnicas desarrolladas a estas alturas del curso.
+		Una demostración sencilla se encuentra por ejemplo en \citeauthor{hua:number}~\cite[82-85]{hua:number}.
+\end{itemize}
+
+\section{Comentarios ayudantía previa}
+\begin{enumerate}
+	\item[3.] Además de ocupar que $17 \mid q_8$ uno puede ocupar más sencillamente que $31 \mid q_1$.
+		En efecto, el procedimiento siguiente es el mismo ya que
+		$$ q_{1 + 30k} = 1 + \frac{10}{3}(10^{1 + 30k} - 1) \equiv 1 + \frac{10}{3}(10^1 - 1) \equiv 0 \pmod{31}, $$
+		y como $q_{1 + 30k}$ con $k \ge 1$ es mayor estricto de 31, concluimos que es compuesto.
+
+	\item[4.] El tiempo no dió en la sesión original, reproduzco mi solución.
+
+		\newcommand{\mmid}{\parallel}
+		La idea es proceder por inducción.
+		El caso base es $f(1) = 1 + 17 = 9\cdot 2$ por lo que $9 \mmid f(1)$.
+		Para $n > 2$ sea $x$ tal que $3^{n-1} \mmid f(x)$, es decir, $f(x) = 3^{n-1}a$ con $3 \nmid a$.
+		Buscamos $y$ tal que $3^n \mmid f(y)$, o lo que es lo mismo, podemos mirar módulo $3^{n+1}$:
+		Nótese que
+		\begin{align*}
+			f(x + b3^{n-2}) &= 17 + x^3 + 3 \cdot x^2 \cdot b3^{n-2} + 3 \cdot x \cdot b^23^{2(n-2)} + b^33^{3(n-2)} \\
+					&\equiv 3^{n-1}(a + bx^2) \pmod{3^{n+1}},
+		\end{align*}
+		ahora buscamos manipular $a + bx^2$ de modo que sea divisible por 3, pero no por 9.
+		Primero, observe que como $0 \equiv f(x) \equiv x^3 - 1 \pmod{3}$ entonces $3 \nmid x$.
+		Así que, $x$ puede ser $1, 2, 4, 5, 7, 8 \pmod 9$ y, su cuadrado puede ser $1, 4, 7 \pod 9$.
+
+		Como $x^2$ es coprimo con 9, entonces $x^2$ tiene inversa en $\Z/9\Z$ y, por tanto, $b = \frac{3 - a}{x^2}$ funciona
+		(¡donde <<$/x^2$>> significa multiplicar por una inversa módulo 9!).
+
+		Para hacer la cancelación de $3^{2(n - 2)}$ necesitamos las cotas $1 + 2(n - 2) \ge n + 1$ y $3(n - 2) \ge n + 1$,
+		las cuales se satisfacen para $n \ge 4$, no obstante la técnica igual funciona (aunque no incondicionalmente)
+		Los casos restantes se cubren por $3^4 = 81 \mmid 81 = f(1 + 3)$ y $3^3 = 27 \mmid -108 = f(4 - 9)$.
+		% Como $3 \nmid a$, el mismo razonamiento aplica para $a$.
+		% Finalmente una inspección rápida concluye que siempre existe $b$ tal que $a + bx^2$ sea $3, 6 \pod 9$:
+		% \begin{center}
+		% 	\begin{tabular}{c|*{6}{c}}
+		% 		\diagbox{$x^2$}{$a$} & 1 & 2 & 4 & 5 & 7 & 8 \\
+		% 		\hline
+		% 		1  & 2 & 1 & 2 & 7 & 5 & 4 \\ 
+		% 		4  & 5 & 1 & 5 & 4 & 2 & 1 \\ 
+		% 		7  & 2 & 4 & 8 & 1 & 2 & 1 \\ 
+		% 	\end{tabular}
+		% \end{center}
+\end{enumerate}
+
+\nocite{hua:number}
+\printbibliography[title={Referencias y lecturas adicionales}]
+
+\end{document}

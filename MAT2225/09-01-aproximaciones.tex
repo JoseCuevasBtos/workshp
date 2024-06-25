@@ -1,0 +1,116 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+% \usepackage{diagbox}
+
+\title{Aproximaciones diofantinas}
+\subtitle{Números irracionales y la abundancia de números de Liouville}
+\date{1 de septiembre de 2023}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2225}
+\professor{Héctor Pastén}
+
+\begin{document}
+
+\maketitle
+
+\section{Aproximación y el teorema de Dirichlet}
+El típico argumento de las cajitas se generaliza a lo siguiente:
+\begin{enumerate}
+	\item \hard
+		\textbf{Aproximación multidimensional de Dirichlet:}
+		Sean $\alpha_{11}, \alpha_{12}, \dots, \alpha_{m,r}$ números reales donde $m, r > 0$ son enteros fijos, y sean $M > 0$ otro entero.
+		Demuestre que existen $m$ enteros $u_1, \dots, u_m$ y $r$ enteros $v_1, \dots, v_r$ (no todos nulos) con cada $|v_j| < M^{m/r}$
+		tales que
+		$$ \forall 1 \le j \le m \quad \left| \sum_{k=1}^{r} \alpha_{jk} v_k - u_j \right| < \frac{1}{M}. $$
+\end{enumerate}
+
+La teoría de aproximación diofantina permite encontrar varios ejemplos directos de números irra\-cionales:%
+\footnote{Sin recurrir, por supuesto, al típico argumento de que los irracionales existen por que $|\R| > |\Q|$.}
+\begin{enumerate}[resume]
+	\item Demuestre que un número real $\alpha$ es irracional syss para todo $\epsilon > 0$ existen enteros $u, v$
+		tales que $0 < |\alpha u - v| < \epsilon$.
+	% \item Demuestre que si $\alpha$ es irracional existen infinitas fracciones (en forma reducida) $u/v$ tales que $|\alpha - u/v| < 1/v^2$.
+	\item Sea $2 \le g_1 \le g_2 \le g_3 \le \cdots$ una sucesión creciente de naturales tales que $\lim_n g_n = \infty$
+		y sea $(z_n)_{n\in\N}$ una sucesión de 0s y 1s, donde $z_n = 1$ infinitas veces.
+		Demuestre que el número real
+		$$ \alpha := \sum_{n=1}^{\infty} \frac{z_n}{g_1 g_2 \cdots g_n} = \frac{z_1}{g_1} + \frac{z_2}{g_1g_2} + \cdots, $$
+		es irracional (¿por qué siempre está bien definido?).
+
+		Nótese que esto da una generalización del típico argumento de que $e$ es irracional.
+		También argumente porque las hipótesis ($2 \le g_1$; $g_n \to \infty$; $z_n \ne 0$ infinitas veces) son necesarias.
+	\item \hard
+		(Fermat) Sea $d > 0$ un natural libre de cuadrados.
+		Demuestre que la ecuación de Pell $x^2 - dy^2 = 1$ posee al menos una solución $(x, y) \ne (\pm 1, 0)$ con coeficientes enteros.
+
+		\begin{hint}
+			Conviértalo en un problema de aproximar $\sqrt{d}$.
+		\end{hint}
+\end{enumerate}
+
+\section{El teorema de Liouville y sus consecuencias}
+\begin{thm}[Liouville]
+	Sea $\alpha \in \R$ un número algebraico de grado $d$.%
+	\footnote{Vale decir, que existe un polinomio irreducible $f(x) \in \Q[x]$ de grado $d$ tal que $f(\alpha) = 0$.}
+	Entonces existen finitas fracciones reducidas $u/v \in \Q$ tales que $|\alpha - u/v| < 1/v^d$.
+\end{thm}
+\begin{mydef}
+	Se dice que un número real $\alpha$ es \strong{de Liouville} si para cada $k \ge 1$ entero existe una fracción reducida $u/v$
+	tal que $|\alpha - u/v| < 1/v^k$.
+	Se denota por $\mathcal{L}$ el conjunto de los números de Liouville.
+\end{mydef}
+
+\begin{enumerate}[resume]
+	\item Demuestre que los números de Liouville son trascendentes.
+	\item Demuestre que $\mathcal{L}$ es un conjunto denso y no numerable de $\R$.
+	\item Demuestre lo siguiente:
+		\begin{enumerate}
+			\item $\Q + \mathcal{L} = \mathcal{L}$ (donde la suma de conjuntos significa el conjunto de elementos $\alpha + \beta$,
+				con $\alpha \in \Q, \beta \in \mathcal{L}$).
+			\item $\Q^\times \cdot \mathcal{L} = \mathcal{L}$.
+			\item \hard
+				(Erd\H os \cite{erdos62liouville}) $\mathcal{L + L} = \R$.
+
+				\begin{hint}
+					Por los incisos anteriores redúzcase a probar que todo $\alpha \in (0, 1)$ está en $\mathcal{L + L}$.
+					Este caso sale escribiendo $\alpha$ de manera conveniente y generalizando el ejemplo prototípico
+					de un número de Liouville (vale decir, $0.1100001 00000 00000 00000 0001...$)
+				\end{hint}
+		\end{enumerate}
+\end{enumerate}
+
+\section{Comentarios adicionales}
+\begin{itemize}
+	\item
+		Con $m = r = 1$ en el ejercicio 1, uno obtiene que
+		$$ \left| \alpha - \frac{u}{v} \right| = \frac{1}{Mv} < \frac{1}{v^2}. $$
+		Si exigimos que $\alpha$ sea irracional, entonces un teorema de Hurwitz demuestra que existen infinitas fracciones
+		reducidas $u/v$ tales que
+		$$ \left| \alpha - \frac{u}{v} \right| < \frac{1}{\sqrt{5}v^2}, $$
+		y, además, está aproximación es aguda en el sentido de que cambiando $\sqrt{5}$ por un denominador más grande uno pierde la infinitud.
+
+		Éstas fracciones pueden obtenerse mediante convergentes de la expansión en fracción continua simple (cfr. \cite[256-257]{hua:number}).
+
+	% \item Si además fijamos un número $\beta$ no entero, entonces para un $\alpha$ irracional existen infinitas fracciones reducidas $u/v$ tales que
+	% 	$$ |\alpha v - \beta - u| < \frac{1}{4|v|}, $$
+	% 	lo cual es una considerable mejora.
+	% 	J.H. Grace probó que el denominador $4$ es agudo.
+
+	\item El problema 7 demuestra que el conjunto $\mathcal{L}$ es bastante curioso.
+		Uno puede demostrar que $\mathcal{L}$ tiene medida (de Lebesgue) 0, de modo que acrecenta el interés.
+		Se dice que un subconjunto $W \subseteq \mathcal{L}$ es un \strong{conjunto de Erd\H os-Liouville} si $W + W = \R$;
+		el artículo reciente de \citeauthor{chalebgwa2023sets}~\cite{chalebgwa2023sets} prueba que hay $2^{\mathfrak{c}}$ conjuntos de Erd\H os-Liouville,
+		en otras palabras, que hay tantos subconjuntos de $\R$ como conjuntos de Erd\H os-Liouville.
+\end{itemize}
+
+\nocite{hlawka:number}
+\printbibliography[title={Referencias y lecturas adicionales}]
+
+\end{document}

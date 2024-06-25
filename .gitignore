@@ -1,0 +1,8 @@
+**/*
+
+!**/
+!**/*.tex
+!reference.bib
+!.gitignore
+!puc_negro.png
+!**/*.pdf

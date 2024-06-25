@@ -1,0 +1,148 @@
+\input{../general.tex}
+% \input{../graphics.tex}
+
+\makeatletter
+\def\emailaddrname{\textit{Correo electrónico}}
+\def\subtitle#1{\gdef\@subtitle{#1}}
+\def\@subtitle{}
+
+% Metadata
+\def\logo#1{\gdef\@logo{#1}}
+\def\@logo{}
+\def\institution#1{\gdef\@institution{#1}}
+\def\@institution{}
+\def\department#1{\gdef\@department{#1}}
+\def\@department{}
+\def\professor#1{\gdef\@professor{#1}}
+\def\@professor{}
+\def\course#1{\gdef\@course{#1}}
+\def\@course{}
+\def\coursecode#1{\gdef\@coursecode{#1}}
+\def\@coursecode{}
+
+\renewcommand{\maketitle}{
+\begin{center}
+	\small
+	\renewcommand{\arraystretch}{1.2}
+	\begin{tabular}{cp{.37\textwidth}p{0.44\textwidth}}
+		% \hline
+		\multirow{5}{*}{\includegraphics[height=2.0cm]{\@logo}}
+	  & \multicolumn{2}{c}{ \makecell{{\bfseries \@institution} \\ \@department} } \\
+	  % & \multicolumn{2}{c|}{{\bfseries\@institution} \\ \@department} \\
+	  \cline{2-3}
+	  & \textbf{Profesor:} \@professor & \textbf{Ayudante:} \authors \\
+	  % \cline{2-3}
+	  & \textbf{Curso:} \@course & \textbf{Sigla:} \@coursecode \\
+	  % \cline{2-3}
+	  & \multicolumn{2}{l}{ \textbf{Fecha:} \@date } \\
+	  % \hline
+	\end{tabular}
+	\\[\baselineskip]
+	% {}
+	% \vspace{2\baselineskip}
+	{\bfseries\Large\@title}
+	\ifx\@subtitle\@empty\else
+		\\[1ex]
+		\large\mdseries\@subtitle
+	\fi
+\end{center}
+}
+\makeatother
+
+\usepackage{multirow, makecell}
+
+\usepackage[
+	reversemp,
+	letterpaper,
+	% marginpar=2cm,
+	% marginsep=1pt,
+	margin=2.3cm
+]{geometry}
+\usepackage{marginnote, fontawesome}
+% \makeatletter
+% \@reversemargintrue
+% \makeatother
+
+% Símbolos al margen, necesitan doble compilación
+\newcommand{\hard}{\marginnote{\faFire}}
+\newcommand{\hhard}{\marginnote{\faFire\faFire}}
+
+% Dependencias para los teoremas
+\usepackage{xifthen}
+\def\@thmdep{}
+\newcommand{\thmdep}[1]{
+	\ifthenelse{\isempty{#1}}
+	{\def\@thmdep{}}
+	{\def\@thmdep{ (#1)}}
+}
+\newcommand{\thmstyle}{\color{thm}\sffamily\bfseries}
+
+% ===== Estilos de Teoremas ==========
+\newtheoremstyle{axiomstyle}
+	{0.3cm}
+	{0.3cm}
+	{\normalfont}
+	{0.5cm}
+	{\bfseries\scshape}
+	{:}
+	{4pt}
+	{\thmname{#1}\thmnote{ #3}\thmnumber{ (#2)}}
+\newtheoremstyle{styleC}
+	{0.5cm}
+	{0.5cm}
+	{\normalfont}
+	{0.5cm}
+	{\bfseries}
+	{:}
+	{4pt}
+	{\thmname{#1\textrm{\@thmdep}}\thmnumber{ #2}\thmnote{ (#3)}}
+
+% ====== Teoremas (sin borde) ===========
+\theoremstyle{axiomstyle}
+\newtheorem*{axiom}{Axioma}
+
+% ====== Teoremas (sin borde) ==================
+\theoremstyle{styleC}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{mydef}[thm]{Definición}
+\newtheorem{prop}[thm]{Proposición}
+\newtheorem{cor}[thm]{Corolario}
+\newtheorem{lem}[thm]{Lema}
+\newtheorem{con}[thm]{Conjetura}
+\newtheorem*{sol}{Solución}
+\newtheorem*{obs}{Observación}
+\newtheorem*{ex}{Ejemplo}
+
+\newtcbox{bluebox}[1][]{enhanced jigsaw, 
+  sharp corners,
+  frame hidden,
+  nobeforeafter,
+  listing only,
+  #1} % comando para crear cajas de colores
+
+\expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+\let\oldendproof\endproof
+\renewenvironment{proof}[1][\proofname]{%
+  \oldproof[\scshape Demostración:]%
+}{\oldendproof} % comando para redefinir la caja de la demostración
+\newenvironment{hint}[1][\proofname]{%
+  \oldproof[\scshape Pista:]%
+}{\oldendproof} % comando para redefinir la caja de la demostración
+
+% colores utilizados
+\definecolor{numchap}{RGB}{249,133,29}
+\definecolor{chap}{RGB}{6,129,204}
+\definecolor{sec}{RGB}{204,0,0}
+\definecolor{thm}{RGB}{106,176,240}
+\definecolor{thmB}{RGB}{32,31,31}
+\definecolor{part}{RGB}{212,66,66}
+
+% ====== Diseño de los titulares ===============
+\usepackage[explicit]{titlesec} % para personalizar el documento, la opción <<explicit>> hace que el texto de los titulares sea un objeto interactuable
+
+\titleformat{\subsection}[runin]
+	{\bfseries}
+	{\textrm{\S}\thesubsection}
+	{1ex}
+	{#1.}
+

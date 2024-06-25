@@ -1,0 +1,114 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\DeclareFieldFormat[book]{title}{\textit{#1}\addperiod}
+
+\title{Dinámicas aritméticas}
+% \subtitle{Guía para el autoestopista diofántico}
+\date{10 de noviembre de 2023}
+
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\Per}{Per}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2225}
+\professor{Héctor Pastén}
+
+\begin{document}
+
+\maketitle
+
+\section{Dinámicas aritméticas}
+Para no complicarnos la vida, diremos que un morfismo $f\colon \PP^1 \to \PP^1$ es una función que en las cartas afines (es decir, sobre puntos de la forma
+$[x : 1]$ e $[1 : y]$) viene dado por funciones racionales (i.e., fracciones formales de polinomios).
+Si estas fracciones tienen ceros en los denominadores, entonces diremos que determina una aplicación racional $f \colon \PP^1 \dashto \PP^1$ (y se denotara con
+esta flecha quebrada).
+Nótese que todo morfismo está dado por funciones racionales, necesariamente del mismo grado y homogéneas (para que estén bien definidas en la recta proyectiva);
+llamaremos el \strong{grado} de la aplicación racional al grado de las funciones que le definen por coordenadas.
+
+Nótese que toda aplicación racional de $\PP^1(\C)$ de grado 1 viene dada por:
+% llamadas \strong{transformaciones de Möbius}:
+$$ \mu_{a,b,c,d}([x : y]) := [ax + by : cx + dy], \qquad a,b,c,d \in \C. $$
+Donde excluimos la posibilidad de que $a = b = c = d = 0$.
+\begin{enumerate}
+	\item Demuestre que las siguientes condiciones son equivalentes:
+		\begin{enumerate}
+			\item $\mu_{a,b,c,d}$ es un morfismo (¡y no una aplicación racional!).
+			\item $\mu_{a,b,c,d}$ es no constante.
+			\item $\mu_{a,b,c,d}$ es inyectivo.
+			\item $\mu_{a,b,c,d}$ es sobreyectivo.
+			\item $ad - bc \ne 0$.
+		\end{enumerate}
+		Concluya que los automorfismos (i.e., isomorfismos de $\PP^1 \to \PP^1$) de grado 1 están en biyección con
+		$$ \PGL_2(\C) := \GL_2(\C) / \C^\times. $$
+		Los elementos de $\PGL_2$ se dicen \strong{transformaciones de Möbius}.
+	\item Sean $(\alpha_1, \alpha_2, \alpha_3)$ y $(\beta_1, \beta_2, \beta_3)$ dos ternas de puntos distintos de $\PP^1$.
+		Demuestre que existe una transformación de Möbius $\mu \in \PGL_2(\C)$ tal que cada $\mu(\alpha_i) = \beta_i$.
+\end{enumerate}
+
+\begin{mydef}
+	Sea $f \colon X \to X$ una función sobre un conjunto cualquiera.
+	Dado un punto $x \in X$ su \strong{órbita} es%
+	\footnote{Otros textos también emplean $\mathcal{O}_f(x)$ u $O_f^+(x)$.}
+	\[
+		f^\N(x) := \{ f^n(x) : n \in \N \},
+	\]
+	donde $f^n$ denota la composición $n$ veces y donde $f^0 := \Id_X$.
+	Denotaremos
+	$$ \Per_n(f) := \{ x \in X : f^n(x) = x \}, \qquad \Per_n^{**}(f) := \{ x \in \Per_n(f) : \forall 0 < m < n, \quad x \notin \Per_m(f) \}. $$
+	Se dice que $x$ es \strong{periódico} si $x \in \bigcup_{n=1}^\infty \Per_n(f)$.
+	Se dice que $x$ es \strong{preperiódico} si su órbita $f^\N(x)$ es finita, de lo contrario se dice que $x$ es un \strong{punto errante}.
+	Se dice que $x$ es \strong{estrictamente preperiódico} si es preperiódico, pero no periódico.
+\end{mydef}
+\begin{enumerate}[resume]
+	\item Sea $\varphi(z) \in \C(z)$ una función racional de grado (geométrico)%
+		\footnote{El \textit{grado geométrico} de una función racional $\varphi(z) = g(z)/h(z)$, donde $g, h \in \C[z]$ son polinomios coprimos
+		es $\max\{ \deg g, \deg h \}$.}
+		$d \ge 2$.
+		\begin{enumerate}
+			\item Demuestre que $|\Per_n(f)| \le d^n + 1$.
+			\item Demuestre que $\lim_n |\Per_n(f)| = \infty$.
+			\item Concluya que $\Per_n^{**}(f)$ no es vacío para infinitos $n$'s.
+		\end{enumerate}
+
+	\item Dada una curva elíptica $\mathcal{E} \colon y^2 = x^3 + Ax^2 + Bx + C$ con $A,B,C \in \Q$ en forma de Weierstrass,
+		la fórmula explícita para la duplicación de un punto con coordenadas $P := [u : v : 1]$ es
+		$$ x(2\cdot P) = \frac{x^4 - b_4x^2 - 2b_6 x - b_8}{4x^3 + b_2x^2 + 2b_4x + b_6}, $$
+		donde los $b_i$'s son racionales en función de $A, B, C$.
+		Se pueden explicitar como $b_2 = 4A, b_4 = 2B, b_6 = 4C, b_8 = B^2 - 4AC$.
+		La fórmula anterior se conoce como \strong{fórmula de duplicación}.
+
+		Demuestre que $\mathcal{E}$ posee finitos puntos \textit{racionales} de torsión cuyo orden sea de la forma $2^n$.
+
+	\item Sea $f(x) \in \Z[x]$ un polinomio tal que el 0 sea un punto estrictamente preperiódico de $f$.
+		Denotemos $\ell(f) := \mcm(f(0), f^2(0))$; para todo punto errante $x_0$ definamos:
+		$$ a_n := \frac{f^n(x_0)}{\mcd( f^n(x_0), \ell(f) )}. $$
+		\begin{enumerate}
+			\item \hard
+				Demuestre que $(a_n)_n$ es una sucesión de enteros coprimos dos a dos.
+			\item Con ello dé una nueva demostración de la infinitud de primos.
+		\end{enumerate}
+\end{enumerate}
+
+\section{Comentarios adicionales}
+En el ejercicio 4 vimos un caso muy particular de torsión de una curva elíptica.
+Uno igual puede llevar el argumento más al extremo empleando fórmulas de para calcular $n$ veces un punto $P$.
+Éstas fórmulas existen y vienen dadas por los llamados \strong{polinomios de división}
+(cfr. \citeauthor{silverman:elliptic}~\cite[105-106]{silverman:elliptic}, ex.~3.7).
+Aunque el argumento general que se emplea es identificando a una curva elíptica (¡sobre $\C$!) con un cociente de grupos topológicos $\C/\Lambda$,
+donde $\Lambda$ es un reticulado pleno (i.e., es de la forma $\Lambda = \alpha\Z + \beta\Z$, donde $\alpha, \beta \in \C^\times$ son complejos no nulos
+tales que $\alpha/\beta \notin \R$); con ello no solo se concluye finitud general de la torsión, sino que la torsión (¡en $\C$!) se puede calcular
+completamente y $E[m] \cong (\Z/m\Z)^2$ (cfr. \cite[106]{silverman:elliptic}, ex.~3.8).
+
+El último ejercicio fue una idea original de \citeauthor{granville2018dynamical}~\cite{granville2018dynamical}.
+
+\nocite{silverman:dynamical}
+\printbibliography[title={Referencias y lecturas adicionales}]
+
+\end{document}

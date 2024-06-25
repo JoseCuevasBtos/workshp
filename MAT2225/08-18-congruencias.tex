@@ -1,0 +1,158 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+
+\title{Congruencias y funciones multiplicativas}
+% \subtitle{Conociendo a Catalan, Fermat y Mordell}
+\date{18 de agosto de 2023}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+% \urladdr{josecuevas.xyz}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2225}
+\professor{Héctor Pastén}
+
+\begin{document}
+
+\maketitle
+
+\section{Congruencias}
+% \begin{mydef}
+% 	Una \strong{ecuación diofantina} es un polinomio $f(x_1, x_2, \dots, x_n) \in \Q[x_1, \dots, x_n]$ (generalmente $f(\vec x) \in \Z[\vec x]$),
+% 	y sus \strong{soluciones} son las tuplas $(a_1, \dots, a_n) \in \Q^n$ tales que $f(a_1, \dots, a_n) = 0$.
+% \end{mydef}
+% En este cursos principalmente estudiaremos las ecuaciones diofantinas con coeficientes \textit{enteros} (en $\Z$) y sus soluciones \textit{enteras} (en $\Z$).
+
+\noindent
+Primero un par de problemas de práctica:
+\begin{enumerate}
+	\item (Gersónides) Las únicas potencias consecutivas de $2$ y $3$ son $1, 2, 3, 4, 8$ y $9$.
+
+	\item Demuestre que la ecuación diofantina $x^2 + y^2 = 4z + 3$ no tiene soluciones enteras.
+
+		% (Ver mód 4).
+	% \item Demuestre que $7 \mid 2222^{5555} + 5555^{2222}$.
+\end{enumerate}
+Ahora subamos de nivel:
+\begin{enumerate}[resume]
+	\item Considere la sucesión
+		\[
+			q_n := \underbrace{33\dots 33}_{n\text{ veces}} 1.
+		\]
+		Demuestre que contiene infinitos números compuestos.
+
+		Lo divertido de la sucesión es que $q_1, q_2, \dots, q_7$ son todos primos y $q_8 = 17 \cdot 19607843$ es el primer número compuesto en ella.
+
+		% \begin{proof}
+		% 	En primer lugar escribamos $q_n$ de manera cerrada:
+		% 	$$ q_n = 30(1 + \cdots + 10^{n-1}) + 1 = 30 \cdot \frac{10^n - 1}{10 - 1} + 1 = \frac{10}{3}(10^n - 1) + 1. $$
+		% 	Ahora sabemos que $17 \mid q_8$ (?!), por lo que podemos mirar la sucesión módulo 17.
+		% 	Por el pequeño teorema de Fermat $10^{16} \equiv 1 \pmod{17}$, por lo que $10^{8 + m16} \equiv 10^8 \pmod{17}$
+		% 	y, por tanto, $q_{8 + m16} \equiv q_8 \equiv 0 \pmod{17}$.
+		% \end{proof}
+	\item
+		\hard
+		(Japón 1999) Sea $f(x) := x^3 + 17$.
+		Demuestre que para todo natural $n \ge 2$ existe un entero $x$ tal que $3^n \mid f(x)$ pero $3^{n+1} \nmid f(x)$.
+\end{enumerate}
+
+% \textbf{Problemas abiertos:}
+% \begin{itemize}
+% 	\item ¿Habrá infinitos primos de Mersenne?
+% 	\item ¿Existen números impares perfectos?
+% 		Por computación sabemos que, de existir, han de ser mayores que $10^{1500}$ (cfr. \citeauthor{ochem2012perfect}~\cite{ochem2012perfect}).
+% 	\item ¿Existen números $n$ tales que $\sigma(n) = 2n+1$?
+% \end{itemize}
+
+\section{Funciones aritméticas y multiplicativas}
+Recuérdese:
+\begin{mydef}
+	Una \strong{función aritmética}\index{función!aritmética} es una función $f \colon \N_{\ne 0} \to \C$.
+	Una función aritmética no nula se dice:
+	\begin{description}
+		\item[Completamente multiplicativa] Si para todo $n, m \in \N_{\ne 0}$ se cumple que $f(nm) = f(n)f(m)$.
+		\item[Multiplicativa] Si para todo par de naturales $n, m \in \N_{\ne 0}$ coprimos se cumple que $f(nm) = f(n)f(m)$.
+	\end{description}
+\end{mydef}
+
+\begin{enumerate}[resume]
+	\item (Prueba de sanidad) Sea $f$ una función aritmética. Demuestre:
+		\begin{enumerate}
+			\item Si $f$ es multiplicativa, entonces $f(1) = 1$.
+			\item Si $f$ es multiplicativa, entonces está totalmente determinado por los valores que toma $f(p^\alpha)$ para todo primo $p$
+				y todo exponente $\alpha > 1$.
+				En cuyo caso, dados $p_1, \dots, p_m$ primos distintos y $\alpha_i \in \N$ se tiene
+				$$ f(p_1^{\alpha_1} \cdots p_m^{\alpha_m}) = f(p_1^{\alpha_1}) \cdot f(p_2^{\alpha_2}) \cdots f(p_m^{\alpha_m}). $$
+			\item Si $f$ es completamente multiplicativa, entonces está totalmente determinado por los valores que toma $f(p)$ para todo primo $p$.
+				En cuyo caso, dados $p_1, \dots, p_m$ primos distintos y $\alpha_i \in \N$ se tiene
+				$$ f(p_1^{\alpha_1} \cdots p_m^{\alpha_m}) = f(p_1)^{\alpha_1} \cdot f(p_2)^{\alpha_2} \cdots f(p_m)^{\alpha_m}. $$
+		\end{enumerate}
+
+	\item Demuestre que las siguientes son funciones multiplicativas:
+		\begin{enumerate}
+			% \item La función $\phi$ de Euler, dada por $\phi(n)$ es la cantidad de naturales coprimos a $n$ menores que $n$.
+			\item La función de Möbius, dada por
+				$$ \mu(n) :=
+				\begin{cases}
+					(-1)^r, & \text{si $n = p_1 \cdots p_r$, con $p_i$ primos distintos,} \\
+					0, & \text{si existe un primo $p$ tal que $p^2 \mid n$.}
+				\end{cases} $$
+			\item Las funciones de la forma:
+				$$ \sigma_s(n) := \sum_{d\mid n} d^s, \qquad s \in \Z_{\ge 0}. $$
+				En particular, denotamos $\tau(n) := \sigma_0(n)$ la función que cuenta la cantidad de divisores de $n$;
+				y $\sigma(n) := \sigma_1(n)$ la función que suma los divisores de $n$.
+		\end{enumerate}
+
+	\item (Corolario) Sea $n \in \N$ con factorización prima $n = p_1^{\alpha_1} \cdots p_m^{\alpha_m}$.
+		Concluya lo siguiente:
+		\begin{enumerate}
+			\item La cantidad de divisores que posee es
+				$$ \tau(n) = (\alpha_1 + 1)(\alpha_2 + 1) \cdots (\alpha_m + 1). $$
+			\item La suma de sus divisores es
+				$$ \sigma(n) = \frac{p_1^{\alpha_1 + 1} - 1}{p_1 - 1} \cdot \frac{p_2^{\alpha_2 + 1} - 1}{p_2 - 1}
+				\cdots \frac{p_m^{\alpha_m + 1} - 1}{p_m - 1}. $$
+		\end{enumerate}
+\end{enumerate}
+\begin{mydef}
+	Se dice que un número natural $n$ es \strong{perfecto} si es igual a la suma de los divisores menores que él,
+	o equivalentemente, si $\sigma(n) = 2n$.
+\end{mydef}
+Un ejemplo de un número perfecto es el 6 pues $6 = 1 + 2 + 3$.
+
+% \begin{center}
+% 	\itshape
+% 	El objetivo de los siguientes problemas es clasificar los números pares perfectos.
+% \end{center}
+\begin{enumerate}[resume]
+	\item
+		(Euclides-Euler) Demuestre que un número par es perfecto syss es de la forma $2^{n-1}(2^n - 1)$,
+		donde $p := 2^n - 1$ es un número primo.
+		(Los primos de la forma $2^n - 1$ se dicen \emph{primos de Mersenne}.)
+
+		% \begin{hint}
+		% 	Para <<$\implies$>> demuestre que si $m$ es impar y $\sigma(m) = 2^{n+1}a$ con $a$ impar,
+		% 	entonces $m = (2^{n+1} - 1)a$
+		% \end{hint}
+	\item (Euler) Demuestre que un número impar perfecto es de la forma $p^r m^2$ donde $p \nmid m$ y $p \equiv r \equiv 1 \pmod 4$.
+\end{enumerate}
+
+\section*{Problemas abiertos}
+\begin{itemize}
+	\item ¿Habrán infinitos primos de Mersenne?
+	\item ¿Existen números impares perfectos?
+		Por computación sabemos que, de existir, han de ser mayores que $10^{1500}$ (cfr. \citeauthor{ochem2012perfect}~\cite{ochem2012perfect}).
+		
+		La expresión del enunciado 9 puede refinarse, uno puede demostrar (sin tanto esfuerzo) que $r = 1$
+		(cfr. \citeauthor{desouza2018odd}~\cite{desouza2018odd}).
+	\item ¿Existen números $n$ tales que $\sigma(n) = 2n+1$?
+\end{itemize}
+
+\nocite{burton:elementary, andreescu:problems}
+\printbibliography[title={Referencias y lecturas adicionales}]
+
+\end{document}

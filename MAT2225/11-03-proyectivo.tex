@@ -1,0 +1,254 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\DeclareFieldFormat[book]{title}{\textit{#1}\addperiod}
+
+\title{Ecuaciones en el espacio proyectivo}
+% \subtitle{Diofanto contraataca}
+\date{3 de noviembre de 2023}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2225}
+\professor{Héctor Pastén}
+
+\begin{document}
+
+\maketitle
+
+\section{El espacio proyectivo}
+\begin{mydef}
+	Sea $k$ un cuerpo, y sea $n \in \N$ un natural fijado.
+	En el espacio vectorial $k^{n+1}$ removemos el origen $\Vec 0$, y aquí denotamos que dos vectores $\vec u, \vec v$
+	son linealmente equivalentes $\vec u \sim \vec v$ si existe $\lambda \in k^\times$ tal que $\vec u = \lambda \vec v$.
+	El \strong{espacio proyectivo} $\PP^n(k)$ se define como las clases de equivalencia $(k^{n+1} \setminus \{ \Vec 0 \})/{\sim}$.
+	Los elementos de $\PP^n(k)$ se denotan $[a_0 : a_1 : \cdots : a_n]$, donde los $a_i \in k$ son no todos nulos.
+
+	Dado un polinomio $f(x_1, \dots, x_n) \in k[\vec x]$, el conjunto de sus soluciones usuales se denota
+	$$ \VV(f) := \{ (a_1, \dots, a_n) \in k^n : f(\vec a) = 0 \} \subseteq \A^n(k). $$
+	El grado (total) de un monomio $x_1^{\alpha_1} \cdots x_n^{\alpha_n}$ es $\alpha_1 + \alpha_2 + \cdots + \alpha_n$.
+	Un polinomio $f(\vec x) \in k[\vec x]$ se dice \strong{homogéneo} si todos sus monomios tienen el mismo grado total.
+	Si $f(x_0, \dots, x_n) \in k[\vec x]$ es un polinomio homogéneo, entonces las soluciones proyectivas de $f(\vec x) = 0$
+	se denota $\VV_+(f)$ y es un subconjunto de $\PP^n(k)$.
+\end{mydef}
+Nótese que todo polinomio homogéneo posee una solución \strong{trivial} dada por $(0, 0, \dots, 0)$; esta nunca es una solución proyectiva.
+
+\begin{ex}
+	Considere $k = \Fp[5] = \Z/5\Z$.
+	El polinomio $f(x, y) = x + 2y$ es homogéneo de grado 1, y las soluciones afines de $x + 2y = 0$ son
+	$$ \VV(x + 2y) = \{ (0, 0), \quad (2, 4), \quad (4, 3), \quad (1, 2), \quad (3, 1) \} \subseteq \A^2(k). $$
+	Si ahora miramos el conjunto $\VV_+(f) \subseteq \PP^1(k)$, entonces el punto $(0, 0)$ no aparece y notamos que, por ejemplo $[2 : 4] = 4\cdot[3 : 1]
+	= [12 : 4]$, y así, en realidad, $\VV_+(f) = \{ [1 : 2] \} \subseteq \PP^1(k)$ corresponde a un solo punto.
+\end{ex}
+
+\begin{enumerate}
+	\item 
+		\begin{enumerate}
+			\item Demuestre que un polinomio irreducible en una variable $f(x) \in k[x]$ posee a lo más una solución.
+			\item Sea $f(x, y) \in k[x, y]$ un polinomio homogéneo irreducible no nulo.
+				Demuestre que a menos que $f(x, y) = ax$ o $f(x, y) = ay$ para algún $a \in k^\times$,
+				entonces $[0 : 1]$ y $[1 : 0]$ no son soluciones de $f(x, y)$.
+			\item Con lo anterior, concluya que $\VV_+(f)$ es o bien vacío, o bien consiste de un solo punto.
+		\end{enumerate}
+\end{enumerate}
+
+\begin{mydef}
+	Considere un polinomio $f(x_0, \dots, x_{n-1}) \in k[\vec x]$ en $n$ variables.
+	Su \strong{homogenización} (respecto a $z$) es el polinomio en $n + 1$ variables:
+	$$ g(\vec x, z) := z^{\deg f} \cdot f\left( \frac{x_0}{z}, \dots, \frac{x_{n-1}}{z} \right). $$
+	Si, por el contrario, tenemos un polinomio homogéneo $h(\vec x, z) \in k[\vec x, z]$ en $n+1$ variables, el polinomio $h(\vec x, 1)$ se dice
+	su \strong{deshomogenización} (respecto a $z$).
+\end{mydef}
+Por ejemplo, dado el polinomio $f(x, y) = x^3 - 3xy + 6y$, su homogenización es $x^3 - 3xyz + 6z^2$.
+
+\begin{enumerate}[resume]
+	\item (Prueba de sanidad)
+		\begin{enumerate}
+			\item Verifique que la homogenización de un polinomio efectivamente es un polinomio homogéneo.
+			\item Sea $f(\vec x) \in k[\vec x]$ un polinomio y sea $g(\vec x, y)$ su homogenización.
+				Verifique que hay una inclusión canónica de $\VV(f)$ las soluciones afines de $f$ en $\VV_+(g)$ las soluciones
+				proyectivas de $g$ dada por
+				\[
+					(a_1, a_2, \dots, a_n) \longmapsto [a_1 : a_2 : \cdots : a_n : 1].
+				\]
+				Este proceso se le llama \strong{clausura proyectiva}.
+				Los puntos que están en $\VV_+(g) \setminus \VV(f)$ le llamaremos el \strong{resto de la homogenización}.%
+				\footnote{¡Ésta es terminología no estándar!}
+			\item Considere la ecuación de Weierstrass
+				$$ y^2 + a_1 xy = x^3 + a_2 x^2 + a_4 x + a_6. $$
+				Verifique que hay solo un punto en el resto de su homogenización.
+			\item Sea $f(\vec x) \in k[\vec x]$ un polinomio.
+				Demuestre que si lo homogenizamos (añadiendo $z$) y luego lo deshomogenizamos (respecto a $z$), entonces volvemos al mismo $f$.
+
+				No obstante, dé un ejemplo de un polinomio homogéneo $h(\vec x, z) \in k[\vec x, z]$ tal que si lo deshomogenizamos (respecto a $z$)
+				y luego lo homogenizamos (respecto a $z$), \underline{no} volvemos al mismo $h$ original.
+		\end{enumerate}
+
+	\item Considere un polinomio $f(x, y) \in k[x, y]$ no constante, y su conjunto de soluciones $\VV(f) \subseteq \A^2(k)$ que, intuitivamente
+		representa un conjunto de curvas.
+		Demuestre que, si $k$ es algebraicamente cerrado (e.g., $k = \C$), el resto de la homogenización no es ni vacío, ni infinito.
+		Demuestre, no obstante, que puede tener cualquier cardinalidad.
+
+	% \item Alturas o cantidad asintótica de puntos en el proyectivo.
+\end{enumerate}
+
+\section{Ejemplos relacionados al Último Teorema de Fermat}
+Los siguientes dos ejemplos están sacados del primer capítulo de \citeauthor{edwards:fermat}~\cite[6-10]{edwards:fermat}.
+\begin{enumerate}[resume]
+	\item Sea $(a, b, c)$ una terna pitagórica (i.e., $a^2 + b^2 = c^2$).
+		Demuestre que existen $d,u,v\in\Z$ con $u, v$ coprimos tales que
+		\begin{equation*}
+			a = d(u^2 - v^2), \quad b = 2duv, \quad c = d(u^2 + v^2).
+			% \label{eq:pythagoric_triples}
+		\end{equation*}
+		\begin{hint}
+			Nótese que el $d$ es el máximo común divisor de $a, b, c$ en conjunto, así que redúzcase al caso en que $a, b, c$ son coprimos.
+			Así, pruebe que exactamente uno de ellos es par y, además, que $c$ no puede serlo.
+			Prosiga por un argumento del tipo <<producto de dos coprimos es un cuadrado syss ambos factores son cuadrados>>;
+			para ello deberá cancelar un factor común de dos inducido por la paridad de uno de los términos.
+			% Finalmente concluya.
+		\end{hint}
+
+	\item Demuestre que la ecuación diofántica $x^4 - y^4 = z^2$ no posee soluciones no triviales, y por tanto, que el Último Teorema de Fermat se satisface
+		para el exponente 4.
+		\begin{hint}
+			El argumento es por <<descenso infinito>>, es decir, construya maneras en las que emplear la pregunta
+			anterior para ir refinando los números involucrados y llegue a una contradicción de tamaños.
+		\end{hint}
+\end{enumerate}
+El caso de exponente $n = 4$ es una de las pocas demostraciones que Fermat sí dio a una de sus afirmaciones; si bien Fermat jamás fue un publicador metódico,
+por sus argumentos podemos reconocer que no era <<charlatán>> sino que tenía la intuición apropiada en varios casos.
+La abundancia de conjeturas por parte de Fermat se debe a una injusticia de nosotros como matemáticos: estas estaban principalmente en apuntes o cartas privadas
+de Fermat, y ciertamente él no buscaba fama de ningun tipo al querer desafiar a matemáticos con sus cuestiones.
+
+Los casos $n = 3$ y $n = 5$ son bastante más laboriosos, pero se pueden lograr trabajando en una extensión de $\Z$ apropiada.
+Para $n = 3$ necesitamos jugar con los \textit{enteros de Eisenstein} dados por $\Z[\zeta_3]$, donde $\zeta_3$ es una raíz cúbica primitiva de la unidad,
+vale decir, es raíz de $x^2 + x + 1$ (cfr. \cite[40-42, 52-54]{edwards:fermat})
+y para $n = 5$ trabajamos con $\Z\left[ \frac{1 + \sqrt{5}}{2} \right]$ (cfr. \cite[65-73]{edwards:fermat}).
+
+\section{Dos problemas bonus}
+\begin{enumerate}[resume]
+	\item \hard
+		\textbf{Teorema de Chevalley-Warning:}
+		Considere $k = \Fp$ y sea $f(x_0, \dots, x_n) \in k[\vec x]$ un polinomio homogéneo de grado $d$.
+		Si $d < n+1$, entonces $\VV_+(f)$ no es vacío (es decir, $f(\vec x)$ posee una solución no trivial).
+
+		Se dice que un cuerpo es $C_1$ si satisface las condiciones anteriores.
+		Uno puede demostrar en un cuerpo $C_1$ que toda cónica no degenerada (i.e., todo conjunto de soluciones afín $\VV_+(f) \subseteq \PP^2(k)$,
+		donde $f$ es homogéneo, irreducible y de grado 2) es isomorfa a $\PP^1(k)$.
+		Esto puede fallar en general, por ejemplo, basta tomar la cónica
+		\[
+			\{ [x:y:z] : x^2 + y^2 + z^2 = 0 \} \subseteq \PP^2(\R)
+		\]
+		y notar que no tiene puntos $\R$-racionales para concluir que no puede ser isomorfa a $\PP^1(\R)$.
+
+	\item \hard
+		\textbf{Contar puntos de altura acotada en $\PP^1(\Q)$:}
+		Dado $B \ge 0$ real, demuestre que la cantidad de puntos $[x : y] \in \PP^1(\Q)$ de altura acotada $H([x : y]) \le B$ es
+		$$ \frac{6}{\pi^2}B^2 + O(B \log B). $$
+		\begin{hint}
+			Uno puede observar que esto equivale a contar pares de coprimos y, mediante una fórmula recursiva, reducirse a calcular
+			asintóticamente
+			$$ \sum_{i=1}^{n} \phi(n), $$
+			donde ésto representa la función $\phi$ de Euler.
+			Empleando inversión de Möbius podemos reescribirlo en términos de la función $\mu$ de Möbius y, finalmente, reconocer este problema de
+			la ayudantía <<$O$ grande, $o$ chica>> del 25 de agosto.
+		\end{hint}
+\end{enumerate}
+
+% \newpage
+% \section{Soluciones}
+% \begin{enumerate}
+% 	\item
+% 		\begin{enumerate}
+% 			\item Basta notar que si $f(x) \in k[x]$ es irreducible y tiene al menos una raíz $\alpha \in k$,
+% 				entonces $f(x) = (x - \alpha)g(x)$ para algún $g(x) \in k[x]$.
+% 				Como $f(x)$ es irreducible, entonces $g(x)$ tiene que ser inversible y, por un argumento en los grados,
+% 				los únicos polinomios inversibles son las constantes $g(x) = c \in k^\times$.
+% 			\item Sea $f(x, y)$ irreducible de grado $n \ge 1$.
+% 				Si su polinomio solo emplea una variable, entonces es de la forma $ax^n$ o $ay^n$ los cuales no son irreducibles
+% 				para $n > 1$.
+% 				Así que tanto $x$ como $y$ aparecen y, de hecho, debe aparecer $a_nx^n$ y $a_0y^n$ para $a_n, a_0 \in k^\times$
+% 				puesto que, de lo contrario, si no aparece $a_0y^n$ entonces es de la forma $f(x, y) = xg(x, y)$ lo cual solo es irreducible
+% 				cuando $g(x, y)$ es una constante no nula.
+
+% 				Finalmente, veamos que ni $[0 : 1]$ ni $[1 : 0]$ pueden ser soluciones evaluando:
+% 				$$ 0 = f(x, 0) = a_nx^n, $$
+% 				lo que implica que $x = 0$, pero $[0 : 0] \notin \PP^1_k$ y, un argumento análogo aplica para $y$.
+% 			\item Si $f(x, y) = ax$, entonces sus raíces son de la forma $(0, v)$ y por tanto $\VV_+(f) = \{ [0 : 1] \}$;
+% 				análogamente $\VV_+(ay) = \{ [1 : 0] \}$.
+% 				Si $f$ no es de la forma como antes, vimos que $\VV_+(f)$ debe contener puntos de la forma $[u : v]$ con $u \ne 0 \ne v$.
+% 				Multiplicando por $1/v$ tenemos que sus raíces son de la forma $[u/v : 1]$, así que evaluamos
+% 				$$ \frac{1}{y^{\deg f}}f(x, y) = f(x/y, 1) =: g(z) \in k[z]. $$
+% 				Donde <<$z = x/y$>>. Nótese que $g(z)$ debe ser irreducible puesto que, de no serlo, una factorización de $g(z)$ se traduce en una
+% 				factorización de $f(x, y)$ (¿por qué?) y, finalmente, concluimos por el inciso \textit{a)}.
+% 		\end{enumerate}
+% \end{enumerate}
+
+\section{Comentarios adicionales}
+\textbf{¿Por qué interesarse en el espacio proyectivo?}
+Digamos que elegimos $k = \R$, entonces el lector podría considerar que es mucho más natural tomar ecuaciones en $\R^n$;
+pero éste último, no es un espacio compacto, lo que produce problemas.
+En topología, éste problema <<se resuelve>> añadiéndole un punto a $\R^n$ y así cerrando el espacio en una esfera $\SS^n$.
+
+Algebraicamente, esta operación no es siempre la más óptima, pero el lector debería pensar que el espacio proyectivo representa el análogo del proceso anterior,
+y surge naturalmente en la tarea de <<compactificar a $k^n$>>.
+Una vez obtenido este objeto, las ventajas de <<ser compacto>> salen rápidamente a relucir: quizá una de las más famosas es el \textit{teorema de Bézout} que dice
+que la cantidad de intersecciones de curvas en el plano proyectivo es la apropiada (véase Wikipedia, por ejemplo, para un enunciado más preciso).
+Este resultado es el comienzo de la \textit{geometría enumerativa}, una disciplina que difícilmente puede decir algo acerca de <<objetos no compactos>>.
+
+\textbf{Geometría algebraica y teoría de números.}
+Las conexiones entre geometría algebraica y teoría de números son bastante ricas, aquí vamos a esbozar el por qué un teorista de números podría interesarse en ésta
+disciplina.
+\begin{itemize}
+	\item \textit{Curvas elípticas:}
+		Su definición es meramente geométrica. Varias de las propiedades básicas de las curvas elípticas, originalmente descubiertas y estudiadas sobre $\C$,
+		se extienden a lo que se conoce como \textit{variedades abelianas} y el enfoque más moderno permite extender los teoremas sobre $\C$ hacia otros
+		cuerpos de coeficientes como $\Fp$.
+	\item \textit{Teorema(s) de Faltings:}
+		Al estudiar aproximaciones diofánticas de Thue-Roth vimos cómo se traducen en la finitud de soluciones (racionales) de polinomios irreducibles en
+		dos variables de grado $\ge 3$.
+		La geometría algebraica permite una generalización de tal polinomio a lo que se conoce como <<una curva de género $\ge 2$>> y era una conjetura de
+		Mordell el que, al igual que en el caso anterior, tal curva debería tener finitos puntos (racionales).
+
+		Esta conjetura fue probada por Gerd Faltings, pero en el camino Faltings también probó otro enunciado con gran contenido aritmético: que toda
+		variedad abeliana sobre $\Q$ satisface la conjetura de Tate.
+		No obstante, enunciar apropiadamente éste teorema (y explicar sus repercusiones aritméticas) es algo que escapa a los contenidos del curso.
+	\item \textit{Alturas:}
+		Aquí estamos tecnicamente haciendo trampa, ya que también fue parte de las investigaciones de Faltings.
+		El mundo de las alturas (que vosotros ya conoceís sobre $\Q$) permite una extensión natural a las variedades sobre $\Q$, y por tanto
+		permiten hacerse preguntas del tipo: ¿los teoremas de aproximación son ciertos sobre variedades? O cualquier enunciado sobre alturas en $\Q$
+		admite su análogo para alturas en variedades; varias veces demostrándose de igual manera su validez.
+
+		El ejemplo del problema 7 de contar puntos de altura acotada es del libro \citeauthor{lang:diophantine}~\cite[71-75]{lang:diophantine},
+		y es un caso particular del \textit{teorema de Schanuel}.
+	\item \textit{El Último Teorema de Fermat:}
+		Es archiconocido el que ésta conjetura fue resuelta por Wiles (¡y muchas otras personas!) en 1994, y que sus métodos fueron una mezcla de ténicas
+		aritmético-geométricas.
+		No obstante, la geometría no otorga solo el lenguaje para una reformulación del Último Teorema de Fermat, sino que es un protagonista en la prueba;
+		por ejemplificar, conceptos como cohomología de Galois, teoría de deformaciones e intersección completa son parte escencial de la demostración.
+\end{itemize}
+
+\textbf{¿Acercamientos a la geometría?}
+Mi personal recomendación es comenzar por los libros de \citeauthor{smith:AG}~\cite{smith:AG} y \citeauthor{kempf:varieties}~\cite{kempf:varieties}.
+Otra acotación es que, si no se siente atado a trabajar en total generalidad, entonces le adelantamos que la geometría algebraica \textit{compleja} está bastante
+desarrollada y es, en varios aspectos, más accesible que la geometría general; para ello recomendamos comenzar con cualquier libro de análisis complejo
+(e.g., \citeauthor{lang:complex}~\cite{lang:complex} o \citeauthor{kodaira:complex}~\cite{kodaira:complex}) y luego ir aventurándose a los aspectos más
+específicamente geométricos.
+
+La geometría algebraica ha pasado por varias transformaciones y, en realidad, en un punto ya no habla de conjuntos de soluciones en espacios proyectivos;
+aquí necesitamos introducir la palabra \textit{esquema} que es el bloque fundamental de la geometría algebraica después de los 60's (y es precisamente
+el lenguaje que emplea \citeauthor{hartshorne:algebraic}~\cite{hartshorne:algebraic} desde el capítulo 2 en adelante).
+Un esquema es como un conjunto de soluciones, pero que posiblemente sobre un anillo y que tiene <<decodificado sus ecuaciones de definición>>;
+esto da la ventaja de admitir una operación fundamental llamada \textit{cambio de base}.
+Un ejemplo comparable es tomar una ecuación con coeficientes en $\Z$, esto determina un esquema, pero también podemos ver sus soluciones en $\Q$ y,
+también sus soluciones módulo $p$ (o en $\Fp$); estos son todos ejemplos de cambio de base.
+
+\printbibliography[title={Referencias y lecturas adicionales}]
+
+\end{document}

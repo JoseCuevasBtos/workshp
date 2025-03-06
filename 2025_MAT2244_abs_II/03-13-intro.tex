@@ -1,0 +1,108 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+
+\title{Extensiones de cuerpos I}
+\date{\DTMdate{2025-03-13}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra abstracta II}
+\coursecode{MAT2244}
+\professor{Héctor Pastén Vásquez}
+
+\begin{document}
+
+\maketitle
+
+A lo largo de las ayudantías trataré de incluír comentarios o problemas especiales.
+Los problemas difíciles tendrán ojos asustados {\straighteyes},
+los comentarios que son opcionales u omitibles tendrán ojos hastiados {\upeyes}
+y los comentarios \textbf{importantes} tendrán ojos interesados {\righteyes}.
+
+\section{Extensiones de cuerpos}
+\begin{enumerate}
+	\item (Examen de lucidez)
+		\begin{enumerate}
+			\item Pruebe que, para toda extensión $K/\Q$ cuadrática, existe un entero $d \in \Z$ libre de cuadrados
+				(i.e., si un primo $p \mid d$, entonces $p^2 \nmid d$) tal que $K = \Q(\sqrt{d})$.
+			\item Pruebe que si $d_1 \ne d_2$ son dos enteros libres de cuadrados distintos, entonces
+				$\Q(\sqrt{d_1}) \ne \Q(\sqrt{d_2})$.
+			% \item\lookst
+			% 	¿La afirmación del inciso 1 también vale para extensiones cúbicas?
+			% 	A decir, dada una extensión cúbica $K/\Q$, ¿existe un entero libre de cubos $d \in \Z$ tal que
+			% 	$K = \Q(\sqrt[3]{d})$?
+		\end{enumerate}
+
+	\item Pruebe que $\sqrt{2} + \sqrt{3} \in \C$ es un elemento algebraico de grado 4 sobre $\Q$.
+
+	% \item Sea $k$ un cuerpo arbitrario, sea $k(t) := \Frac k[t]$ el cuerpo de fracciones del anillo de polinomios.
+	% 	\begin{enumerate}
+	% 		\item Pruebe que la extensión $k(t)/k$ no es algebraica.
+	% 		\item Sea $f \in k(t)$ una función racional (i.e., una fracción formal de polinomios) no constante,
+	% 			pruebe que la extensión $k(t)/k(f)$ es finita.
+	% 		\item Calcule $[k(t) : k(f)]$.
+	% 	\end{enumerate}
+	% \item Un cuerpo $k$ se dice \strong{algebraicamente cerrado} si, equivalentemente:
+	% 	\begin{enumerate}
+	% 		\item Toda extensión algebraica $K/k$ es tal que $K = k$.
+	% 		\item Todo polinomio no constante de $k$ posee una raíz en $k$.
+	% 		\item Los únicos polinomios irreducibles son los lineales.
+	% 	\end{enumerate}
+	% 	Pruebe que un cuerpo finito no puede ser algebraicamente cerrado.
+
+	\item Sea $L = K(\alpha)$ una extensión finita de grado impar.
+		Pruebe que $L = K(\alpha^2)$.
+
+	% \item Sea $\Omega/k$ una extensión de cuerpos con extensiones intermedias $k \subseteq K, L \subseteq \Omega$.
+	% 	Pruebe que
+	% 	\[
+	% 		[KL : k] \le [K : k] \, [L : k],
+	% 	\]
+	% 	y que se alcanza igualdad cuando $[K : k]$ y $[L : k]$ son coprimos.
+
+	\item Sea $L/k$ una extensión algebraica (no necesariamente finita).
+		Pruebe que todo subanillo $k \subseteq A \subseteq L$ es, de hecho, una extensión intermedia de cuerpos.
+\end{enumerate}
+
+\section{Cuerpos finitos}
+\begin{enumerate}[resume]
+	\item Sea $k$ un cuerpo finito. Pruebe lo siguiente:
+		\begin{enumerate}
+			\item Su característica $\car k = p$ es un número primo.
+			\item Su cardinalidad $|k| = p^n$ es una potencia de $p = \car k$ con exponente $n \ge 1$.
+			\item Cada elemento \emph{siempre} tiene raíz $p$-ésima.
+		\end{enumerate}
+
+	\item Sea $k$ un cuerpo de característica $p := \car k > 0$.
+		Sea $q := p^n$ con $n \ge 1$ a elección.
+		Pruebe que
+		\[
+			k^q := \{ \alpha^q : \alpha \in k \} \subseteq k
+		\]
+		es un subcuerpo de $k$.
+
+	% \item Sea $K/k$ una extensión algebraica de cuerpos.
+	% 	Un elemento $\alpha \in K$ se dice \strong{puramente inseparable} si su polinomio minimal $f(x) \in k[x]$
+	% 	es una potencia del monomio $x - \alpha$.
+	% 	Pruebe que
+	% 	\[
+	% 		K_{\rm ins} = \{ \alpha \in K : \alpha \text{ es puramente inseparable} \}
+	% 	\]
+	% 	es un subcuerpo de $K$.
+
+	\item Sea $k$ un cuerpo finito.
+		Pruebe que el grupo de unidades $k^\times$ es cíclico.
+
+\end{enumerate}
+
+\nocite{lang:algebra, nagata:fields}
+
+\printbibliography
+
+\end{document}

@@ -1,0 +1,124 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+
+\title{Extensiones algebraicas}
+\date{\DTMdate{2025-03-20}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra abstracta II}
+\coursecode{MAT2244}
+\professor{Héctor Pastén Vásquez}
+
+\begin{document}
+
+\maketitle
+
+% \section*{Resultados a considerar}
+% Principalmente emplearemos los siguientes:
+% \begin{thm}[ley de torres]
+% 	Sean $F/L/k$ extensiones de cuerpos.
+% 	Si $F/k$ es finita, entonces
+% 	\[
+% 		[F : k] = [F : L] \, [L : k].
+% 	\]
+% \end{thm}
+% % \begin{thm}[levantamiento]
+	
+% % \end{thm}
+% \begin{thm}[lema de Zorn]
+% 	Sea $(X, \le)$ un conjunto parcialmente ordenado.
+% 	Supongamos que todo conjunto $C \subseteq X$ en donde el orden $\le$ es total o lineal (i.e., en donde dados $x,
+% 	y \in C$ se cumple que $x \le y$ o $y\le x$) está acotado superiormente (i.e., existe $z \in X$ tal que $z \ge
+% 	c$ para todo $c \in C$).
+% 	Entonces $X$ posee un \emph{elemento maximal} $x$ (i.e., si $y \ge x$, entonces $y = x$).
+% \end{thm}
+% Este último es una conocida equivalencia del axioma de elección que será necesario en algunos ejercicios.
+
+\section{Extensiones finitas}
+\begin{enumerate}
+	\item Sea $L = K(\alpha)$ una extensión finita de grado impar.
+		Pruebe que $L = K(\alpha^2)$.
+
+	\item Sea $\Omega/k$ una extensión de cuerpos con extensiones intermedias $k \subseteq K, L \subseteq \Omega$.
+		Pruebe que
+		\[
+			[KL : k] \le [K : k] \, [L : k],
+		\]
+		y que se alcanza igualdad cuando $[K : k]$ y $[L : k]$ son coprimos.
+
+	\item Sea $k$ un cuerpo arbitrario, sea $k(t) := \Frac k[t]$ el cuerpo de fracciones del anillo de polinomios.
+		\begin{enumerate}
+			\item Pruebe que la extensión $k(t)/k$ no es algebraica.
+			\item Sea $f \in k(t)$ una función racional (i.e., una fracción formal de polinomios) no constante,
+				pruebe que la extensión $k(t)/k(f)$ es finita.
+		\end{enumerate}
+		\begin{prob}
+			En el ejercicio anterior, calcule $[k(t) : k(f)]$.
+		\end{prob}
+\end{enumerate}
+
+\section{Cuerpos algebraicamente cerrados}
+\begin{enumerate}[resume]
+	\item \begin{enumerate}
+			\item Pruebe que, para un cuerpo $k$, son equivalentes:
+				\begin{enumerate}[(i)]
+					\item Toda extensión algebraica $K/k$ es tal que $K = k$.
+					\item Todo polinomio no constante de $k$ posee una raíz en $k$.
+					\item Los únicos polinomios irreducibles son los lineales.
+				\end{enumerate}
+				En cuyo caso, $k$ se dice \strong{algebraicamente cerrado}.
+			\item Pruebe que un cuerpo finito no puede ser algebraicamente cerrado.
+		\end{enumerate}
+
+	\item\lookright
+		Una extensión algebraica $C/k$, donde $C$ es algebraicamente cerrado, se dice una \strong{clausura algebraica} de $k$.
+		Pruebe que, si existen, las clausuras algebraicas son únicas salvo $k$-isomorfismo.
+
+		\emph{Pista:}
+		Para esto necesitará hacer uso del \textbf{lema de Zorn} o equivalente.
+\end{enumerate}
+
+\appendix
+\section{Ejercicios propuestos}
+\begin{enumerate}
+	\item \lookright
+		Encuentre todas las extensiones intermedias de $\Q \subseteq \Q(\sqrt[4]{2})$.
+
+	\item Sea $L/k$ una extensión algebraica (no necesariamente finita).
+		Pruebe que todo subanillo $k \subseteq A \subseteq L$ es, de hecho, una extensión intermedia de cuerpos.
+
+		\lookup
+		¿Es esto cierto si $L$ no es algebraica?
+
+	\item En clases se vio que en una extensión finita $k/\Fp$ de característica $p$ todo elemento es una potencia $p$-ésima.
+		¿Es esto cierto aún cuando la extensión es algebraica infinita?
+		¿Y cuándo no es algebraica?
+\end{enumerate}
+
+% \section{Cuerpos finitos}
+% \begin{enumerate}[resume]
+% 	% \item Sea $K/k$ una extensión algebraica de cuerpos.
+% 	% 	Un elemento $\alpha \in K$ se dice \strong{puramente inseparable} si su polinomio minimal $f(x) \in k[x]$
+% 	% 	es una potencia del monomio $x - \alpha$.
+% 	% 	Pruebe que
+% 	% 	\[
+% 	% 		K_{\rm ins} = \{ \alpha \in K : \alpha \text{ es puramente inseparable} \}
+% 	% 	\]
+% 	% 	es un subcuerpo de $K$.
+
+% 	% \item Sea $k$ un cuerpo finito.
+% 	% 	Pruebe que el grupo de unidades $k^\times$ es cíclico.
+% \end{enumerate}
+
+\nocite{lang:algebra}
+
+\printbibliography
+
+\end{document}

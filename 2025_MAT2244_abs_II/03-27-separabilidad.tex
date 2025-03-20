@@ -1,0 +1,93 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+
+\title{Normalidad y separabilidad}
+\date{\DTMdate{2025-03-27}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra abstracta II}
+\coursecode{MAT2244}
+\professor{Héctor Pastén Vásquez}
+
+\begin{document}
+
+\maketitle
+
+\section{Extensiones normales}
+\begin{enumerate}
+	\item Sea $f(x) \in k[x]$ un polinomio de grado $n$, sea $K$ su cuerpo de escisión.
+		Pruebe que $[K : k] \mid n!$
+
+	\item Defina $\zeta_n := e^{2\pi/n \ui} \in \C$ y note que $\zeta_n^n = 1$, pero $\zeta_n^j \ne 1$ para $1 \le j
+		< n$.
+		\begin{enumerate}
+			\item Pruebe que $\Q(\zeta_n)/\Q$ es una extensión normal.
+			\item Pruebe que para $n = p$ primo, $[\Q(\zeta_p) : \Q] = p - 1$.
+			\item Construya el cuerpo de escisión $K$ de $x^5 - 2$ sobre $\Q$ y calcule $[K : \Q]$.
+		\end{enumerate}
+\end{enumerate}
+
+\section{Extensiones (in)separables}
+Como se vio en clases, las extensiones en característica cero son todas separables, por lo que en esta sección $k$ será
+un cuerpo de $\car k = p > 0$.
+\begin{enumerate}[resume]
+	\item Sea $K/k$ una extensión algebraica y sea $\alpha \in K$.
+		\begin{enumerate}
+			\item Pruebe que si $\alpha$ es inseparable, entonces su polinomio minimal $f(x) \in k[x]$
+				satisface que $f(x) = g(x^p)$.
+			\item Pruebe que $\alpha$ es separable syss $k(\alpha) = k(\alpha^p)$.
+		\end{enumerate}
+	\item Pruebe que si $f(x) \in k[x]$ es irreducible, entonces todas sus raíces (en su cuerpo de escisión) tienen
+		la misma multiplicidad y esta es una potencia de $p$.
+	\item Sea $K/k$ una extensión algebraica de cuerpos.
+		Un elemento $\alpha \in K$ se dice \strong{puramente inseparable} si su polinomio minimal $f(x) \in k[x]$
+		es una potencia del monomio $x - \alpha$.
+		\begin{enumerate}
+			\item\lookright
+				Empleando el ejercicio anterior pruebe que si $\alpha \in K$ es puramente inseparable,
+				entonces $\alpha^{p^e} \in k$ para algún $e \ge 1$.
+			\item Pruebe que si $a \in k \setminus k^p$, entonces el polinomio $x^{p^e} - a$ es irreducible
+				para $e \in \N$.
+			\item Pruebe que
+				\[
+					K_{\rm ins} = \{ \alpha \in K : \alpha \text{ es puramente inseparable} \}
+				\]
+				es un subcuerpo de $K$.
+		\end{enumerate}
+	\item Para un entero $n \ge 1$, denote por $k^{p^{-n}}$ a la mínima extensión de $k$ en la cual todo elemento
+		tiene raíz $p^n$-ésima.
+		\begin{enumerate}
+			\item Pruebe que $k^{p^{-n}}/k$ es una extensión puramente inseparable (i.e., algebraica y todo
+				elemento suyo es puramente inseparable).
+			\item \lookup
+				Pruebe que
+				\[
+					k^{p^{-\infty}} := \bigcup_{n\ge 1} k^{p^{-n}}
+				\]
+				es un cuerpo perfecto.
+			% \item Sea $\algcl k \supseteq k^{p^{-\infty}}$ una clausura algebraica de $k$.
+			% 	Pruebe que el cuerpo fijo por $\Gal(\algcl k/k)$ es $k^{p^{-\infty}}$.
+		\end{enumerate}
+\end{enumerate}
+
+\appendix
+\section{Ejercicios propuestos}
+\begin{enumerate}
+	\item\lookright
+		Pruebe que toda extensión cuadrática es normal.
+	\item Definamos el \emph{polinomio de Artin-Schreier} $\wp(x) := x^p - x$.
+		Sea $a \in k$ tal que $a \notin \wp[k]$.
+		Pruebe que el polinomio $\wp(x) - a$ es irreducible e inseparable.
+\end{enumerate}
+
+\nocite{jacobson:basic, nagata:fields}
+\printbibliography
+
+\end{document}

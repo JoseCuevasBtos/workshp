@@ -1,0 +1,84 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+
+\title{Grupos de Galois}
+\date{\DTMdate{2025-04-03}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra abstracta II}
+\coursecode{MAT2244}
+\professor{Héctor Pastén Vásquez}
+
+\begin{document}
+
+\maketitle
+
+% \section{Números constructibles}
+\begin{enumerate}
+	\item Pruebe que el nonágono (= 9-gono) no es constructible con regla y compás.
+	\item Sea $L/k$ una extensión normal y definamos el subconjunto:
+		\[
+			L_{\rm sep} := \{ \alpha \in L : \alpha \text{ es separable sobre } k \}.
+		\]
+		\begin{enumerate}
+			\item Pruebe que $L_{\rm sep}$ es un subcuerpo de $L$.
+			\item Pruebe que la extensión $L_{\rm sep}/k$ es de Galois y $L/L_{\rm sep}$ es puramente inseparable.
+			\item Pruebe que la siguiente aplicación
+				\[
+					\rho \colon \Gal(L/k) \longrightarrow \Gal(L_{\rm sep}/k), \qquad \sigma \longmapsto \sigma|_{L_{\rm sep}}
+				\]
+				está bien definida y es un isomorfismo de grupos.
+		\end{enumerate}
+	\item Sea $K/k$ una extensión simple de cuerpos (i.e., hay $\alpha \in K$ tal que $K = k(\alpha)$) de grado $n
+		:= [K:k] < \infty$.
+		Pruebe que $K/k$ tiene a lo sumo $2^n$ subextensiones (incluyendo a $K$ y $k$ mismos).
+	% \item (El teorema de la base normal)
+	% 	Sea $K/k$ una extensión finita de grado $n$.
+	% 	Una \strong{base normal} de $K$ es una $k$-base $\{ \alpha_j \}_{1\le j\le n}$ para $K$,
+	% 	donde los elementos son $k$-conjugados (i.e., comparten el mismo polinomio minimal).
+	% 	\begin{enumerate}
+	% 		\item Pruebe que si $K$ posee una base normal, entonces $K/k$ es de Galois.
+	% 	\end{enumerate}
+	% 	Para el recíproco, suponga que $K/k$ es de Galois.
+	% 	\begin{enumerate}[resume]
+	% 		\item Sean $\{ \sigma_1, \dots, \sigma_n \} = \Gal(K/k)$ los elementos.
+	% 			Pruebe que los conjugados de $\alpha \in K$ forman una base (normal) syss la matriz $[
+	% 			\sigma_i \sigma_j \alpha ]_{ij} \in \Mat_n K$ tiene determinante no nulo.
+	% 		\item Pruebe que $K$ admite una base normal.
+	% 	\end{enumerate}
+	\item\lookright
+		Sea $\zeta_n = \exp(2\pi\ui / n) \in \C$ una raíz $n$-ésima primitiva de la unidad.
+		Pruebe que $\Q(\zeta_n)/\Q$ es una extensión de Galois y que $\Gal(\Q(\zeta_n)/\Q) \cong
+		(\Z/n\Z)^\times$.
+	\item\lookst Pruebe que para todo grupo \emph{abeliano} finito $G$ existe una extensión $K/\Q$ de Galois tal que
+		$\Gal(K/\Q) \cong G$.
+
+		\begin{hint}
+			Para la prueba puede ser útil emplear el \textbf{teorema de Dirichlet} que dice que
+			dado $n > 1$ entero y $a$ coprimo con $n$, existen infinitos primos $p$ tales que $p \equiv a
+			\pmod n$.
+		\end{hint}
+\end{enumerate}
+
+\appendix
+\section{Ejercicios propuestos}
+\begin{enumerate}
+	\item Cuente la cantidad de subextensiones de las siguientes extensiones:
+		\begin{enumerate}
+			\item $\Q(\sqrt{2}, \sqrt{3}, \sqrt{5})/\Q$.
+			\item $\Q(\zeta_3, \sqrt[3]{2})/\Q$, donde $\zeta_3$ es una raíz cúbica (primitiva) de la unidad.
+			\item $\Q(\sqrt[4]{2})/\Q$.
+		\end{enumerate}
+\end{enumerate}
+
+\nocite{jacobson:basic, lang:algebra}
+\printbibliography
+
+\end{document}

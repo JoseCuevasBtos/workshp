@@ -23,6 +23,7 @@
 % \section{Números constructibles}
 \begin{enumerate}
 	\item Pruebe que el nonágono (= 9-gono) no es constructible con regla y compás.
+
 	\item Sea $L/k$ una extensión normal y definamos el subconjunto:
 		\[
 			L_{\rm sep} := \{ \alpha \in L : \alpha \text{ es separable sobre } k \}.
@@ -36,7 +37,9 @@
 				\]
 				está bien definida y es un isomorfismo de grupos.
 		\end{enumerate}
-	\item Sea $K/k$ una extensión simple de cuerpos (i.e., hay $\alpha \in K$ tal que $K = k(\alpha)$) de grado $n
+
+	\item\label{exr:simple_subextension_count}
+		Sea $K/k$ una extensión simple de cuerpos (i.e., hay $\alpha \in K$ tal que $K = k(\alpha)$) de grado $n
 		:= [K:k] < \infty$.
 		Pruebe que $K/k$ tiene a lo sumo $2^n$ subextensiones (incluyendo a $K$ y $k$ mismos).
 	% \item (El teorema de la base normal)
@@ -53,11 +56,13 @@
 	% 			\sigma_i \sigma_j \alpha ]_{ij} \in \Mat_n K$ tiene determinante no nulo.
 	% 		\item Pruebe que $K$ admite una base normal.
 	% 	\end{enumerate}
+
 	\item\lookright
 		Sea $\zeta_n = \exp(2\pi\ui / n) \in \C$ una raíz $n$-ésima primitiva de la unidad.
 		Pruebe que $\Q(\zeta_n)/\Q$ es una extensión de Galois y que $\Gal(\Q(\zeta_n)/\Q) \cong
 		(\Z/n\Z)^\times$.
-	\item\lookst Pruebe que para todo grupo \emph{abeliano} finito $G$ existe una extensión $K/\Q$ de Galois tal que
+
+	\item\label{exr:inverse_gal_ab}\lookst Pruebe que para todo grupo \emph{abeliano} finito $G$ existe una extensión $K/\Q$ de Galois tal que
 		$\Gal(K/\Q) \cong G$.
 
 		\begin{hint}
@@ -70,6 +75,7 @@
 \appendix
 \section{Ejercicios propuestos}
 \begin{enumerate}
+	\item ¿El pentágono regular es constructible con regla y compas?
 	\item Cuente la cantidad de subextensiones de las siguientes extensiones:
 		\begin{enumerate}
 			\item $\Q(\sqrt{2}, \sqrt{3}, \sqrt{5})/\Q$.
@@ -77,6 +83,15 @@
 			\item $\Q(\sqrt[4]{2})/\Q$.
 		\end{enumerate}
 \end{enumerate}
+
+\section{Comentarios adicionales}
+En el ejercicio \ref{exr:simple_subextension_count} es importante que la extensión sea \emph{simple}.
+Si la extensión es separable finita, el resultado también aplica, pero, por ejemplo, la extensión inseparable
+$\Fp(t^{1/p}, s^{1/p}) \supseteq \Fp(t, s)$ posee infinitas subextensiones.
+
+El ejercicio \ref{exr:inverse_gal_ab} es un caso sencillo del \emph{problema inverso de Galois}: ¿será acaso que todo
+grupo finito es isomorfo a un grupo de Galois de una extensión $K/\Q$? ¿De no ser así, habrá un invariante que
+permita discriminar cuáles sí o no?
 
 \nocite{jacobson:basic, lang:algebra}
 \printbibliography

@@ -42,8 +42,8 @@
 				\end{prob}
 		\end{enumerate}
 
-	\item Pruebe que si $L_1, \dots, L_n / k$ son extensiones abelianas contenidas en otra extensión $\Omega/k$,
-		entonces el composito $L_1 \cdots L_n$ es abeliano.
+	\item Pruebe que si $L_1, \dots, L_n / k$ son extensiones abelianas (resp.\ resolubles) contenidas en otra
+		extensión $\Omega/k$, entonces el composito $L_1 \cdots L_n$ es abeliano (resp.\ resoluble).
 
 	\item\lookright
 		Pruebe, sin usar las fórmulas cuadrática y de Cardano, que todo polinomio (separable) de grado
@@ -65,23 +65,32 @@
 					\qquad
 					\galnorm_{K/k}(\alpha \cdot \beta) = \galnorm_{K/k}(\alpha) \cdot \galnorm_{K/k}(\beta).
 				\]
-			\item Sea $L/K$ una extensión finita y sea $\gamma \in L$, pruebe que
-				\[
-					\galtr_{L/k} = \galtr_{K/k} \circ \galtr_{L/K},
-					\qquad
-					\galnorm_{L/k} = \galnorm_{K/k} \circ \galnorm_{L/K}.
-				\]
-			\item Sea $G = \{ \sigma \colon K \to \algcl k \}$ el conjunto de los homomorfismos de
+
+			\item\lookst
+				Sea $G = \{ \sigma \colon K \to \algcl k \}$ el conjunto de los homomorfismos de
 				$K$-álgebras. Pruebe que
 				\[
 					\galtr_{K/k}(\alpha) = \sum_{\sigma \in G} \sigma(\alpha),
 					\qquad
 					\galnorm_{K/k}(\alpha) = \prod_{\sigma \in G} \sigma(\alpha).
 				\]
+
+				\begin{hint}
+					Haga el caso $K = k(\alpha)$ y luego emplee que hay tantos
+					$k(\alpha)$-homomorfismos $K \to \algcl{k(\alpha)} = \algcl k$ como grado $[K :
+					k(\alpha)]$.
+				\end{hint}
+
+			\item Sea $L/K$ una extensión finita y sea $\gamma \in L$, pruebe que
+				\[
+					\galtr_{L/k} = \galtr_{K/k} \circ \galtr_{L/K},
+					\qquad
+					\galnorm_{L/k} = \galnorm_{K/k} \circ \galnorm_{L/K}.
+				\]
 		\end{enumerate}
 
 	\item Empleando lo anterior vamos a probar que $\Q(\sqrt[n]{a}) \ne \Q(\sqrt[n]{b})$ con $a \ne b$ enteros
-		libres de potencias $n$-ésimas para $n > 1$ entero.
+		\emph{coprimos} libres de potencias $n$-ésimas para $n > 1$ un entero \emph{primo}.
 
 		\begin{hint}
 			Use la traza con $K := \Q(\sqrt[n]{a})$.
@@ -93,9 +102,9 @@
 \appendix
 \section{Ejercicios propuestos}
 \begin{enumerate}
-	\item Pruebe, sin usar la fórmula de Ferrari, que todo polinomio de grado $\le 4$ es resoluble por radicales.
-	\item Pruebe que si $L_1, \dots, L_n / k$ son extensiones resolubles contenidas en otra extensión $\Omega/k$,
-		entonces el composito $L_1 \cdots L_n$ es resoluble.
+	\item\label{q:solvable_four} Pruebe, sin usar la fórmula de Ferrari, que todo polinomio de grado $\le 4$ es resoluble por radicales.
+	% \item Pruebe que si $L_1, \dots, L_n / k$ son extensiones resolubles contenidas en otra extensión $\Omega/k$,
+	% 	entonces el composito $L_1 \cdots L_n$ es resoluble.
 	\item\label{q:D6_as_gal}\lookst
 		% (Exc.~4.5.4, pág.~243)
 		Construya $f \in \C(t)$ no constante de modo que la extensión $\C(t)/\C(f)$ sea de Galois y
@@ -115,8 +124,22 @@
 \end{enumerate}
 
 \section{Comentarios adicionales}
-El ejercicio \ref{q:D6_as_gal} es generalizable para ver que para todo $n > 1$ existe $f$ tal que $\Gal(\C(t)/\C(f))
-\cong D_{2n}$.
+El ejercicio propuesto \ref{q:D6_as_gal} es generalizable para ver que para todo $n > 1$ existe $f$ tal que
+$\Gal(\C(t)/\C(f)) \cong D_{2n}$.
+El ejercicio propuesto \ref{q:solvable_four} es lo mejor posible, pues precisamente el teorema de Abel-Ruffini dice que
+hay polinomios separables de grado 5 que no son resolubles por radicales, precisamente porque los grupos $A_5$ y $S_5$
+no son resolubles.
+
+En la ayudantía pasada vimos un ejemplo de extensión abeliana, las ciclotómicas $\Q(\zeta_n)/\Q$.
+Por lo demás, toda subextensión de una ciclotómica es también abeliana y el composito de dos extensiones ciclotómicas es
+también ciclotómica (pues $\Q(\zeta_n)\Q(\zeta_m) = \Q(\zeta_{nm})$ cuando $n, m$ son coprimos).
+Es altamente interesante que un teorema de Kronecker-Weber nos da un recíproco, a decir:
+
+\begin{thm}
+	Toda extensión abeliana de $\Q$ es subextensión de una ciclotómica.
+\end{thm}
+Este resultado es difícil y se puede probar con teoría de cuerpos de clase.
+Vea \cite{neukirch:algebraic}.
 
 % El ejercicio \ref{exr:inverse_gal_ab} es un caso sencillo del \emph{problema inverso de Galois}: ¿será acaso que todo
 % grupo finito es isomorfo a un grupo de Galois de una extensión $K/\Q$? ¿De no ser así, habrá un invariante que

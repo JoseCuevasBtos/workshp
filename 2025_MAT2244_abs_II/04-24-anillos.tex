@@ -1,0 +1,144 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+
+\title{Anillos e ideales}
+\date{\DTMdate{2025-04-24}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra abstracta II}
+\coursecode{MAT2244}
+\professor{Héctor Pastén Vásquez}
+
+\begin{document}
+
+\maketitle
+
+\nocite{lang:algebra}
+\nocite{atiyah:commutative}
+% \section{Números constructibles}
+
+En esta ayudantía, entendemos que todo \emph{anillo} es conmutativo y unitario (i.e., con $1 \in A$).
+El anillo nulo $A = 0$ sí se considera un anillo, aunque no es un cuerpo.
+
+\begin{enumerate}
+	\item (Examen de lucidez)
+		Sea $A$ un anillo y considere el conjunto $R := \Func(\N_{>0}, A)$ de funciones con la suma dada coordenada por
+		coordenada y el producto por \emph{convolución}:
+		\[
+			(f + g)(n) := f(n) + g(n), \qquad (f*g)(n) = \sum_{ab=n} f(a)g(b).
+		\]
+		\begin{enumerate}
+			\item Pruebe que $(R, +, *)$ es un anillo cuya unidad es la función dada por
+				$\varepsilon(1) = 1$ y $\varepsilon(n) = 0$ para $n > 1$.
+			\item Una función $f$ se dice \strong{multiplicativa} si $f(ab) = f(a)f(b)$ cuando $a, b$ son
+				coprimos.
+				Pruebe que si $f, g$ son multiplicativas, entonces $f*g$ también lo es.
+
+				\begin{prob}[fórmula de inversión de Möbius]
+					\lookup
+					Defina la función de Möbius $\mu$ como $\mu(n) = (-1)^m$ cuando $n = p_1 \cdots p_m$ es el
+					producto de primos distintos y $\mu(n) = 0$ cuando $p^2 \mid n$ para algún primo $p$.
+					Sea <<1>> la función constante $1(n) = 1$.
+					Pruebe que $\mu * 1 = \varepsilon$.
+				\end{prob}
+		\end{enumerate}
+
+	\item Sea $A$ un anillo y sea $a \in A$ un elemento \strong{nilpotente} (i.e., $a^n = 0$ para algún $n \in \N$).
+		Pruebe que $1 + a$ es inversible.
+
+	\item Sea $A$ un anillo en donde cada para cada $a \in A$, existe $n \ge 2$ tal que $x^n = x$.
+		Pruebe que todo ideal primo es maximal.
+
+	\item\lookright
+		Diremos que un anillo $A$ es \strong{local}, si posee un único ideal maximal $\mathfrak{m} \subseteq A$.
+		Pruebe que:
+		\begin{enumerate}
+			\item Un anillo $A$ es local syss el conjunto $\mathfrak{m} = A \setminus A^\times$ de elementos
+				que no poseen inversa es un ideal; en cuyo caso, $\mathfrak{m}$ es el único ideal
+				maximal.
+			\item Pruebe que si $f \colon A \to B$ es un homomorfismo sobreyectivo (o \emph{epimorfismo}) de
+				anillos y $A$ es local. Entonces $B$ es o bien nulo o bien un anillo local.
+		\end{enumerate}
+
+	\item El objetivo de este ejercicio es caracterizar al nilradical de un anillo.
+		\begin{enumerate}
+			\item Sea $S \subseteq A$ un sistema multiplicativo tal que $0 \notin S$.
+				Verifique que la familia de ideales
+				\[
+					\mathcal{F} := \{ \mathfrak{a} \nsle A : S \subseteq A \setminus \mathfrak{a} \}
+				\]
+				posee un elemento $\subseteq$-maximal.
+			\item Pruebe que un elemento $\subseteq$-maximal de $\mathcal{F}$ es un ideal primo de $A$.
+			\item Concluya que un elemento $a \in A$ es nilpotente syss pertenece a todos los ideales
+				primos\break de $A$.
+		\end{enumerate}
+
+	% \item Sea $A$ un anillo y $M$ un $A$-módulo.
+	% 	Pruebe que son equivalentes:
+	% 	\begin{enumerate}
+	% 		\item $M = 0$.
+	% 		\item $M_{\mathfrak{p}} = 0$ para todo $\mathfrak{p} \nsl A$ primo.
+	% 		\item $M_{\mathfrak{m}} = 0$ para todo $\mathfrak{m} \nsl A$ maximal.
+	% 	\end{enumerate}
+\end{enumerate}
+
+\appendix
+\section{Ejercicios propuestos}
+\begin{enumerate}
+	\item Sea $k$ un cuerpo finito con $q$ elementos, y denotemos por $\psi(d)$ a la cantidad de polinomios
+		irreducibles en $k[x]$ de grado $d$.
+		Empleando la fórmula de inversión de Möbius, pruebe que
+		\[
+			n \psi(n) = \sum_{d \mid n} \mu(d)q^{n/d}.
+		\]
+	\item Sea $A$ un anillo y sea $\mathfrak{a} \nsle \mathfrak{N}(A)$ un ideal de nilpotentes.
+		Pruebe que si $a \in A$ se proyecta en una unidad $a \mod{\mathfrak{a}} \in (A/\mathfrak{a})^\times$,
+		entonces $a$ es una unidad en $A$.
+	\item\label{bool_ring}
+		Un anillo $A$ se dice \emph{booleano} (o \emph{de Boole}) si $a^2 = a$ para todo $a \in A$.
+		Pruebe lo siguiente:
+		\begin{enumerate}
+			\item Para todo primo $\mathfrak{p} \nsl A$ se cumple que $A/\mathfrak{p} \cong \Fp[2]$.
+			\item Todo ideal finitamente generado es principal.
+		\end{enumerate}
+\end{enumerate}
+
+\section{Comentarios adicionales}
+El nombre <<anillo local>> se debe a que, asociado a ciertos objetos geométricos $X$ (e.g., variedades diferenciales,
+analíticas o algebraicas), uno puede construir lo que se llaman <<haces>> que consisten de anillos naturales asociados a
+los abiertos de $X$.
+Por ejemplo, si $X$ es una variedad diferencial (piense en un abierto de $\R^n$), al abierto $U \subseteq \R^n$ podemos
+asociarle el anillo de funciones diferenciables $U \to \R$; un <<germen>> es una clase de equivalencia de dichas
+funciones en vecindades de un punto $x \in U$ fijado.
+El anillo de <<gérmenes en $x$>> será un anillo local.
+
+Por lo demás, la teoría de álgebra conmutativa (vid.\ \cite{atiyah:commutative}) justifica que los anillos locales son
+capaces de captar harta información algebraica (por ejemplo, un módulo será nulo si sus localizaciones lo son en
+analogía a como una función es nula si sus evaluaciones lo son).
+
+El nombre <<anillo booleano>> se debe a que corresponden, de manera elemental, a las llamadas álgebras booleanas.
+Una álgebra booleana está dotada de un 0, un 1, una inversa $\neg$ y operadores binarios $\vee$ y $\wedge$ que
+satisfacen la típica álgebra de proposiciones lógicas.
+Por un teorema de M.~H.~Stone,%
+\footnote{El mismo del <<teorema de Stone-Weierstrass>> y de las <<compactificaciones de Stone-\v Cech>>.}
+un álgebra booleana corresponde a un subconjunto del conjunto potencia $\mathcal{P} S$ de un conjunto $S$, que contiene
+a $\emptyset$ y $A$, y es cerrado bajo complementos, uniones e intersecciones finitas.
+Estos objetos tienen su utilidad e interés en la lógica, pero también tienen interacciones con la topología:
+\begin{thm}[dualidad de Stone]
+	Hay una anti-equivalencia (<<las flechas se dan vuelta>>) entre la categoría de anillos booleanos y la categoría
+	de espacios topológicos de Hausdorff, compactos y totalmente disconexos.%
+	\footnote{Es decir, espacios en donde todo subconjunto con al menos dos puntos es disconexo. Por ejemplo, $\Q$
+	es totalmente disconexo (pero no es compacto).}
+\end{thm}
+Para más detalles lea \cite{johnstone:stone}, en \S II.4 aparece el teorema aquí citado.
+
+\printbibliography
+
+\end{document}

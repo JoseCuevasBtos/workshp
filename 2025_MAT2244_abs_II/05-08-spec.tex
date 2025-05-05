@@ -1,0 +1,159 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz-cd}
+\DeclareMathOperator\Gr{Gr}
+
+\title{El espectro de un anillo}
+\date{\DTMdate{2025-05-08}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra abstracta II}
+\coursecode{MAT2244}
+\professor{Héctor Pastén Vásquez}
+
+\begin{document}
+
+\maketitle
+
+\nocite{atiyah:commutative}
+\nocite{matsumura:ring}
+% \section{Números constructibles}
+
+\section{Recordatorios sobre topología}
+Daremos un breve recuento de las definiciones que se emplearán en la ayudantía.
+% Insisto en que bastarán las definiciones, y no hará falta el uso de resultados adicionales.
+
+Una \strong{topología} sobre un conjunto $X$ es una familia $\tau$ de subconjuntos tales que:
+\begin{enumerate}[{Top}1., leftmargin=*]
+	\item $\emptyset, X \in \tau$.
+	\item Si $\{ U_i \}_i$ es una familia de elementos de $\tau$, entonces $\bigcup_{i\in I} U_i \in \tau$.
+	\item Si $U_1, \dots, U_n \in \tau$, entonces $U_1 \cap U_2 \cap \cdots \cap U_n \in \tau$.
+\end{enumerate}
+Los elementos de $\tau$ se llaman \strong{abiertos} de la topología, y el complemento de un abierto se dice un
+conjunto \strong{cerrado}.
+El par $(X, \tau)$ se dice un \emph{espacio topológico} (usualmente obviamos a $\tau$), y a los elementos de $X$ les
+llamamos \emph{puntos} del espacio.
+
+Si $U$ es un abierto que contiene a un punto $x \in X$, decimos que es una \emph{vecindad} de $x$.
+Una familia de abiertos $\mathcal{B}$ se dice una \strong{base de la topología} si para cada punto $x$ y cada vecindad
+suya $U$, existe un abierto $V \in \mathcal{B}$ en la base tal que $x \in V \subseteq U$.
+
+Una familia de abiertos $\{ U_i \}_{i\in I}$ tales que $\bigcup_{i\in I} U_i = X$ se dice un \emph{cubrimiento} del
+espacio $X$.
+Un espacio topológico $X$ se dice \strong{(cuasi)compacto} si todo cubrimiento $\{ U_i \}_{i\in I}$ admite un
+subcubrimiento $\{ U_{i_j} \}_{j=1}^n$ finito.
+
+Una función entre espacios topológicos $f \colon X \to Y$ se dice \strong{continua} si la preimagen de todo abierto (de
+$Y$) es abierta (en $X$).
+Esto puede verificarse en una base de $Y$.
+Un \emph{homeomorfismo} es una biyección entre espacios topológicos que es continua y cuya inversa es también
+continua.
+Se dice que $f \colon X \to Y$ es un \strong{encaje cerrado} (resp.\ \strong{abierto}) si $f \colon X \to f[X]$ es un
+homeomorfismo y $f[X] \subseteq Y$ es un subconjunto cerrado (resp.\ abierto).
+
+Un espacio topológico $X$ se dice \strong{disconexo} si existen dos abiertos $U, V \subseteq X$ disjuntos tales que $U
+\cup V = X$.
+Si, por el contrario, $X$ no es disconexo, decimos que es \emph{conexo}.
+
+Dada una familia de espacios topológicos $(X_i)_{i\in I}$ podemos definir la suma disjunta de sus espacios como la unión
+disjunta $\coprod_{i\in I} X_i$ con la topología en la que los abiertos son de la forma $\coprod_{i\in I} U_i$, donde
+cada $U_i \subseteq X_i$ es abierto respectivamente.
+
+Un espacio topológico $X$ se dice \strong{de Hausdorff} si todo par de puntos distintos $x, y \in X$ admiten vecindades
+$x \in U$ e $y \in V$ disjuntas.
+
+\newpage
+\section{Espectro de Zariski}
+\begin{enumerate}
+	\item Dado un anillo no nulo $A$, defina $\Spec A$ como su conjunto de ideales primos.
+		Dado un subconjunto $S \subseteq A$, definiremos su lugar de anulamiento como
+		\[
+			\VV(S) := \{ \mathfrak{p} \in \Spec A : \mathfrak{p} \supseteq S \}.
+		\]
+		\begin{enumerate}
+			\item Pruebe que la familia $\tau := \{ \Spec A \setminus \VV(S) : S \subseteq A \}$ determina
+				una topología sobre $\Spec A$.
+				A este espacio le llamamos el \strong{espectro (de Zariski)} de $A$.
+			\item Describa $\Spec A$ cuando $A$ es DIP (dominio de ideales principales).
+
+				\lookup
+				¿Es $\Spec A$ un espacio de Hausdorff en general?
+			\item Para $f \in A$ defina
+				\[
+					\DD(f) := \Spec A \setminus \DD(f) = \{ \mathfrak{p} \in \Spec A : f \notin \mathfrak{p} \}.
+				\]
+				Pruebe que la familia $\{ \DD(f) : f\in A \}$ forma una base de la topología.
+				% (i.e., para cada punto $\mathfrak{p} \in \Spec A$ y cada abierto que le contiene
+				% $\mathfrak{p} \in U$, hay un $f$ tal que $\mathfrak{p} \in \DD(f) \subseteq U$).
+		\end{enumerate}
+		Para $f, g \in A$ pruebe que:
+		\begin{enumerate}[resume]
+			\item $\DD(f) = \Spec A$ syss $f$ es inversible.
+			\item $\DD(f) = \emptyset$ syss $f$ es nilpotente.
+			\item\lookst
+				Pruebe que $\Spec A$ es compacto.
+			% \item Por razones psicológicas denotaremos por $x_{\mathfrak{p}}$ a un ideal primo $\mathfrak{p}
+			% 	\nsl A$ visto como un punto de $\Spec A$, y recíprocamente dado un punto $x \in \Spec A$
+			% 	denotamos por $\mathfrak{p}_x$ a su ideal primo.
+
+			% 	Muestre que $\overline{\{ x \}} = \VV(\mathfrak{p}_x)$, de modo que $y \in \overline{\{
+			% 	x \}}$ syss $\mathfrak{p}_y \supseteq \mathfrak{p}_x$.
+			% 	Así $x$ es un punto cerrado (i.e., $\overline{\{ x \}}$) syss $\mathfrak{p}_x$ es maximal.
+			% \item Para $f \in A$ denotamos por
+			% 	\[
+			% 		\DD(f) := \Spec A \setminus \VV(fA) = \{ \mathfrak{p} \in \Spec A : f \notin
+			% 		\mathfrak{p} \}.
+			% 	\]
+			% 	Pruebe que la familia $\{ \DD(f) : f \in A \}$ es una base para la topología, es decir,
+			% 	que para todo punto $x \in \Spec A$ y todo abierto $x \in U \subseteq \Spec A$, existe
+			% 	$f$ tal que $x \in \DD(f) \subseteq U$.
+		\end{enumerate}
+	\item Sea $\varphi \colon A \to B$ un homomorfismo de anillos, pruebe que
+		\[
+			\varphi^a \colon \Spec B \longrightarrow \Spec A, \qquad
+			\mathfrak{q} \longmapsto \varphi^{-1}[\mathfrak{q}]
+		\]
+		es una función continua entre espacios topológicos.
+		Además, pruebe que:
+		\begin{enumerate}
+			\item Si $\psi \colon B \to C$ es otro homomorfismo de anillos, entonces $(\psi\circ \varphi)^a
+				= \varphi^a\circ \psi^a$.
+				
+				\lookup
+				Esto sumado al hecho de que $\Id_A^a = \Id_{\Spec A}$ diría que el espectro de Zariski
+				constituye un \emph{funtor contravariante} desde la categoría de anillos a la de
+				espacios topológicos.
+			\item Si $\varphi$ es un epimorfismo, entonces $\varphi^a$ es un encaje cerrado que identifica a
+				$\Spec B$ con el cerrado $\VV(\ker\varphi)$.
+			\item Si $\varphi$ es la localización $B = A[1/f]$ para $f \in A$, entonces $\varphi^a$ es un
+				encaje abierto que identifica $\Spec B$ con $\DD(f)$.
+		\end{enumerate}
+	\item Sean $A_1, \dots, A_n$ una tupla de anillos.
+		Pruebe que los ideales primos del producto $A_1 \times \cdots \times A_n$ son de la forma
+		\[
+			A_1 \times \cdots \times A_{j-1} \times \mathfrak{p}_j \times A_{j+1} \times \cdots \times A_n,
+		\]
+		donde $\mathfrak{p}_j \nsl A_j$ es primo.
+
+		Concluya que $\Spec(A_1 \times \cdots \times A_n) = \Spec A_1 \amalg \cdots \amalg \Spec A_n$.
+	\item Pruebe que si $\Spec A$ es disconexo, entonces $A$ contiene un elemento idempotente $e$ (i.e.,
+		tal que $e^2 = e$) distinto del 0 y del 1.
+	% \item Decimos que un anillo $B$ es \strong{reducido} si $\mathfrak{N}(B) = 0$, es decir, si el único nilpotente
+	% 	de $B$ es 0 (e.g., todo dominio íntegro es reducido).
+
+	% 	Sea $A$ un anillo y supongamos que para todo primo $\mathfrak{p}$ se cumple que $A_{\mathfrak{p}}$ es
+	% 	reducido.
+	% 	Pruebe que $A$ es reducido.
+	% 	¿Si cada $A_{\mathfrak{p}}$ es un dominio íntegro, entonces $A$ también?
+\end{enumerate}
+
+\printbibliography
+
+\end{document}

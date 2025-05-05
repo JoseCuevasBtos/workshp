@@ -69,7 +69,9 @@ El anillo nulo $A = 0$ sí se considera un anillo, aunque no es un cuerpo.
 
 	\item El objetivo de este ejercicio es caracterizar al nilradical de un anillo.
 		\begin{enumerate}
-			\item Sea $S \subseteq A$ un sistema multiplicativo tal que $0 \notin S$.
+			\item Sea $S \subseteq A$ un \strong{sistema multiplicativo}%
+				\footnote{Es decir, si $a, b \in S$, entonces $ab \in S$.}
+				tal que $0 \notin S$.
 				Verifique que la familia de ideales
 				\[
 					\mathcal{F} := \{ \mathfrak{a} \nsle A : S \subseteq A \setminus \mathfrak{a} \}
@@ -78,6 +80,12 @@ El anillo nulo $A = 0$ sí se considera un anillo, aunque no es un cuerpo.
 			\item Pruebe que un elemento $\subseteq$-maximal de $\mathcal{F}$ es un ideal primo de $A$.
 			\item Concluya que un elemento $a \in A$ es nilpotente syss pertenece a todos los ideales
 				primos\break de $A$.
+			\item Más en general, sea $\mathfrak{a} \nsl A$ un ideal propio y defina su radical como
+				\[
+					\rad\mathfrak{a} = \{ a \in A : \exists n\ge 1 \quad a^n \in \mathfrak{a} \}.
+				\]
+				Pruebe que $\rad\mathfrak{a}$ es la intersección de todos los primos $\mathfrak{p} \nsl
+				A$ que contienen a $\mathfrak{a}$.
 		\end{enumerate}
 
 	% \item Sea $A$ un anillo y $M$ un $A$-módulo.

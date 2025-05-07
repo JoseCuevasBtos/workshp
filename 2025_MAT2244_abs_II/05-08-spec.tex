@@ -58,6 +58,16 @@ continua.
 Se dice que $f \colon X \to Y$ es un \strong{encaje cerrado} (resp.\ \strong{abierto}) si $f \colon X \to f[X]$ es un
 homeomorfismo y $f[X] \subseteq Y$ es un subconjunto cerrado (resp.\ abierto).
 
+Podrían ser útil los siguientes criterios:
+\begin{prop}
+	Para una función $f \colon X \to Y$ entre espacios topológicos son equivalentes:
+	\begin{enumerate}
+		\item $f$ es un homeomorfismo.
+		\item $f$ es biyectiva y una \emph{función abierta} (i.e., la imagen de abierto es abierta).
+		\item $f$ es biyectiva y una \emph{función cerrada} (i.e., la imagen de cerrado es cerrada).
+	\end{enumerate}
+\end{prop}
+
 Un espacio topológico $X$ se dice \strong{disconexo} si existen dos abiertos $U, V \subseteq X$ disjuntos tales que $U
 \cup V = X$.
 Si, por el contrario, $X$ no es disconexo, decimos que es \emph{conexo}.
@@ -87,7 +97,7 @@ $x \in U$ e $y \in V$ disjuntas.
 				¿Es $\Spec A$ un espacio de Hausdorff en general?
 			\item Para $f \in A$ defina
 				\[
-					\DD(f) := \Spec A \setminus \DD(f) = \{ \mathfrak{p} \in \Spec A : f \notin \mathfrak{p} \}.
+					\DD(f) := \Spec A \setminus \VV(f) = \{ \mathfrak{p} \in \Spec A : f \notin \mathfrak{p} \}.
 				\]
 				Pruebe que la familia $\{ \DD(f) : f\in A \}$ forma una base de la topología.
 				% (i.e., para cada punto $\mathfrak{p} \in \Spec A$ y cada abierto que le contiene
@@ -143,8 +153,12 @@ $x \in U$ e $y \in V$ disjuntas.
 		donde $\mathfrak{p}_j \nsl A_j$ es primo.
 
 		Concluya que $\Spec(A_1 \times \cdots \times A_n) = \Spec A_1 \amalg \cdots \amalg \Spec A_n$.
-	\item Pruebe que si $\Spec A$ es disconexo, entonces $A$ contiene un elemento idempotente $e$ (i.e.,
-		tal que $e^2 = e$) distinto del 0 y del 1.
+	\item Pruebe que, para un anillo $A$, son equivalentes:
+		\begin{enumerate}
+			\item $\Spec A$ es disconexo.
+			\item $A$ contiene un elemento idempotente $e$ (i.e., tal que $e^2 = e$) distinto del 0 y del 1.
+			\item Existen $A_1, A_2$ no nulos tales que $A \cong A_1 \times A_2$ como anillos.
+		\end{enumerate}
 	% \item Decimos que un anillo $B$ es \strong{reducido} si $\mathfrak{N}(B) = 0$, es decir, si el único nilpotente
 	% 	de $B$ es 0 (e.g., todo dominio íntegro es reducido).
 
@@ -153,6 +167,28 @@ $x \in U$ e $y \in V$ disjuntas.
 	% 	Pruebe que $A$ es reducido.
 	% 	¿Si cada $A_{\mathfrak{p}}$ es un dominio íntegro, entonces $A$ también?
 \end{enumerate}
+
+\appendix
+\section{Comentarios adicionales}
+La topología sobre $\Spec A$ le fue sugerida por un oyente de Zariski en una charla suya.
+El geómetra bielorruso Oscar Zariski popularizó el uso del álgebra conmutativa en la geometría algebraica con dos
+notables ventajas: la primera es que le permitió formalizar y extender los límites de la teoría, así como generalizar
+una serie de resultados ya conocidos, o simplemente \emph{algebrizarlos} (es decir, evitar métodos analíticos para poder
+demostrarlos).
+
+Inspirado en él, el francés André Weil trabajó para crear un nuevo lenguaje en la geometría algebraica en donde el
+álgebra conmutativa toma un rol más predominante, lo que culminó en su libro \emph{Foundations of Algebraic Geometry};
+mientras que Zariski trabajó para organizar la maquinaria algebraica, culminando en los dos volúmenes \emph{Commutative
+Algebra} con Pierre Samuel.
+
+Estos programos suyos fueron finalmente completados con la llegada de los \emph{esquemas} por el matemático Alexander
+Grothendieck, quién también desarrolló otro lenguaje --capital hoy en día-- dentro del cual los espectros forman el
+esqueleto fundamental.
+No obstante, Grothendieck dota al $\Spec A$ de una <<estructura adicional>> (un \emph{haz}) que permite recuperar al
+anillo mismo (vale decir, el espacio $\Spec A$ no es un buen invariante, ya que todo cuerpo tiene por espectro a un
+punto); con ella, el $\Spec A$ pasa a ser un \emph{esquema afín} en su terminología.
+Para estudiar esta teoría se recomienda ver, por ejemplo, \citeauthor{hartshorne:algebraic}~\cite{hartshorne:algebraic}
+o \citeauthor{vakil:rising_sea}~\cite{vakil:rising_sea}.
 
 \printbibliography
 

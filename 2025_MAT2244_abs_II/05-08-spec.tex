@@ -140,11 +140,13 @@ $x \in U$ e $y \in V$ disjuntas.
 				Esto sumado al hecho de que $\Id_A^a = \Id_{\Spec A}$ diría que el espectro de Zariski
 				constituye un \emph{funtor contravariante} desde la categoría de anillos a la de
 				espacios topológicos.
-			\item Si $\varphi$ es un epimorfismo, entonces $\varphi^a$ es un encaje cerrado que identifica a
+			\item\label{prob:quot_closed_emb}
+				Si $\varphi$ es un epimorfismo, entonces $\varphi^a$ es un encaje cerrado que identifica a
 				$\Spec B$ con el cerrado $\VV(\ker\varphi)$.
 			\item Si $\varphi$ es la localización $B = A[1/f]$ para $f \in A$, entonces $\varphi^a$ es un
 				encaje abierto que identifica $\Spec B$ con $\DD(f)$.
 		\end{enumerate}
+
 	\item Sean $A_1, \dots, A_n$ una tupla de anillos.
 		Pruebe que los ideales primos del producto $A_1 \times \cdots \times A_n$ son de la forma
 		\[
@@ -153,12 +155,74 @@ $x \in U$ e $y \in V$ disjuntas.
 		donde $\mathfrak{p}_j \nsl A_j$ es primo.
 
 		Concluya que $\Spec(A_1 \times \cdots \times A_n) = \Spec A_1 \amalg \cdots \amalg \Spec A_n$.
+
+		\begin{sol}
+			Sea $\mathfrak{P} \nsl \prod_{j} A_j$ un primo, y denotemos por
+			\[
+				e_i := (0, \dots, 0, \overset{(i)}{1}, 0, \dots, 0) \in \prod_{j} A_j
+			\]
+			al elemento tal que $(e_i) \cong A_i$.
+			Nótese que $e_i$ es un idempotente: $e_i^2 = e_i$, es decir, $e_i(e_i - 1) = 0$.
+			Más aún, si $\mathfrak{P}$ contuviera a cada $e_i$, tendría a $1 = \sum_{j} e_j$, por lo que hay
+			algún $e_j \notin \mathfrak{P}$, luego $1 - e_j \in \mathfrak{P}$ (pues $0 = e_j(1 - e_j)$).
+
+			Finalmente, nótese que $e_i(1 - e_j) = e_i$ para $i \ne j$, así que $e_i \in \mathfrak{P}$ y,
+			por tanto,
+			\[
+				\mathfrak{P} = A_1 \times \cdots \times A_{j-1} \times \mathfrak{p} \times A_{j+1} \times
+				\cdots \times A_n.
+			\]
+			Ahora, sean $a, b \in A_j$ tales que $ab \in \mathfrak{p}$, es decir, $(ae_j)(be_j) \in
+			\mathfrak{P}$, por lo que $ae_j \in \mathfrak{P}$ o $be_j \in \mathfrak{P}$; se sigue que $a\in
+			\mathfrak{p}$ o $b \in \mathfrak{p}$.
+			Así, $\mathfrak{p} \nsl A_j$ es primo.
+
+			Más aún, así probamos que hay una biyección $\Spec A_j \to \VV(1 - e_j)$ que es de hecho un
+			encaje cerrado por el problema~\ref{prob:quot_closed_emb}, y $\VV(1 - e_j) = \DD(e_j)$, así que
+			es un abierto y cerrado en $X := \Spec(\prod_{j} A_j)$.
+			En la demostración vimos que $\bigcup_{j} \VV(1 - e_j) = X$ y $\DD(e_j) \cap \DD(e_k) =
+			\emptyset$ para $j \ne k$.
+			Esto prueba que $X = \coprod_{j} \Spec A_j$.
+		\end{sol}
+
 	\item Pruebe que, para un anillo $A$, son equivalentes:
 		\begin{enumerate}
 			\item $\Spec A$ es disconexo.
 			\item $A$ contiene un elemento idempotente $e$ (i.e., tal que $e^2 = e$) distinto del 0 y del 1.
 			\item Existen $A_1, A_2$ no nulos tales que $A \cong A_1 \times A_2$ como anillos.
 		\end{enumerate}
+
+		\begin{sol}
+			La equivalencia <<$b) \iff c)$>> es porque $A_1 := (e)$ es un anillo con $1_{A_1} = e$ y $A_2 =
+			(1 - e)$ con $1_{A_2} = 1 - e$ (recuerde que $(1-e)^2 = 1-e$).
+			Luego el isomorfismo es
+			\[
+				A \longrightarrow A_1\times A_2, \qquad a \longmapsto (ae, a(1-e))
+			\]
+			Recíprocamente, si $A \cong A_1\times A_2$, entonces $e := (1, 0)$ es un idempotente.
+
+			La implicancia <<$c) \implies a)$>> es por el problema anterior.
+
+			$a) \implies b)$.
+			Sean $U = \VV(\mathfrak{a})^c$, $V := \VV(\mathfrak{b})^c$ abiertos tales que $U \cup V = \Spec
+			A$ y $U \cap V = \emptyset$.
+			Entonces $\VV(\mathfrak{a + b})^c = U \cup V = \Spec A$ equivale a que $\mathfrak{a + b} = (1)$;
+			y $\VV(\mathfrak{a\cdot b})^c = U \cap V = \emptyset$ equivale a que $\mathfrak{a\cdot b}
+			\subseteq \mathfrak{N}$.
+			Así, existen $a \in \mathfrak{a}$, $b \in \mathfrak{b}$ y un entero $n \ge 1$ tales que
+			\[
+				a + b = 1, \qquad (ab)^n = 0.
+			\]
+			La primera condición ahora equivale a que $\DD(a) \cup \DD(b) = \Spec A$.
+			Ahora, nótese que $\DD(x) = \DD(x^m)$ para todo $m \ge 1$ pues si $x \notin \mathfrak{p}$,
+			entonces sus potencias tampoco y recíprocamente, por lo que, $\DD(a^n) \cup \DD(b^n) = \Spec A$.
+			Así, existen $e \in (a^n)$ y $f \in (b^n)$ tales que
+			\[
+				e + f = 1, \qquad ef \in (a^nb^n) = (0).
+			\]
+			Finalmente, $f = 1 - e$ y $e(1-e) = e - e^2 = 0$.
+		\end{sol}
+
 	% \item Decimos que un anillo $B$ es \strong{reducido} si $\mathfrak{N}(B) = 0$, es decir, si el único nilpotente
 	% 	de $B$ es 0 (e.g., todo dominio íntegro es reducido).
 

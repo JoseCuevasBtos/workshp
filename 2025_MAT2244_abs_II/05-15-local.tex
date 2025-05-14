@@ -1,0 +1,167 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz-cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\title{Localizaciones y anillos noetherianos}
+\date{\DTMdate{2025-05-15}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra abstracta II}
+\coursecode{MAT2244}
+\professor{Héctor Pastén Vásquez}
+
+\begin{document}
+
+\maketitle
+
+\nocite{atiyah:commutative}
+\nocite{jacobson:basic}
+% \section{Números constructibles}
+
+\section*{Preliminares}
+Sea $A$ un anillo (conmutativo).
+Un \strong{$A$-módulo} $M$ es un grupo abeliano aditivo $(M, +)$ con un <<producto escalar>> $\cdot \colon A\times M \to
+M$ tales que para todo $a, b \in A$ y $m, n \in M$ se cumple:
+\begin{enumerate}
+	\item $1\cdot m = m$.
+	\item $a\cdot (b\cdot m) = (ab)\cdot m$.
+	\item $a\cdot(m + n) = a\cdot m + a\cdot n$.
+	\item $(a + b)\cdot m = a\cdot m + b\cdot m$.
+\end{enumerate}
+Se sigue que $0\cdot m = 0\in M$ (recuerde que $M$ es aditivo así que tiene un <<0>>).
+
+Dado un par de $A$-módulos $M, N$, una función $\varphi \colon M \to N$ se dice un \strong{homomorfismo de $A$-módulos}
+si es un homomorfismo de grupos aditivos $(M, +) \to (N, +)$ y respeta producto escalar:
+\[
+	\forall a \in A, \; m\in M, \qquad \varphi(am) = a \varphi(m).
+\]
+
+Dado un conjunto multiplicativo $S \subseteq A$ y un $A$-módulo $M$ podemos construir el $S^{-1}A$-módulo $S^{-1}M$
+cuyos elementos son pares $(m, s)$ con $m \in M$ y $s \in S$ bajo la equivalencia
+\[
+	m/s = m'/s' \iff \exists t \in S \quad t(s'm - sm) = 0 \in M.
+\]
+Con las sumas y producto escalar:
+\[
+	\frac{m}{s} + \frac{n}{t} := \frac{tm + sn}{st}, \qquad \frac{a}{t} \cdot \frac{m}{s} := \frac{am}{ts}.
+\]
+
+Dado un ideal primo $\mathfrak{p} \nsl A$, considere $S := A \setminus \mathfrak{p}$ el cual es un conjunto
+multiplicativo (¿por qué?), denotaremos por $A_{\mathfrak{p}} := S^{-1}A$ a la localización.
+
+\section{Propiedades <<locales>>}
+\begin{enumerate}
+	\item\lookright
+		(Examen de lucidez)
+		Sea $A$ un anillo.
+		\begin{enumerate}
+			\item Pruebe que, dado un primo $\mathfrak{p} \nsl A$, el anillo $A_{\mathfrak{p}}$ es local y
+				que su único ideal maximal es
+				\[
+					\mathfrak{p_p} = \mathfrak{p}A_{\mathfrak{p}} =
+					\left\{ \frac{p}{q} : p \in \mathfrak{p}, q \notin \mathfrak{p} \right\}.
+				\]
+			\item Si $A$ es dominio íntegro, describa la localización $A_{(0)}$.
+		\end{enumerate}
+
+	\item (Funtorialidad de localización)
+		Sea $\varphi \colon M \to N$ un homomorfismo de $A$-módulos.
+		\begin{enumerate}
+			\item Pruebe que la función $M \to S^{-1}M$ dada por $m \mapsto m/1$ es un homomorfismo de
+				$A$-módulos.
+			\item Pruebe que la función $S^{-1}\varphi \colon S^{-1}M \to S^{-1}N$ dada por $m/s \mapsto
+				\varphi(m)/s$ es un homomorfismo de $S^{-1}A$-módulos.
+		\end{enumerate}
+
+	\item Sea $A$ un anillo y $M$ un $A$-módulo.
+		Pruebe que son equivalentes:
+		\begin{enumerate}
+			\item $M = 0$.
+			\item $M_{\mathfrak{p}} = 0$ para todo $\mathfrak{p} \nsl A$ primo.
+			\item $M_{\mathfrak{m}} = 0$ para todo $\mathfrak{m} \nsl A$ maximal.
+		\end{enumerate}
+
+	\item Sea $\varphi \colon M \to N$ un homomorfismo de $A$-módulos.
+		Pruebe que son equivalentes:
+		\begin{enumerate}
+			\item $\varphi$ es inyectiva (resp.\ sobreyectiva, biyectiva).
+			\item $\varphi_{\mathfrak{p}}$ es inyectiva (resp.\ sobreyectiva, biyectiva) para todo
+				$\mathfrak{p} \nsl A$ primo.
+			\item $\varphi_{\mathfrak{m}}$ es inyectiva (resp.\ sobreyectiva, biyectiva) para todo
+				$\mathfrak{m} \nsl A$ maximal.
+		\end{enumerate}
+
+	\item Un anillo $A$ se dice \strong{reducido} si su nilradical $\nilrad(A) = 0$.
+		Pruebe que $A$ es reducido syss cada localización $A_{\mathfrak{p}}$ (donde $\mathfrak{p} \nsl A$
+		recorre los ideales primos) es reducida.
+
+		\begin{prob}
+			\lookup
+			¿Es cierto que $A$ es un dominio íntegro syss cada localización $A_{\mathfrak{p}}$ es un dominio
+			íntegro?
+		\end{prob}
+\end{enumerate}
+
+\section{Anillos noetherianos}
+\begin{enumerate}[resume]
+	\item Sea $A$ un anillo noetheriano.
+		Pruebe que toda $A$-álgebra finitamente generada es también noetheriana.
+	\item Sea $A$ un anillo noetheriano. 
+		Pruebe que existe un entero $n \ge 1$ tal que la potencia del nilradical $\mathfrak{N}^n = 0$.
+
+		\begin{prob}
+			\lookup
+			Dé un contraejemplo de un nilradical cuyas potencias jamás son el ideal nulo.
+		\end{prob}
+\end{enumerate}
+
+\appendix
+\section{Ejercicios propuestos}
+\begin{enumerate}
+	\item\lookright
+		Sea $A$ un anillo y $\mathfrak{p} \nsl A$ un ideal primo.
+		Pruebe que $A_{\mathfrak{p}}/\mathfrak{p_p}$ es isomorfo al cuerpo de fracciones
+		$\Frac(A/\mathfrak{p})$.
+
+	\item Sea $A$ un anillo y $\mathfrak{p} \nsl A$ un ideal primo.
+		\begin{enumerate}
+			\item Describa $\Spec A_{\mathfrak{p}}$ en términos de $\Spec A$.
+			\item ¿Qué sucede con $\Spec A_{\mathfrak{p}}$ cuándo $\mathfrak{p}$ es maximal?
+		\end{enumerate}
+
+		\begin{hint}
+			Para este ejercicio podría resultar conveniente recordar que, al localizar con $S = \{ f^n : n
+			\in \N \}$ para $f \in A$, se cumple que
+			\begin{equation}
+				\Spec(S^{-1}A) = \{ \mathfrak{p} : \mathfrak{p} \cap S = \emptyset \} \subseteq \Spec A.
+				\tqedhere
+			\end{equation}
+		\end{hint}
+
+	\item Un espacio topológico $X$ se dice \emph{noetheriano} si toda cadena descendente de cerrados
+		\[
+			F_0 \supseteq F_1 \supseteq F_2 \supseteq \cdots,
+		\]
+		se estabiliza, es decir, existe $n$ para el cual $F_n = F_{n+1} = \cdots$
+
+		\begin{enumerate}
+			\item Pruebe que si $A$ es anillo noetheriano, entonces $\Spec A$ es un espacio noetheriano.
+			\item\lookup
+				Dé un ejemplo de un anillo no noetheriano $A$ cuyo espectro $\Spec A$ sí es noetheriano.
+		\end{enumerate}
+\end{enumerate}
+
+% \appendix
+% \section{Comentarios adicionales}
+
+\printbibliography
+
+\end{document}

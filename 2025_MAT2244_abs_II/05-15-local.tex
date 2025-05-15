@@ -89,14 +89,13 @@ multiplicativo (¿por qué?), denotaremos por $A_{\mathfrak{p}} := S^{-1}A$ a la
 			\item $M_{\mathfrak{m}} = 0$ para todo $\mathfrak{m} \nsl A$ maximal.
 		\end{enumerate}
 
-	\item Sea $\varphi \colon M \to N$ un homomorfismo de $A$-módulos.
+	\item\label{localizing_module_morph}
+		Sea $\varphi \colon M \to N$ un homomorfismo de $A$-módulos.
 		Pruebe que son equivalentes:
 		\begin{enumerate}
-			\item $\varphi$ es inyectiva (resp.\ sobreyectiva, biyectiva).
-			\item $\varphi_{\mathfrak{p}}$ es inyectiva (resp.\ sobreyectiva, biyectiva) para todo
-				$\mathfrak{p} \nsl A$ primo.
-			\item $\varphi_{\mathfrak{m}}$ es inyectiva (resp.\ sobreyectiva, biyectiva) para todo
-				$\mathfrak{m} \nsl A$ maximal.
+			\item $\varphi$ es inyectiva.
+			\item $\varphi_{\mathfrak{p}}$ es inyectiva para todo $\mathfrak{p} \nsl A$ primo.
+			\item $\varphi_{\mathfrak{m}}$ es inyectiva para todo $\mathfrak{m} \nsl A$ maximal.
 		\end{enumerate}
 
 	\item Un anillo $A$ se dice \strong{reducido} si su nilradical $\nilrad(A) = 0$.
@@ -118,7 +117,6 @@ multiplicativo (¿por qué?), denotaremos por $A_{\mathfrak{p}} := S^{-1}A$ a la
 		Pruebe que existe un entero $n \ge 1$ tal que la potencia del nilradical $\mathfrak{N}^n = 0$.
 
 		\begin{prob}
-			\lookup
 			Dé un contraejemplo de un nilradical cuyas potencias jamás son el ideal nulo.
 		\end{prob}
 \end{enumerate}
@@ -159,8 +157,11 @@ multiplicativo (¿por qué?), denotaremos por $A_{\mathfrak{p}} := S^{-1}A$ a la
 		\end{enumerate}
 \end{enumerate}
 
-% \appendix
-% \section{Comentarios adicionales}
+\section{Comentarios adicionales}
+El ejercicio~\ref{localizing_module_morph} puede mejorarse a que $\varphi$ es sobreyectivo (resp.\ isomorfismo) syss
+cada localización en maximales lo es.
+La razón de no incluirlo aquí fue que emplea la noción del conúcleo $\coker\varphi := N/\Img\varphi$ que exige un poco
+más de familiaridad con módulos; los lectores estás invitados a hacer el intento del ejercicio.
 
 \printbibliography
 

@@ -1,0 +1,222 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\title{Más acerca de módulos}
+\date{\DTMdate{2025-05-22}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra abstracta II}
+\coursecode{MAT2244}
+\professor{Héctor Pastén Vásquez}
+
+\begin{document}
+
+\maketitle
+
+\nocite{atiyah:commutative}
+% \nocite{matsumura:ring}
+% \section{Números constructibles}
+
+\section{Sobre módulos}
+\begin{enumerate}
+	\item\lookright
+		(Exámen de lucidez)
+		Pruebe que todo grupo abeliano $G$ posee una única estructura como $\Z$-módulo.
+	\item Sea $A$ un anillo y $M$ un $A$-módulo.
+		Para una indeterminada $x$ definimos el conjunto $M[x]$ como aquel formado por las sumas formales
+		$\sum_{j=0}^{n} m_jx^j$, donde los coeficientes $m_j \in M$.
+		\begin{enumerate}
+			\item Pruebe que $M[x]$ es un $A[x]$-módulo con la suma coordenada a coordenada y el producto
+				escalar:
+				\[
+					\left( \sum_{i=0}^{p} a_ix^i \right)\left( \sum_{j=1}^{n} m_jx^j \right) =
+					\sum_{\ell=0}^{p+n} \left( \sum_{i+j=\ell} a_im_j \right) x^j.
+				\]
+			\item Pruebe que si $N \le M$, entonces $N[x] \le M[x]$ de forma canónica.
+				En particular, si $\mathfrak{a}$ es un ideal de $A$, entonces $\mathfrak{a}[x]$ es un
+				ideal de $A[x]$.
+			\item\lookright
+				Si $\mathfrak{p}$ es un ideal primo de $A$.
+				¿Es cierto que $\mathfrak{p}[x]$ es primo en $A[x]$?
+				¿Y si $\mathfrak{m}$ es maximal, será que $\mathfrak{m}[x]$ también?
+		\end{enumerate}
+
+	\item Sea
+		\begin{equation}
+			\begin{tikzcd}
+				0 \rar & M_1 \rar["f"] & M_2 \rar["g"] & M_3 \rar & 0
+			\end{tikzcd}
+			\tag{$\Sigma$}
+			\label{module_exact_seq}
+		\end{equation}
+		una sucesión exacta de $A$-módulos.
+		Pruebe que son equivalentes:
+		\begin{enumerate}
+			\item Existe $h \colon M_3 \to M_2$ tal que $g\circ h = \Id_{M_3}$
+				(esta $h$ es ocasionalmente descrita como una <<sección de $g$>>).
+			\item Existe $j \colon M_2 \to M_1$ tal que $j\circ f = \Id_{M_1}$
+				(este $j$ es ocasionalmente descrito como una <<cosección>> o <<retracción de $f$>>).
+			\item Existe un isomorfismo $\phi\colon M_1\otimes M_3 \to M_2$, de modo que $g\circ\phi \colon
+				M_1\times M_3 \to M_3$ es la proyección y $\phi^{-1}\circ f \colon M_1 \to M_1\times
+				M_3$ es la inclusión. 
+		\end{enumerate}
+		En cuyo caso, se dice que \eqref{module_exact_seq} \strong{se escinde} o que es una \emph{sucesión
+		escindida}.
+		
+	\item Sea $M$ un $A$-módulo, diremos que es \strong{noetheriano} si todos sus $A$-submódulos son finitamente generados.
+		\begin{enumerate}
+			\item\label{ex:noetherian_modules}
+				Pruebe que sobre un anillo noetheriano $A$, un $A$-módulo es noetheriano syss es finitamente generado.
+			\item\lookup
+				Pruebe que sobre \emph{todo} anillo (noetheriano o no) existe un módulo noetheriano no nulo.
+				\begin{hint}
+					% Para un anillo $A$, sus $A$-submódulos son, por definición, los ideales.
+					Note que, por ejemplo, un $A$-módulo sería noetheriano si fuese \strong{simple},
+					i.e., si sus únicos submódulos fueran $0$ y $M$; así que puede tratar de buscar
+					un $A$-módulo simple.
+				\end{hint}
+		\end{enumerate}
+
+	\item Sea $0 \to M_1 \to M_2 \to M_3 \to 0$ una sucesión exacta de $A$-módulos.
+		\begin{enumerate}
+			\item Pruebe que si $M_1$ y $M_3$ son finitamente generados, entonces $M_2$ también.
+			\item Pruebe que $M_2$ es noetheriano syss $M_1$ y $M_3$ también lo son.
+		\end{enumerate}
+\end{enumerate}
+
+\section{Las serpientes y sus amigos}
+\begin{enumerate}[resume]
+	\item\lookst
+		\textbf{Lema de la serpiente:}
+		Considere un diagrama conmutativo de $A$-módulos
+		\begin{center}
+			\begin{tikzcd}
+				{}     & A \dar["\alpha"] \rar["\psi"] & B \dar["\beta"] \rar["\phi"] & C \dar["\gamma"] \rar & 0 \\
+				0 \rar & A'             \rar["\psi'"'] & B'            \rar["\phi'"'] & C'
+			\end{tikzcd}
+		\end{center}
+		donde ambas filas son exactas,
+		pruebe que existe un homomorfismo de $A$-módulos $\omega \colon \ker\gamma \to \coker\alpha$ tal que se
+		induce la siguiente sucesión exacta:
+		\begin{center}
+			\begin{tikzcd}[column sep=small]
+				\ker\alpha \rar & \ker\beta \rar & \ker\gamma \rar["\omega"] & \coker\alpha \rar &
+				\coker\beta \rar & \coker\gamma.
+			\end{tikzcd}
+		\end{center}
+
+	\item \textbf{Lema de los cinco:}
+		Dado un diagrama conmutativo de $A$-módulos
+		\[\begin{tikzcd}
+			M_1 \rar \dar["f_1"] & M_2 \rar \dar["f_2"] & M_3 \rar \dar["f_3"] & M_4 \rar \dar["f_4"] & M_5 \dar["f_5"] \\
+			N_1 \rar & N_2 \rar & N_3 \rar & N_4 \rar & N_5
+		\end{tikzcd}\]
+		con filas exactas.
+		Pruebe que si $f_1, f_2, f_4, f_5$ son isomorfismos, entonces $f_3$ también.
+		
+		\begin{hint}
+			Emplee el lema de la serpiente.
+		\end{hint}
+\end{enumerate}
+
+% \section{QQQ}
+% Sea $A$ un anillo, construiremos la álgebra de series formales $A[\![x]\!]$ como aquella en donde los elementos son series formales infinitas
+% \[
+% 	f := \sum_{n=0}^{\infty} a_n x^n, \qquad g := \sum_{n=0}^{\infty} b_n x^n
+% \]
+% con la suma y producto
+% \[
+% 	f+g := \sum_{n=0}^{\infty} (a_n+b_n)x^n, \qquad \sum_{n=0}^{\infty} \left( \sum_{j=0}^{n} a_jb_{n-j} \right)x^n.
+% \]
+
+% \begin{enumerate}
+% 	\item\lookright
+% 		(Examen de lucidez)
+% 		Sea $A$ un anillo.
+% 		\begin{enumerate}
+% 			\item Pruebe que $A[\![x]\!]$ es un anillo.
+% 			\item Pruebe que 
+% 		\end{enumerate}
+% \end{enumerate}
+
+\appendix
+\section{Ejercicios propuestos}
+\begin{enumerate}
+	\item Describa qué debe satisfacer un grupo abeliano para tener estructura natural%
+		\footnote{Si bien el adjetivo <<natural>> es un tanto ambiguo en matemáticas, aquí tiene una connotación
+		precisa. El lector puede probar que si un grupo abeliano $G$ admite estructura de $\Q$-módulo, esta es única.}
+		de $\Q$-módulo.
+
+	\item\lookup
+		Dé un contraejemplo de un $A$-módulo finitamente generado $M$ que no sea noetheriano, i.e., que posea un
+		submódulo que no es finitamente generado.
+		(Note que, en virtud del ejercicio~\ref{ex:noetherian_modules}, el anillo debe no ser noetheriano.)
+
+	\item Sea $A$ un dominio íntegro que contiene a un subcuerpo $k \subseteq A$ y tal que $A$ es un $k$-espacio
+		vectorial de dimensión finita.
+		Pruebe que $A$ es un cuerpo.
+
+	\item Se dice que un $A$-módulo $M$ es \strong{indescomponible} si no posee dos submódulos propios $N_1, N_2$
+		tales que $M \cong N_1 \oplus N_2$.
+		Claramente todo módulo simple es indescomponible, pero el recíproco no es cierto.
+		\begin{enumerate}
+			\item Pruebe que un módulo no nulo $M$ es indescomponible syss existe un endomorfismo $\varphi
+				\colon M \to M$ tal que $\varphi^2 = \varphi$.
+			\item ¿Para exactamente qué enteros $n > 1$ se cumple que $\Z/n\Z$ es ($\Z$-)indescomponible?
+				¿Para cuáles es simple?
+		\end{enumerate}
+
+	\item \textbf{Lema de los cuatro:}
+		Considere el diagrama conmutativo de $A$-módulos
+		\[\begin{tikzcd}
+			M_1 \dar["f_1", two heads] \rar & M_2 \dar["f_2"] \rar & M_3 \dar["f_3"] \rar & M_4
+			\dar["f_4", hook] \\
+			N_1 \rar & N_2 \rar & N_3 \rar & N_4
+		\end{tikzcd}\]
+		con filas exactas.
+		Supongamos que $f_1$ es sobreyectivo y $f_4$ es inyectivo.
+		Se cumplen:
+		\begin{enumerate}
+			\item Si $f_2$ es    inyectivo, entonces $f_3$ también
+			\item Si $f_3$ es sobreyectivo, entonces $f_2$ también
+		\end{enumerate}
+\end{enumerate}
+
+\section{Comentarios adicionales}
+Las técnicas que involucran construir diagramas con filas/columnas exactas y aplicar lemas similares al de la serpiente
+se conocen como <<cazando diagramas>> (eng.\ \emph{diagram chasing}).
+Hay varios libros dedicados a explotar esta técnica, un ejemplo es \cite{maclane:homology}.
+Las primeras dos ediciones de \citeauthor{lang:algebra}~\cite{lang:algebra} incluían este famoso y desventurado ejercicio:
+\begin{displayquote}
+	Coja cualquier texto de álgebra homológica y pruebe todos los teoremas que contenga sin ver las demostraciones.
+	% Take any book on homological algebra, and prove all the theorems without looking at the proofs given in that book.
+\end{displayquote}
+La traducción al ruso del libro fue incluyendo una serie de pies de página y anotaciones por el traductor.
+En este punto añade <<Sugerimos saltarse éste ejercicio en una primera lectura.>>%
+\footnote{Vid.\ \url{https://mathoverflow.net/a/10909}}
+
+El álgebra homológica fue inventada y explorada principalmente por topológos algebristas al inicio del siglo \textsc{xx}
+como Samuel Eilenberg, Norman Steenrod y Jean Leray.%
+\footnote{Si quiere puede rastrear influencias más antiguas a David Hilbert y Henri Poincaré.}
+En un comienzo pretendía tener aplicaciones específicas a la topología, pero probó ser de gran utilidad en el álgebra
+también, principalmente en el estudio de módulos con la aparición de los funtores $\Ext$ y $\Tor$.
+Esta revolución fue llevada a cabo por varios matemáticos de renombre, por nombrar algunos: Eduard \v Cech, Henri
+Cartan, Nobuo Yoneda, Hyman Bass y Jean-Pierre Serre.
+
+% Hoy en día, un buen conocimiento y dominio del tema se considera obligatorio para entender los últimos avances en
+% álgebra conmutativa, inclusive enunciados en dónde la influencia no es para nada obvia ni directa.
+% Un ejemplo es el teorema de que <<todo anillo regular es un DFU>>, donde <<regular>>.
+
+\printbibliography
+
+\end{document}

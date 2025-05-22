@@ -51,29 +51,14 @@
 				¿Y si $\mathfrak{m}$ es maximal, será que $\mathfrak{m}[x]$ también?
 		\end{enumerate}
 
-	\item Sea
-		\begin{equation}
-			\begin{tikzcd}
-				0 \rar & M_1 \rar["f"] & M_2 \rar["g"] & M_3 \rar & 0
-			\end{tikzcd}
-			\tag{$\Sigma$}
-			\label{module_exact_seq}
-		\end{equation}
-		una sucesión exacta de $A$-módulos.
-		Pruebe que son equivalentes:
+	\item Sea $0 \to M_1 \to M_2 \to M_3 \to 0$ una sucesión exacta de $A$-módulos.
 		\begin{enumerate}
-			\item Existe $h \colon M_3 \to M_2$ tal que $g\circ h = \Id_{M_3}$
-				(esta $h$ es ocasionalmente descrita como una <<sección de $g$>>).
-			\item Existe $j \colon M_2 \to M_1$ tal que $j\circ f = \Id_{M_1}$
-				(este $j$ es ocasionalmente descrito como una <<cosección>> o <<retracción de $f$>>).
-			\item Existe un isomorfismo $\phi\colon M_1\otimes M_3 \to M_2$, de modo que $g\circ\phi \colon
-				M_1\times M_3 \to M_3$ es la proyección y $\phi^{-1}\circ f \colon M_1 \to M_1\times
-				M_3$ es la inclusión. 
+			\item Pruebe que si $M_1$ y $M_3$ son finitamente generados, entonces $M_2$ también.
+			\item Diremos que un $A$-módulo es \strong{noetheriano} si todos sus $A$-submódulos son finitamente generados.
+				Pruebe que $M_2$ es noetheriano syss $M_1$ y $M_3$ también lo son.
 		\end{enumerate}
-		En cuyo caso, se dice que \eqref{module_exact_seq} \strong{se escinde} o que es una \emph{sucesión
-		escindida}.
-		
-	\item Sea $M$ un $A$-módulo, diremos que es \strong{noetheriano} si todos sus $A$-submódulos son finitamente generados.
+
+	\item Sea $M$ un $A$-módulo.
 		\begin{enumerate}
 			\item\label{ex:noetherian_modules}
 				Pruebe que sobre un anillo noetheriano $A$, un $A$-módulo es noetheriano syss es finitamente generado.
@@ -85,12 +70,6 @@
 					i.e., si sus únicos submódulos fueran $0$ y $M$; así que puede tratar de buscar
 					un $A$-módulo simple.
 				\end{hint}
-		\end{enumerate}
-
-	\item Sea $0 \to M_1 \to M_2 \to M_3 \to 0$ una sucesión exacta de $A$-módulos.
-		\begin{enumerate}
-			\item Pruebe que si $M_1$ y $M_3$ son finitamente generados, entonces $M_2$ también.
-			\item Pruebe que $M_2$ es noetheriano syss $M_1$ y $M_3$ también lo son.
 		\end{enumerate}
 \end{enumerate}
 
@@ -127,6 +106,31 @@
 		\begin{hint}
 			Emplee el lema de la serpiente.
 		\end{hint}
+
+	\item Sea
+		\begin{equation}
+			\begin{tikzcd}
+				0 \rar & A \rar["f"] & B \rar["g"] & C \rar & 0
+			\end{tikzcd}
+			\tag{$\Sigma$}
+			\label{module_exact_seq}
+		\end{equation}
+		una sucesión exacta de $R$-módulos.
+		Pruebe que son equivalentes:
+		\begin{enumerate}
+			\item Existe $h \colon C \to B$ tal que $g\circ h = \Id_{C}$
+				(esta $h$ es ocasionalmente descrita como una <<sección de $g$>>).
+			\item Existe $j \colon B \to A$ tal que $j\circ f = \Id_{A}$
+				(este $j$ es ocasionalmente descrito como una <<cosección>> o <<retracción de $f$>>).
+			\item Existe un isomorfismo $\phi\colon A\oplus C \to B$, de modo que $g\circ\phi \colon
+				A\times C \to C$ es la proyección y $\phi^{-1}\circ f \colon A \to A\times
+				C$ es la inclusión. 
+		\end{enumerate}
+		En cuyo caso, se dice que \eqref{module_exact_seq} \strong{se escinde} o que es una \emph{sucesión
+		escindida}.
+		% \begin{hint}
+		% 	Hay una demostración \textquote{sencilla} asumiendo el lema de los cinco.
+		% \end{hint}
 \end{enumerate}
 
 % \section{QQQ}
@@ -166,13 +170,14 @@
 		vectorial de dimensión finita.
 		Pruebe que $A$ es un cuerpo.
 
-	\item Se dice que un $A$-módulo $M$ es \strong{indescomponible} si no posee dos submódulos propios $N_1, N_2$
+	\item Se dice que un $A$-módulo $M$ es \strong{descomponible} si posee dos submódulos propios $N_1, N_2$
 		tales que $M \cong N_1 \oplus N_2$.
 		Claramente todo módulo simple es indescomponible, pero el recíproco no es cierto.
 		\begin{enumerate}
-			\item Pruebe que un módulo no nulo $M$ es indescomponible syss existe un endomorfismo $\varphi
-				\colon M \to M$ tal que $\varphi^2 = \varphi$.
-			\item ¿Para exactamente qué enteros $n > 1$ se cumple que $\Z/n\Z$ es ($\Z$-)indescomponible?
+			\item Pruebe que un módulo no nulo $M$ es descomponible syss existe un endomorfismo no nulo
+				$\varphi \colon M \to M$ tal que $\varphi^2 = \varphi$.
+			\item\lookright (Examen de lucidez)
+				¿Para exactamente qué enteros $n > 1$ se cumple que $\Z/n\Z$ es\break ($\Z$-)indescomponible?
 				¿Para cuáles es simple?
 		\end{enumerate}
 

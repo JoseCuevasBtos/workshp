@@ -58,26 +58,15 @@
 				Pruebe que $M_2$ es noetheriano syss $M_1$ y $M_3$ también lo son.
 		\end{enumerate}
 
-	\item Sea $M$ un $A$-módulo.
-		\begin{enumerate}
-			\item\label{ex:noetherian_modules}
-				Pruebe que sobre un anillo noetheriano $A$, un $A$-módulo es noetheriano syss es finitamente generado.
-			\item\lookup
-				Pruebe que sobre \emph{todo} anillo (noetheriano o no) existe un módulo noetheriano no nulo.
-				\begin{hint}
-					% Para un anillo $A$, sus $A$-submódulos son, por definición, los ideales.
-					Note que, por ejemplo, un $A$-módulo sería noetheriano si fuese \strong{simple},
-					i.e., si sus únicos submódulos fueran $0$ y $M$; así que puede tratar de buscar
-					un $A$-módulo simple.
-				\end{hint}
-		\end{enumerate}
+	\item\label{ex:noetherian_modules}
+		Pruebe que sobre un anillo noetheriano $A$, un $A$-módulo es noetheriano syss es finitamente generado.
 \end{enumerate}
 
 \section{Las serpientes y sus amigos}
 \begin{enumerate}[resume]
 	\item\lookst
 		\textbf{Lema de la serpiente:}
-		Considere un diagrama conmutativo de $A$-módulos
+		Considere un diagrama conmutativo de $R$-módulos
 		\begin{center}
 			\begin{tikzcd}
 				{}     & A \dar["\alpha"] \rar["\psi"] & B \dar["\beta"] \rar["\phi"] & C \dar["\gamma"] \rar & 0 \\
@@ -85,12 +74,12 @@
 			\end{tikzcd}
 		\end{center}
 		donde ambas filas son exactas,
-		pruebe que existe un homomorfismo de $A$-módulos $\omega \colon \ker\gamma \to \coker\alpha$ tal que se
+		pruebe que existe un homomorfismo de $R$-módulos $\omega \colon \ker\gamma \to \coker\alpha$ tal que se
 		induce la siguiente sucesión exacta:
 		\begin{center}
 			\begin{tikzcd}[column sep=small]
-				\ker\alpha \rar & \ker\beta \rar & \ker\gamma \rar["\omega"] & \coker\alpha \rar &
-				\coker\beta \rar & \coker\gamma.
+				\ker \psi \rar & \ker\alpha \rar & \ker\beta \rar & \ker\gamma \rar["\omega"] & \coker\alpha \rar &
+				\coker\beta \rar & \coker\gamma \rar & \coker(\phi').
 			\end{tikzcd}
 		\end{center}
 
@@ -162,9 +151,19 @@
 		de $\Q$-módulo.
 
 	\item\lookup
-		Dé un contraejemplo de un $A$-módulo finitamente generado $M$ que no sea noetheriano, i.e., que posea un
-		submódulo que no es finitamente generado.
-		(Note que, en virtud del ejercicio~\ref{ex:noetherian_modules}, el anillo debe no ser noetheriano.)
+		Sea $A$ un anillo \textbf{NO} noetheriano.
+		\begin{enumerate}
+			\item Dé un contraejemplo de un $A$-módulo finitamente generado $M$ que no sea noetheriano.
+				% i.e., que posea un submódulo que no es finitamente generado.
+				% (Note que, en virtud del ejercicio~\ref{ex:noetherian_modules}, el anillo debe no ser noetheriano.)
+			\item Pruebe que siempre existe un $A$-módulo noetheriano no nulo.
+				\begin{hint}
+					% Para un anillo $A$, sus $A$-submódulos son, por definición, los ideales.
+					Note que, por ejemplo, un $A$-módulo sería noetheriano si fuese \strong{simple},
+					i.e., si sus únicos submódulos fueran $0$ y $M$; así que puede tratar de buscar
+					un $A$-módulo simple.
+				\end{hint}
+		\end{enumerate}
 
 	\item Sea $A$ un dominio íntegro que contiene a un subcuerpo $k \subseteq A$ y tal que $A$ es un $k$-espacio
 		vectorial de dimensión finita.

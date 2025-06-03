@@ -1,0 +1,337 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\title{Tensores}
+\date{\DTMdate{2025-05-29}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra abstracta II}
+\coursecode{MAT2244}
+\professor{Héctor Pastén Vásquez}
+
+\begin{document}
+
+\maketitle
+
+\nocite{aluffi:algebra}
+\nocite{atiyah:commutative}
+% \nocite{matsumura:ring}
+% \section{Números constructibles}
+
+\section{Calculando tensores}
+A la hora de <<calcular>> un tensor $M \otimes_A N$, el lector debe sólo tener en mente que un homomorfismo $M \otimes_A
+N \to T$ es lo mismo que una aplicación $A$-bilineal $M \times N \to T$ (i.e., lineal en cada coordenada).
+
+En un tensor $M \otimes_A N$, los elementos de la forma $m \otimes n$ (con $m \in M$, $n\in N$) se dicen \strong{tensores puros}.
+No todos los elementos del producto tensorial son tensores puros, pero sí todo elemento es \emph{suma} de tensores puros.
+
+\begin{enumerate}
+	\item Pruebe que $(\Z/m\Z) \otimes_\Z (\Z/n\Z) = 0$ para $m, n$ coprimos, y que $(\Z/n\Z) \otimes_\Z \Q = 0$ en
+		general.
+		
+		\begin{sol}
+			Como todo módulo de tensores $M \otimes N$ está generado por los tensores puros, bastará probar
+			que estos últimos son cero.
+
+			Sean $[a] \in \Z/m\Z$ y $[b] \in \Z/n\Z$, entonces $a \otimes b = a(1 \otimes b) = ab(1 \otimes
+			1)$, así que bastará probar que $1 \otimes 1 = 0$.
+			Por la identidad de Bézout, $1 = um + vn$, de modo que
+			\[
+				1\otimes 1 = (um + vn)\otimes 1 = vn\otimes 1 = n(v\otimes 1) = v\otimes n = v\otimes 0
+				= 0,
+			\]
+			donde empleamos la $\Z$-bilinealidad en los cálculos.
+
+			Similarmente dados $[a] \in \Z/n\Z$ y $b \in \Q$, tenemos que
+			\[
+				a\otimes b = a\otimes\left( n \cdot \frac{b}{n} \right) = n(a\otimes b/n) = (na)\otimes b/n =
+				0\otimes b/n = 0.
+			\]
+		\end{sol}
+
+	\item Sea $M$ un $A$-módulo.
+		\begin{enumerate}
+			\item\lookright
+				Pruebe que toda sucesión exacta 
+				\begin{tikzcd}[cramped, sep=small]
+					N_1 \rar["f"] & N_2 \rar["g"] & N_3 \rar & 0
+				\end{tikzcd}
+				da lugar a una sucesión exacta
+				\begin{equation}
+					\begin{tikzcd}
+						M \otimes_A N_1 \rar & M \otimes_A N_2 \rar & M \otimes_A N_3 \rar & 0.
+					\end{tikzcd}
+					\label{cd:tensor_rext}
+				\end{equation}
+
+				\begin{sol}
+					Para probar exactitud en $M\otimes_A N_3$ basta ver que $\Id_M\otimes g$ es
+					sobreyectivo.
+					Para ello, sea $\sum_{j=1}^{r} m_j\otimes c_j \in M\otimes_A N_3$, donde cada
+					$m_j \in M$ y $c_j \in N_3$.
+					Como $g$ es sobreyectivo, existen $b_j \in N_2$ tales que $g(b_j) = c_j$, de
+					modo que
+					\[
+						(\Id_M\otimes g)\left( \sum_{j=1}^{r} m_j\otimes b_j \right) = \sum_{j=1}^{r}
+						m_j\otimes g(b_j) = \sum_{j=1}^{r} m_j\otimes c_j.
+					\]
+
+					Por otro lado, una sucesión 
+					\begin{tikzcd}[cramped, sep=small]
+						T \rar["f"] & N \rar & Q \rar & 0
+					\end{tikzcd}
+					es exacta syss $Q \cong N/\Img f$ (por abuso de notación $Q = N/T$), así que
+					para probar exactitud en $M\otimes N_2$ vamos a ver que el tensor respeta
+					cocientes.
+					Nótese que, en este contexto, $N \otimes_A M \to (N/T)\otimes_A M$ se anula en
+					$T\otimes_A M$ (pues $t\otimes m \mapsto (t\mod T)\otimes m = 0$), por lo que,
+					\[
+						\varphi \colon \frac{N\otimes_A M}{T\otimes_A M} \longrightarrow
+						(N/T)\otimes_A M, \qquad n\otimes m \longmapsto (n\mod T)\otimes m
+					\]
+					es un homomorfismo bien definido.
+
+					Recíprocamente, la función
+					\[
+						\psi \colon (N/T)\otimes_A M \longrightarrow \frac{N\otimes_A
+						M}{T\otimes_A M}, \qquad
+						(n\mod T)\otimes m \longmapsto n\otimes m \pmod{T\otimes M}
+					\]
+					está bien definida ya que si $n' = n + t$ para algún $t \in T$, entonces
+					$\psi(n'\otimes m) = n\otimes m + t\otimes m \equiv n\otimes m$.
+					Es directo ver que $\varphi$ y $\psi$ son inversas una de la otra.
+				\end{sol}
+
+			\item Pruebe, sin embargo, que si $f \colon N_1 \to N_2$ es inyectiva, entonces $\Id_M\otimes_A
+				f \colon M\otimes_A N_1 \to M\otimes_A N_2$ no lo es en general.
+
+				\begin{sol}
+					Una manera fácil de construir un contraejemplo sería un submódulo $N_1 \le N_2$
+					tal que $N_1 \otimes M \ne 0 = N_2 \otimes M$.
+					Un ejemplo de esto es $\Z \hookto \Q$ tensorizado con $M = \Z/2\Z$.
+
+					Otro ejemplo es considerar el homomorfismo ${}\times 2 \colon \Z \to \Z$ que al
+					tensorizar por $\Z/2\Z$ nos da el homomorfismo nulo.
+				\end{sol}
+
+			\item No obstante, pruebe que dados los $A$-módulos $M, N, P$ se cumple que
+				\[
+					(M \oplus N)\otimes_A P \cong (M\otimes_A P)\oplus(N\otimes_A P).
+				\]
+				En consecuencia, si $0 \to M \to M\oplus N \to N \to 0$ es una sucesión exacta escindida,
+				entonces $0 \to M\otimes_A P \to (M\oplus N)\otimes_A P \to N\otimes_A P \to 0$ también
+				es exacta escindida.
+
+				\begin{sol}
+					Empleando la propiedad universal del tensor, basta ver que darse una función
+					bilineal desde $(M\oplus N)\times P$ es lo mismo que darse dos funciones
+					bilineales desde $M\times P$ y $N\times P$.
+
+					Dada $\varphi \colon (M\oplus N)\times P \to T$ bilineal, construimos
+					\begin{align*}
+						\psi_\varphi \colon M\times P &\longrightarrow T,
+									      & (m, p) &\longmapsto \varphi((m,0),p), \\
+						\theta_\varphi \colon N\times P &\longrightarrow T,
+										& (n, p) &\longmapsto \varphi((0,n),p).
+					\end{align*}
+					Recíprocamente, dados $\psi, \theta$ bilineales, construimos
+					\[
+						\varphi \colon (M\oplus N)\times P \longrightarrow T, \qquad
+						((m,n),p) \longmapsto \varphi(m,p) + \theta(n,p).
+					\]
+					Y queda al lector verificar que las construcciones son una la inversa de la
+					otra.
+				\end{sol}
+		\end{enumerate}
+
+	\item Sean $M, N$ un par de $A$-módulos.
+		\begin{enumerate}
+			\item (Examen de lucidez)
+				Pruebe que si $N$ está generado por un solo elemento, entonces todos los elementos del
+				tensor $M \otimes_A N$ son tensores puros.
+
+				\begin{sol}
+					Sea $n \in N$ que genera.
+					Ahora los elementos de $M\otimes_A N$ son de la forma $\sum_{j=1}^{r} m_j\otimes
+					n_j$ donde cada $m_j\in M, n_j\in N$; luego existen $a_j \in A$ tales que $n_j =
+					a_j n$ y
+					\[
+						\sum_{j=1}^{r} m_j\otimes n_j = \sum_{j=1}^{r} a_j(m_j\otimes n)
+						= \sum_{j=1}^{r} (a_jm_j\otimes n) = \left( \sum_{j=1}^{r} a_jm_j
+						\right)\otimes n.
+					\]
+				\end{sol}
+
+			\item\label{tensor_commutes_ideal_quot}
+				Pruebe que, dado un ideal $\mathfrak{a} \nsle A$, se cumple que $M \otimes_A
+				A/\mathfrak{a} \cong M/\mathfrak{a}M$. 
+
+				\begin{sol}
+					Aquí hay dos posibles soluciones.
+					La primera más funtorial es emplear la sucesión exacta 
+					\begin{tikzcd}[cramped, sep=small]
+						0 \rar & \mathfrak{a} \rar & A \rar & A/\mathfrak{a} \rar & 0,
+					\end{tikzcd}
+					tensorizar con $M$ y demostrar que $\mathfrak{a}\otimes_A M = \mathfrak{a}M$.
+
+					La segunda es probar el isomorfismo $M\otimes A/\mathfrak{a} \cong
+					M/\mathfrak{a}M$ directamente empleando la propiedad universal del tensor, es
+					decir, probando que dar una aplicación bilineal $\beta\colon M\times A/\mathfrak{a} \to N$
+					es lo mismo que darse un homomorfismo $\varphi\colon M/\mathfrak{a}M \to N$.
+
+					Dado $\beta$, basta definir $\varphi_\beta(m \mod{\mathfrak{a}M}) := \beta(m, 1)$;
+					y dado $\varphi$, basta definir $\beta_\varphi(m, a \mod{\mathfrak{a}}) := \varphi(am)$.
+					Ambos están bien definidos ya que si $a \in \mathfrak{a}$, entonces
+					$\varphi_\beta(m + am') = \beta(m, 1) + \beta(m', a) = \beta(m, 1)$
+					y $\beta_\varphi(m, a) = \varphi(0) = 0$.
+				\end{sol}
+		\end{enumerate}
+
+	\item Sea $A$ un anillo y sea $B$ un \strong{$A$-álgebra} (i.e., un anillo con un homomorfismo $\varphi\colon A \to B$ de anillos fijo).
+		\begin{enumerate}
+			\item Pruebe que si $M$ es un $A$-módulo (resp.\ si $\psi \colon A \to C$ es un $A$-álgebra),
+				entonces $M \otimes_A B$ (resp.\ $C\otimes_A B$) posee estructura de $B$-módulo (resp.\
+				de $B$-álgebra).
+
+				\begin{sol}
+					En ambos casos, nos piden dar una definición de <<multiplicar por escalares en
+					$B$>>.
+					Para agilizar notación, escribamos $M_B := M \otimes_A B$.
+
+					Sea $b' \in B$ fijo, para ver que $M_B \to M_B$ dado por $m\otimes b \mapsto
+					m\otimes bb'$ está bien definido empleamos la propiedad universal del tensor
+					para notar que la función
+					\[
+						(m, b) \longmapsto m \otimes bb'
+					\]
+					es $A$-bilineal.
+					Con ello, será claro que $M_B$ admite un producto escalar, el cual es
+					asociativo.
+					Para ver distributividad basta notar que
+					\begin{align*}
+						(b' + b'')(m\otimes b) &= m\otimes (b(b' + b'')) = m\otimes (bb' + bb'') \\
+								       &= m\otimes bb' + m\otimes bb'' = b'(m\otimes b) + b''(m\otimes b),
+					\end{align*}
+					y $b'(m\otimes b + m''\otimes b'') = b'(m\otimes b) + b'(m''\otimes b'')$ es
+					trivial del que ${}\times b' \colon M_B \to M_B$ sea $A$-lineal.
+				\end{sol}
+
+			\item\lookright (Propiedad universal del producto tensorial de álgebras)
+				Pruebe que si $D$ es un anillo con homomorfismos de anillos $f\colon B \to D$ y $g\colon C \to D$,
+				tales que $f\circ\varphi = g\circ\psi \colon A \to D$, entonces existe un único
+				homomorfismo de anillos $B\otimes_A C \to D$ tal que el siguiente diagrama conmuta:
+				% https://q.uiver.app/#q=WzAsNSxbMCwyLCJBIl0sWzEsMiwiQiJdLFswLDEsIkMiXSxbMSwxLCJCXFxvdGltZXNfQSBDIl0sWzIsMCwiRCJdLFswLDEsIlxcdmFycGhpIiwyXSxbMCwyLCJcXHBzaSJdLFsyLDNdLFsxLDNdLFsxLDQsImYiLDIseyJjdXJ2ZSI6MX1dLFsyLDQsImciLDAseyJjdXJ2ZSI6LTF9XSxbMyw0LCJcXGV4aXN0cyEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+				\[\begin{tikzcd}
+					&& D \\
+					C & {B\otimes_A C} \\
+					A & B
+					\arrow["g", bend left, from=2-1, to=1-3]
+					\arrow[from=2-1, to=2-2]
+					\arrow["{\exists!}"{description}, dashed, from=2-2, to=1-3]
+					\arrow["\psi", from=3-1, to=2-1]
+					\arrow["\varphi"', from=3-1, to=3-2]
+					\arrow["f"', bend right, from=3-2, to=1-3]
+					\arrow[from=3-2, to=2-2]
+				\end{tikzcd}\]
+
+			\item Pruebe que si $M$ es un $A$-módulo finitamente generado, entonces $M\otimes_A B$ es un
+				$B$-módulo finitamente generado.
+
+				\begin{sol}
+					Como $M$ es finitamente generado, existe un epimorfismo de $A$-módulos
+					$\varphi\colon A^r \to M$, de modo que formamos la sucesión exacta
+					\[\begin{tikzcd}
+						0 \rar & \ker\varphi \rar & A^r \rar["\varphi"] & M \rar & 0,
+					\end{tikzcd}\]
+					ahora tensorizamos por $B$ y concluimos que $A^r\otimes_A B \to M\otimes_A B$
+					es, en particular, sobreyectiva.
+					Finalmente, como el tensor respeta sumas directas, note que
+					\[
+						A^{\oplus r}\otimes_A B = (A\otimes_A B)^{\oplus r} = B^r.
+					\]
+				\end{sol}
+
+			\item Calcule quién es la $\C$-álgebra $\C \otimes_\R \C$.
+
+				\begin{sol}
+					Aquí hay dos soluciones.
+					Podemos emplear el ejercicio~\ref{tensor_commutes_ideal_quot} para calcular que,
+					en $\mathsf{Alg}_\C$:
+					\[
+						\C \otimes_\R \C = \C\otimes_\R \frac{\R[x]}{(x^2 + 1)} =
+						\frac{\C[x]}{(x^2 + 1)} = \frac{\C[z]}{(z+i)} \times \frac{\C[z]}{(z-i)}
+						= \C\times\C,
+					\]
+					donde en el penúltimo paso empleamos el teorema chino del resto.
+
+					Otra solución es que, para probar que $\C\otimes_\R\C = \C\times\C$, habría que
+					encontrar un idempotente $e$ distinto del $1 = 1\otimes 1$ y el 0.
+					Como $\C \cong \R\oplus i\R$ (en $\mathsf{Vect}_\R$), vemos que los elementos
+					son de la forma
+					\[
+						e = 1\otimes z + i\otimes w \in \C\otimes_\R\C.
+					\]
+					Ahora, expandir la ecuación $e(e - 1) = 0$ nos da
+					\[
+						1\otimes( z^2 - z - w^2 ) + i\otimes( w(2z - 1) ) = 0,
+					\]
+					lo que nos da el sistema de ecuaciones
+					\[
+						\left\{
+						\begin{aligned}
+							z^2 - z - w^2 &= 0, \\
+							w(2z - 1) &= 0.
+						\end{aligned}
+						\right.
+					\]
+					La solución $w = 0$ nos obliga $z = 0$ o $z = 1$ (que corresponde a $e = 0$ y $e
+					= 1$ resp.); mientras que si $w \ne 0$, obtenemos $e = 1\otimes \frac{1}{2} + i\otimes
+					\frac{i}{2}$.
+				\end{sol}
+
+			\item Sea $K/k$ una extensión finita separable.
+				¿Qué condición debe satisfacer una extensión $L/k$ para que $L \otimes_k K \cong
+				L^{[K:k]}$ como $L$-álgebras?
+
+				\begin{sol}
+					Como $K/k$ es finita y separable, el teorema del elemento primitivo dice que
+					existe $\alpha \in K$ tal que $K = k(\alpha)$.
+					Con $f(x) \in k[x]$ el polinomio minimal de $\alpha$, vemos que
+					\[
+						L\otimes_k K = L\otimes_k \frac{k[x]}{(f(x))} \cong \frac{L[x]}{(f(x))}.
+					\]
+					Así, para que $L\otimes_k K \cong L^{[K:k]}$ queremos que $f$ se factorice en
+					factores lineales en $L[x]$, es decir, queremos que $L$ contenga al cuerpo de
+					escisión de $f$.
+				\end{sol}
+		\end{enumerate}
+\end{enumerate}
+
+\appendix
+\section{Ejercicios propuestos}
+\begin{enumerate}
+	\item Sea $G$ un grupo abeliano finitamente generado.
+		En virtud del teorema de clasificación, $G \cong \Z^r \oplus F$, donde $F$ es un grupo abeliano finito;
+		a tal $r$ le llamamos el \strong{rango} de $G$.
+		\begin{enumerate}
+			\item Pruebe que $G \otimes_\Z \Q \cong \Q^r$.
+			\item Pruebe además que existen infinitos primos $p$ para los cuales $G \otimes_\Z (\Z/p\Z)
+				\cong (\Z/p\Z)^r$.
+		\end{enumerate}
+\end{enumerate}
+
+% \section{Comentarios adicionales}
+
+\printbibliography
+
+\end{document}

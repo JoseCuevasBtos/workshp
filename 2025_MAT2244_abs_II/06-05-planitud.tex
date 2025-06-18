@@ -49,13 +49,15 @@ es exacta.
 		\end{enumerate}
 
 	\item Pruebe que para un $A$-módulo $M$ son equivalentes:
-		\begin{enumerate}
+		\begin{enumerate}[(i)]
 			\item $M$ es plano.
 			\item Para todo monomorfismo $\varphi \colon T \hookto N$, el homomorfismo $\varphi\otimes\Id_M
 				\colon T\otimes M \to N\otimes M$ es un monomorfismo.
 			\item Para todo monomorfismo $\varphi \colon T \hookto N$ con $N$ finitamente generado, el
 				homomorfismo $\varphi\otimes\Id_M \colon T\otimes M \to N\otimes M$ es un monomorfismo.
 			\item Para todo ideal $\mathfrak{a} \nsle A$ se cumple que el homomorfismo $\mathfrak{a}\otimes
+				M \to \mathfrak{a}M$ dado por $a\otimes m \mapsto am$ es un isomorfismo.
+			\item Para todo ideal $\mathfrak{a} \nsle A$ finitamente generado se cumple que el homomorfismo $\mathfrak{a}\otimes
 				M \to \mathfrak{a}M$ dado por $a\otimes m \mapsto am$ es un isomorfismo.
 		\end{enumerate}
 
@@ -93,8 +95,8 @@ es exacta.
 			\item\lookst
 				Calcule $\mathsf{K}^0(A)$, cuando $A$ es un DIP (puede asumir $A = \Z$ si prefiere).
 
-			\item Pruebe que si $A$ es noetheriano, entonces $\mathsf{K}^0(A)$ está generado por
-				$[A/\mathfrak{p}]$, donde $\mathfrak{p}$ recorre los ideales primos.
+			% \item Pruebe que si $A$ es noetheriano, entonces $\mathsf{K}^0(A)$ está generado por
+			% 	$[A/\mathfrak{p}]$, donde $\mathfrak{p}$ recorre los ideales primos.
 		\end{enumerate}
 \end{enumerate}
 
@@ -113,7 +115,7 @@ es exacta.
 			\arrow["f"', from=2-1, to=2-2]
 		\end{tikzcd}\]
 		Pruebe que son equivalentes:
-		\begin{enumerate}
+		\begin{enumerate}[(i)]
 			\item $P$ es proyectivo.
 			\item Toda sucesión exacta 
 				\begin{tikzcd}[cramped, sep=small]

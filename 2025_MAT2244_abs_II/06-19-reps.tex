@@ -1,0 +1,146 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\title{Representaciones, álgebras y módulos}
+\date{\DTMdate{2025-06-19}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra abstracta II}
+\coursecode{MAT2244}
+\professor{Héctor Pastén Vásquez}
+
+\begin{document}
+
+\maketitle
+
+\nocite{jacobson:basic}
+
+\section{Reinterpretación como anillos}
+A lo largo de esta sección, $G$ denotará un grupo finito posiblemente no conmutativo y $K$ denotará un cuerpo
+(puede suponer $K = \C$ si prefiere).
+Al hablar de anillos en esta ayudantía, los asumiremos \emph{unitarios} (con neutro multiplicativo), \emph{asociativos}
+y posiblemente \emph{no conmutativos}.
+
+\begin{enumerate}
+	\item (Representaciones como módulos)
+		\begin{enumerate}
+			\item Denotaremos por $K[G]$ al grupo abeliano de sumas formales $\sum_{g\in G} a_g g$, donde cada $a_g \in K$.
+				Pruebe que $K[G]$ es un anillo con el producto
+				\[
+					\left( \sum_{h\in G} a_h h \right)\left( \sum_{j\in G} b_j j \right)
+					= \sum_{g\in G} \left( \sum_{hj=g} a_hb_j \right) g.
+				\]
+
+			\item Sea $\rho \colon G \to \GL_K(V)$ una representación, es decir, un homomorfismo de grupos, donde
+				$V$ es un $K$-espacio vectorial; denotaremos $\rho_g := \rho(g) \in \Aut(V)$ para un $g \in G$.
+				Pruebe que $V$ es naturalmente un $K[G]$-módulo con la operación escalar sobre $\vec v \in V$
+				dada por
+				\[
+					\left( \sum_{g\in G} a_g g \right)\cdot\vec v := \sum_{g\in G} a_g \rho_g(\vec v).
+				\]
+				Recíprocamente, pruebe que todo $K[G]$-módulo $M$ da lugar a una única representación $G \to
+				\GL_K(M)$.
+
+				\lookup
+				En lenguaje sofisticado, diríamos que la categoría de representaciones y la de $K[G]$-módulos son
+				equivalentes.
+
+				\begin{prob}
+					Convénzase de que la noción de subrepresentación corresponde, mediante esta
+					equivalencia, a la noción de $K[G]$-submódulo.
+				\end{prob}
+			\item Describa qué representación corresponde al $K[G]$-módulo libre $K[G]$.
+				A ésta le llamaremos la \strong{representación regular} de $G$.
+		\end{enumerate}
+
+	\item Sea $\Lambda$ un anillo.
+		\begin{enumerate}
+			\item Pruebe que hay una biyección entre $\Lambda$-módulos izquierdos $M$ \strong{simples} (i.e.,
+				que no poseen submódulos distintos del 0 y $M$) e ideales maximales izquierdos
+				$\mathfrak{m} \nsl \Lambda$ dada por $\mathfrak{m} \mapsto \Lambda/\mathfrak{m}$.
+
+			\item Un $\Lambda$-módulo izquierdo se dice \strong{semisimple} si es suma directa de simples.
+				Pruebe que si $\Lambda$ es semisimple (como módulo izquierdo), entonces todo módulo
+				(izquierdo) también lo es.
+
+				\begin{hint}
+					Recuerde que todo módulo es cociente de uno libre.
+				\end{hint}
+
+			\item Pruebe que $K[G]$ satisface la condición de las cadenas \emph{descendentes} y que, si
+				$\car K = 0$, entonces semisimple izquierdo, mediante la siguiente forma del teorema de
+				Maschke:
+
+				\begin{thm}[Maschke]
+					Toda representación \emph{irreducible} (i.e., que no es suma directa de
+					subrepresentaciones) es simple.
+				\end{thm}
+
+			\item\lookright
+				Concluya que toda representación de $G$ se escribe, de manera única, como suma directa de
+				las subrepresentaciones irreducibles de la representación regular.
+		\end{enumerate}
+
+	\item Sea $\varphi \colon G \to H$ un homomorfismo de grupos.
+		\begin{enumerate}
+			\item Pruebe que induce un homomorfismo de $K$-álgebras $K[G] \to K[H]$.
+				Mediante este, toda representación de $H$ se restringe a una representación de $G$.
+
+			\item También mediante $K[G] \to K[H]$ note que toda representación de $G$ induce una
+				representación de $H$ dada por asociarle al $K[G]$-módulo izquierdo $M$ el tensor $K[H]
+				\otimes_{K[G]} M$.
+
+			\item ¿Qué condición debe satisfacer $\varphi$ para que $K[H]$ sea un $K[G]$-módulo libre?
+		\end{enumerate}
+
+	\item En este ejercicio calcularemos todas las representaciones irreducibles de un grupo abeliano finito.
+		\begin{enumerate}
+			\item Pruebe que $K[G \times H] \cong K[G] \times K[H]$, y describa una asociación entre
+				$K[G\times H]$-módulos (izquierdos) y pares de $K[G]$ y $K[H]$-módulos.
+
+			\item Pruebe que $\Hom(C_n, \C^\times) \cong C_n$ (el isomorfismo \emph{no} es canónico, aunque
+				pueda aparentarlo).
+
+			\item Concluya que toda representación irreducible de un grupo abeliano finito tiene dimensión 1
+				y clasifique de qué tipo es.
+		\end{enumerate}
+\end{enumerate}
+
+\appendix
+\section{Ejercicios propuestos}
+\begin{enumerate}
+	\item Coja el apunte de clases --o su libro favorito de representaciones--, vea la prueba de Maschke para $K =
+		\C$ y argumente por qué sigue siendo válido cuando $\car K \nmid |G|$.
+	\item\lookup
+		Pruebe que si $\car K$ divide al orden de $G$, entonces el resultado anterior es falso.
+
+		\begin{hint}
+			Sea $p := \car K$.
+			Por Cauchy, $G$ contiene un elemento de orden $p$, de modo que $K[C_p]$ es un subanillo de
+			$K[G]$.
+			Luego estudie el ideal de $K[C_p]$ generado por el elemento $\sum_{g \in C_p} g$.
+		\end{hint}
+\end{enumerate}
+
+\section{Comentarios adicionales}
+En general, el mundo de los anillos no conmutativos puede ser bastante salvaje.
+Un ejemplo de los desastres que pueden ocurrir es que dos módulos libres de rangos distintos sean isomorfos (!).
+Así, en definitiva, la <<clasificación>> de anillos conmutativos no suele tener buenos análogos no conmutativos, pero
+las técnicas en la teoría de módulos sí, y esa es la razón del enfoque detrás de esta ayudantía.
+
+El libro \cite{jacobson:basic} trata con cuidado a los anillos no conmutativos.
+Una larga y exhaustiva referencia es \cite{rowen:graduate_noncomm}. 
+
+\printbibliography
+
+\end{document}

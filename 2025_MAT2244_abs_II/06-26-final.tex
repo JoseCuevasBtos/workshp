@@ -1,0 +1,320 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[spanish]{babel}
+\usepackage[LGR, T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\input{../general.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\newenvironment{sol}{\textbf{Solución:}\ }{}
+
+\title{Preparación para el examen}
+\subtitle{El último tango en París}
+\date{\DTMdate{2025-06-26}}
+
+\author{José Cuevas Barrientos}
+% \email{josecuevasbtos@uc.cl}
+% \urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+% \logo{../puc_negro.png}
+% \institution{Pontificia Universidad Católica de Chile}
+% \department{Facultad de Matemáticas}
+% \course{Álgebra abstracta II}
+% \coursecode{MAT2244}
+% \professor{Héctor Pastén Vásquez}
+
+\beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Representaciones}
+	\begin{block}{Problema}
+		Sea $G$ un grupo finito y sean $\rho_1, \rho_2$ dos representaciones complejas con caracteres asociados
+		$\chi_1, \chi_2$ resp.
+		Recordando que el tensor de dos representaciones da otra representación, pruebe que el caracter de
+		$\rho_1\otimes \rho_2$ es $\chi(g) = \chi_1(g) \chi_2(g)$.
+	\end{block}
+\end{frame}
+\begin{frame}{Solución (representación estándar)}
+	En efecto, sea $\rho_1 \colon G \acts \C^n =: V$ y $\rho_2 \colon G \acts \C^m =: W$, donde en ambos fijamos las
+	bases $\vec e_i$ y $\vec e_j^\prime$ canónicas (con $1\le i\le n$ y $1\le j\le m$).
+	Escribamos la matriz de $\rho_1(g)$ y $\rho_2(g)$ como $[a_{i,j}]_{i,j}^n$ y $[b_{u,v}]_{u,v}^m$ resp.
+
+	\pause
+	Entonces en $V^{\rho_1} \otimes W^{\rho_2}$ tomamos la base ordenada $(\vec e_i \otimes \vec e_j^\prime : 1\le i\le n, \;
+	1\le j\le m)$, y en ella, la matriz de $\rho_1(g)\otimes \rho_2(g)$ es $[ a_{(i,u)}b_{(j,v)} ]_{(i,j),(u,v)}$,
+	por lo que su traza es
+	\pause
+	\[
+		\chi(g) = \sum_{i=1}^{n} \sum_{j=1}^{m} a_{i,i}b_{j,j}
+		= \left( \sum_{i=1}^{n} a_{i, i} \right)\cdot \left( \sum_{j=1}^{m} b_{j, j} \right)
+		= \chi_1(g) \chi_2(g).
+	\]
+\end{frame}
+
+
+\begin{frame}{Representaciones}
+	\begin{block}{Problema}
+		Sea $S_n$ el grupo simétrico en $n$ letras.
+		Defina en $\GL_n(\C)$ la \strong{representación por permutaciones} dada por $\rho_\sigma(\vec v) =
+		(v_j)_{\sigma(j)}^n$ para una permutación $\sigma \in S_n$.
+		\pause
+		Pruebe que admite una subrepresentación de dimensión 1 (equivalentemente, vea que hay un vector $\vec v$
+		fijo por todo $S_n$), cuyo complemento ortogonal $\langle \vec v \rangle^\perp$, llamada
+		\strong{representación estándar}, es irreducible.
+	\end{block}
+\end{frame}
+\begin{frame}{Solución (representación estándar)}
+	\small
+	En efecto, es fácil notar que el vector $\vec v := (1, 1, \dots, 1) \in \C^n$ está fijo por todo $S_n$
+	\pause
+	(alternativamente, el lector podría haber expandido las condiciones para ver que todo vector fijo por $S_n$ debe
+	ser un múltiplo escalar de éste).
+
+	\pause
+	Luego calculamos el producto interno del caracter permutación $\chi_{\rm perm}$, que deviese dar 2.
+	Para ello, note que $\chi_{\rm perm}(\sigma)^2$ es la traza de la acción de permutación en $\C^n \otimes \C^n$,
+	así que
+	\pause
+	\[
+		(\chi_{\rm perm}, \chi_{\rm perm}) = \frac{1}{n!} \sum_{\sigma\in S_n} \sum_{a, b}^{n} \delta_{\sigma a,
+		a} \delta_{\sigma b, b},
+	\]
+	\pause
+	intercambiamos las sumatorias y notamos que $\delta_{\sigma a, a} \delta_{\sigma b, b} = 1$ syss $\sigma$
+	estabiliza al par ordenado $(a, b)$.
+	\pause
+	Si $a \ne b$ habrán $(n-2)!$ de esas permutaciones y, sino habrán $(n-1)!$ de ellas, por lo que
+	\pause
+	\begin{align*}
+		(\chi_{\rm perm}, \chi_{\rm perm})
+		&= \frac{1}{n!} \left( \sum_{a\ne b}^{n} \Stab(a, b) + \sum_{c=1}^{n} \Stab(c) \right) \\
+		&= \frac{1}{n!} \big( (n-2)!\cdot(n^2 - n) + (n-1)!\cdot n \big) = 2.
+	\end{align*}
+\end{frame}
+
+% \begin{frame}{Representaciones} % caracteres de S_4 
+% 	\begin{block}{Problema}
+% 		Calcular la tabla de caracteres de $S_4$. 
+% 	\end{block}
+% 	\begin{sol}
+% 		Hay algunos <<caracteres obvios>> que ya son irreducibles:
+% 		\begin{itemize}
+% 			\item El caracter unitario $\chi_0$.
+% 			\item Cualquier otro caracter de dimensión 1, es decir, dado por un homomorfismo no neutro $S_4
+% 				\to \C^\times$.
+% 				Por ejemplo, el homomorfismo signo $\sign \colon S_4 \to \{ \pm 1 \} \subseteq
+% 				\C^\times$ cuyo caracter denotaremos $\varepsilon := \chi_{\sign}$.
+% 			\item El caracter estándar $\chi_{\rm st}$ por el ejercicio anterior.
+% 			\item El producto de un caracter por otro de dimensión 1, en particular $\varepsilon\cdot
+% 				\chi_{\rm st}$.
+% 		\end{itemize}
+% 	\end{sol}
+% \end{frame}
+% \begin{frame}{Solución (caracteres de $S_4$)}
+% 	\small
+% 	Esto nos da la siguiente tabla:
+% 	\[
+% 		\begin{array}{c|*{5}{r}}
+% 			{} & 1 & (12) & (12)(34) & (123) & (1234) \\
+% 			\hline
+% 			\chi_0 & 1 & 1 & 1 & 1 & 1 \\
+% 			\varepsilon & 1 & -1 & 1 & 1 & -1 \\
+% 			\chi_{\rm st} & 3 & 1 & -1 & 0 & -1 \\
+% 			\varepsilon\chi_{\rm st} & 3 & -1 & -1 & 0 & 1 \\
+% 			? & 
+% 		\end{array}
+% 	\]
+% 	\pause
+% 	Como hay cinco clases de conjugación, hay cinco caracteres irreducibles (conteo de caracteres), así que solo
+% 	falta uno que denotaremos $\theta$.
+% 	\pause
+% 	Así mismo, podemos deducir su dimensión por el cor.~5.16
+% 	\[
+% 		4! = 24 = \chi_0(1)^2 + \varepsilon(1)^2 + \chi_{\rm st}(1)^2 + (\varepsilon\cdot\chi_{\rm st})(1)^2 +
+% 		\theta(1)^2 = 2 + 18 + \theta(1)^2,
+% 	\]
+% 	lo que nos da $\theta(1) = 2$.
+% 	\pause
+% 	Empleando Ortogonalidad II, calculamos que
+% 	\[
+% 		0 = 1\cdot 1 + 1\cdot(-1) + 3\cdot 1 + 3\cdot(-1) + 2 \theta(12) = 0 \iff \theta(12) = 0.
+% 	\]
+% 	\pause
+% 	Con esto rellenamos la tabla:
+% 	\[
+% 		\begin{array}{c|*{5}{r}}
+% 			\theta & 1 & 0 & 2 & -1 & 0
+% 		\end{array}
+% 	\]
+% \end{frame}
+
+\begin{frame}{Representaciones} % caracteres de A_4 
+	\begin{block}{Problema}
+		Calcular la tabla de caracteres de $A_4$. 
+	\end{block}
+	\begin{sol}
+		Como hay homomorfismo de grupos $A_4 \hookto S_4$, toda representación de $S_4$ se restringe a una de
+		$A_4$.
+
+		\pause
+		En particular, el caracter $\psi$ de la restricción de la representación estándar es irreducible porque:
+		\pause
+		a) se verifica que $(\psi, \psi) = 1$ (latero, pero funciona);
+		\pause
+		b) si $\psi$ fuera reducible, habría otro subespacio fijo de dimensión 1, pero la acción por permutación
+		$A_4 \acts \{ 1, 2, 3, 4 \}$ es transitiva.
+	\end{sol}
+\end{frame}
+\begin{frame}{Solución (caracteres de $A_4$)}
+	\small
+	\begin{enumerate}[(i), wide]
+		\item \textbf{Clases de conjugación:}
+			Primero calculamos las clases de $A_4$ que son las siguientes:
+			\begin{gather*}
+				\{ 1 \}, \qquad
+				\{ x := (12)(34), (13)(24), (14)(23) \}, \\
+				\{ y := (123), (134), (142), (243) \}, \quad
+				\{ y^2= (132), (143), (124), (234) \}
+			\end{gather*}
+			Así deducimos que hay cuatro representaciones irreducibles.
+		\item Podemos deducir la dimensión de las representaciones restantes por cor.~5.16
+			\[
+				|A_4| = 12 = \chi_0(1)^2 + \psi(1)^2 + \chi_1(1)^1 + \chi_2(1)^2 = 1 + 9 + \chi_1(1)^1 + \chi_2(1)^2,
+			\]
+			lo que nos da que hay dos representaciones de dimensión 1.
+		\item Como $x^2 = 1$, entonces $\chi_j(x) = \pm 1$.
+			\pause
+			Pero $(12)(34)\cdot (13)(24) = (14)(23)$, así que $\chi_j(x) = 1$.
+			\pause
+			Como $y^3 = 1$, entonces $\chi_j(y) = \omega^?$, donde $\omega = \zeta_3$ es la raíz cúbica
+			primitiva de la unidad; como $\chi_j(y) \ne 1$, se completa la tabla:
+			\pause
+			\[
+				\begin{array}{c|*{4}{r}}
+					{} & 1 & x & y & y^2 \\
+					\hline
+					\chi_0 & 1 & 1 & 1 & 1 \\
+					\chi_1 & 1 & 1 & \omega & \omega^2 \\
+					\chi_2 & 1 & 1 & \omega^2 & \omega \\
+					\psi & 3 & -1 & 0 & 0
+				\end{array}
+			\]
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Teoría de Galois}
+	\begin{block}{Problema}
+		Determine cuál de los siguientes es el grupo de Galois del cuerpo de escisión (sobre $\Q$) del polinomio
+		$x^5 - x + 1$ (que puede asumir irreducible):
+		\begin{enumerate}[(a)]
+			\item $C_5$.
+			\item $D_5$.
+			\item $S_5$.
+		\end{enumerate}
+	\end{block}
+	\pause
+	Como pista, emplee el siguiente resultado:
+	\begin{block}{Teorema}
+		El discriminante de un polinomio irreducible $f$ de grado $n$ es un cuadrado syss
+		$\Gal(\operatorname{Split}_\Q(f)/\Q) \subseteq A_n$.
+	\end{block}
+\end{frame}
+\begin{frame}{Solución 1 (calcular Galois)}
+	Empleamos el resultado y calculamos el discriminante, es decir, el siguiente determinante:
+	\pause
+	\[
+		\footnotesize
+		\begin{vmatrix}
+			1 & 0 & 0 & 0 & 0 & 5 & 0 & 0 & 0 & 0 \\
+			0 & 1 & 0 & 0 & 0 & 0 & 5 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 0 & 0 & 0 & 0 & 5 & 0 & 0 \\
+			0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 5 & 0 \\
+			-1& 0 & 0 & 0 & 1 &-1 & 0 & 0 & 0 & 5 \\
+			1 &-1 & 0 & 0 & 0 & 0 &-1 & 0 & 0 & 0 \\
+			0 & 1 &-1 & 0 & 0 & 0 & 0 &-1 & 0 & 0 \\
+			0 & 0 & 1 &-1 & 0 & 0 & 0 & 0 &-1 & 0 \\
+			0 & 0 & 0 & 1 &-1 & 0 & 0 & 0 & 0 &-1 \\
+			0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0
+		\end{vmatrix} 
+	\]
+	\pause
+	\textcolor{gray}{(Horror, lo sé.)}
+
+	Lo cuál da 2869 y vemos que $50^2 = 2500$, por lo que es fácil comprobar que no es un cuadrado perfecto
+	(a ensayo y error, vea que $53^2 = 2809$ y $54^2 = 2916$).
+	\pause
+	Finalmente, note que $D_5 \le S_5$ mediante $r \mapsto (12345) \in A_5$ y $s \mapsto (25)(34) \in A_5$, así que
+	$D_5 \le A_5$.
+	Por lo que, el grupo de Galois es el \textbf{simétrico $S_5$}.
+\end{frame}
+
+\begin{frame}{Solución 2 (calcular Galois)}
+	Calculamos las raíces reales notando que la derivada es $5x^4 - 1$ la cual tiene raíces $\pm\sqrt[5]{1/5}$.
+	\pause
+	Así, hay dos cambios de signo, por lo que hay tres raíces reales y \textbf{dos complejas}.
+	\pause
+	Finalmente, el grupo de Galois $G$ contiene un 5-ciclo por el teorema de Cauchy, y contiene a una trasposición
+	dada por la conjugación compleja, así que (como 5 es \textbf{primo}), tiene que darse que $G \cong S_5$.
+\end{frame}
+
+% \begin{frame}{Teoría de Galois}
+% 	\begin{block}{Problema}
+% 		Determine cuál de los siguientes es el grupo de Galois del cuerpo de escisión (sobre $\Q$) del polinomio
+% 		$x^3 - 3x + 1$ (que puede asumir irreducible):
+% 		\begin{enumerate}[(a)]
+% 			\item $C_3$.
+% 			\item $D_3$.
+% 			\item $S_3$.
+% 		\end{enumerate}
+% 	\end{block}
+% 	\pause
+% 	\begin{sol}
+		
+% 	\end{sol}
+% \end{frame}
+
+\begin{frame}{Teoría de Galois}
+	\small
+	\begin{block}{Problema}
+		Sea $L/K$ una extensión de Galois con $\Gal(L/K) \cong C_2 \times C_{12}$.
+		¿Cuántas extensiones intermedias $K \subset F \subset L$ tiene tales que $[F:K] = 4$?
+		¿Cuántas de estas son de Galois?
+	\end{block}
+	\pause
+	\begin{sol}
+		Por conexión de Galois, contar extensiones intermedias de grado 4 es contar subgrupos $H \le C_2 \times
+		C_{12} =: G$ tales que $[G : H] = 4$.
+
+		\pause
+		\warn
+		En un producto, un subgrupo \textbf{no} es un producto de subgrupos (e.g., el generado por $(1,1)$ en
+		$C_2 \times C_{12}$).
+		\pause
+		No obstante, sea $H$ como antes, vemos que $|H| = 24/4 = 6$, por lo que $H$ contiene un elemento de
+		orden 3 (teorema de Cauchy).
+		\pause
+		Por teorema chino del resto $C_{12} \cong C_4\times C_3$, con lo que es fácil verificar que los únicos
+		elementos de $C_2 \times C_4 \times C_3$ de orden 3 son $(0, 0, \pm 1)$;
+		así que $H \ge 0 \times 0 \times C_3$.
+		Por correspondencia, podemos bajar a contar $H' \le C_2 \times C_4$ (mediante la proyección) de índice
+		4 o, equivalentemente, de orden 2.
+
+		\pause
+		Como $H'$ tiene orden 2, solamente está generado por un elemento de orden 2.
+		Hay tres de ellos: $(1, 0)$, $(0, 2)$ y $(1, 2)$.
+
+		\pause
+		Finalmente, todas ellas son extensiones de Galois puesto que todo subgrupo de un grupo abeliano es
+		normal.
+	\end{sol}
+\end{frame}
+
+\printbibliography
+
+\end{document}

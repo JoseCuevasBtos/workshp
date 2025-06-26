@@ -26,6 +26,13 @@
 % \coursecode{MAT2244}
 % \professor{Héctor Pastén Vásquez}
 
+\tikzset{
+	every picture/.prefix style={
+		execute at begin picture=\shorthandoff{"}
+	}
+}
+\listfiles % https://tex.stackexchange.com/a/211948
+
 \beamerdefaultoverlayspecification{<+->}
 
 \begin{document}
@@ -40,7 +47,7 @@
 		$\rho_1\otimes \rho_2$ es $\chi(g) = \chi_1(g) \chi_2(g)$.
 	\end{block}
 \end{frame}
-\begin{frame}{Solución (representación estándar)}
+\begin{frame}{Solución (producto de caracteres)}
 	En efecto, sea $\rho_1 \colon G \acts \C^n =: V$ y $\rho_2 \colon G \acts \C^m =: W$, donde en ambos fijamos las
 	bases $\vec e_i$ y $\vec e_j^\prime$ canónicas (con $1\le i\le n$ y $1\le j\le m$).
 	Escribamos la matriz de $\rho_1(g)$ y $\rho_2(g)$ como $[a_{i,j}]_{i,j}^n$ y $[b_{u,v}]_{u,v}^m$ resp.
@@ -57,15 +64,14 @@
 	\]
 \end{frame}
 
-
 \begin{frame}{Representaciones}
 	\begin{block}{Problema}
 		Sea $S_n$ el grupo simétrico en $n$ letras.
 		Defina en $\GL_n(\C)$ la \strong{representación por permutaciones} dada por $\rho_\sigma(\vec v) =
 		(v_j)_{\sigma(j)}^n$ para una permutación $\sigma \in S_n$.
 		\pause
-		Pruebe que admite una subrepresentación de dimensión 1 (equivalentemente, vea que hay un vector $\vec v$
-		fijo por todo $S_n$), cuyo complemento ortogonal $\langle \vec v \rangle^\perp$, llamada
+		Pruebe que admite una subrepresentación de dimensión 1 (equivalentemente, vea que hay un vector no nulo
+		$\vec v$ fijo por todo $S_n$), cuyo complemento ortogonal $\langle \vec v \rangle^\perp$, llamada
 		\strong{representación estándar}, es irreducible.
 	\end{block}
 \end{frame}
@@ -313,6 +319,57 @@
 		Finalmente, todas ellas son extensiones de Galois puesto que todo subgrupo de un grupo abeliano es
 		normal.
 	\end{sol}
+\end{frame}
+
+\begin{frame}{Álgebra conmutativa}
+	\begin{block}{Problema}
+		Diremos que un anillo conmutativo $A$ es \strong{absolutamente plano} si todo $A$-módulo es plano.
+		\begin{enumerate}
+			\item Pruebe que todo cuerpo es absolutamente plano.
+			\item ¿Será que todo anillo absolutamente plano es un cuerpo?
+				\pause
+				\textcolor{gray}{\textsc{Pista:} considere el caso de anillos \emph{booleanos} (i.e., donde $x^2 = x$
+				para todo $x \in A$).}
+			\item ¿Será que todo anillo \emph{local} absolutamente plano es un cuerpo?
+		\end{enumerate}
+	\end{block}
+\end{frame}
+\begin{frame}{Solución (anillos absolutamente planos)}
+	\begin{enumerate}[wide]
+		\item En efecto, sobre un cuerpo todo módulo (= espacio vectorial) es \textbf{libre} (i.e., posee base),
+			y sabemos que todo módulo libre es plano.
+		\item No. En particular, podemos tomar un producto de cuerpos.
+			\pause
+			Por ejemplo, podemos considerar el anillo booleano $\prod_{s\in S} \Fp[2]$ (donde $S$ es un conjunto
+			cualquiera).
+
+			\pause
+			Para ver que cualquier anillo booleano $A$ es \emph{absolutamente plano}, note que un $A$-módulo
+			$M$ es plano syss cada $M_{\mathfrak{p}}$ es plano sobre $A_{\mathfrak{p}}$, donde
+			$\mathfrak{p}$ recorre los ideales primos (ver ayudantía).
+
+			\pause
+			Ahora bien, $A_{\mathfrak{p}}$ también es booleano y es local.
+			Por la interrogación, un anillo local solo tiene por idempotentes al 0 y al 1, por lo que,
+			$A_{\mathfrak{p}} = \{ 0, 1 \} = \Fp[2]$ es un cuerpo.
+			Así, $M_{\mathfrak{p}}$ debe ser plano y $M$ también.
+	\end{enumerate}
+\end{frame}
+\begin{frame}[fragile]{Solución (anillos absolutamente planos)}
+	3. Sea $x \in A$ arbitrario.
+	El $A$-módulo $A/(x)$ es plano y, por tanto, tenemos el siguiente diagrama conmutativo:
+	\[\begin{tikzcd}[row sep=large]
+		(x) \otimes_A A \rar["{1\otimes \pi}", two heads] \dar[hook] & (x) \otimes_A A/(x) = (x)/(x^2)
+		\dar["\alpha", hook] \\
+		A \rar[two heads] & A/(x)
+	\end{tikzcd}\]
+	\pause
+	Como la composición es cero y $\alpha$ es inyectivo, por planitud, $1\otimes\pi = 0$, por lo que $(x) = (x^2)$.
+
+	\pause
+	Así, $x = ax^2$ y $e := ax$ es idempotente, pues $e^2 = a\cdot ax^2 = ax = e$.
+	\pause
+	Pero un anillo local solo tiene por idempotentes al 0 y al 1, por lo que $x$ es nulo o una unidad.
 \end{frame}
 
 \printbibliography

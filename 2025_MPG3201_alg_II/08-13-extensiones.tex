@@ -1,0 +1,108 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+
+\title{Extensiones algebraicas}
+\date{\DTMdate{2025-08-13}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+% \urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+A lo largo de las ayudantías trataré de incluír comentarios o problemas especiales.
+Los problemas difíciles tendrán ojos asustados {\straighteyes},
+los comentarios que son opcionales u omitibles tendrán ojos hastiados {\upeyes}
+y los comentarios \textbf{importantes} tendrán ojos interesados {\righteyes}.
+
+\section{General}
+\begin{enumerate}
+		% \item Pruebe que para todo cuerpo $k$ existen infinitos polinomios irreducibles con coeficientes en $k$.
+	\item Sea $k \supseteq \Fp$ una extensión algebraica (posiblemente infinita).
+		Pruebe que todo elemento \emph{siempre} de $k$ tiene raíz $p$-ésima.
+
+	\item Sea $\Fp[q]$ un cuerpo con $q < \infty$ elementos.
+		\begin{enumerate}
+			\item Sea $f(x) \in \Fp[q][x]$ es irreducible.
+				Pruebe que $f(x) \mid x^{q^n} - x$ syss $\deg f \mid n$.
+
+			\item Sea $\psi(d)$ la cantidad de polinomios irreducibles de grado $d$ en $\Fp[q][x]$.
+				Pruebe que
+				\[
+					n \psi(n) = \sum_{d \mid n} \mu(d) q^{n/d},
+				\]
+				donde $\mu(d)$ es la \emph{función de Möbius} que vale 0 si $p^2 \mid d$ para algún primo $p$ y vale
+				$(-1)^m$ si $d = p_1\cdot p_m$, donde $p_j$ son primos distintos.
+
+				\begin{hint}
+					Para el problema podría necesitar de la \href{https://es.wikipedia.org/wiki/Fórmula_de_inversión_de_Möbius}{fórmula de inversión de Möbius}.
+				\end{hint}
+		\end{enumerate}
+\end{enumerate}
+
+\section{Grados de extensiones}
+\begin{enumerate}[resume]
+	\item Sea $\Omega/k$ una extensión de cuerpos con extensiones intermedias $k \subseteq K, L \subseteq \Omega$.
+		Pruebe que
+		\[
+			[KL : k] \le [K : k] \, [L : k],
+		\]
+		y que se alcanza igualdad cuando $[K : k]$ y $[L : k]$ son coprimos.
+
+	\item Sea $f(x) \in k[x]$ un polinomio de grado $n$, sea $K$ su cuerpo de escisión.
+		Pruebe que $[K : k] \mid n!$
+\end{enumerate}
+
+\section{Extensiones (in)separables}
+Como se vio en clases, las extensiones en característica cero son todas separables, por lo que en esta sección $k$ será
+un cuerpo de $\car k = p > 0$.
+\begin{enumerate}[resume]
+	\item Sea $K/k$ una extensión algebraica con $p := \car k > 0$ y sea $\alpha \in K$.
+		\begin{enumerate}
+			\item Pruebe que si $\alpha$ es inseparable, entonces su polinomio minimal $f(x) \in k[x]$
+				satisface que $f(x) = g(x^p)$ para todo $g(x) \in k[x]$.
+			\item Pruebe que $\alpha$ es separable syss $k(\alpha) = k(\alpha^p)$.
+		\end{enumerate}
+
+	\item Pruebe que si $f(x) \in k[x]$ es irreducible, entonces todas sus raíces (en su cuerpo de escisión) tienen
+		la misma multiplicidad y esta es una potencia de $p$.
+
+	\item Sea $K/k$ una extensión algebraica de cuerpos.
+		Un elemento $\alpha \in K$ se dice \strong{puramente inseparable} si su polinomio minimal $f(x) \in k[x]$
+		es una potencia del monomio $x - \alpha$.
+		\begin{enumerate}
+			\item\lookright
+				Empleando el ejercicio anterior pruebe que $\alpha \in K$ es puramente inseparable syss
+				$\alpha^{p^e} \in k$ para algún $e \ge 1$.
+			\item Pruebe que si $a \in k \setminus k^p$, entonces el polinomio $x^{p^e} - a$ es irreducible
+				para $e \in \N$.
+			\item Pruebe que
+				\[
+					K_{\rm ins} = \{ \alpha \in K : \alpha \text{ es puramente inseparable} \}
+				\]
+				es un subcuerpo de $K$.
+		\end{enumerate}
+	% \item Sea $k$ un cuerpo de característica $p := \car k > 0$.
+	% 	Sea $q := p^n$ con $n \ge 1$ a elección.
+	% 	Pruebe que
+	% 	\[
+	% 		k^q := \{ \alpha^q : \alpha \in k \} \subseteq k
+	% 	\]
+	% 	es un subcuerpo de $k$.
+\end{enumerate}
+
+\nocite{lang:algebra}
+
+\printbibliography
+
+\end{document}

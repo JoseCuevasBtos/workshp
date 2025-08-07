@@ -1,0 +1,184 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+
+\title{Aritmética modular y DFUs}
+% \subtitle{Conociendo a Catalan, Fermat y Mordell}
+\date{\DTMdate{2025-08-11}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+% \urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introducción}
+A lo largo de las ayudantías incluiré ciertos símbolos:
+los problemas/comentarios \textbf{recomendados} e importantes tendrán ojos interesados {\righteyes}, 
+los problemas difíciles tendrán ojos asustados {\straighteyes}, y
+los problemas/comentarios que son opcionales u omitibles tendrán ojos hastiados {\upeyes}.
+
+\section{Congruencias}
+\begin{enumerate}
+	\item Demuestre que la ecuación diofantina $x^2 + y^2 = 4z + 3$ no tiene soluciones enteras.
+	\item (Gersónides)
+		Las únicas potencias consecutivas de $2$ y $3$ son $1, 2, 3, 4, 8$ y $9$.
+
+	\item Demuestre que las únicas soluciones (en $\Z$) a la ecuación diofántica $y^2 + y = x^3$ son
+		\[
+			(x, y) \in \{ (0, 0), \quad (0, -1) \}.
+		\] % https://kconrad.math.uconn.edu/blurbs/ringtheory/ufdapp.pdf
+
+	% \item Considere la sucesión
+	% 	\[
+	% 		q_n := \underbrace{33\dots 33}_{n\text{ veces}} 1.
+	% 	\]
+	% 	Demuestre que contiene infinitos números compuestos.
+
+	% 	Lo divertido de la sucesión es que $q_1, q_2, \dots, q_7$ son todos primos y $q_8 = 17 \cdot 19607843$ es el primer número compuesto en ella.
+
+	% 	% \begin{proof}
+	% 	% 	En primer lugar escribamos $q_n$ de manera cerrada:
+	% 	% 	$$ q_n = 30(1 + \cdots + 10^{n-1}) + 1 = 30 \cdot \frac{10^n - 1}{10 - 1} + 1 = \frac{10}{3}(10^n - 1) + 1. $$
+	% 	% 	Ahora sabemos que $17 \mid q_8$ (?!), por lo que podemos mirar la sucesión módulo 17.
+	% 	% 	Por el pequeño teorema de Fermat $10^{16} \equiv 1 \pmod{17}$, por lo que $10^{8 + m16} \equiv 10^8 \pmod{17}$
+	% 	% 	y, por tanto, $q_{8 + m16} \equiv q_8 \equiv 0 \pmod{17}$.
+	% 	% \end{proof}
+
+	\item\lookright (\textquote{Elevando el exponente})
+		Demuestre el siguiente clásico truco de olimpiadas:
+		Dado un primo $p > 2$, un par de enteros $x, y \in \Z$ tales que $x \equiv y \not\equiv 0 \pmod p$ y un entero $n \ge 1$,
+		entonces
+		\[
+			\nu_p(x^n - y^n) = \nu_p(x - y) + \nu_p(n),
+		\]
+
+	\item Recuerde que un entero $g \in \Z$ se dice una \strong{raíz primitiva módulo $n$} si $(\Z/n\Z)^\times$ está generado (como grupo)
+		por $g \mod n$.
+		\begin{enumerate}
+			\item Pruebe que para un primo $p$, si $g$ es una raíz primitiva módulo $p$, entonces $g$ ó $g + p$ es una raíz
+				primitiva módulo $p^2$.
+
+			\item Pruebe que si $g$ es una raíz primitiva módulo $p^2$ para un primo $p > 2$, entonces $g$ es raíz primitiva
+				módulo $p^n$ para todo $n \ge 1$.
+		\end{enumerate}
+
+	% \item
+	% 	(Euclides-Euler) Demuestre que un número par es perfecto syss es de la forma $2^{n-1}(2^n - 1)$,
+	% 	donde $p := 2^n - 1$ es un número primo.
+	% 	(Los primos de la forma $2^n - 1$ se dicen \emph{primos de Mersenne}.)
+
+	% 	% \begin{hint}
+	% 	% 	Para <<$\implies$>> demuestre que si $m$ es impar y $\sigma(m) = 2^{n+1}a$ con $a$ impar,
+	% 	% 	entonces $m = (2^{n+1} - 1)a$
+	% 	% \end{hint}
+
+	% \item (Euler) Demuestre que un número impar perfecto es de la forma $p^r m^2$ donde $p \nmid m$ y $p \equiv r \equiv 1 \pmod 4$.
+\end{enumerate}
+
+\section{El teorema fundamental de la aritmética}
+El adjetivo \emph{fundamental} no es accidental, son varias las consecuencias de él y es, en muchas ocasiones, la principal herramienta para
+resolver ecuaciones diofánticas.
+Aquí veremos ejemplos de anillos que carecen de esta propiedad fundamental.
+\begin{mydef}
+	Un anillo $A$ se dice un \emph{dominio de factorización única} (abrev.\ \strong{DFU}) si es un dominio íntegro (i.e., no tiene
+	divisores de cero no nulos) y todo elemento $a \in A$ admite una descomposición (\emph{existencia})
+	\[
+		a = u \pi_1^{e_1} \cdots \pi_n^{e_n},
+	\]
+	donde $u \in A^\times$ es una unidad, cada $\pi_j$ es irreducible (i.e., si $\beta \mid \pi_j$ y $\beta \notin A^\times$, entonces
+	$(\beta) = (\pi_j)$) y los ideales $(\pi_j)$ son distintos dos a dos;
+	además, de haber otra descomposición, entonces podemos reordenar los términos para que los ideales $(\pi_j)$ y los exponentes $e_j$
+	sean los mismos (\emph{unicidad}).
+\end{mydef}
+Naturalmente, el <<teorema fundamental de la aritmética>> se reescribe ahora en términos de que $\Z$ es un DFU.
+% Presentaremos ejemplos de anillos que no son DFU.
+
+\begin{enumerate}[resume]
+	\item Considere el siguiente conjunto
+		\[
+			\Z[\sqrt{-5}] = \{ a + b \sqrt{-5} : a, b \in \Z \} \subseteq \C.
+		\]
+		\begin{enumerate}
+			\item Pruebe que $\Z[\sqrt{-5}]$ es un subanillo de $\C$ y que es un dominio íntegro.
+			\item Definamos la <<norma>> de un elemento de $\Z[\sqrt{-5}]$ como
+				\[
+					\galnorm(x + y \sqrt{-5}) := x^2 + 5y^2 \in \Z.
+				\]
+				Pruebe que para $\alpha, \beta \in \Z[\sqrt{-5}]$ se cumple que $\galnorm(\alpha \cdot \beta) =
+				\galnorm(\alpha) \cdot \galnorm(\beta)$.
+			% \item Pruebe que si $\galnorm(\alpha)$ es un primo racional, entonces $\alpha$ era irreducible en $\Z[\sqrt{-5}]$.
+			\item Empleando la factorización
+				\[
+					6 = 2\cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5}),
+				\]
+				concluya que $\Z[\sqrt{-5}]$ no es un DFU.
+		\end{enumerate}
+
+	\item\label{ex:non_UFD_machine}\lookst
+		Generalicemos el procedimiento anterior.
+		Sea $\gamma \in \C$ un número algebraico
+		% que es raíz de un polinomio mónico (i.e., cuyo coeficiente lider es 1) no constante con
+		cuyo polinomio minimal (respecto a $\Q$) tiene
+		coeficientes en $\Z$.
+		\begin{enumerate}
+			\item Pruebe que $\Z[\gamma] = \{ f(\gamma) : f(x) \in \Z[x] \}$ es un dominio íntegro.
+			\item Pruebe que $\gamma \in \Z[\gamma]$ es irreducible.
+				
+				\begin{hint}
+					Si no lo fuese, ¿qué implicaría en el cociente $\Z[\gamma]/(\gamma)$?
+				\end{hint}
+			\item Muestre que hay un número primo (racional) $p \in \Z$ tal que $\gamma \nmid p$.
+
+				\begin{hint}
+					Para ello, pruebe que para todo $\alpha \notin \Z[\gamma]^\times$ hay \emph{finitos} ideales primos
+					$\mathfrak{p} \nsl \Z[\gamma]$ tales que $\alpha \in \mathfrak{p}$, y argumente por qué hay un primo
+					racional que no pertenece a alguno de ellos.
+				\end{hint}
+			\item Finalmente, concluya que $\Z[n \gamma]$ no es un DFU para algún $n$.
+		\end{enumerate}
+\end{enumerate}
+
+\section*{Comentarios}
+En el mundo investigativo, para los teoristas de números las ecuaciones diofánticas en dos variables de grado cuadrático están <<bien
+entendidas>> (también conocidas como \emph{cónicas planares}), de modo que el primer caso <<interesante>> sucede con cúbicas planares.
+En varios casos, hay cambios de variable mediante los cuales uno puede reducirse a estudiar ecuaciones del tipo $x^3 + ax + b = y^2 + cy +
+dxy$, que reflejan un objeto geométrico (más precisamente, una <<curva algebraica>>) llamada una \emph{curva elíptica}.
+Soluciones a coeficientes enteros de $y^2 = x^3 + a$ fueron arduamente estudiadas por el británico Louis Mordell.
+
+Hay una razón del por qué $\Z[n \gamma]$ no es DFU en general; la estrategia que emplee para construir el contraejemplo tras bastidores está
+en una aplicación de álgebra conmutativa.
+Los elementos de $\C$ cuyo polinomio minimal tiene coeficientes en $\Z$ se dicen \strong{enteros algebraicos};
+en general, para un anillo de enteros algebraicos, ser DFU equivale a ser DIP (esto no es trivial) y, por tanto, tal anillo debe ser
+íntegramente cerrado, y esta es la propiedad que los $\Z[n \gamma]$ carecen.
+(Está bien que, en una primera lectura, no entienda esta explicación; también está bien que el lector curioso la reciba de igual forma,
+aunque sea vaga y poco formal.)
+Para más detalles, vid.\ el primer capítulo de \citeauthor{janusz:algebraic}~\cite{janusz:algebraic} o de
+\citeauthor{matsumura:ring}~\cite{matsumura:ring}.
+
+No obstante, el anillo $\Z[\sqrt{-5}]$ \emph{sí} es íntegramente cerrado%
+\footnote{El lector puede pensar que no existe $\gamma \in \C$ con polinomio minimal a coeficientes enteros tal que $n \gamma = \sqrt{-5}$
+con $|n| > 1$.}
+y es por ello que es un ejemplo clásico en la teoría de números.
+
+Quizá el estudiante note la relación entre álgebra abstracta y teoría de números que ya se hace notar.
+Esto no es coincidencia, varias de las nociones en álgebra (e.g., DIP y DFU) son abstracciones de fenómenos que ya se observan en $\Z$;
+por lo demás, los conceptos más avanzados que subyacen el contraejemplo del problema~\ref{ex:non_UFD_machine} (dígase, elemento entero y
+anillo íntegramente cerrado) fueron descubrimientos de teoristas de números alemanes (Dedekind, Kronecker, Gauss) que buscaban entender la
+aritmética en otros anillos.
+Cabe destacar que, del mismo modo que el análisis complejo facilita la teoría de integración real, la aritmética en anillos generales
+facilita la teoría de números sobre $\Q$ y $\Z$.
+
+\nocite{burton:elementary, andreescu:problems}
+\printbibliography[title={Referencias y lecturas adicionales}]
+
+\end{document}

@@ -1,0 +1,108 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+
+\title{Más sobre DFUs}
+% \subtitle{Conociendo a Catalan, Fermat y Mordell}
+\date{\DTMdate{2025-08-22}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-num/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{Números de Fermat}
+\begin{enumerate}
+	\item Sea $p$ un número primo.
+		\begin{enumerate}
+			\item Pruebe que, dado un natural $n = n_0 + n_1p + \cdots + n_dp^d$ en base $p$, se cumple que
+				\[
+					(x + y)^n \equiv (x + y)^{n_0}(x^p + y^p)^{n_1} \cdots \left( x^{p^d} + y^{p^d} \right)^{n_d} \pmod p.
+				\]
+
+			\item \textbf{Teorema de Lucas:}
+				Sea $m = m_0 + m_1p + \cdots + m_dp^d \le n$ otro natural en base $p$.
+				Pruebe que
+				\[
+					\binom{n}{m} \equiv \binom{n_0}{m_0} \binom{n_1}{m_1} \cdots \binom{n_d}{m_d} \pmod p.
+				\]
+		\end{enumerate}
+
+	\item Pruebe que si un número de la forma $2^m + 1$ es primo, entonces necesariamente $m$ es una potencia de dos.
+		Los números de la forma $F_n := 2^{2^n} + 1$ se llamarán \strong{de Fermat}.
+
+	\item\lookright
+		Pruebe que los números de Fermat son coprimos dos a dos y, con ello, dé una nueva demostración de la infinitud de los primos.
+\end{enumerate}
+
+\section{Más sobre DFUs}
+\begin{enumerate}[resume]
+	\item\lookst
+		\textbf{Un criterio excéntrico de primalidad:}
+		Sea $p = a_db^d + \cdots + a_1b + a_0$ un primo $p > b$ en base $b \ge 3$ y
+		sea $f(x) = a_dx^d + \cdots + a_1x + a_0 \in \Z[x]$.
+		\begin{enumerate}
+			\item Supongamos que $f(x)$ fuese reducible.
+				Pruebe que existe una raíz $\alpha \in \C$ de $f$ tal que $|b - \alpha| \le 1$.
+
+			\item Sea $\alpha$ como en el inciso anterior.
+				Pruebe que $\Re(1/\alpha) > 0$, pero que $\Re(1/\alpha^j) < 0$ para algún $j$. 
+
+			\item Pruebe que
+				\[
+					\Re\mathopen{}\left( \frac{f(\alpha)}{\alpha^d} \right) \ge \frac{b-3}{b-2} + a_{d-1} \Re(1/\alpha),
+				\]
+				y concluya, por contradicción, que $f$ debía ser irreducible.
+
+				\begin{hint}
+					Dé una cota inferior para $a_{d-n} \Re(1/\alpha^n)$ cuando $n \ge 2$.
+				\end{hint}
+				% \begin{proof}
+				% 	Sea $f(x) = g(x)h(x)$.
+				% 	Como $f(b)$ es primo, entonces podemos suponer que $g(b) = \pm 1$.
+				% 	Existen $\alpha_1, \dots, \alpha_n \in \C$ tales que
+				% 	$$ g(x) = c \prod_{j=1}^{n} (x - \alpha_j), $$
+				% 	donde $c \in \Z$.
+				% 	Nótese que, como $|c| \ge 1$, tenemos que $\prod_{j=1}^{n} |b - \alpha_j| \le g(b)$,
+				% 	por lo que existe alguna raíz $\alpha$ tal que $|b - \alpha| \le 1$, es decir, $\Re\alpha \in [b - 1, b + 1],
+				% 	\Re(1/\alpha) > 0$ y $|\alpha| \ge b - 1$.
+
+				% 	Como $f(\alpha) = 0$, se sigue que
+				% 	$$ 0 = \Re\left( \frac{f(\alpha)}{\alpha^d} \right) = a_d + a_{d-1}\Re\left( \frac{1}{\alpha} \right)
+				% 	+ \sum_{i=2}^{d} a_{d-i} \Re\left( \frac{1}{\alpha^i} \right). $$
+				% 	Como $a_{d-1}\Re(1/\alpha) > 0$ entonces algún $\Re(1/\alpha^i) < 0$, pero $a_{d-i}\Re(1/\alpha^i) \ge
+				% 	-(b-1)/|\alpha|^i$. Luego
+				% 	$$ 0 = \Re\left( \frac{f(\alpha)}{\alpha^d} \right) \ge 1 + 0 - (b - 1) \sum_{i=2}^{d} \frac{1}{|\alpha|^i}, $$
+				% 	por lo que
+				% 	$$ 1 < (b-1) \sum_{i=2}^{d} \frac{1}{|\alpha|^i} = \frac{b - 1}{|\alpha| \, (|\alpha| - 1)} \le \frac{1}{b - 2} $$
+				% 	lo que es absurdo.
+				% \end{proof}
+		\end{enumerate}
+		\nocite{granville:masterclass}
+
+	% \item Diremos que un número algebraico $\gamma \in \C$ es un \strong{entero algebraico} si su polinomio minimal tiene coeficientes
+	% 	en $\Z$.
+	% 	Demuestre, empleando el teorema de los números primos, que para todo $n \ge 2$ existe un entero algebraico irracional
+	% 	$\gamma \in \C \setminus \Q$ de grado $n$ tal que $\gamma \in \Z[\gamma]$ es irreducible.
+
+	% 	\begin{thm}[postulado de Bertrand]
+	% 		Para todo entero $n \ge 2$ existe un primo $p$ tal que $n/2 < p \le n$.
+	% 	\end{thm}
+
+	\item Sea $\gamma \in \C \setminus \Q$ un entero algebraico cuadrático.
+		Pruebe que existen infinitos $n \in \Z$ tales que $n \gamma \in \Z[n \gamma]$ es irreducible y...
+\end{enumerate}
+
+\printbibliography[title={Referencias y lecturas adicionales}]
+
+\end{document}

@@ -1,0 +1,178 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{multicol}
+
+\title{Teoría de Galois}
+\date{\DTMdate{2025-08-20}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Grupos de Galois}
+\begin{enumerate}
+	\item Considere las siguientes extensiones sobre $\Q$, determine cuáles son de Galois y calcule el grupo de Galois de su cuerpo de escisión:
+		\begin{enumerate}
+		\begin{multicols}{3}
+			\item $\Q(\sqrt{2 + \sqrt{2}})$.
+			\item $\Q(\sqrt{3 + \sqrt{5}})$.
+			\item $\Q(\sqrt{1 + \sqrt{2}})$.
+		\end{multicols}
+		\end{enumerate}
+
+	\item Sea $L/k$ una extensión normal y definamos el subconjunto:
+		\[
+			L_{\rm sep} := \{ \alpha \in L : \alpha \text{ es separable sobre } k \}.
+		\]
+		\begin{enumerate}
+			\item Pruebe que $L_{\rm sep}$ es un subcuerpo de $L$.
+			\item Pruebe que la extensión $L_{\rm sep}/k$ es de Galois y $L/L_{\rm sep}$ es puramente inseparable.
+			\item Pruebe que la siguiente aplicación
+				\[
+					\rho \colon \Gal(L/k) \longrightarrow \Gal(L_{\rm sep}/k), \qquad \sigma \longmapsto \sigma|_{L_{\rm sep}}
+				\]
+				está bien definida y es un isomorfismo de grupos.
+		\end{enumerate}
+
+	\item\label{exr:simple_subextension_count}\lookright
+		Sea $K/k$ una extensión simple de cuerpos de grado $n := [K:k] < \infty$.
+		Pruebe que $K/k$ tiene a lo sumo $2^n$ subextensiones (incluyendo a $K$ y $k$ mismos).
+
+	% \item (El teorema de la base normal)
+	% 	Sea $K/k$ una extensión finita de grado $n$.
+	% 	Una \strong{base normal} de $K$ es una $k$-base $\{ \alpha_j \}_{1\le j\le n}$ para $K$,
+	% 	donde los elementos son $k$-conjugados (i.e., comparten el mismo polinomio minimal).
+	% 	\begin{enumerate}
+	% 		\item Pruebe que si $K$ posee una base normal, entonces $K/k$ es de Galois.
+	% 	\end{enumerate}
+	% 	Para el recíproco, suponga que $K/k$ es de Galois.
+	% 	\begin{enumerate}[resume]
+	% 		\item Sean $\{ \sigma_1, \dots, \sigma_n \} = \Gal(K/k)$ los elementos.
+	% 			Pruebe que los conjugados de $\alpha \in K$ forman una base (normal) syss la matriz $[
+	% 			\sigma_i \sigma_j \alpha ]_{ij} \in \Mat_n K$ tiene determinante no nulo.
+	% 		\item Pruebe que $K$ admite una base normal.
+	% 	\end{enumerate}
+
+	\item\label{exr:inverse_gal_ab}\lookst
+		Pruebe que para todo grupo \emph{abeliano} finito $G$ existe una extensión $K/\Q$ de Galois tal que
+		$\Gal(K/\Q) \cong G$.
+
+		\begin{hint}
+			Para la prueba puede ser útil emplear el \textbf{teorema de Dirichlet} que dice que
+			dado $n > 1$ entero y $a$ coprimo con $n$, existen infinitos primos $p$ tales que $p \equiv a
+			\pmod n$.
+		\end{hint}
+\end{enumerate}
+
+\section{La correspondencia de Jacobson-Bourbaki}
+En la siguiente serie de ejercicios, pretendemos probar un resultado un tanto técnico.
+En la sección, $\Hom_k$ denota homomorfismos de $k$-espacios vectoriales.
+\begin{enumerate}[resume]
+	\item Sea $k \subseteq K \subseteq L$ una torre de extensiones, posiblemente infinitas.
+		Pruebe que $K / k$ es una extensión finita syss $\Hom_k(K, L)$ es un $L$-espacio vectorial de dimensión finita (la
+		suma y producto escalar son coordenada a coordenada) y, en cuyo caso, que
+		\[
+			[ K : k ] = [ \Hom_k(K, L) : L ].
+		\]
+
+	\item\lookst
+		Sea $L$ un cuerpo.
+		Note que el conjunto $\End_{\mathsf{Ab}}(L)$ de endomorfismos de $L$ como grupo abeliano es un anillo (no
+		conmutativo) con la suma coordenada a coordena, y la composición como producto;
+		más aún, hay una inyección de anillos $\mu\colon L \hookto \End_{\mathsf{Ab}}(L)$ que a un elemento $\alpha \in
+		L$ le asigna el endomorfismo $\mu(\alpha)(x) := \alpha\cdot x$.
+		% Por abuso de notación, identificaremos a $L$ con su imagen en $\End_{\mathsf{Ab}}(L)$.
+		Sea $A \subseteq \End_{\mathsf{Ab}}(L)$ una $L$-subálgebra (i.e., un subanillo que contiene a la imagen de
+		$L$ mediante $\mu$) tal que $n := \dim_L(A) < \infty$.
+		\begin{enumerate}
+			\item Pruebe que existen $\alpha_1, \dots, \alpha_n \in L$ y $\sigma_1, \dots, \sigma_n \in A$ tales que
+				$\sigma_i(\alpha_j) = \delta_{ij}$, donde $\delta$ es la delta de Kronecker.
+
+				\begin{hint}
+					Hay un emparejamiento $L$-$\Z$-bilineal $A \times L \to L$ (donde $A$ tiene estructura de módulo por
+					la derecha como $(\sigma\cdot x)(y) = \sigma(y)\cdot x$) dado por la evaluación mediante el
+					cual ústed querrá extraer un emparejamiento $L$-bilineal no degenerado.
+				\end{hint}
+
+			\item Pruebe que
+				\[
+					k := \{ \alpha \in L : \forall \sigma \in A \qquad \alpha\cdot\sigma = \sigma\cdot\alpha \} \subseteq L
+				\]
+				es un subcuerpo de $L$ y que cada $\sigma_j \in A$ manda $\sigma_j \colon L \to k$.
+				% $\alpha\cdot \sigma_j = \sigma_j\cdot \alpha$ para todo $\alpha \in k$.
+				% que $[ L : k ] = n$ y que $A = \End_k(L)$.
+
+			\item Pruebe que $\alpha_1, \dots, \alpha_n \in L$ (dados por el primer inciso) forman una $k$-base.
+				% En particular, $$
+
+			\item\textbf{Correspondencia de Jacobson-Bourbaki} (\cite{jacobson:galois}, Th.~I.2):\\
+				Concluya que $[L : k] = n$ y que $A = \End_k(L)$.
+		\end{enumerate}
+\end{enumerate}
+
+\appendix
+\section{Comentarios}
+La razón de la inclusión de la \emph{correspondencia de Jacobson-Bourbaki} está en que, en cierto modo, generaliza la correspondencia
+clásica de Galois: incluye tanto al caso finito, como ciertos casos de extensiones inseparables; vid.\ \cite{jacobson:galois}.
+
+\subsection{Teoría de Galois profinita}
+Hay, asimismo,
+\lookup
+una generalización de la teoría de Galois al caso infinito, para la cual se requiere de la noción categorial de <<límite
+inverso>> (vid.\ \cite[490]{aluffi:algebra});
+daremos primero un contraejemplo ilustrativo y opcional:
+\begin{enumerate}[A., ref=\Alph*]
+	\item\label{ex:galois_as_inv_lim}
+		Sea $K/k$ una extensión algebraica de Galois posiblemente infinita.
+		Vamos a considerar el \emph{conjunto dirigido} (o <<categoría de índices>>) $\mathsf{I}$ cuyos objetos son subextensiones $k
+		\subseteq F \subseteq K$ de Galois \emph{finitas}, donde $F_1 \le F_2$ (o donde hay una única flecha $F_1 \to F_2$) syss
+		$F_1 \subseteq F_2$.
+		Tenemos el sistema inverso (o <<funtor contravariante>>) donde $\rho^2_1 \colon \Gal(F_2/k) \epicto \Gal(F_1/k)$ es la
+		restricción para $F_1 \le F_2 \in \mathsf{I}$.
+		Pruebe que
+		\[
+			\Gal(K/k) = \liminv_{F \in \mathsf{I}} \Gal(F/k),
+		\]
+
+	\item Definamos $\Z_\ell$, el anillo de enteros $\ell$-ádicos, como el límite inverso del diagrama $\rho^n_{n-1}\colon \Z/\ell^n\Z \to
+		\Z/\ell^{n-1}\Z$ (dado por $n \mod{\ell^n} \mapsto n \mod{\ell^{n-1}}$) con el conjunto dirigido $(\N, \le)$.
+		Pruebe que
+		\[
+			\Gal(\algcl\Fp/\Fp) \cong \prod_{\ell} \Z_\ell =: \hat{\Z},
+		\]
+		donde $\ell$ recorre todos los números primos.
+
+	\item\label{ex:frobenius_dense}
+		Pruebe, mediante un simil del argumento diagonal de Cantor, que $\Z_\ell$ es no numerable y, por tanto, concluya que existe
+		$\sigma \in \Gal(\algcl\Fp/\Fp)$ que no está en el grupo generado por el automorfismo de Frobenius $\Frob_p$.
+		No obstante, el cuerpo fijo por $\langle \Frob_p \rangle$ es $\Fp$, pese a que $\langle \Frob_p \rangle \ne
+		\Gal(\algcl\Fp/\Fp)$.
+\end{enumerate}
+Esto prueba que la biyección entre subgrupos y subextensiones se rompe en el caso infinito.
+¿Cómo se arregla?
+Mediante el ejercicio~\ref{ex:galois_as_inv_lim}, vemos que el grupo de Galois es el límite inverso de grupos finitos,%
+\footnote{De ahí el nombre \textquote{profinito.}}
+con lo que lo podemos dotar de la topología del límite inverso (a veces llamada \emph{topología de Krull}).
+Ahora, habrá una biyección entre subextensiones y subgrupos \emph{cerrados} del grupo de Galois.
+El ejercicio~\ref{ex:frobenius_dense} muestra entonces que $\langle \Frob_p \rangle$ es denso en $\Gal(\algcl\Fp/\Fp)$ con dicha topología.
+Una referencia del tema es
+% \citeauthor{szamuely:fund_grp}~\cite{szamuely:fund_grp}.
+\citeauthor{neukirch:algebraic}~\cite{neukirch:algebraic}, \S\S IV.1-3.
+
+\nocite{lang:algebra}
+
+\printbibliography
+
+\end{document}

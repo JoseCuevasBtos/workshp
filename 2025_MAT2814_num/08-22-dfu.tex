@@ -43,65 +43,56 @@
 
 	\item\lookright
 		Pruebe que los números de Fermat son coprimos dos a dos y, con ello, dé una nueva demostración de la infinitud de los primos.
-\end{enumerate}
 
-\section{Más sobre DFUs}
-\begin{enumerate}[resume]
-	\item\lookst
-		\textbf{Un criterio excéntrico de primalidad:}
-		Sea $p = a_db^d + \cdots + a_1b + a_0$ un primo $p > b$ en base $b \ge 3$ y
-		sea $f(x) = a_dx^d + \cdots + a_1x + a_0 \in \Z[x]$.
+	\item Diremos que un dominio íntegro $A$ es \strong{íntegramente cerrado} si para todo $\alpha \in \Frac(A)$ tal que existe un
+		polinomio mónico $f(x) \in A[x]$ con $f(\alpha) = 0$, se cumple que $\alpha \in A$.
+		Pruebe que si $A$ es un DIP, entonces es íntegramente cerrado.
+		Con ello concluya que $\Z[n \gamma]$ no es un DFU para $n > 2$ cuando $\gamma \in \C \setminus \Q$ es un entero algebraico.
+
+		\begin{hint}
+			Trate primero de probar que $\Z$ es íntegramente cerrado y generalice.
+		\end{hint}
+
+	\item Sea $q$ una potencia de un primo $p$, y sea $K := \Fp[q]$.
 		\begin{enumerate}
-			\item Supongamos que $f(x)$ fuese reducible.
-				Pruebe que existe una raíz $\alpha \in \C$ de $f$ tal que $|b - \alpha| \le 1$.
-
-			\item Sea $\alpha$ como en el inciso anterior.
-				Pruebe que $\Re(1/\alpha) > 0$, pero que $\Re(1/\alpha^j) < 0$ para algún $j$. 
-
-			\item Pruebe que
+			\item Pruebe que para un natural $n \in \N$ se cumple que
 				\[
-					\Re\mathopen{}\left( \frac{f(\alpha)}{\alpha^d} \right) \ge \frac{b-3}{b-2} + a_{d-1} \Re(1/\alpha),
+					\sum_{x \in K} x^n =
+					\begin{cases}
+						-1, & q-1\mid n, \; n \ne 0, \\
+						0, & \text{en otro caso.}
+					\end{cases}
 				\]
-				y concluya, por contradicción, que $f$ debía ser irreducible.
+
+			\item \textbf{Teorema de Chevalley-Warning:}
+				\lookright
+				Sean $\{ f_\alpha(\vec x) \}_\alpha \in K[x_1, \dots, x_n]$ un conjunto finito de polinomios tales que $\sum_{\alpha} \deg(f_\alpha) < n$.
+				Sea $V := \VV(\{ f_\alpha \}) \subseteq K^n$ el conjunto de ceros comunes de los polinomios, entonces pruebe que $|V| \equiv 0 \pmod p$.
 
 				\begin{hint}
-					Dé una cota inferior para $a_{d-n} \Re(1/\alpha^n)$ cuando $n \ge 2$.
+					Note que $|V| = \sum_{\vec x \in K^n} \chi_V(\vec x)$, donde $\chi$ es la función característica.
+					Ahora recupere $\chi_V$ mediante polinomios y emplee el inciso anterior.
 				\end{hint}
-				% \begin{proof}
-				% 	Sea $f(x) = g(x)h(x)$.
-				% 	Como $f(b)$ es primo, entonces podemos suponer que $g(b) = \pm 1$.
-				% 	Existen $\alpha_1, \dots, \alpha_n \in \C$ tales que
-				% 	$$ g(x) = c \prod_{j=1}^{n} (x - \alpha_j), $$
-				% 	donde $c \in \Z$.
-				% 	Nótese que, como $|c| \ge 1$, tenemos que $\prod_{j=1}^{n} |b - \alpha_j| \le g(b)$,
-				% 	por lo que existe alguna raíz $\alpha$ tal que $|b - \alpha| \le 1$, es decir, $\Re\alpha \in [b - 1, b + 1],
-				% 	\Re(1/\alpha) > 0$ y $|\alpha| \ge b - 1$.
-
-				% 	Como $f(\alpha) = 0$, se sigue que
-				% 	$$ 0 = \Re\left( \frac{f(\alpha)}{\alpha^d} \right) = a_d + a_{d-1}\Re\left( \frac{1}{\alpha} \right)
-				% 	+ \sum_{i=2}^{d} a_{d-i} \Re\left( \frac{1}{\alpha^i} \right). $$
-				% 	Como $a_{d-1}\Re(1/\alpha) > 0$ entonces algún $\Re(1/\alpha^i) < 0$, pero $a_{d-i}\Re(1/\alpha^i) \ge
-				% 	-(b-1)/|\alpha|^i$. Luego
-				% 	$$ 0 = \Re\left( \frac{f(\alpha)}{\alpha^d} \right) \ge 1 + 0 - (b - 1) \sum_{i=2}^{d} \frac{1}{|\alpha|^i}, $$
-				% 	por lo que
-				% 	$$ 1 < (b-1) \sum_{i=2}^{d} \frac{1}{|\alpha|^i} = \frac{b - 1}{|\alpha| \, (|\alpha| - 1)} \le \frac{1}{b - 2} $$
-				% 	lo que es absurdo.
-				% \end{proof}
 		\end{enumerate}
-		\nocite{granville:masterclass}
-
-	% \item Diremos que un número algebraico $\gamma \in \C$ es un \strong{entero algebraico} si su polinomio minimal tiene coeficientes
-	% 	en $\Z$.
-	% 	Demuestre, empleando el teorema de los números primos, que para todo $n \ge 2$ existe un entero algebraico irracional
-	% 	$\gamma \in \C \setminus \Q$ de grado $n$ tal que $\gamma \in \Z[\gamma]$ es irreducible.
-
-	% 	\begin{thm}[postulado de Bertrand]
-	% 		Para todo entero $n \ge 2$ existe un primo $p$ tal que $n/2 < p \le n$.
-	% 	\end{thm}
-
-	\item Sea $\gamma \in \C \setminus \Q$ un entero algebraico cuadrático.
-		Pruebe que existen infinitos $n \in \Z$ tales que $n \gamma \in \Z[n \gamma]$ es irreducible y...
+		\nocite{granville:masterclass, serre:arithmetic}
 \end{enumerate}
+
+% \appendix
+% \section{Comentarios adicionales}
+% \lookup
+% Una de las consecuencias del teorema de Chevalley-Warning (y parte del interés detrás de esta proposición) está en que muestra que los
+% cuerpos finitos son \emph{cuasialgebraicamente cerrados}.
+% En lenguaje de geometría algebraica, un cuerpo es algebraicamente cerrado si toda variedad algebraica no vacía tiene puntos racionales.
+% Piense el lector en la curva dada por los ceros del polinomio $x^2 + y^2 = 1$, es un círculo y eligiendo un punto base como $(1, 0)$ vemos
+% que tras trazar una recta de pendiente $p$ (con el convenio de que la vertical corresponde a $p = \infty$), vemos que hay una biyección con
+% los puntos de ésta y los de la recta proyectiva $\PP^1$.
+
+% La curva $x^2 + y^2 = -1$ tiene la misma suerte si nos paramos en el punto $(\sqrt{-1}, 0)$ que es \textquote{racional} sobre $\C$, de modo
+% que vemos que toda cónica no degenerada es isomorfa a la recta proyectiva.
+% Pero sobre $\Q$, ésta curva no tiene puntos racionales, de modo que no es una recta proyectiva, pese a que la razón tiene solo que ver con
+% el cuerpo base, no con la \textquote{geometría interna} de la curva.
+% Esta clase de variedades se llaman \strong{de Brauer-Severi}; mediante el teorema de Chevalley-Warning uno puede probar que sobre un cuerpo
+% finito no hay variedades de Brauer-Severi salvo por los espacios proyectivos $\PP^n$.
 
 \printbibliography[title={Referencias y lecturas adicionales}]
 

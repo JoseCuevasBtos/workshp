@@ -29,7 +29,16 @@ los problemas/comentarios que son opcionales u omitibles tendrán ojos hastiados
 
 \section{Congruencias}
 \begin{enumerate}
+	\item\lookright
+		Pruebe que la ecuación diofántica $ax + by = c$ tiene solución syss $\mcd(a, b) \mid c$.
+		Más aún, pruebe que si $(x_0, y_0) \in \Z^2$ son una solución, entonces todas las soluciones vienen parametrizadas por el
+		conjunto
+		\[
+			\left\{ ( x_0 + bt, y_0 - at ) : t \in \Z \right\}.
+		\] % \cite{hua:number}
+
 	\item Demuestre que la ecuación diofantina $x^2 + y^2 = 4z + 3$ no tiene soluciones enteras.
+
 	\item (Gersónides)
 		Las únicas potencias consecutivas de $2$ y $3$ son $1, 2, 3, 4, 8$ y $9$.
 
@@ -54,23 +63,23 @@ los problemas/comentarios que son opcionales u omitibles tendrán ojos hastiados
 	% 	% 	y, por tanto, $q_{8 + m16} \equiv q_8 \equiv 0 \pmod{17}$.
 	% 	% \end{proof}
 
-	\item\lookright (\textquote{Elevando el exponente})
-		Demuestre el siguiente clásico truco de olimpiadas:
-		Dado un primo $p > 2$, un par de enteros $x, y \in \Z$ tales que $x \equiv y \not\equiv 0 \pmod p$ y un entero $n \ge 1$,
-		entonces
-		\[
-			\nu_p(x^n - y^n) = \nu_p(x - y) + \nu_p(n),
-		\]
+	% \item\lookright (\textquote{Elevando el exponente})
+	% 	Demuestre el siguiente clásico truco de olimpiadas:
+	% 	Dado un primo $p > 2$, un par de enteros $x, y \in \Z$ tales que $x \equiv y \not\equiv 0 \pmod p$ y un entero $n \ge 1$,
+	% 	entonces
+	% 	\[
+	% 		\nu_p(x^n - y^n) = \nu_p(x - y) + \nu_p(n),
+	% 	\]
 
-	\item Recuerde que un entero $g \in \Z$ se dice una \strong{raíz primitiva módulo $n$} si $(\Z/n\Z)^\times$ está generado (como grupo)
-		por $g \mod n$.
-		\begin{enumerate}
-			\item Pruebe que para un primo $p$, si $g$ es una raíz primitiva módulo $p$, entonces $g$ ó $g + p$ es una raíz
-				primitiva módulo $p^2$.
+	% \item Recuerde que un entero $g \in \Z$ se dice una \strong{raíz primitiva módulo $n$} si $(\Z/n\Z)^\times$ está generado (como grupo)
+	% 	por $g \mod n$.
+	% 	\begin{enumerate}
+	% 		\item Pruebe que para un primo $p$, si $g$ es una raíz primitiva módulo $p$, entonces $g$ ó $g + p$ es una raíz
+	% 			primitiva módulo $p^2$.
 
-			\item Pruebe que si $g$ es una raíz primitiva módulo $p^2$ para un primo $p > 2$, entonces $g$ es raíz primitiva
-				módulo $p^n$ para todo $n \ge 1$.
-		\end{enumerate}
+	% 		\item Pruebe que si $g$ es una raíz primitiva módulo $p^2$ para un primo $p > 2$, entonces $g$ es raíz primitiva
+	% 			módulo $p^n$ para todo $n \ge 1$.
+	% 	\end{enumerate}
 
 	% \item
 	% 	(Euclides-Euler) Demuestre que un número par es perfecto syss es de la forma $2^{n-1}(2^n - 1)$,
@@ -128,15 +137,19 @@ Naturalmente, el <<teorema fundamental de la aritmética>> se reescribe ahora en
 		Generalicemos el procedimiento anterior.
 		Sea $\gamma \in \C$ un número algebraico
 		% que es raíz de un polinomio mónico (i.e., cuyo coeficiente lider es 1) no constante con
-		cuyo polinomio minimal (respecto a $\Q$) tiene
+		cuyo polinomio\break minimal (respecto a $\Q$) tiene
 		coeficientes en $\Z$.
 		\begin{enumerate}
 			\item Pruebe que $\Z[\gamma] = \{ f(\gamma) : f(x) \in \Z[x] \}$ es un dominio íntegro.
-			\item Pruebe que $\gamma \in \Z[\gamma]$ es irreducible.
-				
-				\begin{hint}
-					Si no lo fuese, ¿qué implicaría en el cociente $\Z[\gamma]/(\gamma)$?
-				\end{hint}
+
+			\item\label{ex:false_irred}
+				\false{Pruebe que $\gamma \in \Z[\gamma]$ es irreducible.}
+
+				\warn Resulta que este inciso es falso.
+				El contraejemplo más sencillo es $\sqrt{-1} \in \Z[\sqrt{-1}]$ que es unidad.
+				Otro ejemplo es $\sqrt{2} + 4 = \sqrt{2}(1 + 2 \sqrt{2}) \in \Z[\sqrt{2}+4] = \Z[\sqrt{2}]$.
+
+
 			\item Muestre que hay un número primo (racional) $p \in \Z$ tal que $\gamma \nmid p$.
 
 				\begin{hint}
@@ -144,16 +157,22 @@ Naturalmente, el <<teorema fundamental de la aritmética>> se reescribe ahora en
 					$\mathfrak{p} \nsl \Z[\gamma]$ tales que $\alpha \in \mathfrak{p}$, y argumente por qué hay un primo
 					racional que no pertenece a alguno de ellos.
 				\end{hint}
-			\item Finalmente, concluya que $\Z[n \gamma]$ no es un DFU para algún $n$.
+
+			\item \blunder{Finalmente, concluya que $\Z[n \gamma]$ no es un DFU para algún $n$.}
+
+				Este ejercicio reposaba sobre la parte \ref{ex:false_irred} que es falsa.
+				% Más aún, no es cierto que $n \gamma$ sea irreducible cuando $\gamma$ lo es en general;
+				% tome $\gamma := \sqrt{2}$ y $n = 6$, entonces
+				% $ 3\sqrt{8} = () $
 		\end{enumerate}
 \end{enumerate}
 
 \section*{Comentarios}
-En el mundo investigativo, para los teoristas de números las ecuaciones diofánticas en dos variables de grado cuadrático están <<bien
-entendidas>> (también conocidas como \emph{cónicas planares}), de modo que el primer caso <<interesante>> sucede con cúbicas planares.
-En varios casos, hay cambios de variable mediante los cuales uno puede reducirse a estudiar ecuaciones del tipo $x^3 + ax + b = y^2 + cy +
-dxy$, que reflejan un objeto geométrico (más precisamente, una <<curva algebraica>>) llamada una \emph{curva elíptica}.
-Soluciones a coeficientes enteros de $y^2 = x^3 + a$ fueron arduamente estudiadas por el británico Louis Mordell.
+% En el mundo investigativo, para los teoristas de números las ecuaciones diofánticas en dos variables de grado cuadrático están <<bien
+% entendidas>> (también conocidas como \emph{cónicas planares}), de modo que el primer caso <<interesante>> sucede con cúbicas planares.
+% En varios casos, hay cambios de variable mediante los cuales uno puede reducirse a estudiar ecuaciones del tipo $x^3 + ax + b = y^2 + cy +
+% dxy$, que reflejan un objeto geométrico (más precisamente, una <<curva algebraica>>) llamada una \emph{curva elíptica}.
+% Soluciones a coeficientes enteros de $y^2 = x^3 + a$ fueron arduamente estudiadas por el británico Louis Mordell.
 
 Hay una razón del por qué $\Z[n \gamma]$ no es DFU en general; la estrategia que emplee para construir el contraejemplo tras bastidores está
 en una aplicación de álgebra conmutativa.
@@ -162,8 +181,8 @@ en general, para un anillo de enteros algebraicos, ser DFU equivale a ser DIP (e
 íntegramente cerrado, y esta es la propiedad que los $\Z[n \gamma]$ carecen.
 (Está bien que, en una primera lectura, no entienda esta explicación; también está bien que el lector curioso la reciba de igual forma,
 aunque sea vaga y poco formal.)
-Para más detalles, vid.\ el primer capítulo de \citeauthor{janusz:algebraic}~\cite{janusz:algebraic} o de
-\citeauthor{matsumura:ring}~\cite{matsumura:ring}.
+Para más detalles, vid.\ el primer capítulo de \citeauthor{janusz:algebraic}~\cite{janusz:algebraic}.
+% o de \citeauthor{matsumura:ring}~\cite{matsumura:ring}.
 
 No obstante, el anillo $\Z[\sqrt{-5}]$ \emph{sí} es íntegramente cerrado%
 \footnote{El lector puede pensar que no existe $\gamma \in \C$ con polinomio minimal a coeficientes enteros tal que $n \gamma = \sqrt{-5}$

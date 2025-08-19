@@ -1,8 +1,9 @@
 \documentclass[11pt, reqno]{amsart}
 
 \input{../ayud-template.tex}
+% \includecomment{comment}
 
-\title{Más sobre DFUs}
+\title{Reciprocidad cuadrática y otros temas}
 % \subtitle{Conociendo a Catalan, Fermat y Mordell}
 \date{\DTMdate{2025-08-22}}
 
@@ -21,32 +22,28 @@
 
 \maketitle
 
-\section{Números de Fermat}
+\section{Ejercicios}
 \begin{enumerate}
-	\item Sea $p$ un número primo.
-		\begin{enumerate}
-			\item Pruebe que, dado un natural $n = n_0 + n_1p + \cdots + n_dp^d$ en base $p$, se cumple que
-				\[
-					(x + y)^n \equiv (x + y)^{n_0}(x^p + y^p)^{n_1} \cdots \left( x^{p^d} + y^{p^d} \right)^{n_d} \pmod p.
-				\]
+	\item Pruebe que un primo $p$ es suma de dos cuadrados syss $p \equiv 1 \pmod 4$.
 
-			\item \textbf{Teorema de Lucas:}
-				Sea $m = m_0 + m_1p + \cdots + m_dp^d \le n$ otro natural en base $p$.
-				Pruebe que
-				\[
-					\binom{n}{m} \equiv \binom{n_0}{m_0} \binom{n_1}{m_1} \cdots \binom{n_d}{m_d} \pmod p.
-				\]
-		\end{enumerate}
+	\item \textbf{Criterio de Pépin:}
+		Mediante reciprocidad cuadrática pruebe que si el número de Fermat $F_n := 2^{2^n} + 1$ es primo syss $3^{\frac{1}{2}(F_n -
+		1)} \equiv -1 \pmod{F_n}$.
+		\nocite{granville:masterclass}
 
-	\item Pruebe que si un número de la forma $2^m + 1$ es primo, entonces necesariamente $m$ es una potencia de dos.
-		Los números de la forma $F_n := 2^{2^n} + 1$ se llamarán \strong{de Fermat}.
-
-	\item\lookright
-		Pruebe que los números de Fermat son coprimos dos a dos y, con ello, dé una nueva demostración de la infinitud de los primos.
+		\begin{comment}
+			\lookup
+			El interés detrás de este criterio es que es computacionalmente rápido calcular potencias módulo un número.
+			A mano, puede emplear el criterio de Pépin para confirmar que $F_5 = 4\, 294\, 967\, 297$ no es primo (hallazgo de
+			L.~Euler) y, si lo implementa en un lenguaje como \texttt{Python}, \texttt{Sage} u otro, puede verificar que $F_5, \dots,
+			F_{10}$ son todos compuestos sin problema.
+			(Si, por el contrario, trata de buscar sus factores primos, dará cuenta que son bastante altos, por lo que el criterio es
+			bastante más eficaz.)
+		\end{comment}
 
 	\item Diremos que un dominio íntegro $A$ es \strong{íntegramente cerrado} si para todo $\alpha \in \Frac(A)$ tal que existe un
 		polinomio mónico $f(x) \in A[x]$ con $f(\alpha) = 0$, se cumple que $\alpha \in A$.
-		Pruebe que si $A$ es un DIP, entonces es íntegramente cerrado.
+		Pruebe que si $A$ es un DFU, entonces es íntegramente cerrado.
 		Con ello concluya que $\Z[n \gamma]$ no es un DFU para $n > 2$ cuando $\gamma \in \C \setminus \Q$ es un entero algebraico.
 
 		\begin{hint}
@@ -55,6 +52,8 @@
 
 	\item Sea $q$ una potencia de un primo $p$, y sea $K := \Fp[q]$.
 		\begin{enumerate}
+			\item Pruebe que $K^\times$ es un grupo cíclico.
+
 			\item Pruebe que para un natural $n \in \N$ se cumple que
 				\[
 					\sum_{x \in K} x^n =
@@ -74,25 +73,51 @@
 					Ahora recupere $\chi_V$ mediante polinomios y emplee el inciso anterior.
 				\end{hint}
 		\end{enumerate}
-		\nocite{granville:masterclass, serre:arithmetic}
+		\nocite{serre:arithmetic}
+
+	\item Sea $p$ un número primo.
+		\begin{enumerate}
+			\item Pruebe que, dado un natural $n = n_0 + n_1p + \cdots + n_dp^d$ en base $p$, se cumple que
+				\[
+					(x + y)^n \equiv (x + y)^{n_0}(x^p + y^p)^{n_1} \cdots \left( x^{p^d} + y^{p^d} \right)^{n_d} \pmod p.
+				\]
+
+			\item \textbf{Teorema de Lucas:}
+				Sea $m = m_0 + m_1p + \cdots + m_dp^d \le n$ otro natural en base $p$.
+				Pruebe que
+				\[
+					\binom{n}{m} \equiv \binom{n_0}{m_0} \binom{n_1}{m_1} \cdots \binom{n_d}{m_d} \pmod p.
+				\]
+		\end{enumerate}
 \end{enumerate}
 
-% \appendix
-% \section{Comentarios adicionales}
-% \lookup
-% Una de las consecuencias del teorema de Chevalley-Warning (y parte del interés detrás de esta proposición) está en que muestra que los
-% cuerpos finitos son \emph{cuasialgebraicamente cerrados}.
-% En lenguaje de geometría algebraica, un cuerpo es algebraicamente cerrado si toda variedad algebraica no vacía tiene puntos racionales.
-% Piense el lector en la curva dada por los ceros del polinomio $x^2 + y^2 = 1$, es un círculo y eligiendo un punto base como $(1, 0)$ vemos
-% que tras trazar una recta de pendiente $p$ (con el convenio de que la vertical corresponde a $p = \infty$), vemos que hay una biyección con
-% los puntos de ésta y los de la recta proyectiva $\PP^1$.
+\appendix
+\section{Ejercicios adicionales}
+\begin{enumerate}
+	\item Pruebe que si un número de la forma $2^m + 1$ es primo, entonces necesariamente $m$ es una potencia de dos.
+		Los números de la forma $F_n := 2^{2^n} + 1$ se llamarán \strong{de Fermat}.
 
-% La curva $x^2 + y^2 = -1$ tiene la misma suerte si nos paramos en el punto $(\sqrt{-1}, 0)$ que es \textquote{racional} sobre $\C$, de modo
-% que vemos que toda cónica no degenerada es isomorfa a la recta proyectiva.
-% Pero sobre $\Q$, ésta curva no tiene puntos racionales, de modo que no es una recta proyectiva, pese a que la razón tiene solo que ver con
-% el cuerpo base, no con la \textquote{geometría interna} de la curva.
-% Esta clase de variedades se llaman \strong{de Brauer-Severi}; mediante el teorema de Chevalley-Warning uno puede probar que sobre un cuerpo
-% finito no hay variedades de Brauer-Severi salvo por los espacios proyectivos $\PP^n$.
+	\item\lookright
+		Pruebe que los números de Fermat son coprimos dos a dos y, con ello, dé una nueva demostración de la infinitud de los primos.
+\end{enumerate}
+
+\begin{comment}
+\section{Comentarios adicionales}
+\lookup
+Una de las consecuencias del teorema de Chevalley-Warning (y parte del interés detrás de esta proposición) está en que muestra que los
+cuerpos finitos son \emph{cuasialgebraicamente cerrados}.
+En lenguaje de geometría algebraica, un cuerpo es algebraicamente cerrado si toda variedad algebraica no vacía tiene puntos racionales.
+Piense el lector en la curva dada por los ceros del polinomio $x^2 + y^2 = 1$, es un círculo y eligiendo un punto base como $(1, 0)$ vemos
+que tras trazar una recta de pendiente $p$ (con el convenio de que la vertical corresponde a $p = \infty$), vemos que hay una biyección con
+los puntos de ésta y los de la recta proyectiva $\PP^1$.
+
+La curva $x^2 + y^2 = -1$ tiene la misma suerte si nos paramos en el punto $(\sqrt{-1}, 0)$ que es \textquote{racional} sobre $\C$, de modo
+que vemos que toda cónica no degenerada es isomorfa a la recta proyectiva.
+Pero sobre $\Q$, ésta curva no tiene puntos racionales, de modo que no es una recta proyectiva, pese a que la razón tiene solo que ver con
+el cuerpo base, no con la \textquote{geometría interna} de la curva.
+Esta clase de variedades se llaman \strong{de Brauer-Severi}; mediante el teorema de Chevalley-Warning uno puede probar que sobre un cuerpo
+finito no hay variedades de Brauer-Severi salvo por los espacios proyectivos $\PP^n$.
+\end{comment}
 
 \printbibliography[title={Referencias y lecturas adicionales}]
 

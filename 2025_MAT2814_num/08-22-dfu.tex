@@ -1,7 +1,8 @@
 \documentclass[11pt, reqno]{amsart}
 
-\input{../ayud-template.tex}
-% \includecomment{comment}
+\usepackage{../ayud-template}
+\input{../general.tex}
+% \input{../ayud-template.tex}
 
 \title{Reciprocidad cuadrática y otros temas}
 % \subtitle{Conociendo a Catalan, Fermat y Mordell}
@@ -24,11 +25,12 @@
 
 \section{Ejercicios}
 \begin{enumerate}
-	\item Pruebe que un primo $p$ es suma de dos cuadrados syss $p \equiv 1 \pmod 4$.
+	\item Pruebe que un primo $p$ es suma de dos cuadrados syss $p = 2$ o $p \equiv 1 \pmod 4$.
 
+		% \newpage
 	\item \textbf{Criterio de Pépin:}
-		Mediante reciprocidad cuadrática pruebe que si el número de Fermat $F_n := 2^{2^n} + 1$ es primo syss $3^{\frac{1}{2}(F_n -
-		1)} \equiv -1 \pmod{F_n}$.
+		Mediante reciprocidad cuadrática pruebe que si el número de Fermat $F_n := 2^{2^n} + 1$ (con $n > 0$) es primo syss
+		$3^{\frac{1}{2}(F_n - 1)} \equiv -1 \pmod{F_n}$.
 		\nocite{granville:masterclass}
 
 		\begin{comment}
@@ -41,6 +43,7 @@
 			bastante más eficaz.)
 		\end{comment}
 
+		% \newpage
 	\item Diremos que un dominio íntegro $A$ es \strong{íntegramente cerrado} si para todo $\alpha \in \Frac(A)$ tal que existe un
 		polinomio mónico $f(x) \in A[x]$ con $f(\alpha) = 0$, se cumple que $\alpha \in A$.
 		Pruebe que si $A$ es un DFU, entonces es íntegramente cerrado.
@@ -50,6 +53,7 @@
 			Trate primero de probar que $\Z$ es íntegramente cerrado y generalice.
 		\end{hint}
 
+		% \newpage
 	\item Sea $q$ una potencia de un primo $p$, y sea $K := \Fp[q]$.
 		\begin{enumerate}
 			\item Pruebe que $K^\times$ es un grupo cíclico.
@@ -75,6 +79,7 @@
 		\end{enumerate}
 		\nocite{serre:arithmetic}
 
+		% \newpage
 	\item Sea $p$ un número primo.
 		\begin{enumerate}
 			\item Pruebe que, dado un natural $n = n_0 + n_1p + \cdots + n_dp^d$ en base $p$, se cumple que
@@ -91,6 +96,7 @@
 		\end{enumerate}
 \end{enumerate}
 
+\begin{additional}
 \appendix
 \section{Ejercicios adicionales}
 \begin{enumerate}
@@ -101,7 +107,6 @@
 		Pruebe que los números de Fermat son coprimos dos a dos y, con ello, dé una nueva demostración de la infinitud de los primos.
 \end{enumerate}
 
-\begin{comment}
 \section{Comentarios adicionales}
 \lookup
 Una de las consecuencias del teorema de Chevalley-Warning (y parte del interés detrás de esta proposición) está en que muestra que los
@@ -117,8 +122,8 @@ Pero sobre $\Q$, ésta curva no tiene puntos racionales, de modo que no es una r
 el cuerpo base, no con la \textquote{geometría interna} de la curva.
 Esta clase de variedades se llaman \strong{de Brauer-Severi}; mediante el teorema de Chevalley-Warning uno puede probar que sobre un cuerpo
 finito no hay variedades de Brauer-Severi salvo por los espacios proyectivos $\PP^n$.
-\end{comment}
 
 \printbibliography[title={Referencias y lecturas adicionales}]
+\end{additional}
 
 \end{document}

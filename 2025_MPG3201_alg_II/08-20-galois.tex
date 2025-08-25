@@ -1,7 +1,12 @@
 \documentclass[11pt, reqno]{amsart}
 
 \input{../ayud-template.tex}
+\usepackage{comment} % para (des)activar comentarios
 \includecomment{comment}
+
+% \usepackage{../ayud-template}
+% \input{../general.tex}
+% % \input{../graphics.tex}
 
 \usepackage{multicol}
 
@@ -33,14 +38,6 @@
 	% 		\item $\Q(\sqrt{1 + \sqrt{2}})$.
 	% 	\end{multicols}
 	% 	\end{enumerate}
-
-	\item Considere la extensión $\Q\left( \sqrt{(2+\sqrt 2)(3+\sqrt 3)} \right) \supseteq \Q$ y determine:
-		\begin{multicols}{2}
-			\begin{enumerate}
-				\item Si es de Galois.
-				\item El grupo de Galois de su cuerpo de escisión.
-			\end{enumerate}
-		\end{multicols}
 
 	\item\label{exr:inverse_gal_ab}\lookst
 		Pruebe que para todo grupo \emph{abeliano} finito $G$ existe una extensión $K/\Q$ de Galois tal que
@@ -88,6 +85,14 @@
 	% 			\sigma_i \sigma_j \alpha ]_{ij} \in \Mat_n K$ tiene determinante no nulo.
 	% 		\item Pruebe que $K$ admite una base normal.
 	% 	\end{enumerate}
+
+	\item Considere la extensión \smash{$\Q\left( \sqrt{(2+\sqrt 2)(3+\sqrt 3)} \right) \supseteq \Q$} y determine:
+		\begin{multicols}{2}
+			\begin{enumerate}
+				\item Si es de Galois.
+				\item El grupo de Galois de su cuerpo de escisión.
+			\end{enumerate}
+		\end{multicols}
 \end{enumerate}
 
 \appendix

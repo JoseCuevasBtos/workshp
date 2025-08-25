@@ -1,0 +1,145 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+% \usepackage{../ayud-template}
+% \input{../general.tex}
+% % \input{../graphics.tex}
+
+\usepackage{multicol}
+
+\title{Norma y traza}
+\date{\DTMdate{2025-08-27}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Norma y traza}
+\begin{enumerate}
+	\item Sea $k$ un cuerpo de característica $p > 0$.
+		Para una extensión finita $L/k$, definimos su grado de separabilidad e inseparabilidad como $[L : k]_s := [L_{\rm sep} : k]$
+		y $[L : k]_i = [L : L_{\rm sep}]$.
+		\begin{enumerate}
+			\item Pruebe que si $L/K/k$ es una torre de extensiones, entonces $[L : k]_s := [L : K]_s \, [K : k]_s$ y $[L : k]_i
+				:= [L : K]_i \, [K : k]_i$.
+			\item Sea $L_{\rm ins} := \{ \alpha \in L : \alpha \text{ es puramente inseparable sobre } k \}$.
+				Pruebe que $[L_{\rm ins} : k] \le [L : k]_i$.
+			\item Pruebe que si $L$ es normal, entonces hay igualdad $[L_{\rm ins} : k] = [L : k]_i$.
+		\end{enumerate}
+
+	\item\lookright
+		Sea $K/k$ una extensión finita.
+		Dado $\alpha \in K$, denotamos por $m_\alpha(x) := \alpha\cdot x$ que determina un endomorfismo $m_\alpha \colon K \to K$.
+		Se definen la norma y la traza de $\alpha$ como
+		\[
+			\galnorm_{K/k}(\alpha) := \det(m_\alpha), \qquad \galtr_{K/k}(\alpha) := \tr(m_\alpha).
+		\]
+		% Sea $N \supseteq K$ la clausura normal de $K$ (la mínima extensión normal sobre $k$ que le contiene).
+		Pruebe que
+		\[
+			\galnorm_{K/k}(\alpha) = \prod_{i=1}^n\sigma_i(\alpha), \qquad \galtr_{K/k}(\alpha) = \sum_{i=1}^n \sigma_i(\alpha),
+		\]
+		donde $\{ \sigma_1, \dots, \sigma_n \} = \Hom_k(K, \algcl k)$.
+		(Note que si $K/k$ es de Galois, entonces $\Hom_k(K, \algcl k) = \Gal(K/k)$.)
+
+		\begin{hint}
+			Primero pruébelo para $K = k(\alpha)$, luego pruebe la transitividad de la traza y norma.
+		\end{hint}
+
+	\item Pruebe que una extensión finita $K/k$ es separable syss $(x, y) \mapsto \galtr_{K/k}(xy)$ es una forma bilineal no degenerada
+		(i.e., si $\galtr_{K/k}(\alpha x) = 0$ para todo $x$, entonces $\alpha = 0$).
+\end{enumerate}
+
+\section{Extensiones cíclicas}
+% Lang VI.6
+\begin{enumerate}[resume]
+	\item Una extensión $K/k$ se dice \strong{cíclica} si es finita, de Galois y $\Gal(K/k)$ es cíclico.
+		\begin{enumerate}
+			\item Pruebe que toda subextensión de una cíclica es cíclica.
+		\end{enumerate}
+		En adelante, supondremos que $K/k$ es cíclica con generador $\sigma \in \Gal(K/k)$.
+		\begin{enumerate}[resume]
+			\item\label{ex:mult_hilb90}
+				Pruebe que $\beta \in K$ tiene norma $\galnorm_{K/k}(\beta) = 1$ syss existe $\alpha \in K$ tal que $\beta =
+				\alpha/\sigma(\alpha)$.
+
+			\item Pruebe que si $K/k$ tiene grado $n$ y $k$ posee una raíz $n$-ésima primitiva de la unidad $\zeta_n$, entonces
+				$K = k(\sqrt[n]{\gamma})$ para algún $\gamma \in k$.
+		\end{enumerate}
+
+	\item Sea $K/k$ una extensión cíclica de grado $n$ y sea $\sigma \in \Gal(K/k)$ un generador.
+		\begin{enumerate}
+			\item\label{ex:add_hilb90}
+				Pruebe que $\beta \in K$ tiene traza $\galtr_{K/k}(\beta) = 0$ syss existe $\alpha \in K$ tal que $\beta =
+				\alpha - \sigma(\alpha)$.
+
+			\item Pruebe que si $\car k =: p > 0$ y $n = p$, entonces $K = k(\alpha)$, donde $\alpha$ es raíz de un polinomio de
+				la forma $\wp(x) - \gamma \in k[x]$ y donde $\wp(x) := x^p - x$ se denomina el \emph{endomorfismo de Artin-Schreier}.
+				Ocasionalmente se escribe \textquote{$\alpha = \wp^{-1}(\gamma)$}.
+		\end{enumerate}
+		\nocite{lang:algebra}
+\end{enumerate}
+
+\begin{additional}
+\appendix
+\section{Comentarios adicionales}
+Dado un anillo $A$, se suele denotar por $\GG_a(A) = (A, +)$ al \textquote{grupo aditivo} del anillo y por $\GG_m(A) := (A^\times, \cdot)$
+al \textquote{grupo multiplicativo} (la notación se debe a que son ejemplos importantes en la teoría de grupos algebraicos).
+Los ejercicios \ref{ex:mult_hilb90} y \ref{ex:add_hilb90} pueden reescribirse como que hay sucesiones exactas:
+\[\begin{tikzcd}[row sep=0pt]
+	1 \rar & \GG_m(k) \rar & \GG_m(K) \rar["{\alpha/\sigma(\alpha)}"] & \GG_m(K) \rar["{\galnorm_{K/k}}"] & \GG_m(k) \\
+	1 \rar & \GG_a(k) \rar & \GG_a(K) \rar["{\alpha-\sigma(\alpha)}"] & \GG_a(K) \rar["{\galtr_{K/k}}"] & \GG_a(k)
+\end{tikzcd}\]
+Las sucesiones exactas son de grupos abelianos, pero el lector podría preguntarse qué sucede con la acción del grupo de Galois $G :=
+\Gal(K/k)$.
+Llamemos $g \in G$ al generador y supongamos que $M$ es un grupo abeliano con acción compatible de $G$ (i.e., $h(m + n) = hm + hn$ para $h
+\in G$ y $m, n \in G$); entonces siempre tenemos el homomorfismo $m \mapsto m - gm$ y el homomorfismo $N\colon m \mapsto \sum_{h\in G} hm$.
+El lector puede verificar (es una suma telescópica) que $N(m - gm) = 0$ para todo $m$, de modo que podríamos definir $H^1(G, M) :=
+\ker(N)/\Img(1 - g)$ y, ahora, los ejercicios \ref{ex:mult_hilb90} y \ref{ex:add_hilb90} dicen que $H^1(G, \GG_m(K)) = H^1(G, \GG_a(K)) =
+0$.
+Este enunciado se conoce como el \emph{teorema 90 de Hilbert}%
+\footnote{El nombre se debe a que era 90\textsuperscript{ésimo} teorema en su libro \emph{Die Theorie der algebraischen Zahlkörper}
+(\textquote{teoría de cuerpos de números algebraicos}).} y esta es la formulación de Noether.
+Puede leer más al respecto en \citeauthor{weibel:homological}~\cite{weibel:homological}, \S\S 6.3-6.4.
+
+\section{Dos pruebas pendientes}
+Dos demostraciones de la afirmación de la semana pasada:
+\begin{proof}
+	Recordemos que $K_{\rm ins}/k$ es simple pues $K/k$ lo es, luego $K_{\rm ins} = k(\alpha^{p^{-h}})$ con $\alpha \in k \setminus k^p$.
+	Luego $x^{p^h} - \alpha$ sigue siendo irreducible en $K_{\rm sep}[x]$, ya que $\alpha^{1/p} \notin K_{\rm sep}$ pues es inseparable;
+	así que
+	\begin{equation}
+		[K_{\rm ins} : k] = p^h = [K_{\rm sep}(\alpha^{p^{-h}}) : K_{\rm sep}] \le [K : K_{\rm sep}].
+		\tqedhere
+	\end{equation}
+\end{proof}
+Y otra directa:
+\begin{proof}
+	Sea $\alpha \in K$ un generador y sea $f(x) \in k[x]$ el polinomio minimal de $\alpha$.
+	Dada una subextensión $L \subseteq K$, sea $g(x) \in L[x]$ el polinomio minimal de $\alpha$, sean $c_1, \dots, c_r \in L$ los
+	coeficientes de $g$, notemos que $g$ es también minimal en $k(c_1, \dots, c_r)$ y así $[K : L] = \deg g = [K : k(c_1, \dots, c_r)]$,
+	por lo que $L = k(c_1, \dots, c_r)$.
+	Así, hay a lo sumo, tantas subextensiones como divisores de $f$ en $K[x]$ y como $f$ tiene grado $n$, en el mejor de los casos
+	tenemos $n$ factores lineales y, por tanto, hay un máximo de $2^n$ factores distintos.
+\end{proof}
+\end{additional}
+
+\printbibliography
+
+\end{document}

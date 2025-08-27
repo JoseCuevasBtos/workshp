@@ -1,0 +1,127 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+% \input{../ayud-template.tex}
+% \includecomment{comment}
+
+\title{Caracteres de Dirichlet}
+\date{\DTMdate{2025-08-28}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-num/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{enumerate}
+	\item Pruebe que las siguientes dos afirmaciones son (elementalmente) equivalentes:
+		\begin{enumerate}
+			\item Para cada par de enteros $a, n$ coprimos hay infinitos  primos $p$ tales que $p \equiv a \pmod n$.
+			\item Para cada par de enteros $a, n$ coprimos hay al menos un primo $p$ tal   que $p \equiv a \pmod n$.
+		\end{enumerate}
+
+		\newex
+	\item\lookright
+		Sea $a \in \Z$.
+		Pruebe que si para todo primo $p \nmid a$ se cumple que $(a/p) = 1$, entonces $a$ es un cuadrado perfecto.
+
+		\newex
+	\item Pruebe que el grupo de caracteres de Dirichlet módulo $n$ es isomorfo a $(\Z/n\Z)^\times$, no canónicamente.
+
+		\newex
+	\item Pruebe que para un primo $p$ y un natural $a \in \N_{\ge 2}$ se cumple que
+		\[
+			(\Z/p^a\Z)^\times \cong
+			\begin{cases}
+				C_2, & p = 2, \; a = 2, \\
+				C_2 \times C_{2^{a-2}}, & p = 2, \; a > 2, \\
+				C_{p-1} \times C_{p^{a-1}}, & p > 2, \; a \ge 2.
+			\end{cases}
+		\]
+		\begin{hint}
+			Para un primo impar $p$ equivale a buscar una raíz primitiva módulo $p$;
+			para el primo $p = 2$ podemos calcular la 2 y 4-torsión del grupo.
+		\end{hint}
+
+		\newex
+	\item\lookst
+		\textbf{Un criterio excéntrico de primalidad:}
+		Sea $p = a_db^d + \cdots + a_1b + a_0$ un primo $p > b$ en base $b \ge 3$ y
+		sea $f(x) = a_dx^d + \cdots + a_1x + a_0 \in \Z[x]$.
+		\begin{enumerate}
+			\item Supongamos que $f(x)$ fuese reducible.
+				Pruebe que existe una raíz $\alpha \in \C$ de $f$ tal que $|b - \alpha| \le 1$.
+
+			\item Sea $\alpha$ como en el inciso anterior.
+				Pruebe que $\Re(1/\alpha) > 0$, pero que $\Re(1/\alpha^j) < 0$ para algún $j$. 
+
+			\item Pruebe que
+				\[
+					\Re\mathopen{}\left( \frac{f(\alpha)}{\alpha^d} \right) \ge \frac{b-3}{b-2} + a_{d-1} \Re(1/\alpha),
+				\]
+				y concluya, por contradicción, que $f$ debía ser irreducible.
+
+				\begin{hint}
+					Dé una cota inferior para $a_{d-n} \Re(1/\alpha^n)$ cuando $n \ge 2$.
+				\end{hint}
+				% \begin{proof}
+				% 	Sea $f(x) = g(x)h(x)$.
+				% 	Como $f(b)$ es primo, entonces podemos suponer que $g(b) = \pm 1$.
+				% 	Existen $\alpha_1, \dots, \alpha_n \in \C$ tales que
+				% 	$$ g(x) = c \prod_{j=1}^{n} (x - \alpha_j), $$
+				% 	donde $c \in \Z$.
+				% 	Nótese que, como $|c| \ge 1$, tenemos que $\prod_{j=1}^{n} |b - \alpha_j| \le g(b)$,
+				% 	por lo que existe alguna raíz $\alpha$ tal que $|b - \alpha| \le 1$, es decir, $\Re\alpha \in [b - 1, b + 1],
+				% 	\Re(1/\alpha) > 0$ y $|\alpha| \ge b - 1$.
+
+				% 	Como $f(\alpha) = 0$, se sigue que
+				% 	$$ 0 = \Re\left( \frac{f(\alpha)}{\alpha^d} \right) = a_d + a_{d-1}\Re\left( \frac{1}{\alpha} \right)
+				% 	+ \sum_{i=2}^{d} a_{d-i} \Re\left( \frac{1}{\alpha^i} \right). $$
+				% 	Como $a_{d-1}\Re(1/\alpha) > 0$ entonces algún $\Re(1/\alpha^i) < 0$, pero $a_{d-i}\Re(1/\alpha^i) \ge
+				% 	-(b-1)/|\alpha|^i$. Luego
+				% 	$$ 0 = \Re\left( \frac{f(\alpha)}{\alpha^d} \right) \ge 1 + 0 - (b - 1) \sum_{i=2}^{d} \frac{1}{|\alpha|^i}, $$
+				% 	por lo que
+				% 	$$ 1 < (b-1) \sum_{i=2}^{d} \frac{1}{|\alpha|^i} = \frac{b - 1}{|\alpha| \, (|\alpha| - 1)} \le \frac{1}{b - 2} $$
+				% 	lo que es absurdo.
+				% \end{proof}
+		\end{enumerate}
+		\nocite{granville:masterclass}
+
+		\newex
+	\item
+		% Diremos que un número algebraico $\gamma \in \C$ es un \strong{entero algebraico} si su polinomio minimal tiene coeficientes
+		% en $\Z$.
+		Demuestre, empleando el teorema de los números primos en progresión aritmética, que para todo $n \ge 2$ existe un entero
+		algebraico irracional $\gamma \in \C \setminus \Q$ de grado $n$ tal que $\gamma \in \Z[\gamma]$ es irreducible.
+
+		\begin{thm}
+			Sean $a, n$ un par de enteros coprimos y $\pi(x; a, n)$ la función que cuenta primos $p \le x$ tales que $p \equiv a
+			\pmod n$.
+			Entonces
+			\[
+				\pi(x; a, n) \sim \frac{1}{\phi(n)} \frac{x}{\log x}, \qquad x \to \infty,
+			\]
+			donde $\phi$ es la función de Euler.
+		\end{thm}
+		\begin{proof}
+			Vid.\ \cite[361]{tenenbaum:analytique}.
+		\end{proof}
+\end{enumerate}
+
+\begin{additional}
+\newpage
+\printbibliography[title={Referencias y lecturas adicionales}]
+\end{additional}
+
+\end{document}

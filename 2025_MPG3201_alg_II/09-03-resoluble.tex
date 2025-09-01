@@ -1,0 +1,147 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\usepackage{minted}
+\usemintedstyle{colorful}
+\setminted{
+	mathescape,
+	linenos,
+	autogobble,
+	bgcolor=black!5,
+	tabsize=2,
+	fontsize=\small
+}
+
+% \usepackage{../ayud-template}
+% \input{../general.tex}
+% % \input{../graphics.tex}
+
+\usepackage{multicol}
+
+\title{Extensiones resolubles}
+\date{\DTMdate{2025-09-03}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{enumerate}
+	\item Sean $K \subseteq L_1, \dots, L_n \subseteq \Omega$ un conjunto de $n$ subextensiones abelianas (resp.\ resolubles).
+		Pruebe que el composito $L_1 \cdots L_n \subseteq \Omega$ es abeliano (resp.\ resoluble).
+
+	\item Sea $k$ un cuerpo de $\car k \ne 2$ y sea $f(x) \in k[x]$ un polinomio separable con raíces
+		\[
+			f(x) = \prod_{j=1}^{n} (x - \alpha_j) \in \algcl k[x].
+		\]
+		Definimos el discriminante como $\Delta := \prod_{i < j} (\alpha_i - \alpha_j)^2$ y sea $L$ el cuerpo de escisión de $f(x)$.
+		Tras identificar $\Gal(L/k) \le S_n$ mediante la permutación de los $\alpha_j$'s, pruebe que $\Gal(L/k) \cap A_n = \Gal(L/k(\sqrt{\Delta}))$.
+
+	\item\label{ex:quartic_comp} \textbf{Clasificación computacional de cuárticas:}
+		Sea $k$ un cuerpo de $\car k \ne 2$ y sea
+		\[
+			f(x) := x^4 + ax^3 + bx^2 + cx + d = \prod_{j=1}^{4} (x - \alpha_j).
+		\]
+		una cuártica irreducible separable.
+		\begin{enumerate}
+			\item Defina el resolvente cúbico como
+				\begin{equation*}
+					R_3(x) := (x - (\alpha_1\alpha_2 + \alpha_3\alpha_4))(x - (\alpha_1\alpha_3 + \alpha_2\alpha_4))(x -
+					(\alpha_1\alpha_4 + \alpha_2\alpha_3)).
+				\end{equation*}
+				Pruebe que $R_3(x) \in k[x]$ es separable.
+
+			\item Sea $L/k$ el cuerpo de escisión de $f(x)$.
+				Pruebe que
+				\[
+					\begin{array}{cll}
+						\Delta & R_3(x) \in k[x] & \Gal(L/k) \\
+						\hline
+						\ne\square & \text{irreducible} & S_4 \\
+						\ne\square &   \text{reducible} & D_4 \text{ o } C_4 \\
+						= \square & \text{irreducible} & A_4 \\
+						= \square &   \text{reducible} & K_4 \\
+					\end{array}
+				\]
+
+			\item Sea $k = \Q$ y suponga que $\Delta \ne \square$ y $R_3 \in \Q[x]$ es reducible.
+				Pruebe que si $\Gal(L/k) \cong C_4$, entonces $\Delta > 0$.
+				(O recíprocamente, si $\Delta < 0$, entonces $\Gal(L/k) \cong D_4$.)
+		\end{enumerate}
+		\nocite{conrad:cubic_quartic_nochar2}
+
+	\item Recuerde que un número real $r \in \R$ se dice \strong{constructible (con regla y compás)} si existe $\Q(r) \subseteq \Q(r_1,
+		\dots, r_n)$, donde cada $r_j$ es de la forma $\sqrt{a + 1}$ para algún $a \in \Q(r_1, \dots, r_{j-1}) \cap \R_{>0}$.
+		Un número complejo $z \in \R$ se dice \emph{constructible} si $\Re z$, $\Im z \in \R$ lo son.
+		Una extensión se dice \emph{constructible} si todos sus elementos lo son.
+
+		Pruebe que una extensión ciclotómica $\Q(\zeta_p)$, donde $p$ es primo, es constructible syss $p$ es un \emph{primo de
+		Fermat}, es decir, de la forma $p = 2^{2^n} + 1$.
+		\begin{hint}
+			Emplee el calculo que ya ha hecho del grupo de Galois y el dato (que no tiene que probar) que todo primo de la forma
+			$2^a + 1$ es necesariamente un primo de Fermat.
+		\end{hint}
+		\nocite{jacobson:basic}
+
+	% \item Pruebe que
+	% 	\[
+	% 		\Gal(\algcl\Fp/\Fp) \cong \widehat\Z = \prod_{p} \Z_p.
+	% 	\]
+
+	% \item Llamemos $\Q(\zeta_\infty) := \bigcup_{n\in\N} \Q(\zeta_n) \subseteq \C$.
+	% 	Pruebe que
+	% 	\[
+	% 		\Gal(\Q(\zeta_\infty) / \Q) \cong \widehat{\Z}^\times = \prod_{p} \Z_p^\times.
+	% 	\]
+\end{enumerate}
+
+\begin{additional}
+\appendix
+\section{Comentarios adicionales}
+Uno puede verificar que el discriminante $\Delta$ se puede calcular de manera explícita como el resultante de $f(x)$ y $f'(x)$, que es por
+definición el determinante de una matriz a coeficientes en $k$.
+En general, dicha matriz es bastante grande, pero por ejemplo \textsf{Sage} puede calcular rapidamente dicho número así:
+\begin{minted}{sage}
+R, t = QQ['t'].objgen()
+f = t^3 + t^2 + t + 1
+f.discriminant()
+\end{minted}
+Con ello, podemos determinar fácilmente el grupo de Galois de una extensión de grado 3.
+
+Mediante el teorema de polinomios simétricos uno puede dar fórmulas explícitas para $\Delta$ y los coeficientes de $R_3(x)$; esta es
+\[
+	% \Delta := a^2b^2c^2 - 4a^3c^3 - 4a^2b^3d + 18a^3bcd - 27a^4d^2 - 4b^3c^2 + 18abc^3 + 16b^4d - 80ab^2cd - 6a^2c^2d + 144a^2bd^2 - 27c^4 + 144bc^2d - 128b^2d^2 - 192acd^2 + 256d^3
+	R_3(x) := x^3 - bx^2 + (ac - 4d)x - (a^2d + c^2 - 4bd).
+\]
+El discriminante es más largo, puede obtener la fórmula general así:
+\begin{minted}{sage}
+R.<a, b, c, d> = QQ['a', 'b', 'c', 'd']
+S.<x> = R[]
+(x^4 + a*x^3 + b*x^2 + c*x + d).discriminant()
+\end{minted}
+Casos particulares son $\Delta(x^4 + ax + b) = -27a^4 + 256b^3$ y $\Delta(x^4 + ax^2 + b) = 16b(a^2 - 4b)^2$.
+
+Al ser $R_3(x)$ mónico, una sencilla aplicación del teorema de las raíces racionales da un criterio computacional para su irreducibilidad;
+así, en efecto, el problema~\ref{ex:quartic_comp} arroja un algoritmo para determinar (casi) completamente el grupo de Galois de una
+cuártica sobre $\Q$.
+
+\printbibliography
+\end{additional}
+
+\end{document}

@@ -1,0 +1,117 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+% \input{../ayud-template.tex}
+% \includecomment{comment}
+
+\title{Asintótica de funciones aritméticas}
+\date{\DTMdate{2025-09-18}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-num/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{enumerate}
+	\item\lookright
+		Sea $\Fp[q]$ un cuerpo con $q < \infty$ elementos.
+		\begin{enumerate}
+			\item Sea $f(x) \in \Fp[q][x]$ es irreducible.
+				Pruebe que $f(x) \mid x^{q^n} - x$ syss $\deg f \mid n$.
+
+			\item Sea $M(n)$ la cantidad de polinomios irreducibles de grado $n$ en $\Fp[q][x]$ y sea $E(n)$ la cantidad de
+				elementos de $\Fp[q^n]$ de grado exactamente $n$ (i.e., cuyo polinomio minimal tiene grado $n$ y, por tanto,
+				que generan la extensión $\Fp[q^n]$).
+				¿Qué relación hay entre $M(n)$ y $E(n)$?
+
+			\item Pruebe que
+				\[
+					n \psi(n) = \sum_{d \mid n} \mu(d) q^{n/d}.
+				\]
+		\end{enumerate}
+
+		\newex
+	\item
+		\textbf{Primer teorema de Mertens:} Demuestre que
+		$$ \sum_{p\le x} \frac{\log p}{p} = \log x + O(1), $$
+		(donde el subíndice $p$ siempre recorre los números primos.)
+
+		Para facilitar el ejercicio realice los siguientes pasos:
+		\begin{enumerate}[(i)]
+			\item Demuestre que cuando $n$ es entero
+				\[
+					T(n) = \log(n!) = \sum_{p \le n} \left( \left\lfloor \frac np \right\rfloor + \left\lfloor \frac{n}{p^2} \right\rfloor
+					+ \cdots \right) \log p.
+				\]
+
+			\item Demuestre que
+				$$ \frac{n}{p} - 1 < \left\lfloor \frac np \right\rfloor + \left\lfloor \frac{n}{p^2} \right\rfloor + \cdots
+				< \frac{n}{p} + \frac{n}{p(p - 1)}. $$
+
+			\item Demuestre que $\sum_{p \le x} \log p \le c_2 x$.
+
+			\item Concluya el enunciado.
+		\end{enumerate}
+
+		\newex
+	\item
+		\textbf{Segundo teorema de Mertens:} Demuestre que
+		$$ \sum_{p\le x} \frac{1}{p} = \log\log x + M + O\left( \frac{1}{\log x} \right), $$
+		donde $M$ es una constante llamada la \textit{constante de Mertens}.
+		\nocite{tenenbaum:analytique}
+		\begin{hint}
+			Emplee fórmula de suma por partes de Abel.
+		\end{hint}
+
+		\newex
+	\item\lookst
+		\textbf{Postulado de Bertrand (demostración de Erd\H os):}
+		El objetivo de este ejercicio es probar que para todo $n \ge 2$ existe un primo $p$ con $n \le p < 2n$.
+		\begin{enumerate}[(i)]
+			\item Pruebe que $\prod_{p\le x} p \le 4^x$ para todo $x \ge 2$.
+			\item Pruebe que para todo entero $n \ge 1$ se cumple que
+				\[
+					% \binom{n}{\lfloor n/2 \rfloor} \ge \frac{2^n}{n}, \qquad
+					\binom{2n}{n} \ge \frac{4^n}{2n}.
+				\]
+			\item Dé cotas para la valuación de un primo $p \mid \binom{2n}{n}$ en los intervalos:
+				\[
+					% [1, \sqrt{2n}], \qquad
+					\left(\sqrt{2n}, \frac{2}{3} n\right], \qquad \left(\frac{2}{3} n, n\right], \qquad (n, 2n].
+				\]
+			\item Confronte cotas y pruebe que el postulado de Bertrand es cierto para $n$ suficientemente grande.
+		\end{enumerate}
+		\nocite{granville:masterclass}
+\end{enumerate}
+
+\begin{additional}
+% \appendix
+% \section{Ejercicio propuesto}
+% \begin{enumerate}[resume]
+% 	\item Pruebe las cotas de tipo Stirling:
+% 		\[
+% 			e\left( \frac{N}{e} \right)^N \le N! \le eN \left( \frac{N}{e} \right)^N.
+% 		\]
+% 		\begin{hint}
+% 			Puede emplear que $\log(n-1) \le \int_{n-1}^{n} \log x \, \ud x \le \log n$.
+% 		\end{hint}
+
+% 	\item Generalice la prueba del postulado de Bertrand para demostrar el \textbf{teorema de Sylvester-Schur:}
+% \end{enumerate}
+
+\printbibliography[title={Referencias y lecturas adicionales}]
+\end{additional}
+
+\end{document}

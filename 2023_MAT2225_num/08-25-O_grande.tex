@@ -1,7 +1,8 @@
 \documentclass[11pt, reqno]{amsart}
 
-\input{../ayud-template.tex}
-\input{../cjk.tex}
+% \input{../ayud-template.tex}
+\usepackage{../ayud-template}
+\input{../general.tex}
 % \usepackage{diagbox}
 
 \title{$O$ grande, $o$ chica}
@@ -25,6 +26,7 @@
 \begin{enumerate}
 	\item (Ejemplo iluminador) Demuestre que
 		$$ \sum_{n \le x} \frac{1}{2^n} = 1 + O\left( \frac{1}{2^x} \right). $$
+
 	\item Empleando sumas parciales, demuestre que:
 		\begin{enumerate}
 			\item $\displaystyle H(x) := \sum_{n \le x} \frac{1}{n} = \log x + \gamma + O\left( \frac{1}{x} \right),$ donde $ \gamma$ es una constante

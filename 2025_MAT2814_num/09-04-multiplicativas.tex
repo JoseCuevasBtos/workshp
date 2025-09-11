@@ -1,0 +1,73 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+% \input{../ayud-template.tex}
+% \includecomment{comment}
+
+\title{Funciones multiplicativas}
+\date{\DTMdate{2025-09-04}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-num/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{enumerate}
+	\item (Ejemplo iluminador)
+		Sea $a \in \C$ con $|a| < 1$.
+		Pruebe que
+		\[
+			\sum_{n\le x} a^n = \frac{1}{1 - a} + O(a^x).
+		\]
+
+		\newex
+	\item Empleando sumas parciales, demuestre que:
+		\begin{enumerate}
+			\item $\displaystyle H(x) := \sum_{n \le x} \frac{1}{n} = \log x + \gamma + O\left( \frac{1}{x} \right),$ donde $ \gamma$ es una constante
+				llamada la \textit{constante de Euler-Mascheroni}.
+			\item $\displaystyle T(x) := \sum_{n \le x} \log n = x\log x - x + O(\log x)$.
+		\end{enumerate}
+
+		\newex
+	\item \textbf{Problema del círculo de Gauss:} Sea $r(n)$ la cantidad de formas de escribir $n$ como suma de dos cuadrados
+		(e.g., para $n = 5$ tenemos que $r(5) = 8$ pues $(\pm 1)^2 + (\pm 4)^2 = 5$ nos da cuatro formas e intercambiar
+		los factores nos da cuatro más).
+		Demuestre que:
+		$$ \frac{1}{x} \sum_{n\le x} r(n) = \pi + O\left( \frac{1}{\sqrt{x}} \right). $$
+
+		\begin{hint}
+			El nombre \textit{problema del \underline{círculo}} es sugerente.
+		\end{hint}
+
+		\newex
+	\item\lookright
+		Sea $f$ una función multiplicativa tal que $\lim_{p^m} f(p^m) = 0$, donde el subíndice recorre todas las potencias de todos los primos.
+		Pruebe que $\lim_n f(n) = 0$.
+
+		\newex
+	\item Sea $\tau(n)$ la función que cuenta la cantidad de divisores positivos de un entero $n$.
+		\begin{enumerate}
+			\item Pruebe que $\tau(n)$ es multiplicativa.
+			\item Pruebe que $\tau(n) = o(n^\varepsilon)$ para todo $\varepsilon > 0$.
+		\end{enumerate}
+
+		\nocite{hua:number, tenenbaum:analytique}
+\end{enumerate}
+
+\begin{additional}
+\printbibliography[title={Referencias y lecturas adicionales}]
+\end{additional}
+
+\end{document}

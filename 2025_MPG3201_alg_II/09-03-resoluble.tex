@@ -43,9 +43,27 @@
 
 \section{Ejercicios}
 \begin{enumerate}
+	\item Recuerde que un número real $r \in \R$ se dice \strong{constructible (con regla y compás)} si existe $\Q(r) \subseteq \Q(r_1,
+		\dots, r_n)$, donde cada $r_j$ es de la forma $\sqrt{a + 1}$ para algún $a \in \Q(r_1, \dots, r_{j-1}) \cap \R_{>0}$.
+		Un número complejo $z \in \R$ se dice \emph{constructible} si $\Re z$, $\Im z \in \R$ lo son.
+		Una extensión se dice \emph{constructible} si todos sus elementos lo son.
+
+		Pruebe que una extensión ciclotómica $\Q(\zeta_p)$, donde $p$ es primo, es constructible syss $p$ es un \emph{primo de
+		Fermat}, es decir, de la forma $p = 2^{2^n} + 1$.
+
+		\begin{additional}
+			\begin{hint}
+				Emplee el calculo que ya ha hecho del grupo de Galois y el dato (que no tiene que probar) que todo primo de la forma
+				$2^a + 1$ es necesariamente un primo de Fermat.
+			\end{hint}
+		\end{additional}
+		\nocite{jacobson:basic}
+
+		\newex
 	\item Sean $K \subseteq L_1, \dots, L_n \subseteq \Omega$ un conjunto de $n$ subextensiones abelianas (resp.\ resolubles).
 		Pruebe que el composito $L_1 \cdots L_n \subseteq \Omega$ es abeliano (resp.\ resoluble).
 
+		\newex
 	\item Sea $k$ un cuerpo de $\car k \ne 2$ y sea $f(x) \in k[x]$ un polinomio separable con raíces
 		\[
 			f(x) = \prod_{j=1}^{n} (x - \alpha_j) \in \algcl k[x].
@@ -53,6 +71,7 @@
 		Definimos el discriminante como $\Delta := \prod_{i < j} (\alpha_i - \alpha_j)^2$ y sea $L$ el cuerpo de escisión de $f(x)$.
 		Tras identificar $\Gal(L/k) \le S_n$ mediante la permutación de los $\alpha_j$'s, pruebe que $\Gal(L/k) \cap A_n = \Gal(L/k(\sqrt{\Delta}))$.
 
+		\newex
 	\item\label{ex:quartic_comp} \textbf{Clasificación computacional de cuárticas:}
 		Sea $k$ un cuerpo de $\car k \ne 2$ y sea
 		\[
@@ -74,30 +93,17 @@
 						\Delta & R_3(x) \in k[x] & \Gal(L/k) \\
 						\hline
 						\ne\square & \text{irreducible} & S_4 \\
-						\ne\square &   \text{reducible} & D_4 \text{ o } C_4 \\
-						= \square & \text{irreducible} & A_4 \\
-						= \square &   \text{reducible} & K_4 \\
+						\ne\square &   \text{reducible} & D_8 \text{ o } C_4 \\
+						=  \square & \text{irreducible} & A_4 \\
+						=  \square &   \text{reducible} & C_2\times C_2
 					\end{array}
 				\]
 
 			\item Sea $k = \Q$ y suponga que $\Delta \ne \square$ y $R_3 \in \Q[x]$ es reducible.
 				Pruebe que si $\Gal(L/k) \cong C_4$, entonces $\Delta > 0$.
-				(O recíprocamente, si $\Delta < 0$, entonces $\Gal(L/k) \cong D_4$.)
+				(O recíprocamente, si $\Delta < 0$, entonces $\Gal(L/k) \cong D_8$.)
 		\end{enumerate}
 		\nocite{conrad:cubic_quartic_nochar2}
-
-	\item Recuerde que un número real $r \in \R$ se dice \strong{constructible (con regla y compás)} si existe $\Q(r) \subseteq \Q(r_1,
-		\dots, r_n)$, donde cada $r_j$ es de la forma $\sqrt{a + 1}$ para algún $a \in \Q(r_1, \dots, r_{j-1}) \cap \R_{>0}$.
-		Un número complejo $z \in \R$ se dice \emph{constructible} si $\Re z$, $\Im z \in \R$ lo son.
-		Una extensión se dice \emph{constructible} si todos sus elementos lo son.
-
-		Pruebe que una extensión ciclotómica $\Q(\zeta_p)$, donde $p$ es primo, es constructible syss $p$ es un \emph{primo de
-		Fermat}, es decir, de la forma $p = 2^{2^n} + 1$.
-		\begin{hint}
-			Emplee el calculo que ya ha hecho del grupo de Galois y el dato (que no tiene que probar) que todo primo de la forma
-			$2^a + 1$ es necesariamente un primo de Fermat.
-		\end{hint}
-		\nocite{jacobson:basic}
 
 	% \item Pruebe que
 	% 	\[

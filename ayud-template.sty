@@ -21,8 +21,11 @@
 \DeclareOption{comm}{
 	\includecomment{comment}
 }
+\DeclareOption{nocom}{
+	\excludecomment{additional}
+}
 \DeclareOption{practice}{
-	% \ExecuteOptions{nocom}
+	\ExecuteOptions{nocom}
 	% \let\oldenumerate\enumerate% Store \begin{enumerate} in \begin{oldenumerate}
 	% \let\endoldenumerate\endenumerate% Store \end{enumerate} in \end{oldenumerate}
 	% \renewenvironment{enumerate}
@@ -31,7 +34,6 @@
 	% 	\oldenumerate}% \begin{enumerate}
 	% 	{\endoldenumerate}% \end{enumerate}
 	% \newcommand\breakafterfirst[1]{\ifthenelse{\value{enumi}>1}{\newpage}{} #1}
-	\excludecomment{additional}
 	\renewcommand{\newex}{\newpage}
 }
 \DeclareOption*{\PackageWarning{cuevasthm}{Unknown ‘\CurrentOption’}}

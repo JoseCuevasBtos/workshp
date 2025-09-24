@@ -1,0 +1,148 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\title{Representaciones}
+\date{\DTMdate{2025-09-24}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+A lo largo de esta sección, $G$ denotará un grupo finito posiblemente no conmutativo y $K$ denotará un cuerpo
+(puede suponer $K = \C$ si prefiere).
+Al hablar de anillos en esta ayudantía, los asumiremos \emph{unitarios} (con neutro multiplicativo), \emph{asociativos}
+y posiblemente \emph{no conmutativos}.
+
+\begin{enumerate}
+	\item (Representaciones como módulos)
+		Denotaremos por $K[G]$ al grupo abeliano de sumas formales $\sum_{g\in G} a_g g$, donde cada $a_g \in K$.
+		Entonces $K[G]$ es un anillo con el producto
+		\[
+			\left( \sum_{h\in G} a_h h \right)\left( \sum_{j\in G} b_j j \right)
+			= \sum_{g\in G} \left( \sum_{hj=g} a_hb_j \right) g.
+		\]
+		\begin{enumerate}
+			\item Sea $\rho \colon G \to \GL_K(V)$ una representación, es decir, un homomorfismo de grupos, donde
+				$V$ es un $K$-espacio vectorial; denotaremos $\rho_g := \rho(g) \in \Aut(V)$ para un $g \in G$.
+				Pruebe que $V$ es naturalmente un $K[G]$-módulo (izquierdo) con la operación escalar sobre $\vec v \in V$
+				dada por
+				\[
+					\left( \sum_{g\in G} a_g g \right)\cdot\vec v := \sum_{g\in G} a_g \rho_g(\vec v).
+				\]
+				Recíprocamente, pruebe que todo $K[G]$-módulo $M$ da lugar a una única representación $G \to
+				\GL_K(M)$.
+				Más aún, una subrepresentación corresponde a un submódulo mediante esta construcción.
+
+				\lookup
+				En lenguaje sofisticado, diríamos que la categoría de representaciones y la de $K[G]$-módulos son
+				equivalentes.
+
+			\item Describa qué representación corresponde al $K[G]$-módulo libre $K[G]$.
+				A ésta le llamaremos la \strong{representación regular} de $G$.
+		\end{enumerate}
+
+		\newex
+	\item Sea $\varphi \colon H \to G$ un homomorfismo de grupos.
+		\begin{enumerate}
+			\item Pruebe que induce un homomorfismo de $K$-álgebras $K[H] \to K[G]$.
+				Mediante este, toda representación de $G$ se restringe a una representación de $H$.
+
+			\item También mediante $K[H] \to K[G]$ note que toda representación de $H$ induce una
+				representación de $G$ dada por asociarle al $K[H]$-módulo izquierdo $V$ el tensor $K[G]
+				\otimes_{K[H]} M$.
+				A esta le llamamos la \strong{representación inducida}.
+
+			\item ¿Bajo qué hipótesis $K[G]$ es un $K[H]$-módulo libre (es decir, cuando su representación es suma directa de las regulares)?
+				En cuyo caso, ¿qué rango tiene?
+		\end{enumerate}
+
+		\newex
+	\item \textbf{Representaciones del grupo diedral:}
+		Sea
+		\[
+			D_{2n} = \langle r, s : r^n = s^2 = 1, \; srs = r^{-1} \rangle
+		\]
+		el grupo diedral de cardinalidad $2n$.
+		\begin{enumerate}
+			\item Pruebe que las únicas representaciones lineales se factorizan por $\chi \colon D_{2n} \to \{ \pm 1 \} \le \C^\times$.
+				Acto seguido, calcule cuáles hay.
+
+			\item Mediante la inclusión $C_n \cong \langle r \rangle \le D_{2n}$, describa las representaciones inducidas en $D_{2n}$.
+				¿Cuáles de ellas son irreducibles? ¿Cuántas de ellas hay salvo isomorfismo?
+
+			\item Concluya cuáles son todas las representaciones irreducibles de $D_{2n}$ cuando $n$ es par.
+		\end{enumerate}
+		\nocite{serre:representations}
+
+		\newex
+	\item\lookup Sea $G$ un grupo finito.
+		En clases vio que toda representación compleja de $G$ se descompone como suma de subrepresentaciones irreducibles;
+		el lector atento podrá leer la demostración y verificar que de hecho esto también es cierto si trabajamos con
+		representaciones sobre $\Q$ o incluso sobre cuerpos $K$ de $\car K \nmid |G|$.
+
+		Pruebe, sin embargo, que si $p \mid G$ y $K$ tiene $\car K = p$, entonces existe una representación de $G$ en $K$ que no
+		admite dicha descomposición.
+
+		\newex
+	\item Considere el grupo simétrico $S_3$.
+		Se vio en clases que hay tres representaciones simples salvo isomorfismo:
+		la trivial $\C_0$, el signo $\C_\sign$ y la representación estándar $V_{\rm st}$.
+		\begin{enumerate}
+			\item Pruebe que, dada una representación lineal $\C_\chi$ y una representación simple $W$ de un grupo finito
+				arbitrario $G$, el tensor $\C_\chi \otimes W$ es también simple.
+
+			\item Pruebe que
+				\[
+					% V_{\rm st} \otimes \C_{\sign} \cong V_{\rm st}
+					% \qquad \text{y} \qquad
+					V_{\rm st} \otimes V_{\rm st} \cong \C_0 \oplus \C_{\sign} \oplus V_{\rm st}.
+				\]
+
+			\item Calcule las potencias tensoriales $V_{\rm st}^{\otimes n}$.
+
+			\item Sea $R \cong \C_0 \otimes V_{\rm st}$ la representación de permutación.
+				Con lo anterior, pruebe que $\Sym^{n+6}(V_{\rm st}) \cong \Sym^n(V) \oplus R$.
+		\end{enumerate}
+\end{enumerate}
+
+\begin{additional}
+\appendix
+\section{Comentarios adicionales}
+% % Uno puede empujar la teoría de anillos suficientemente lejos para
+% El ejercicio~\ref{ex:ring_interpr} muestra que conocimientos de álgebra \emph{no} conmutativa, aunque sea acerca de \textquote{anillos
+% básicos}%
+% \footnote{El mismo ejercicio prueba que el álgebra de representaciones $K[G]$ es artiniano bilateral y semisimple, lo cual es bastante restrictivo.}
+% tiene repercusiones en la teoría de representaciones.
+% Este es el enfoque de \citeauthor{jacobson:basic}~\cite{jacobson:basic}, Vol.~2, \S\S 5.1-5.3.
+
+El lector notará que exigirle al grupo que sea \emph{finito} es, en cierto modo, una condición de pequeñez y una de sus ventajas es que
+equivale a que el anillo sea noetheriano.
+Así, uno está tentado a preguntarse si podemos admitir una teoría de representaciones --bajo hipótesis adicionales-- en grupos de otra
+índole (ejemplos de interés podrían ser subgrupos y/o cocientes de $\GL_n(\C)$, y grupos de Galois infinitos).
+En muchos casos sí, pero para ello debemos dotar al cuerpo y al grupo de estructura adicional (tradicionalmente, una topología como mínimo)
+y restringirnos a trabajar con representaciones compatibles (en nuestro ejemplo, continuas); suele ser el caso que los grupos
+\emph{compactos} jueguen el rol ahora de los grupos finitos.
+% Resultados como la \textquote{ortogonalidad de caracteres} suelen ser tratados, de manera aparentemente irónica, por el análisis armónico
+% abstracto.
+
+\printbibliography
+\end{additional}
+
+\end{document}

@@ -1,0 +1,114 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\usepackage{minted}
+\usemintedstyle{colorful}
+\setminted{
+	mathescape,
+	linenos,
+	autogobble,
+	bgcolor=black!5,
+	tabsize=2,
+	fontsize=\small
+}
+
+% \usepackage{../ayud-template}
+% \input{../general.tex}
+% % \input{../graphics.tex}
+
+\usepackage{multicol}
+
+\title{Caracteres}
+\date{\DTMdate{2025-10-01}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{center}
+	\slshape
+	A lo largo de esta ayudantía, siempre consideraremos a $\C$ como cuerpo de coeficientes.
+\end{center}
+\begin{enumerate}
+	\item Calcule la tabla de caracteres simples de $A_4$.
+
+		\newex
+	\item Calcule la tabla de caracteres simples del grupo de cuaterniones
+		\[
+			Q_8 = \langle i, j, k : i^2 = j^2 = k^2 = -1, \quad ijk = -1 \rangle.
+		\]
+		% \begin{hint}
+		% 	Para esto podría ser útil expresar a $Q_8$ como producto semidirecto.
+		% \end{hint}
+
+		\newex
+	\item Sea $H \le G$ un subgrupo de un grupo finito y sea $\chi$ el caracter de una representación $\rho \colon H \acts V$.
+		Recuerde de la ayudantía anterior (ej.~2c) que asociado a $V^\rho$ tenemos la representación inducida $\Ind^G_H(\rho)$ cuyo
+		caracter denotaremos $\Ind^G_H(\chi)$.
+		Pruebe que tenemos la siguiente fórmula para todo $g \in G$:
+		\[
+			\Ind_H^G(\chi)(g) = \frac{1}{|H|} \sum_{\substack{t\in G \\ tgt^{-1} \in H}} \chi(t^{-1}gt).
+		\]
+		\nocite{serre:representations}
+
+		\newex
+	\item Sea $G$ un grupo finito.
+		\begin{enumerate}
+			\item Si $C_1, \dots, C_h$ son las clases de conjugación de $G$, pruebe que los elementos
+				\[
+					c_j := \sum_{g\in C_j} [g] \in \C[G],
+				\]
+				forman una $\C$-base para el centro%
+				\footnote{Relativo al producto, obvio.}
+				$Z(\C[G])$.
+
+			\item\lookst
+				Sea $\chi$ un caracter simple de $G$ de grado $n := \chi(1)$, y sea $g \in C_j \subseteq G$.
+				Pruebe que $|C_j| \frac{1}{n} \chi(g)$ es un entero algebraico (i.e., es raíz de un polinomio mónico con coeficientes en $\Z$).
+				\begin{hint}
+					Para ello, note que la representación $\rho$ que induce a $\chi$ satisface que $\rho(c_j) = b_j\Id$
+					y pruebe que $b_j$ es el valor propio de una matriz a coeficientes enteros.
+				\end{hint}
+
+			\item
+				Pruebe que el grado de toda representación simple divide al orden de $G$.
+				\begin{hint}
+					Para esto podría necesitar que los enteros algebraicos son cerrados bajo suma y productos, y que los
+					enteros algebraicos de $\Q$ son exactamente los enteros $\Z$.
+				\end{hint}
+		\end{enumerate}
+		\nocite{huppert:finite_i}
+
+		\newex
+	\item\lookright Recuerde que el grupo simétrico $\mathfrak{S}_n$ siempre admite la \emph{representación por permutación} $\rho \acts
+		\C^n$ dada por $\sigma \cdot (v_1, \dots, v_n) = (v_{\sigma(1)}, \dots, v_{\sigma(n)})$.
+		Esta fija al vector $(1, \dots, 1)$ que genera la subrepresentación trivial, el complemento de ella es la
+		\strong{representación estándar} cuyo caracter es
+		\[
+			\chi_{\rm st}(\sigma) = \chi_{\rm perm}(\sigma) - \chi_0(\sigma) = \chi_{\rm perm}(\sigma) - 1.
+		\]
+		Pruebe que la representación estándar es siempre simple.
+\end{enumerate}
+
+\begin{additional}
+\printbibliography
+\end{additional}
+
+\end{document}

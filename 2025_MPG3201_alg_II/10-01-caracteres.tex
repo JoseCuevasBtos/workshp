@@ -47,9 +47,6 @@
 	A lo largo de esta ayudantía, siempre consideraremos a $\C$ como cuerpo de coeficientes.
 \end{center}
 \begin{enumerate}
-	\item Calcule la tabla de caracteres simples de $A_4$.
-
-		\newex
 	\item Calcule la tabla de caracteres simples del grupo de cuaterniones
 		\[
 			Q_8 = \langle i, j, k : i^2 = j^2 = k^2 = -1, \quad ijk = -1 \rangle.
@@ -59,17 +56,25 @@
 		% \end{hint}
 
 		\newex
-	\item Sea $H \le G$ un subgrupo de un grupo finito y sea $\chi$ el caracter de una representación $\rho \colon H \acts V$.
-		Recuerde de la ayudantía anterior (ej.~2c) que asociado a $V^\rho$ tenemos la representación inducida $\Ind^G_H(\rho)$ cuyo
-		caracter denotaremos $\Ind^G_H(\chi)$.
-		Pruebe que tenemos la siguiente fórmula para todo $g \in G$:
-		\[
-			\Ind_H^G(\chi)(g) = \frac{1}{|H|} \sum_{\substack{t\in G \\ tgt^{-1} \in H}} \chi(t^{-1}gt).
-		\]
-		\nocite{serre:representations}
+	\item Calcule la tabla de caracteres simples de $A_4$.
 
 		\newex
-	\item Sea $G$ un grupo finito.
+	\item\lookright Recuerde que el grupo simétrico $\mathfrak{S}_n$ siempre admite la \emph{representación por permutación} $\rho \acts
+		\C^n$ dada por $\sigma \cdot (v_1, \dots, v_n) = (v_{\sigma(1)}, \dots, v_{\sigma(n)})$.
+		Esta fija al vector $(1, \dots, 1)$ que genera la subrepresentación trivial, el complemento de ella es la
+		\strong{representación estándar} cuyo caracter es
+		\[
+			\chi_{\rm st}(\sigma) = \chi_{\rm perm}(\sigma) - \chi_0(\sigma) = \chi_{\rm perm}(\sigma) - 1.
+		\]
+		Pruebe que la representación estándar es siempre simple.
+		\begin{hint}
+			Ingénieselas para convertir el problema en contar dimensión del subespacio fijo de la acción por doble permutación
+			$S_n \acts \C^{n^2}$ dada por $\sigma\cdot(v_{i,j})_{i,j=1}^n := (v_{\sigma(i), \sigma(j)})_{i,j}$.
+		\end{hint}
+
+		\newex
+	\item\label{ex:degree_divides_order}
+		Sea $G$ un grupo finito.
 		\begin{enumerate}
 			\item Si $C_1, \dots, C_h$ son las clases de conjugación de $G$, pruebe que los elementos
 				\[
@@ -97,17 +102,36 @@
 		\nocite{huppert:finite_i}
 
 		\newex
-	\item\lookright Recuerde que el grupo simétrico $\mathfrak{S}_n$ siempre admite la \emph{representación por permutación} $\rho \acts
-		\C^n$ dada por $\sigma \cdot (v_1, \dots, v_n) = (v_{\sigma(1)}, \dots, v_{\sigma(n)})$.
-		Esta fija al vector $(1, \dots, 1)$ que genera la subrepresentación trivial, el complemento de ella es la
-		\strong{representación estándar} cuyo caracter es
+	\item Sea $H \le G$ un subgrupo de un grupo finito y sea $\chi$ el caracter de una representación $\rho \colon H \acts V$.
+		Recuerde de la ayudantía anterior (ej.~2c) que asociado a $V^\rho$ tenemos la representación inducida $\Ind^G_H(\rho)$ cuyo
+		caracter denotaremos $\Ind^G_H(\chi)$.
+		Pruebe que tenemos la siguiente fórmula para todo $g \in G$:
 		\[
-			\chi_{\rm st}(\sigma) = \chi_{\rm perm}(\sigma) - \chi_0(\sigma) = \chi_{\rm perm}(\sigma) - 1.
+			\Ind_H^G(\chi)(g) = \frac{1}{|H|} \sum_{\substack{t\in G \\ tgt^{-1} \in H}} \chi(t^{-1}gt).
 		\]
-		Pruebe que la representación estándar es siempre simple.
+		\nocite{serre:representations}
 \end{enumerate}
 
 \begin{additional}
+\appendix
+\section{Comentarios adicionales breves}
+Parte del objetivo del primer ejercicio está en que tras calcular la tabla de caracteres de $Q_8$ el lector puede observar que coincide con
+la del grupo diedral $D_8$, de modo que dos grupos no isomorfos pueden tener la misma tabla de caracteres.
+Esto es interesante porque la tabla de caracteres determina completamente a un grupo abeliano finito, por ejemplo; esto es un buen ejercicio
+para el lector.
+
+Así mismo, hay una serie de observaciones adicionales que el lector podría hacer tras calcular la tabla de un grupo.
+Por ejemplo, para $Q_8$ la representación simple de grado 2 es inducida del subgrupo normal $\langle i \rangle$;
+para $A_4$ todas las representaciones simples son restricciones, o bien de un cociente, o bien de $S_4$.
+Esto ejemplifica la utilidad de tener criterios sencillos para la irreducibilidad de caracteres inducidos, para lo cual recomendamos al
+lector leer sobre el criterio de Mackey en \cite{serre:representations}, \S 7.4.
+
+El ejercicio~\ref{ex:degree_divides_order} lo extraje de \cite{huppert:finite_i}.
+Dicha referencia incluye después de ello una serie de aplicaciones de la teoría de caracteres a preguntas exclusivamente de grupos finitos,
+como el famoso teorema de Burnside de la resolubilidad de grupos de orden $p^aq^b$.
+Por un largo tiempo se desconocieron pruebas con exclusivamente lenguaje de grupos de dicho teorema; además de la prueba con
+representaciones, hay otra que emplea cohomología de grupos.
+
 \printbibliography
 \end{additional}
 

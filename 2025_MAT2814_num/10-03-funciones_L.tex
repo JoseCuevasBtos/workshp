@@ -1,0 +1,109 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+% \input{../ayud-template.tex}
+% \includecomment{comment}
+
+\title{Funciones $L$ y series de Dirichlet}
+\date{\DTMdate{2025-10-03}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-num/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{enumerate}
+	\item \begin{enumerate}
+			\item\lookright Muestre que $L(\mu^2, s) = \zeta(s)/\zeta(2s)$.
+				\begin{hint}
+					Escriba $\zeta(2s) = L(f, s)$ para alguna función artimética $f$.
+				\end{hint}
+
+			\item Concluya que \smash{$\displaystyle \mu^2(n) = \sum_{d^2\mid n} \mu(d)$}.
+
+			\item Pruebe que
+				\[
+					\displaystyle \sum_{n\le x} \mu^2(n) = \frac{6}{\pi^2} x + O(\sqrt{x}).
+				\]
+		\end{enumerate}
+
+		\newex
+	\item Sea $L(f, s) := \sum_{n=1}^{\infty} f(n)/n^s$ una serie de Dirichlet y suponga que $f(1) \ne 0$ y que $L(f, s) \ne 0$ para
+		todo $s \in \C$ con $\Re s > \sigma_0$.
+		Entonces $L(f, s) = e^{G(s)}$, donde
+		\[
+			G(s) = \log f(1) + \sum_{n=2}^{\infty} \frac{(f' * f^{-1})(n)/\log n}{n^s},
+		\]
+		donde $f'(n) = f(n)\log(n)$ y donde $f^{-1}$ denota la inversa respecto a convolución
+		(i.e.,\break $(f * f^{-1})(n) = \delta_{1, n}$).
+		\nocite{apostol:analytic}
+
+		\newex
+	\item\label{ex:dirichlet_zeta} Considere la función dseta de Dirichlet
+		\[
+			\zeta_{\Q(\ui)}(s) = \sum_{\mathfrak{a}\ne 0} \frac{1}{\numnorm(\mathfrak{a})^s},
+		\]
+		donde $\mathfrak{a}$ recorre los ideales de los enteros gaussianos $\Z[\ui]$ y donde $\numnorm(\mathfrak{a}) = |\Z[i] / \mathfrak{a}|$.
+		\begin{enumerate}
+			\item Pruebe que si $\mathfrak{a} = \beta \Z[\ui]$, entonces $\numnorm(\mathfrak{a}) = \galnorm_{\Q(\ui)/\Q}(\beta)
+				= |\beta|^2$.
+
+			\item Pruebe que la serie que define a $\zeta_{\Q(\ui)}$ converge para $s > 1$.
+
+			\item\lookst
+				Pruebe que $\Res_{s=1} \zeta_{\Q(\ui)} := \lim_{s \to 1^+} \zeta_{\Q(\ui)}(s)/(s - 1) = \pi$.
+		\end{enumerate}
+
+		\newex
+	\item\label{ex:bound_height} \lookst
+		\textbf{Contar puntos de altura acotada en $\PP^1(\Q)$:}
+		Recuerde que un punto racional en la recta proyectiva es un par $[x : y]$, donde $x, y \in \Q$, no son ambos nulos y $[x :
+		y] = [z : w]$ syss $x = \lambda z$ e $y = \lambda w$ para algún $\lambda \in \Q^\times$.
+		La \emph{altura} se define como $H([x : y]) = \max\{ |x|, |y| \}$, donde $x, y$ son enteros coprimos.
+
+		Dado $B \ge 0$ real, demuestre que la cantidad de puntos $[x : y] \in \PP^1(\Q)$ de altura acotada $H([x : y]) \le B$ es
+		$$ \frac{12}{\pi^2}B^2 + O(B \log B). $$
+		\begin{hint}
+			Uno puede observar que esto equivale a contar pares de coprimos y, mediante una fórmula recursiva, reducirse a calcular
+			asintóticamente
+			$$ \sum_{k=1}^{n} 2\phi(k), $$
+			donde ésto representa la función $\phi$ de Euler.
+			% Empleando inversión de Möbius podemos reescribirlo en términos de la función $\mu$ de Möbius y, finalmente, reconocer este problema de
+			% la ayudantía <<$O$ grande, $o$ chica>> del 25 de agosto.
+		\end{hint}
+\end{enumerate}
+
+\begin{additional}
+\appendix
+\section{Comentarios adicionales}
+El ejercicio~\ref{ex:dirichlet_zeta} es un caso particular de la función dseta de Dirichlet que se define parecido, como suma formal con
+ideales en un anillo $\mathcal{O}$ de enteros algebraicos.
+En primer lugar, empleamos ideales para evitar repetición, similar a como en $\Z$ sumamos a $|n|^s = n^s$ y no a $\lvert-n\rvert^s = n^s$.
+La segunda razón está en que si bien los elementos de $\mathcal{O}$ no satisfacen factorización única (por lo que no habría análogo del
+producto de Euler), los ideales sí la satisfacen y, por tanto, la función dseta de Dirichlet siempre tiene un producto de Euler que ahora
+recorre ideales primos.
+
+El residuo en $s = 1$ es de sumo interés para teoristas de números ya que involucra varios invariantes del anillo $\mathcal{O}$;
+con ello también quiero decir que el \textquote{$\pi$} no es casualidad.
+Vid.\ \citeauthor{lang:algebraic}~\cite[259]{lang:algebraic} para más detalles.
+
+El ejercicio~\ref{ex:bound_height} fue inspirado en el \textbf{teorema de Schanuel} que da fórmulas explícitas para el conteo de puntos
+racionales de altura acotada en $\PP^n(\Q)$;
+el lector puede leer más al respecto en \cite{hindry:diophantine}.
+
+\printbibliography[title={Referencias y lecturas adicionales}]
+\end{additional}
+
+\end{document}

@@ -51,7 +51,8 @@
 		\nocite{apostol:analytic}
 
 		\newex
-	\item\label{ex:dirichlet_zeta} Considere la función dseta de Dirichlet
+	\item\label{ex:dirichlet_zeta}\lookright
+		Considere la función dseta de Dirichlet
 		\[
 			\zeta_{\Q(\ui)}(s) = \sum_{\mathfrak{a}\ne 0} \frac{1}{\numnorm(\mathfrak{a})^s},
 		\]
@@ -60,10 +61,25 @@
 			\item Pruebe que si $\mathfrak{a} = \beta \Z[\ui]$, entonces $\numnorm(\mathfrak{a}) = \galnorm_{\Q(\ui)/\Q}(\beta)
 				= |\beta|^2$.
 
-			\item Pruebe que la serie que define a $\zeta_{\Q(\ui)}$ converge para $s > 1$.
+			% \item Para el siguiente ejercicio conviene recordar que un número prim
+			\item Pruebe que tenemos la siguiente expansión como producto infinito
+				\[
+					\zeta_{\Q(\ui)}(s) = \frac{1}{1 - 2^{-s}} \cdot \prod_{p\equiv 1\pod 4} \frac{1}{(1 - p^{-s})^2}
+					\cdot \prod_{p\equiv 3 \pod 4} \frac{1}{1 - p^{-2s}}.
+				\]
+
+			\item Pruebe que la serie que define a $\zeta_{\Q(\ui)}$ converge para $\Re s > 1$.
 
 			\item\lookst
 				Pruebe que $\Res_{s=1} \zeta_{\Q(\ui)} := \lim_{s \to 1^+} \zeta_{\Q(\ui)}(s)/(s - 1) = \pi$.
+				\begin{hint}
+					Para ello, necesitará recordar la siguiente asintótica que vimos en la ayudantía
+					\textquote{Funciones multiplicativas} del 4 de septiembre:
+					\[
+						\sum_{n\le x} r(n) = \pi x + O(\sqrt{x}),
+					\]
+					donde $r(n)$ cuenta las formas de escribir a $n$ como suma de cuadrados.
+				\end{hint}
 		\end{enumerate}
 
 		\newex
@@ -76,12 +92,9 @@
 		Dado $B \ge 0$ real, demuestre que la cantidad de puntos $[x : y] \in \PP^1(\Q)$ de altura acotada $H([x : y]) \le B$ es
 		$$ \frac{12}{\pi^2}B^2 + O(B \log B). $$
 		\begin{hint}
-			Uno puede observar que esto equivale a contar pares de coprimos y, mediante una fórmula recursiva, reducirse a calcular
-			asintóticamente
-			$$ \sum_{k=1}^{n} 2\phi(k), $$
-			donde ésto representa la función $\phi$ de Euler.
-			% Empleando inversión de Möbius podemos reescribirlo en términos de la función $\mu$ de Möbius y, finalmente, reconocer este problema de
-			% la ayudantía <<$O$ grande, $o$ chica>> del 25 de agosto.
+			Considere los puntos en $\Z^2 \setminus \{ (0, 0) \}$ de \textquote{altura} $\le B$ (i.e., $H(x, y) := \max\{ |x|,
+			|y| \} \le B$) y ahora considere los puntos de coordenadas \emph{coprimas} de altura $\le B$.
+			Mediante inversión de Möbius obtenga una fórmula para el segundo y relaciónelo con el problema del enunciado.
 		\end{hint}
 \end{enumerate}
 

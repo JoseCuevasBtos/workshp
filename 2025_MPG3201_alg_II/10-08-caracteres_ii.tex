@@ -1,0 +1,233 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\usepackage{minted}
+\usemintedstyle{colorful}
+\setminted{
+	mathescape,
+	linenos,
+	autogobble,
+	bgcolor=black!5,
+	tabsize=2,
+	fontsize=\small
+}
+
+% \usepackage{../ayud-template}
+% \input{../general.tex}
+% % \input{../graphics.tex}
+
+\usepackage{multicol}
+
+\title{Más acerca de caracteres}
+\date{\DTMdate{2025-10-08}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{center}
+	\slshape
+	A lo largo de esta ayudantía, siempre $G$ denotará un grupo finito y $\C$ será el cuerpo de coeficientes para sus representaciones.
+\end{center}
+
+% \begin{enumerate}
+% 	\item\label{ex:degree_divides_order}
+% 		% Sea $G$ un grupo finito.
+% 		\begin{enumerate}
+% 			\item Si $C_1, \dots, C_h$ son las clases de conjugación de $G$, pruebe que los elementos
+% 				\[
+% 					c_j := \sum_{g\in C_j} [g] \in \C[G],
+% 				\]
+% 				forman una $\C$-base para el centro%
+% 				\footnote{Relativo al producto, obvio.}
+% 				$Z(\C[G])$.
+
+% 			\item Pruebe que, para todo caracter $\chi$ y todo $g \in G$, se cumple que $\chi(g)$ es un entero algebraico (i.e., es raíz de un polinomio mónico con coeficientes en $\Z$).
+
+% 			\item\lookst
+% 				Sea $\chi$ un caracter simple de $G$ de grado $n := \chi(1)$, y sea $g \in C_j \subseteq G$.
+% 				Pruebe que $|C_j| \frac{1}{n} \chi(g)$ es un entero algebraico.
+% 				\begin{hint}
+% 					Para ello, note que la representación $\rho$ que induce a $\chi$ satisface que $\rho(c_j) = b_j\Id$
+% 					y pruebe que $b_j$ es el valor propio de una matriz a coeficientes enteros.
+% 				\end{hint}
+% 		\end{enumerate}
+% \end{enumerate}
+
+% \newex
+% Los siguientes dos ejercicios muestran aplicaciones del ejercicio anterior:
+% \begin{enumerate}[resume]
+% 	\item Pruebe que el grado de toda representación simple divide al orden de $G$.
+% 		\begin{hint}
+% 			Para esto podría necesitar que los enteros algebraicos son cerrados bajo suma y productos, y que los
+% 			enteros algebraicos de $\Q$ son exactamente los enteros $\Z$.
+% 		\end{hint}
+% 		\nocite{huppert:finite_i}
+
+% 	\item
+% 		\begin{enumerate}
+% 			\item Sea $\rho \colon G \to \GL_n(\C)$ una representación simple de grado $n$ y sea $g \in G$ un elemento cuya clase de conjugación tiene $m$ elementos.
+% 				Pruebe que si $m$ y $n$ son coprimos, entonces o bien $\rho(g) = \lambda\Id$ para algún $\lambda \in \C^\times$, o bien $\tr\rho(g) = 0$.
+
+% 			\item Pruebe que si $G$ es no abeliano y tiene una clase de conjugación $\ne \{ 1 \}$ cuya cardinalidad es la
+% 				potencia de un primo, entonces no es un grupo simple.
+% 		\end{enumerate}
+
+% 	\item \textbf{El grupo aditivo de Grothendieck:}
+% 		Sea $\Lambda$ un anillo.
+% 		Se define el grupo de Grothendieck de $\Lambda$, denotado $\mathsf{K}^0(\Lambda)$, como el grupo abeliano libre cuyos
+% 		genereadores son los $\Lambda$-módulos izquierdos finitamente generados $[M]$ cocientado por las relaciones $[M_1] + [M_3] = [M_2]$
+% 		si existe una sucesión exacta $0 \to M_1 \to M_2 \to M_3 \to 0$.
+
+% 		\begin{enumerate}
+% 			\item Pruebe que, para un cuerpo $k$, se cumple que $\mathsf{K}^0(k) \cong \Z$ y que la función que a un $k$-espacio
+% 				vectorial $V$ le asocia $V \mapsto [V] \in \mathsf{K}^0(k)$ corresponde a $\dim_k$ bajo este isomorfismo.
+
+% 			\item Pruebe también que $\mathsf{K}^0(\Z) \cong \Z$ y describa qué le asocia a un grupo abeliano finitamente
+% 				generado.
+
+% 			\item Sea $G$ un grupo finito y sean $\chi_1, \dots, \chi_h$ sus caracteres simples.
+% 				Pruebe que
+% 				\[
+% 					\mathsf{K}^0( \C[G] ) \cong \bigoplus_{j=1}^h \Z\cdot\chi_j \le \C^{G}.
+% 				\]
+% 		\end{enumerate}
+% \end{enumerate}
+\begin{enumerate}
+	\item Pruebe que la multiplicidad de una representación simple en la representación regular es su grado (i.e., la dimensión del espacio vectorial donde actúa).
+
+		\newex
+	\item Sean $V, W, V', W'$ un conjunto de representaciones.
+		Recuerde que $\Hom_\C(V, W)$ tiene una representación natural definida por $g\odot\varphi(v) := g \varphi(g^{-1}v)$.
+		\begin{enumerate}
+			\item Pruebe que $\Hom_\C(V, W) \otimes_\C \Hom_\C(V', W') \cong \Hom_\C(V \otimes V', W \otimes W')$.
+
+			\item Denotemos por $\Hom_{\C[G]}(V, W)$ al módulo de homomorfismos \emph{de representaciones.}
+				Pruebe que
+				\[
+					\dim\Hom_{\C[G]}(V, W) = \langle \chi_V, \chi_W \rangle.
+				\]
+				
+			\item Concluya el \textquote{lema de Yoneda} para representaciones:
+				Si $V, V'$ son tales que $\Hom_{\C[G]}(V, W) \cong \Hom_{\C[G]}(V', W)$, entonces $V \cong V'$.
+		\end{enumerate}
+
+		\newex
+	\item \textbf{Reciprocidad de Frobenius:}
+		Sea $\varphi \colon H \to G$ un homomorfismo de grupos finitos.
+		\begin{enumerate}
+			\item Pruebe que dado un caracter $\chi$ de $H$ y $\psi$ de $G$, se cumple que
+				\[
+					\textstyle
+					\langle \chi, \Res_H^G(\psi) \rangle_H = \langle \Ind_H^G(\chi), \psi \rangle_G.
+				\]
+
+			\item Pruebe que, dadas representaciones $V$ sobre $G$ y $W$ sobre $H$, se cumple que
+				\[
+					\textstyle
+					V \otimes_\C \Ind_H^G(W) \cong \Ind_H^G(\Res_H^G(V) \otimes_\C W).
+				\]
+		\end{enumerate}
+
+		\newex
+	\item Sea $H \le G$ un subgrupo de un grupo finito y sea $\chi$ el caracter de una representación $\rho \colon H \acts V$.
+		Recuerde de la ayudantía anterior (ej.~2c) que asociado a $V^\rho$ tenemos la representación inducida $\Ind^G_H(\rho)$ cuyo
+		caracter denotaremos $\Ind^G_H(\chi)$.
+		Pruebe que tenemos la siguiente fórmula para todo $g \in G$:
+		\[
+			\Ind_H^G(\chi)(g) = \frac{1}{|H|} \sum_{\substack{t\in G \\ tgt^{-1} \in H}} \chi(t^{-1}gt).
+		\]
+		\nocite{serre:representations}
+
+		\newex
+	\item Calcule la tabla de caracteres para el grupo de Heisenberg
+		\[
+			H(\Fp[3]) =
+			\left\{
+				\begin{bmatrix}
+					1 & a & b \\
+					0 & 1 & c \\
+					0 & 0 & 1
+				\end{bmatrix} : a, b, c \in \Fp[3]
+			\right\} \le \SL_2(\Fp[3]).
+		\]
+\end{enumerate}
+
+\begin{additional}
+\appendix
+\section{Ejercicios propuestos}
+\begin{enumerate}
+	\item Sea $G \acts V$ una representación compleja simple.
+		% Se dice que $V$ es \strong{de tipo complejo} si $V \not\cong V^*$, que es \strong{de tipo real} si posee una forma simétrica
+		% no degenerada $\langle -, - \rangle$ que es invariante por $G$ (i.e., $\langle gv, gw \rangle = \langle v, w \rangle$ para
+		% todo $v, w \in V$), o que es \strong{de tipo cuaterniónico} si posee una forma hermitiana (i.e., tal que
+		% \[
+		% 	\forall v, w \in V, \; \lambda \in \C, \qquad
+		% 	\langle \lambda v, w \rangle = \langle v, \overline{\lambda} w \rangle = \lambda \langle v, w \rangle
+		% \]
+		% y que es no degenerada) que es invariante por $G$.
+		Se dice que $V$ es
+		\begin{description}
+			\item[De tipo complejo] Si $V \not\cong V^*$.
+			\item[De tipo real] Si posee una forma simétrica no degenerada $\langle -, - \rangle$ que es invariante por $G$
+				(i.e., $\langle gv, gw \rangle = \langle v, w \rangle$ para todo $v, w \in V$).
+			\item[De tipo cuaterniónico] Si posee una forma hermitiana (i.e., tal que
+				\[
+					\forall v, w \in V, \; \lambda \in \C, \qquad
+					\langle \lambda v, w \rangle = \langle v, \overline{\lambda} w \rangle = \lambda \langle v, w \rangle
+				\]
+				y que es no degenerada) que es invariante por $G$.
+		\end{description}
+		Pruebe que el anillo de endomorfismos $\End_{\R[G]}(V)$ es $\C$ (resp.\ $\Mat_2(\R)$, $\HH$) si $V$ es de tipo complejo
+		(resp.\ de tipo real, de tipo cuaterniónico).
+
+	\item Defina el índice de Frobenius-Schur como
+		\[
+			\mathrm{FS}(V) =
+			\begin{cases}
+				\phantom{-}0, & V\text{ es de tipo complejo,} \\
+				\phantom{-}1, & V\text{ es de tipo real,} \\
+				-1, & V\text{ es de tipo cuaterniónico.} \\
+			\end{cases}
+		\]
+		\begin{enumerate}
+			\item Pruebe que $\mathrm{FS}(V) = \dim_\C (\Sym^2V)^G - \dim_\C(\bigwedge^2 V)^G$.
+				\begin{hint}
+					Para esto, emplee la descomposición de representaciones $V \otimes V = \Sym^2V \oplus \bigwedge^2 V$
+					y argumente por qué el subespacio $G$-invariante de $V^{\otimes 2}$ tiene dimensión 1.
+				\end{hint}
+
+			\item \textbf{Teorema de Frobenius-Schur:}
+				Pruebe que la cantidad de elementos de orden 2 en $G$ es $\sum_V \dim(V)\mathrm{FS}(V)$, donde la sumatoria
+				recorre las representaciones complejas simples de $G$.
+		\end{enumerate}
+\end{enumerate}
+
+% \section{Comentarios adicionales breves}
+% El ejercicio~\ref{ex:degree_divides_order} lo extraje de \cite{huppert:finite_i}.
+% Dicha referencia incluye después de ello una serie de aplicaciones de la teoría de caracteres a preguntas exclusivamente de grupos finitos,
+% como el famoso teorema de Burnside de la resolubilidad de grupos de orden $p^aq^b$.
+% Por un largo tiempo se desconocieron pruebas con exclusivamente lenguaje de grupos de dicho teorema; además de la prueba con
+% representaciones, hay otra que emplea cohomología de grupos.
+
+\printbibliography
+\end{additional}
+
+\end{document}

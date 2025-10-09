@@ -1,0 +1,160 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+% \input{../ayud-template.tex}
+% \includecomment{comment}
+
+\title{Caracteres primitivos y la función Gamma}
+\date{\DTMdate{2025-10-03}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-num/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{La función Gamma}
+\begin{enumerate}
+	\item
+		\begin{enumerate}
+			\item Pruebe que el siguiente producto infinito
+				\[
+					\prod_{n \ge 1} \left( 1 + \frac{z}{n} \right) e^{-z/n}
+				\]
+				define una función entera (i.e., holomorfa en todo $\C$).
+
+			\item Defina la función de Weierstrass
+				\[
+					\Delta_\xi(z) := z e^{\xi z} \prod_{n \ge 1} \left( 1 + \frac{z}{n} \right) e^{-z/n},
+				\]
+				donde $\xi \in \C$ es una constante a elección.
+				Pruebe que $\Delta_\xi(z + 1) = \frac{1}{z} \Delta_\xi(z)$ para exactamente un único número complejo $\xi$;
+				tal valor es la \emph{constante de Euler-Mascheroni}
+				\[
+					\gamma = \lim_n \left( \sum_{k=1}^{n} \frac{1}{k} - \log n \right).
+				\]
+
+			\item Pruebe que $\Gamma(z) := 1/\Delta_\gamma(z)$ es una función meromorfa que tiene polos exclusivamente en los enteros negativos
+				\[
+					0, \qquad -1, \qquad -2, \qquad -3, \qquad \dots
+				\]
+				y sus polos son simples.
+		\end{enumerate}
+\end{enumerate}
+Para el siguiente problema, será útil el siguiente criterio de unicidad:
+\begin{thm}[Wielandt]
+	Sea $f$ una función holomorfa en el semiplano derecho $\{ z \in \C : \Re z > 0 \}$ tal que $f(z + 1) = zf(z)$, entonces admite
+	extensión meromorfa a todo $\C$ con polos posiblemente en los enteros negativos $\Z_{\le 0}$.
+	% Más aún $u(z) := f(z)f(1 - z)$
+	Si además, $f$ es acotada en la franja $\{ z \in \C : 1 \le \Re z \le 2 \}$, entonces $f(z) = f(1) \Gamma(z)$.
+\end{thm}
+\begin{enumerate}[resume]
+	\item \textbf{Fórmula de duplicación de Legendre:}
+		Pruebe que la función $\Gamma$ satisface
+		\[
+			\Gamma(2z) \Gamma\left( \tfrac{1}{2} \right) = 2^{2z - 1} \Gamma(z) \Gamma\left( z + \tfrac{1}{2} \right).
+		\]
+
+	\item\lookst
+		\textbf{Aproximación de Stirling:}
+		\begin{enumerate}
+			\item Pruebe que
+				\[
+					\log(n!) = \left( n + \frac{1}{2} \right)\log n - n + 1 + \int_{1}^{n} \frac{P_1(t)}{t} \, \ud t,
+				\]
+				donde $P_1(t) := t - \lfloor t \rfloor + 1/2$ es la \textquote{función serrucho}.
+				Esta función es 1-periódica y toma valores en $[-1/2, 1/2)$.
+
+			\item Pruebe que
+				\[
+					\int_{1}^{n} \frac{P_1(t)}{t} \, \ud t = -\int_{1}^{n} \frac{P_1(t)^2}{t( \lfloor t \rfloor + 1/2 )}
+					\, \ud t.
+				\]
+
+			\item Concluya que
+				\[
+					n! \sim \sqrt{2\pi} n^{n + 1/2} e^{-n}.
+				\]
+				\begin{hint}
+					Defina
+					\[
+						C_n := \frac{n!}{n^{n + 1/2}e^{-n}}
+					\]
+					y pruebe que $C_\infty := \lim_n C_n$ existe y es un real estrictamente positivo.
+					Luego considere el límite de $C_n^4/(C_{2n} C_{2n+1})$.
+				\end{hint}
+		\end{enumerate}
+\end{enumerate}
+
+\section{Caracteres}
+\begin{enumerate}[resume]
+	\item Sea $\chi \colon (\Z/m\Z)^\times \to \C^\times$ un caracter.
+		Pruebe que existe un mínimo entero $f \ge 0$ tal que $f \mid m$ y existe un caracter $\bar\chi$ de modo que el siguiente diagrama conmuta
+		\[\begin{tikzcd}[column sep=small]
+			(\Z/m\Z)^\times \ar[rr, "\chi"] \drar[two heads] & & \C^\times \\
+			{} & (\Z/f\Z)^\times \urar["\bar\chi"']
+		\end{tikzcd}\]
+		Dicho $f$ se conoce como el \strong{conductor} de $\chi$.
+		Se dice que $\chi$ es \strong{primitivo} si $f = m$.
+
+	\item Pruebe que si $\chi \colon (\Z/f\Z)^\times \to \C^\times$ es primitivo y $f \mid m$, entonces el caracter $\chi^* := \rho
+		\circ \chi \colon (\Z/m\Z)^\times \to \C^\times$ satisface
+		\[
+			L(\chi^*, s) = L(\chi, s) \prod_{p \mid m} (1 - p^{-s}).
+		\]
+\end{enumerate}
+
+\begin{additional}
+\appendix
+\section{Comentarios adicionales}
+La función $\Gamma$ tiene una larga y fascinante historia, sus propiedades fueron estudiados por varios de los matemáticos más importantes
+incluyendo (pero no limitado) a L.~Euler, C.F.~Gauss, K.~Weierstrass y A.-M.~Legendre.
+
+Hay varios resultados que apuntan a la naturalidad y/o unicidad de la función $\Gamma$, incluyendo:
+\begin{thm}[Bohr-Mollerup]
+	Si $f \colon (0, \infty) \to (0, \infty)$ es una función continua tal que:
+	\begin{enumerate}[(a)]
+		\item $f(z + 1) = zf(z)$.
+		\item Es log-convexa, es decir,
+			\[
+				\forall x, y \in (0, \infty), \; t \in [0, 1], \qquad
+				f(tx + (1 - t)y) \le f(x)^t \cdot f(y)^{1-t}.
+				% \log f(tx + (1 - t)x) \le t\log f(x) + (1-t)\log f(y).
+			\]
+	\end{enumerate}
+	Entonces $f(z) = f(1) \Gamma(z)$.
+\end{thm}
+\begin{thm}
+	Sea $f$ una función meromorfa en $\C$, que manda $(0, \infty) \to (0, \infty)$ y tal que
+	\[
+		f(z + 1) = zf(z), \qquad \sqrt{\pi} f(2z) = 2^{2z - 1}f(z) f\left( z + \tfrac{1}{2} \right).
+	\]
+	Entonces $f(z) = \Gamma(z)$.
+\end{thm}
+Puede leer pruebas de estos datos en \cite{remmert:classical}, \S 2.2.
+
+El tratamiento de la función $\Gamma$ es sumamente clásico.
+Puede leer al respecto en \cite{simon:complex}, \cite{lang:complex} y en el conciso libro de \citeauthor{artin:gamma}~\cite{artin:gamma}.
+% \nocite{washington:cyclotomic}
+
+Los caracteres no primitivos (y sus funciones $L$) tienen usos en la teoría de números.
+Debido a que el factor de corrección es sumamente sencillo, podemos calcular residuos y otros invariantes en caracteres no primitivos.
+Vea \citeauthor{washington:cyclotomic}~\cite{washington:cyclotomic}.
+
+\printbibliography[title={Referencias y lecturas adicionales}]
+\end{additional}
+
+\end{document}

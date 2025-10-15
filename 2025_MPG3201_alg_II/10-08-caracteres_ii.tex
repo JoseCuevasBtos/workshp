@@ -10,7 +10,7 @@
 \usemintedstyle{colorful}
 \setminted{
 	mathescape,
-	linenos,
+	% linenos,
 	autogobble,
 	bgcolor=black!5,
 	tabsize=2,
@@ -24,7 +24,7 @@
 \usepackage{multicol}
 
 \title{Más acerca de caracteres}
-\date{\DTMdate{2025-10-08}}
+\date{\DTMdate{2025-10-15}}
 
 \author{José Cuevas Barrientos}
 \email{josecuevasbtos@uc.cl}
@@ -129,22 +129,22 @@
 				Si $V, V'$ son tales que $\Hom_{\C[G]}(V, W) \cong \Hom_{\C[G]}(V', W)$, entonces $V \cong V'$.
 		\end{enumerate}
 
-		\newex
-	\item \textbf{Reciprocidad de Frobenius:}
-		Sea $\varphi \colon H \to G$ un homomorfismo de grupos finitos.
-		\begin{enumerate}
-			\item Pruebe que dado un caracter $\chi$ de $H$ y $\psi$ de $G$, se cumple que
-				\[
-					\textstyle
-					\langle \chi, \Res_H^G(\psi) \rangle_H = \langle \Ind_H^G(\chi), \psi \rangle_G.
-				\]
+		% \newex
+	% \item \textbf{Reciprocidad de Frobenius:}
+		% Sea $\varphi \colon H \to G$ un homomorfismo de grupos finitos.
+		% \begin{enumerate}
+		% 	\item Pruebe que dado un caracter $\chi$ de $H$ y $\psi$ de $G$, se cumple que
+		% 		\[
+		% 			\textstyle
+		% 			\langle \chi, \Res_H^G(\psi) \rangle_H = \langle \Ind_H^G(\chi), \psi \rangle_G.
+		% 		\]
 
-			\item Pruebe que, dadas representaciones $V$ sobre $G$ y $W$ sobre $H$, se cumple que
-				\[
-					\textstyle
-					V \otimes_\C \Ind_H^G(W) \cong \Ind_H^G(\Res_H^G(V) \otimes_\C W).
-				\]
-		\end{enumerate}
+		% 	\item Pruebe que, dadas representaciones $V$ sobre $G$ y $W$ sobre $H$, se cumple que
+		% 		\[
+		% 			\textstyle
+		% 			V \otimes_\C \Ind_H^G(W) \cong \Ind_H^G(\Res_H^G(V) \otimes_\C W).
+		% 		\]
+		% \end{enumerate}
 
 		\newex
 	\item Sea $H \le G$ un subgrupo de un grupo finito y sea $\chi$ el caracter de una representación $\rho \colon H \acts V$.
@@ -156,8 +156,16 @@
 		\]
 		\nocite{serre:representations}
 
+% 		\newex
+% 	\item un grupo finito $G$ se dice \strong{supersoluble} si existe una serie de composición
+% 		\[
+% 			\{ 1 \} =: G_0 \nsl G_1 \nsl \cdots \nsl G_n := G,
+% 		\]
+% 		en donde cada $G_j \nsl G$ y donde los cocientes sucesivos $G_j/G_{j-1}$ son cíclicos.
+
 		\newex
-	\item Calcule la tabla de caracteres para el grupo de Heisenberg
+	\item\label{ex:heisenberg_char_table}
+		Calcule la tabla de caracteres para el grupo de Heisenberg
 		\[
 			H(\Fp[3]) =
 			\left\{
@@ -220,12 +228,65 @@
 		\end{enumerate}
 \end{enumerate}
 
-% \section{Comentarios adicionales breves}
-% El ejercicio~\ref{ex:degree_divides_order} lo extraje de \cite{huppert:finite_i}.
-% Dicha referencia incluye después de ello una serie de aplicaciones de la teoría de caracteres a preguntas exclusivamente de grupos finitos,
-% como el famoso teorema de Burnside de la resolubilidad de grupos de orden $p^aq^b$.
-% Por un largo tiempo se desconocieron pruebas con exclusivamente lenguaje de grupos de dicho teorema; además de la prueba con
-% representaciones, hay otra que emplea cohomología de grupos.
+\section{Implementación en \textsf{sagemath}}
+El ejercicio~\ref{ex:heisenberg_char_table} ya involucra un grupo un tanto \textquote{grande}, de orden $3^3$, de modo que varios de los calculos pueden resultar tediosos,
+especialmente las clases de conjugación.
+Afortunadamente, ya no vivimos en eras arcaicas y hoy día las computadoras pueden ayudarnos en tal tarea:
+para ello, voy a ocupar la observación de que $H(\Fp)$ está generado por
+\[
+	\begin{bmatrix}
+		1 & 1 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}, \qquad
+	\begin{bmatrix}
+		1 & 0 & 1 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}, \qquad
+	\begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 1 \\
+		0 & 0 & 1
+	\end{bmatrix}.
+\]
+Y así, puedo construir el grupo de Heisenberg en \textsf{sagemath} mediante:
+\begin{minted}{sage}
+MS = MatrixSpace(GF(3), 3, 3)
+gens = [
+        MS([[1, 1, 0], [0, 1, 0], [0, 0, 1]]),
+        MS([[1, 0, 1], [0, 1, 0], [0, 0, 1]]),
+        MS([[1, 0, 0], [0, 1, 1], [0, 0, 1]]),
+        ]
+Heis = MatrixGroup(gens)
+\end{minted}
+(Aquí \mintinline{sage}{GF(3)} denota el cuerpo de orden 3. Perfectamente todo lo siguiente aplica cambiándolo por \mintinline{sage}{GF(p)} con $p$ primo a elección.)
+
+El método \mintinline{sage}{Heis.conjugacy_classes()} nos otorga las clases de conjugación, pero al imprimirlas no lo hace de manera muy legible que digamos.
+Si queremos ver un representante por clase de conjugación, podemos emplear:
+\begin{minted}{python}
+Heis.conjugacy_classes_representatives()
+\end{minted}
+No obstante, si queremos ver cada clase como una lista, el siguiente código en \textsf{Python} arroja una visualización más amena:
+\begin{minted}{python}
+def prettyprint(L: list):
+    rank = len(L[0].list())
+    lines = [ [] for _ in range(rank) ]
+    for matrix in L:
+        for i in range(rank):
+            lines[i].append( ' '.join([ str(a) for a in matrix.list()[i] ]) )
+    for l in lines:
+        print(l)
+    print()
+
+for cl in H.conjugacy_classes():
+    prettyprint(cl.list())
+\end{minted}
+% \pagebreak
+Finalmente, de querer verificar que el cálculo de una tabla estuvo correcto, podemos emplear el método
+\begin{minted}{sage}
+Heis.character_table()
+\end{minted}
 
 \printbibliography
 \end{additional}

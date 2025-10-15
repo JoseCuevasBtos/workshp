@@ -30,12 +30,30 @@
 \begin{enumerate}
 	\item
 		\begin{enumerate}
+			\item Pruebe que $E(z) := (1 - z)e^z$ satisface que
+				\[
+					\forall z \in \C : |z| < 1, \qquad
+					|1 - E(z)| \le |z|^2.
+				\]
+
 			\item Pruebe que el siguiente producto infinito
 				\[
-					\prod_{n \ge 1} \left( 1 + \frac{z}{n} \right) e^{-z/n}
+					\prod_{n \ge 1} E(-z/n) = \prod_{n \ge 1} \left( 1 + \frac{z}{n} \right) e^{-z/n}
 				\]
 				define una función entera (i.e., holomorfa en todo $\C$).
 
+				Para este inciso podría ser útil el siguiente criterio:
+				\begin{thm}
+					Un producto de funciones holomorfas $(f_n)_n \in \mathcal{H}(A)$ en un abierto conexo $A$ converge a
+					una función holomorfa $F(z) = \prod_{n=1}^{\infty} f_n(z)$ si
+					\[
+						\sum_{n=1}^{\infty} \|1 - f(z)\|_K < \infty,
+					\]
+					para todo compacto $K \subseteq A$.
+					(Aquí $\|\,\|_K$ denota la norma supremo en $K$.)
+				\end{thm}
+
+				\newex
 			\item Defina la función de Weierstrass
 				\[
 					\Delta_\xi(z) := z e^{\xi z} \prod_{n \ge 1} \left( 1 + \frac{z}{n} \right) e^{-z/n},
@@ -54,12 +72,14 @@
 				y sus polos son simples.
 		\end{enumerate}
 \end{enumerate}
+\newex
 Para el siguiente problema, será útil el siguiente criterio de unicidad:
 \begin{thm}[Wielandt]
 	Sea $f$ una función holomorfa en el semiplano derecho $\{ z \in \C : \Re z > 0 \}$ tal que $f(z + 1) = zf(z)$, entonces admite
 	extensión meromorfa a todo $\C$ con polos posiblemente en los enteros negativos $\Z_{\le 0}$.
 	% Más aún $u(z) := f(z)f(1 - z)$
 	Si además, $f$ es acotada en la franja $\{ z \in \C : 1 \le \Re z \le 2 \}$, entonces $f(z) = f(1) \Gamma(z)$.
+	(En particular, $\Gamma$ está acotada en dicha franja.)
 \end{thm}
 \begin{enumerate}[resume]
 	\item \textbf{Fórmula de duplicación de Legendre:}
@@ -67,7 +87,12 @@ Para el siguiente problema, será útil el siguiente criterio de unicidad:
 		\[
 			\Gamma(2z) \Gamma\left( \tfrac{1}{2} \right) = 2^{2z - 1} \Gamma(z) \Gamma\left( z + \tfrac{1}{2} \right).
 		\]
+		% \begin{hint}
+		% 	Puede verificar que $\Gamma$ admite la siguiente fórmula
+		% 	$ \Gamma(z) =  $
+		% \end{hint}
 
+		\newex
 	\item\lookst
 		\textbf{Aproximación de Stirling:}
 		\begin{enumerate}
@@ -99,6 +124,7 @@ Para el siguiente problema, será útil el siguiente criterio de unicidad:
 		\end{enumerate}
 \end{enumerate}
 
+\newex
 \section{Caracteres}
 \begin{enumerate}[resume]
 	\item Sea $\chi \colon (\Z/m\Z)^\times \to \C^\times$ un caracter.

@@ -1,0 +1,362 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+% \input{../ayud-template.tex}
+% \includecomment{comment}
+
+\usepackage{xcolor}
+\definecolor{niceblue}{HTML}{137DBB}
+\definecolor{nicered}{RGB}{255,77,0}
+
+% ======= TikZ ======================
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{angles, arrows, babel, calc, decorations.pathmorphing, decorations.markings, patterns, matrix, cd, spy}
+
+\title{Función dseta}
+\date{\DTMdate{2025-10-17}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-num/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{center}
+	\slshape
+	Para esta ayudantía convendrá recordar hechos conocidos de la función $\Gamma$, como su ecuación funcional $\Gamma(z + 1) = z \Gamma(z)$ y que $\Gamma(n + 1) = n!$.
+\end{center}
+\begin{enumerate}
+	\item Pruebe que los residuos de la función $\Gamma$ en $\Z_{\le 0}$ son
+		\[
+			\Res_{z=-n} \Gamma(z) := \lim_{w \to -n} (w + n)\Gamma(w) = \frac{(-1)^n}{n!}.
+		\]
+		% \begin{hint}
+		% 	Recuerde que calculamos que $\Gamma(1) = 1$.
+		% \end{hint}
+
+	\item Sean $u, c > 0$ números reales y $k \in \N_{\ne 0}$ un número natural.
+		\begin{enumerate}
+			\item Pruebe que
+				\[
+					\frac{u^{-z} \Gamma(z)}{\Gamma(z + k + 1)} = \frac{u^{-z}}{z(z + 1) \cdots (z + k)}.
+				\]
+
+			\item Concluya que, si $u \le 1$, para un radio real $R > k$ se cumple que
+				\[
+					\frac{1}{2\pi\ui}\oint_{|z|=R} \frac{u^{-z}}{z(z + 1) \cdots (z + k)} \, \ud z = \dfrac{(1 -
+					u)^k}{k!}.
+				\]
+				\begin{hint}
+					Conviene emplear la fórmula de residuos de Cauchy:
+					\begin{equation}
+						\frac{1}{2\pi\ui}\oint_{|z|=R} f(z) \, \ud z = \sum_{|a|<R} \Res(f; a).
+						\tqedhere
+					\end{equation}
+				\end{hint}
+
+			\item Pruebe que, si $R > 2k$, entonces
+				\[
+					\left\lvert\frac{u^{-z}}{z(z + 1)\cdots(z + k)}\right\rvert
+					\le \frac{u^{-c}}{R(R/2)^k}
+				\]
+				para todo $z$ con $|z| = R$ y con $\Re z \ge c$ (resp.\ $\Re z < c$) si $u > 1$ (resp.\ $u \le 1$).
+
+			\item Concluya que
+				\[
+					\frac{1}{2\pi\ui} \int_{c - \infty\ui}^{c + \infty\ui} \frac{u^{-z}}{z(z+1)\cdots(z+k)} \, \ud z =
+					\begin{cases}
+						\dfrac{(1 - u)^k}{k!}, & 0 < u \le 1, \\
+						0, & u > 1.
+					\end{cases}
+				\]
+				\begin{hint}
+					Emplee el hecho de que conoce que el lado derecho son los residuos de la función y descomponga el
+					contorno en una parte rectilínea como el dominio que quiere integrar, y otra parte en donde la
+					integral converge a 0 cuando $R \to \infty$.
+					Ojo que cuando $u > 1$ conviene tomar una región que evite a los polos en $0, -1, \dots, -k$.
+				\end{hint}
+		\end{enumerate}
+
+	\item Sea $s \in \C$.
+		\begin{enumerate}
+			\item Pruebe que, para $\Re s > 0$, se tiene
+				\[
+					\zeta(s) = \sum_{n=1}^{N} \frac{1}{n^s} - s \int_{N}^{\infty} \frac{x - \lfloor x \rfloor}{x^{s+1}} \, \ud
+					x + \frac{N^{1-s}}{s - 1}.
+				\]
+				\begin{hint}
+					Para $\Re s > 1$ se sigue de despejar la integral separándola en los intervalos $[N, N + 1]$.
+					Luego argumente por qué la fórmula sigue siendo válida para $\Re s > 0$.
+				\end{hint}
+
+			\item Pruebe que, para $\Re s > 0$, se tiene que
+				\[
+					\zeta'(s) = \sum_{n=1}^{N} \frac{\log n}{n^s} + s \int_{N}^{\infty} \frac{(x - \lfloor x \rfloor)\log
+					x)}{x^{s+1}} \, \ud x - \int_{N}^{\infty} \frac{x - \lfloor x \rfloor}{x^{s+1}} \, \ud x
+					- \frac{N^{1-s}\log N}{s - 1} - \frac{N^{1-s}}{(s-1)^2}.
+				\]
+
+			\item Pruebe que para todo $s \in \C$ con $\Im s =: t \ge e$ y todo $A > 0$, existe una constante $M := M(A) > 0$ tal que
+				\[
+					|\zeta(s)| \le M\log t, \qquad |\zeta'(s)| \le M\log^2 t,
+				\]
+				para todo $s$ con
+				\[
+					\Re s > \max\mathopen{}\left\{ \frac{1}{2}, 1 - \frac{A}{\log t} \right\}\mathclose{}.
+				\]
+				\begin{hint}
+					Será conveniente tomar $N = \lfloor t \rfloor$ en las fórmulas previas.
+				\end{hint}
+		\end{enumerate}
+		\nocite{apostol:analytic}
+
+	\item Sea $s \in \C$ con $\Re s > 0$.
+		\begin{enumerate}
+			\item Pruebe que tenemos la fórmula
+				\[
+					\Gamma(s/2) n^{-s} \pi^{-s/2} = \int_{0}^{\infty} x^{\frac{1}{2} s - 1} e^{-n^2 \pi x} \, \ud x.
+				\]
+
+			\item Defina
+				\[
+					\omega(x) := \sum_{n=1}^{\infty} e^{-n^2 \pi x}, \qquad \theta(x) := \sum_{n=-\infty}^{\infty}
+					e^{-n^2 \pi x}.
+				\]
+				Pruebe que $2 \omega(x) = \theta(x) - 1$ y que
+				\[
+					\pi^{-s/2}\Gamma\left( \tfrac{1}{2}s \right) \zeta(s) = \int_{0}^{\infty} x^{\frac{1}{2}s - 1}
+					\omega(x) \, \ud x.
+				\]
+
+			% \item Concluya que $2\omega(x) = \theta(x) - 1$.
+		\end{enumerate}
+		\nocite{davenport:multiplicative}
+\end{enumerate}
+
+\begin{additional}
+\printbibliography
+
+\newpage
+\section{Soluciones}
+\begin{enumerate}
+	\item Basta proceder por inducción, donde el caso base viene de que
+		\[
+			\lim_{z\to 0} z\Gamma(z) = \lim_{z\to 0} \Gamma(z + 1) = 1.
+		\]
+		Así, en general
+		\begin{align*}
+			\lim_{z \to -n-1} (z + n+1)\Gamma(z) &= \lim_{z\to -n-1} \frac{z + n + 1}{z} \Gamma(z + 1) \\
+							     &= \lim_{w\to -n} (w + n)\Gamma(w) \frac{1}{w - 1}
+							     = \frac{(-1)^n}{n!} \frac{1}{(-n-1)} = \frac{(-1)^{n+1}}{(n+1)!}.
+		\end{align*}
+
+	\item
+		\begin{enumerate}
+			\item Basta notar que
+				\[
+					\Gamma(z + k + 1) = (z + k) \Gamma(z + k) = (z + k)(z + k - 1) \cdots z \Gamma(z),
+				\]
+				y luego despejar.
+
+			\item El teorema de residuos de Cauchy dice que a la derecha aparecen los residuos de $f$ que suceden necesariamente
+				en los polos.
+				La función
+				\[
+					\frac{u^{-z}}{z(z + 1)\cdots(z + k)}
+				\]
+				solo tiene polos en $z \in \{ 0, -1, \dots, -k \}$ y, por el inciso anterior, tenemos luego que
+				\begin{align*}
+					\frac{1}{2\pi\ui}\oint_{|z|=R} \frac{u^{-z}}{z(z + 1)\cdots(z + k)} \, \ud z
+					&= \sum_{n=0}^{k} \Res_{z=-n} \frac{u^{-z}\Gamma(z)}{\Gamma(z + k + 1)}, \\
+					\intertext{pero $u^{-z}/\Gamma(k + 1 - n)$ no tienen polo en $z \to -n$, así que una álgebra de límites dice
+					que tenemos}
+					&= \sum_{n=0}^{k} \frac{u^n}{\Gamma(k + 1 - n)} \Res_{z=-n}\Gamma(z), \\
+					&= \sum_{n=0}^{k} \frac{u^n}{(k - n)!} \frac{(-1)^n}{n!} = \frac{1}{k!}
+					\sum_{n=0}^{k}\binom{k}{n} (-u)^n = \frac{(1 - u)^k}{k!}.
+				\end{align*}
+
+			\item Basta notar que $|u^z| = u^{\Re z}|e^{\log(u)\Im(z)\ui}| = u^{\Re z}$ y que $x \mapsto (1/u)^x$ es creciente
+				si $u < 1$ y decreciente si $u > 1$;
+				de modo que $|u^{-z}| \le u^{-c}$ si $u > 1$ (resp.\ $u \le 1$) y $\Re z \ge c$ (resp.\ $\Re z \le c$).
+
+				Ahora bien, como $|z| = R$, tenemos que
+				\[
+					|z + n| \ge |z| - n = R - n > R - k > R - \frac{1}{2}R = \frac{1}{2}R.
+				\]
+				Esto prueba que
+				\[
+					\left\lvert\frac{1}{z(z + 1)\cdots(z + k)}\right\rvert \le \frac{1}{R(R/2)^k},
+				\]
+				y lo juntamos con la cota anterior.
+
+			\item Siguiendo la pista, cuando $u \le 1$ podemos considerar los dos caminos dados por la fig.~\ref{fig:apostol_path}.
+
+				\begin{figure}[!hbtp]
+					\centering
+						\begin{tikzpicture}
+							\draw[->] (-3, 0) -- (3, 0);
+							\draw[->] (0, -3) -- (0, 3);
+
+							\fill ({2*cos(75)}, 0) circle (.05) node[below left]{$c$};
+							\draw[dashed] (0, 0) circle (2);
+							\begin{scope}[thick, decoration={
+									markings,
+									mark=at position 0.33 with {\arrow{stealth}},
+									mark=at position 0.67 with {\arrow{stealth}}
+								}]
+								\draw[nicered,  postaction={decorate}] (-75:2) -- node[above right]{$\beta$} (75:2);
+								\draw[niceblue, postaction={decorate}] (75:2) arc (75:285:2);
+							\end{scope}
+							\draw[niceblue] (160:2) node[above left]{$\alpha$};
+						\end{tikzpicture}
+					\caption{}
+					\label{fig:apostol_path}
+				\end{figure}
+
+				La unión de ambos tiene los residuos que ya calculamos y cuando $R \to \infty$, el camino $\beta$ se acerca
+				a la vertical $c + \R\ui$, de modo que
+				\[
+					\lim_{R \to \infty} \int_{\beta(R)} \frac{u^{-z}}{z(z+1)\cdots(z+k)} \, \ud z = \int_{c -
+					\infty\ui}^{c + \infty\ui} \frac{u^{-z}}{z(z+1)\cdots(z+k)} \, \ud z.
+				\]
+				Así, basta ver que $\lim_{R \to \infty} \int_{\alpha(R)} f(z) \, \ud z = 0$.
+				Para ello, empleamos las cotas del inciso anterior
+				\[
+					\left\lvert \int_{\alpha(R)} \frac{u^{-z}}{z(z+1)\cdots(z+k)} \, \ud z \right\rvert
+					\le \int_{\alpha(R)} \frac{u^{-c}}{R(R/2)^k} \, \ud z
+					\le (2 \pi R) \frac{u^{-c}}{R(R/2)^k} \ll R^{-k} \to 0.
+				\]
+
+				En cambio, si $u > 1$, escogemos los caminos dados por la fig.~\ref{fig:apostol_path_b} y vemos que
+				exactamente el mismo análisis aplica.
+
+				\begin{figure}[!hbtp]
+					\centering
+					\begin{tikzpicture}
+						\draw[->] (-3, 0) -- (3, 0);
+						\draw[->] (0, -3) -- (0, 3);
+
+						\fill ({2*cos(75)}, 0) circle (.05) node[below left]{$c$};
+						\draw[dashed] (0, 0) circle (2);
+						\begin{scope}[thick, decoration={
+								markings,
+								mark=at position 0.33 with {\arrow{stealth}},
+								mark=at position 0.67 with {\arrow{stealth}}
+							}]
+							\draw[nicered,  postaction={decorate}] (-75:2) -- node[above right]{$\beta$} (75:2);
+							\draw[niceblue, postaction={decorate}] (75:2) arc (75:-75:2);
+						\end{scope}
+						\draw[niceblue] (-40:2) node[below right]{$\alpha$};
+					\end{tikzpicture}
+					\caption{}
+					\label{fig:apostol_path_b}
+				\end{figure}
+		\end{enumerate}
+
+	\item
+		\begin{enumerate}
+			\item Como señala la pista, basta evaluar
+				\begin{align*}
+					\int_{N}^{N+1} \frac{x - \lfloor x \rfloor}{x^{s+1}} \, \ud x
+					&= \int_{N}^{N+1} x^{-s} - Nx^{-s-1} \, \ud x \\
+					&= \frac{1}{(1-s)}((N+1)^{1-s} - N^{1-s}) + \frac{N}{s}((N+1)^{-s} - N^{-s}) \\
+					&= N^{1-s}\left( \frac{1}{s - 1} - \frac{1}{s} \right) + (N+1)^{1-s}\left( \frac{N}{(N+1)s} - \frac{1}{s - 1} \right),
+				\end{align*}
+				de modo que
+				\[
+					-s\int_{N}^{N+1} \frac{x - \lfloor x \rfloor}{x^{s+1}} \, \ud x
+					= \frac{N^{1-s}}{1 - s} - \frac{(N+1)^{1-s}}{1 - s} + (N + 1)^{-s}.
+				\]
+				Así
+				\[
+					\sum_{n=1}^{N} n^{-s} -s\int_{N}^{N+1} \frac{x - \lfloor x \rfloor}{x^{s+1}} \, \ud x + \frac{N^{1-s}}{s - 1}
+					= \sum_{n=1}^{N+1} n^{-s} + \frac{(N+1)^{1-s}}{s - 1},
+				\]
+				y por inducción obtenemos la fórmula
+				\[
+					\sum_{n=1}^{N} n^{-s} -s\int_{N}^{N+k} \frac{x - \lfloor x \rfloor}{x^{s+1}} \, \ud x + \frac{N^{1-s}}{s - 1}
+					= \sum_{n=1}^{N+k} n^{-s} + \frac{(N+k)^{1-s}}{s - 1},
+				\]
+				y con $k \to \infty$ se alcanza igualdad \underline{para $\Re s > 1$.} 
+
+				Basta notar que la fórmula obtenida determina una función analítica para $\Re s > 0$, de modo que la
+				igualdad sigue siendo válida debido a la unicidad de la continuación analítica de una función.
+
+			\item Basta tomar la fórmula anterior y derivarla, recordando que
+				\[
+					\frac{\ud}{\ud s} \int_{N}^{\infty} \frac{x - \lfloor x \rfloor}{x^{s+1}} \, \ud x =
+					-\int_{N}^{\infty} \frac{(x - \lfloor x \rfloor)\log x}{x^{s+1}} \, \ud x.
+				\]
+
+			\item Para $s$ con $\sigma := \Re s \ge 2$, vemos que
+				\[
+					|\zeta(s)| \le \zeta(2), \qquad |\zeta'(s)| \le |\zeta'(2)|.
+				\]
+				Así, suponemos que $|\sigma| < 2$ y, como $t > 2$, tenemos
+				\[
+					|s| \le \sigma + t \le 2 + t \le 2t, \qquad |s - 1| \ge t.
+				\]
+				Luego, aplicando la fórmula del inciso anterior, tenemos
+				\[
+					|\zeta(s)|
+					\le \sum_{n=1}^{N} n^{-\sigma} + 2t \int_{N}^{\infty} \frac{1}{x^{\sigma+1}} \, \ud x + \frac{N^{1 - \sigma}}{t}
+					\le \sum_{n=1}^{N} n^{-\sigma} + \frac{2t}{\sigma N^\sigma} + \frac{N^{1 - \sigma}}{t}.
+				\]
+				Finalmente,
+				\[
+					\frac{1}{n^\sigma} = \frac{n^{1 - \sigma}}{n} = \frac{1}{n}e^{(1 - \sigma)\log n} = \frac{1}{n} e^{A
+					\log n/\log t} \ll_A \frac{1}{n}.
+				\]
+				Hacemos ahora la elección de $N = \lfloor t \rfloor$ y obtenemos
+				\[
+					|\zeta(s)|
+					\ll \sum_{n=1}^{N} \frac{1}{n} + \frac{t}{N\sigma} + \frac{N}{t}
+					\ll \log t + \frac{1}{\sigma} + 1 \ll \log t,
+				\]
+				pues $\sigma \ge 1/2$.
+
+				Similarmente con $\zeta'$ el mismo procedimiento nos dice que el único término importante será la serie del inicio.
+		\end{enumerate}
+
+	\item
+		\begin{enumerate}
+			\item Basta notar que tenemos la siguiente expresión para $\Gamma$ cuando $\Re s > 0$:
+				\[
+					\Gamma(s) = \int_{0}^{\infty} t^{s - 1}e^{-t} \, \ud t.
+				\]
+				(Esta fórmula es bien conocida.
+				Si desea probar que coincide con la que dimos en la ayudantía pasada puede aplicar directamente el criterio de Wielandt,
+				empleando que la ecuación funcional se sigue de integración por partes:
+				\[
+					\Gamma(s + 1) = \int_{0}^{\infty} t^s e^{-t} \, \ud t = \big[ -t^se^{-t} \big]_{t=0}^{t=\infty} + \int_{0}^{\infty} st^{s-1} e^{-t} \, \ud t
+					= s \Gamma(s).)
+				\]
+
+				Luego aplicamos el cambio de variables $t = n^2 \pi x$ con $\ud t = n^2 \pi \, \ud x$ y evaluamos en $s/2$:
+				\[
+					\Gamma(s/2) = \int_{0}^{\infty} \pi^{\frac{1}{2}s} n^{s} x^{ \frac{1}{2}s - 1 }e^{-n^2 \pi x} \, \ud x.
+				\]
+
+			\item En efecto, que $\theta(x) = 1 + 2 \omega(x)$ se sigue de que $(-n)^2 = n^2$ y que $1 = e^0$.
+				La igualdad ahora es inmediata de sumar las anteriores
+				\[
+					\pi^{-s/2} \Gamma( \tfrac{1}{2}s ) \zeta(s) = \sum_{n=1}^{\infty} \pi^{-s/2} \Gamma( \tfrac{1}{2}s ) n^{-s}
+					= \int_{0}^{\infty} x^{ \frac{1}{2}s - 1 } \left( \sum_{n=1}^{\infty} e^{-n^2 \pi x} \right) \, \ud x.
+				\]
+				Como es costumbre, el intercambio suma-integral es una aplicación directa del teorema de Tonelli.
+		\end{enumerate}
+\end{enumerate}
+\end{additional}
+
+\end{document}

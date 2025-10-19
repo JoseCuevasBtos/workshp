@@ -176,12 +176,8 @@
 				\end{bmatrix} : a, b, c \in \Fp[3]
 			\right\} \le \SL_2(\Fp[3]).
 		\]
-\end{enumerate}
 
-\begin{additional}
-\appendix
-\section{Ejercicios propuestos}
-\begin{enumerate}
+		\newex
 	\item Sea $G \acts V$ una representación compleja simple.
 		% Se dice que $V$ es \strong{de tipo complejo} si $V \not\cong V^*$, que es \strong{de tipo real} si posee una forma simétrica
 		% no degenerada $\langle -, - \rangle$ que es invariante por $G$ (i.e., $\langle gv, gw \rangle = \langle v, w \rangle$ para
@@ -203,30 +199,46 @@
 				\]
 				y que es no degenerada) que es invariante por $G$.
 		\end{description}
-		Pruebe que el anillo de endomorfismos $\End_{\R[G]}(V)$ es $\C$ (resp.\ $\Mat_2(\R)$, $\HH$) si $V$ es de tipo complejo
-		(resp.\ de tipo real, de tipo cuaterniónico).
-
-	\item Defina el índice de Frobenius-Schur como
-		\[
-			\mathrm{FS}(V) =
-			\begin{cases}
-				\phantom{-}0, & V\text{ es de tipo complejo,} \\
-				\phantom{-}1, & V\text{ es de tipo real,} \\
-				-1, & V\text{ es de tipo cuaterniónico.} \\
-			\end{cases}
-		\]
 		\begin{enumerate}
-			\item Pruebe que $\mathrm{FS}(V) = \dim_\C (\Sym^2V)^G - \dim_\C(\bigwedge^2 V)^G$.
+			\item Pruebe que
+				\[
+					\mathrm{FS}(V) := \dim_\C (\Sym^2V)^G - \dim_\C\mathopen{}\left( \bigwedge\nolimits^2 V \right)^G =
+					\begin{cases}
+						\phantom{-}0, & V\text{ es de tipo complejo,} \\
+						\phantom{-}1, & V\text{ es de tipo real,} \\
+						-1, & V\text{ es de tipo cuaterniónico.} \\
+					\end{cases}
+				\]
 				\begin{hint}
 					Para esto, emplee la descomposición de representaciones $V \otimes V = \Sym^2V \oplus \bigwedge^2 V$
 					y argumente por qué el subespacio $G$-invariante de $V^{\otimes 2}$ tiene dimensión 1.
 				\end{hint}
 
+			\item Pruebe que para un caracter simple $\chi$ se tiene que
+				\[
+					\frac{1}{|G|} \sum_{g\in G} \chi(g^2) = \mathrm{FS}(V).
+				\]
+				\begin{hint}
+					Note que para un $g \in G$ fijo podemos simultáneamente diagonalizar las matrices de las potencias de $g$.
+					Estudie los valores propios.
+				\end{hint}
+
 			\item \textbf{Teorema de Frobenius-Schur:}
-				Pruebe que la cantidad de elementos de orden 2 en $G$ es $\sum_V \dim(V)\mathrm{FS}(V)$, donde la sumatoria
-				recorre las representaciones complejas simples de $G$.
+				Concluya que la cantidad de elementos de orden 2 (también llamados \textquote{involuciones}) en $G$ es
+				\[
+					\frac{1}{|G|}\sum_V \dim(V)\mathrm{FS}(V),
+				\]
+				donde la sumatoria recorre las representaciones complejas simples de $G$.
 		\end{enumerate}
+
+		\begin{prob}
+			Pruebe que el anillo de endomorfismos $\End_{\R[G]}(V)$ es $\C$ (resp.\ $\Mat_2(\R)$, $\HH$) si $V$ es de tipo complejo
+			(resp.\ de tipo real, de tipo cuaterniónico).
+		\end{prob}
 \end{enumerate}
+
+\begin{additional}
+\appendix
 
 \section{Implementación en \textsf{sagemath}}
 El ejercicio~\ref{ex:heisenberg_char_table} ya involucra un grupo un tanto \textquote{grande}, de orden $3^3$, de modo que varios de los calculos pueden resultar tediosos,

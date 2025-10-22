@@ -1,0 +1,98 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\usepackage{minted}
+\usemintedstyle{colorful}
+\setminted{
+	mathescape,
+	% linenos,
+	autogobble,
+	bgcolor=black!5,
+	tabsize=2,
+	fontsize=\small
+}
+
+% \usepackage{../ayud-template}
+% \input{../general.tex}
+% % \input{../graphics.tex}
+
+\usepackage{multicol}
+
+\title{Caracteres III: Repaso}
+\date{\DTMdate{2025-10-22}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{center}
+	\slshape
+	En esta ayudantía, $G$ es un grupo finito y las representaciones son complejas.
+\end{center}
+\begin{enumerate}
+	% Ortogonalidad
+	\item Sea $R$ un anillo (posiblemente no conmutativo) que admita descomposición $R = R_1 \times \cdots \times R_r$ con $R_j$ anillos no nulos.
+		Pruebe que si $R$ tiene $n$ distintos módulos simples (izquierdos o derechos), entonces $n \ge r$.
+
+	\item Sea $g \ne 1 \in G$.
+		Pruebe que existe una representación irreducible cuyo caracter $\chi$ satisface que $\Re\chi(g) < 0$.
+
+	\item
+		\begin{enumerate}
+			\item Sea $\psi$ el caracter de una representación $V$ tal que $\psi(g) = 0$ para todo $g \ne 1$.
+				Pruebe que $|G| \mid \dim V$ y que, de hecho, $V \cong \C[G]^n$ para algún $n$.
+			\item Pruebe que dada una representación $W$ arbitraria, entonces $\C[G] \otimes_\C W \cong \C[G]^{\dim W}$.
+		\end{enumerate}
+
+	\item Pruebe que en $G$ todo elemento es conjugado a su inversa syss todos sus caracteres simples tienen valores en $\R$.
+
+	\item Pruebe que un elemento $z \in G$ está en el centro syss $|\chi(z)| = |\chi(1)|$ para todo caracter $\chi$.
+
+	\item Encuentre la tabla de caracteres del producto semidirecto
+		\[
+			G = C_7 \sprod[] C_3 = \langle x, y : x^7 = y^3 = 1, \; yxy^{-1} = x^2 \rangle.
+		\]
+		% \begin{hint}
+		% 	Como es costumbre hay que calcular: clases de conjugación $1, x, x^{-1}, x^*y, x^*y^2$ y conmutador $\langle x \rangle$.
+		% 	Luego las representaciones de grado 3 vienen de inducción sobre $\langle x \rangle$.
+		% \end{hint}
+
+	\item Sea $H \le G$ un subgrupo de un grupo finito y sea $\chi$ un caracter de $H$.
+		Para $g \in G$ y $h \in H$ definamos $h^g := g^{-1}hg$, $h_g := ghg^{-1}$ y $\chi^g(h^g) := \chi(h)$.
+		Es decir, si $h \in H \cap H^g$, entonces $\chi^g(h) = \chi(h_g)$.
+		\begin{enumerate}
+			\item Pruebe que
+				\[
+					\Ind^G_H(\chi)(h) = \sum_{\substack{g\in G \\ h \in H \cap H_g}} \chi(h^g)
+				\]
+			\item Pruebe que
+				\[
+					\Res\nolimits_H^G\Ind^G_H(V) = \bigoplus_{g \in G} \Ind_{gHg^{-1} \cap H}^H(g^{-1} V g) 
+				\]
+		\end{enumerate}
+		\nocite{webb:representation}
+\end{enumerate}
+
+\begin{additional}
+\appendix
+\printbibliography
+\end{additional}
+
+\end{document}

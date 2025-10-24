@@ -1,0 +1,64 @@
+\documentclass[11pt, reqno]{amsart}
+
+% \input{../ayud-template.tex}
+\usepackage{../ayud-template}
+\input{../general.tex}
+% \usepackage{diagbox}
+
+\title{Teorema de números primos}
+\date{\DTMdate{2025-10-24}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{La función dseta}
+\begin{enumerate}
+	\item Pruebe que para todo $n \in \N_{\ne 0}$, se cumple que $\zeta(-2n) = 0$.
+		Más aún, pruebe que si $\Re s \notin (0, 1)$ y $\zeta(s) = 0$, entonces $s = -2n$ para algún $n \in \N$.
+		\begin{hint}
+			Podría necesitar la fórmula que expresa el valor de $\zeta(1-s)$ dada en la ayudantía pasada.
+		\end{hint}
+
+	\item Pruebe que si $s \in \C$ es tal que $\zeta(s) = 0$, entonces $\zeta(\overline{s}) = 0$.
+\end{enumerate}
+
+\section{Aplicaciones del teorema de los números primos}
+\begin{enumerate}[resume]
+	\item Sea $p_n$ la sucesión de los números primos en orden creciente.
+		Demuestre que $p_n \sim n\log n$.
+
+	\item
+		\begin{enumerate}
+			\item Para todo $\epsilon > 0$ existe $x_0 > 0$ tal que para todo $x \ge x_0$ siempre existe un primo $p$ tal que $x
+				< p \le (1 + \epsilon)x$.
+			\item Deduzca que los puntos límite de $\{ p/q : p, q \text{ primos} \}$ es todo el intervalo $[0, \infty)$.
+		\end{enumerate}
+
+	\item Para cada natural $N$ existe un primo tal que (en base decimal) sus primeras cifras coinciden con (todas) las de $N$.
+
+	\item\lookst Definamos
+		\[
+			a(n) :=
+			\begin{cases}
+				0, & n \text{ no es potencia de un primo}, \\
+				1/k, & n = p^k.
+			\end{cases}
+		\]
+		Pruebe que $\sum_{n\le x} a(n) = \pi(x) + O( \sqrt{x}\log\log x )$.
+\end{enumerate}
+
+\nocite{granville:masterclass, hlawka:number}
+\printbibliography
+
+\end{document}

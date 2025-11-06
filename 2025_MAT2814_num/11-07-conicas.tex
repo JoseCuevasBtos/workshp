@@ -1,0 +1,125 @@
+\documentclass[11pt, reqno]{amsart}
+
+% \input{../ayud-template.tex}
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\title{Curvas elípticas}
+\date{\DTMdate{2025-11-07}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{Cónicas}
+\begin{center}
+	\slshape
+	A lo largo de esta ayudantía, $k$ denotará un cuerpo.
+\end{center}
+\begin{enumerate}
+	\item Definamos el círculo afín $C(k) := \{ (x, y) \in k : x^2 + y^2 = 1 \}$.
+		Para dos puntos en $C(k)$ definamos
+		\[
+			(x_1, y_1) \boxplus (x_2, y_2) := (x_1x_2 - y_1y_2, x_1y_2 + x_2y_1).
+		\]
+		Pruebe que $(C(k), \boxplus)$ determina un grupo abeliano.
+
+	\item\label{ex:circle_group}
+		\begin{enumerate}
+			\item Pruebe que si $\car k \ne 2$ y existe $\sqrt{-1} \in k$, entonces $(C(k), \boxplus) \cong (k^\times, \cdot)$.
+			\item Pruebe que $\tors{C(\Q)} = \{ (\pm 1, 0), (0, \pm 1) \}$.
+				\begin{hint}
+					Hay una contención que es clara.
+					Para la recíproca, sería útil poder calcular la torsión mediante el inciso anterior,
+					por lo cual conviene preguntarse qué es $k^\times_{\rm tors}$.
+				\end{hint}
+		\end{enumerate}
+
+	\item Sea $C'$ la cónica afín dada por la ecuación:
+		\begin{equation}
+			F(x, y) := ax^2 + bxy + cy^2 + dx + ey + f = 0.
+		\end{equation}
+		\begin{enumerate}
+			\item Pruebe que $C'$ es suave
+				% (o \emph{no singular})
+				si el determinante
+				\[
+					\delta := \det
+					\begin{bmatrix}
+						2a & b & d \\
+						b & 2c & e \\
+						d & e & 2f
+					\end{bmatrix}.
+				\]
+				es no nulo.
+
+			\item Pruebe que si $C'$ es suave y tiene un punto (racional) $(x_0, y_0) \in C(k)$,
+				entonces $\overline{C'} \cong \PP^1(k)$, donde $\overline{C'}$ es su clausura proyectiva, es decir, las
+				soluciones en $\PP^2(k)$ de
+				\[
+					ax^2 + bxy + cy^2 + dxz + eyz + fz^2 = 0.
+				\]
+				\begin{hint}
+					Hay una biyección entre $\PP^1(k) = k \cup \{ \infty \}$ y las pendientes de rectas racionales.
+				\end{hint}
+		\end{enumerate}
+
+	\item Describa \emph{todos} los puntos $\Q$-racionales de $x^2 + y^2 = 2$ parándose en $(1, 1)$.
+
+	\item Encuentre los \textquote{puntos al infinito} de las siguientes curvas afines:
+		\begin{enumerate}
+			\item $3x - 7y + 5 = 0$.
+			\item $x^2 + xy - 2y^2 + x - 5y + 7 = 0$.
+			\item $x^3 + x^2y - 3xy^2 - 3y^3 + 2x^2 - 2 + 5 = 0$.
+		\end{enumerate}
+
+	% \item \textbf{La ecuación de Pell:}
+	% 	Sea $d \in \Z$ un número libre de cuadrados.
+	% 	Pruebe que si hay una solución de $x^2 - dy^2 = 1$ a coeficientes \emph{enteros} distinta de $(\pm 1, 0)$ o $(0, \pm 1)$,
+	% 	entonces hay infinitas soluciones.
+
+	% \item Encuentre una ecuación de Weierstrass para la ecuación $x^3 + y^3 = 1$.
+\end{enumerate}
+
+\appendix
+\section{Cohomología de Galois y comentarios adicionales}
+El ejercicio~\ref{ex:circle_group} puede mejorarse así:
+\begin{enumerate}[resume]
+	\item Sea $L/K$ una extensión cíclica (i.e., una extensión de Galois finita cuyo grupo es cíclico).
+		\begin{enumerate}
+			\item Sea $\sigma \in \Gal(L/K)$ un generador, pruebe que la sucesión
+				\[\begin{tikzcd}
+					1 \rar & K^\times \rar[hook] & L^\times \rar["{1-\sigma}"] & L^\times \rar["{\galnorm_{L/K}}"] & K^\times
+				\end{tikzcd}\]
+				es exacta
+				(aquí \textquote{$1-\sigma$} denota el homomorfismo $\beta \mapsto \beta/\sigma(\beta)$).
+
+			\item Pruebe que $\ker\galnorm_{L/K} \cong L^\times/K^\times$.
+		\end{enumerate}
+
+	\item Sea $K$ un cuerpo de $\car K \ne 2$ y suponga que el polinomio $x^2 + 1$ es irreducible en $K$.
+		Pruebe que $(C(K), \boxplus) \cong (K(\sqrt{-1})^\times/K^\times, \cdot)$.
+\end{enumerate}
+
+Estructuras como el círculo $C(K)$ que son variedades algebraicas con una estructura de grupo definida por ecuaciones algebraicas, se llaman
+\emph{grupos algebraicos}, y son de suma importancia en general.
+% Sobre $\C$, los grupos algebraicos suaves adquieren el estatus de \emph{grupo de Lie}.
+Otros ejemplos de grupos algebraicos son el grupo multiplicativo $(K^\times, \cdot)$ y las curvas elípticas.
+
+\nocite{silverman:rational}
+\printbibliography
+
+\end{document}

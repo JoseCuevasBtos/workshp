@@ -56,6 +56,14 @@
 			\end{cases}
 		\]
 		Pruebe que $\sum_{n\le x} a(n) = \pi(x) + O( \sqrt{x}\log\log x )$.
+		\begin{hint}
+			Expanda
+			\[
+				\sum_{n\le x} a(n) = \sum_{p \le x} \sum_{k=1}^{\log x/\log p} \frac{1}{k},
+				% \sum_{k=1}^{\lfloor \log x/\log 2 \rfloor} \sum_{p^k \le x} \frac{1}{k}.
+			\]
+			y trate de desarrollar la sumatoria con $\pi(x)$.
+		\end{hint}
 \end{enumerate}
 
 \nocite{granville:masterclass, hlawka:number}

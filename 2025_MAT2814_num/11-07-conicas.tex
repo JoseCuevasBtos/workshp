@@ -7,7 +7,7 @@
 \usepackage{tikz}
 \usetikzlibrary{babel,cd}
 
-\title{Curvas elípticas}
+\title{Curvas y cónicas}
 \date{\DTMdate{2025-11-07}}
 
 \author[José Cuevas]{José Cuevas Barrientos}
@@ -24,12 +24,55 @@
 
 \maketitle
 
-\section{Cónicas}
+\section{Ejercicios}
 \begin{center}
 	\slshape
 	A lo largo de esta ayudantía, $k$ denotará un cuerpo.
 \end{center}
 \begin{enumerate}
+	\item Encuentre los \textquote{puntos al infinito} de las siguientes curvas afines:
+		\begin{enumerate}
+			\item $3x - 7y + 5 = 0$.
+			\item $x^2 + xy - 2y^2 + x - 5y + 7 = 0$.
+			\item $x^3 + x^2y - 3xy^2 - 3y^3 + 2x^2 - 2y + 5 = 0$.
+		\end{enumerate}
+
+	\item Para las siguientes curvas encuentre la tangente al punto $P$ (o, de no existir, declare si $P$ es singular):
+		\begin{enumerate}
+			\item $y^2 = x^3 - x$ en $P = (1, 0)$.
+			\item $X^2 + Y^2 = Z^2$ en $P = [3 : 4 : 5]$.
+			\item $x^2 + y^4 + 2xy + 2x + 2y + 1$ en $P = (-1, 0)$.
+		\end{enumerate}
+
+	\item Sea $C'$ la cónica proyectiva dada por la ecuación:
+		\begin{equation}
+			aX^2 + bXY + cY^2 + dXZ + eYZ + fZ^2 = 0.
+		\end{equation}
+		\begin{enumerate}
+			\item Pruebe que $C'$ es suave
+				% (o \emph{no singular})
+				si el determinante
+				\[
+					\delta := \det
+					\begin{bmatrix}
+						2a & b & d \\
+						b & 2c & e \\
+						d & e & 2f
+					\end{bmatrix}.
+				\]
+				es no nulo.
+
+			\item\lookst
+				Pruebe que si $C'$ es suave y tiene un punto (racional) $[x_0: y_0 : z_0] \in C(k)$,
+				entonces $C' \cong \PP^1(k)$.
+				\begin{hint}
+					Hay una biyección entre $\PP^1(k) = k \cup \{ \infty \}$ y las pendientes de rectas racionales.
+				\end{hint}
+		\end{enumerate}
+
+	\item\lookright
+		Describa \emph{todos} los puntos $\Q$-racionales de $x^2 + y^2 = 2$ parándose en $(1, 1)$.
+
 	\item Definamos el círculo afín $C(k) := \{ (x, y) \in k : x^2 + y^2 = 1 \}$.
 		Para dos puntos en $C(k)$ definamos
 		\[
@@ -46,44 +89,6 @@
 					Para la recíproca, sería útil poder calcular la torsión mediante el inciso anterior,
 					por lo cual conviene preguntarse qué es $k^\times_{\rm tors}$.
 				\end{hint}
-		\end{enumerate}
-
-	\item Sea $C'$ la cónica afín dada por la ecuación:
-		\begin{equation}
-			F(x, y) := ax^2 + bxy + cy^2 + dx + ey + f = 0.
-		\end{equation}
-		\begin{enumerate}
-			\item Pruebe que $C'$ es suave
-				% (o \emph{no singular})
-				si el determinante
-				\[
-					\delta := \det
-					\begin{bmatrix}
-						2a & b & d \\
-						b & 2c & e \\
-						d & e & 2f
-					\end{bmatrix}.
-				\]
-				es no nulo.
-
-			\item Pruebe que si $C'$ es suave y tiene un punto (racional) $(x_0, y_0) \in C(k)$,
-				entonces $\overline{C'} \cong \PP^1(k)$, donde $\overline{C'}$ es su clausura proyectiva, es decir, las
-				soluciones en $\PP^2(k)$ de
-				\[
-					ax^2 + bxy + cy^2 + dxz + eyz + fz^2 = 0.
-				\]
-				\begin{hint}
-					Hay una biyección entre $\PP^1(k) = k \cup \{ \infty \}$ y las pendientes de rectas racionales.
-				\end{hint}
-		\end{enumerate}
-
-	\item Describa \emph{todos} los puntos $\Q$-racionales de $x^2 + y^2 = 2$ parándose en $(1, 1)$.
-
-	\item Encuentre los \textquote{puntos al infinito} de las siguientes curvas afines:
-		\begin{enumerate}
-			\item $3x - 7y + 5 = 0$.
-			\item $x^2 + xy - 2y^2 + x - 5y + 7 = 0$.
-			\item $x^3 + x^2y - 3xy^2 - 3y^3 + 2x^2 - 2 + 5 = 0$.
 		\end{enumerate}
 
 	% \item \textbf{La ecuación de Pell:}

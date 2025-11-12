@@ -45,16 +45,27 @@
 
 \section{Ordenes monomiales}
 \begin{enumerate}
-	\item Sea $\mathfrak{a} \nsl k[\vec x]$ el ideal generado por los polinomios simétricos elementales en $n$ variables.
-		Para un orden monomial $\prec$ calcule $\init_\prec(\mathfrak{a})$.
+	\item Sea $\mathfrak{a} \nsl k[\vec x]$ el ideal generado por los polinomios simétricos elementales en $n$ variables:
+		\[
+			e_1(x_1, \dots, x_n) = \sum_{i=1}^{n} x_i, \qquad
+			e_k(\vec x) = \sum_{1\le i_1 < \cdots < i_k \le n} x_{i_1}\cdots x_{i_k} \quad (k \le n).
+		\]
+		Para un orden monomial $\prec$ calcule una base de Gröbner.
 
-	\item \textbf{Implicitación racional:}
+	\item \textbf{Implicitización racional:}
 		Sea $K$ un cuerpo infinito y considere el morfismo racional $F \colon \A^m_K \setminus W \to \A^n_K$ dado por
-		\begin{align*}
-			x_1 &= \frac{f_1(t_1, \dots, t_m)}{g_1(t_1, \dots, t_m)}, \\
-			    &\vdots \\
-			x_n &= \frac{f_n(t_1, \dots, t_m)}{g_n(t_1, \dots, t_m)}.
-		\end{align*}
+		% \begin{align*}
+		% 	x_1 &= \frac{f_1(t_1, \dots, t_m)}{g_1(t_1, \dots, t_m)}, \\
+		% 	    &\vdots \\
+		% 	x_n &= \frac{f_n(t_1, \dots, t_m)}{g_n(t_1, \dots, t_m)}.
+		% \end{align*}
+		\[
+			x_1 = \frac{f_1(t_1, \dots, t_m)}{g_1(t_1, \dots, t_m)}, \qquad
+			    \cdots, \qquad
+			x_n = \frac{f_n(t_1, \dots, t_m)}{g_n(t_1, \dots, t_m)};
+		\]
+		con $F(\vec t) = (x_1, \dots, x_n)$.
+
 		Sea $\mathfrak{b} := (g_1x_1 - f_1, \dots, g_nx_n - f_n, 1 - gy) \nsle k[y, \vec t, \vec x]$, donde $g = g_1 g_2 \cdots g_n$ y $W = \VV(g)$.
 		Entonces $\VV(\mathfrak{b} \cap k[\vec x]) \subseteq \A^n_K$ es la clausura de Zariski de $\Img F$.
 \end{enumerate}
@@ -67,7 +78,7 @@ Sea $\mathfrak{a} \nsle A$ un ideal en un anillo, se define su radical como
 Se dice que $\mathfrak{a}$ es radical si $\rad\mathfrak{a} = \mathfrak{a}$.
 \begin{enumerate}[resume]
 	\item Sean $\mathfrak{a, b} \nsl k[x_1, \dots, x_n]$ un par de ideales.
-		Pruebe que se tienen las siguientes inclusiones
+		Pruebe $\rad\mathfrak{a}$ es un ideal y que se tienen las siguientes inclusiones
 		\[
 			\rad(\mathfrak{a}) \rad(\mathfrak{b}) \subseteq \rad(\mathfrak{a\cdot b}), \qquad
 			\init_\prec(\rad\mathfrak{a}) \subseteq \rad( \init_\prec\mathfrak{a} ),
@@ -75,16 +86,49 @@ Se dice que $\mathfrak{a}$ es radical si $\rad\mathfrak{a} = \mathfrak{a}$.
 		donde $\prec$ es un orden monomial.
 		Muestre ejemplos donde las inclusiones sean estrictas.
 
-	\item Pruebe que si $\mathfrak{a}$ es tal que $\init_\prec(\mathfrak{a})$ es radical, entonces $\mathfrak{a}$ también.
+	\item\label{ex:twisted_cubic}\lookright
+		Pruebe que si $\mathfrak{a}$ es tal que $\init_\prec(\mathfrak{a})$ es radical, entonces $\mathfrak{a}$ también.
 		¿El recíproco es cierto?
 
-	\item Considere el morfismo $f\colon \A^1 \to \A^2$ dado por $t \mapsto (t^2, t^3)$.
+	\item Considere el morfismo $f\colon \A_k^1 \to \A_k^2$ dado por $t \mapsto (t^2, t^3)$.
 		Calcule el ideal $\mathfrak{a} \nsl k[x, y]$ tal que $\VV(\mathfrak{a}) = \overline{\Img f}$.
 		¿Es $\mathfrak{a}$ radical?
 \end{enumerate}
 
 \begin{additional}
 \appendix
+\section{Ejercicios propuestos}
+\begin{enumerate}[resume]
+	\item Calcule la(s) ecuacion(es) que determinan la superficie en $\A^3_k$ cuyos puntos $(x, y, z)$ satisfacen
+		\[
+			x = ts, \qquad y = ts^2, \qquad z = s^2.
+		\]
+
+	\item Usando \textsf{sagemath}, encuentre la ecuación que define la \emph{superficie de Enneper}
+		\begin{align*}
+			x &= 3u + 3uv^2 - u^3, \\
+			y &= 3v + 3u^2v - v^3, \\
+			z &= 3u^2 - 3v^2.
+		\end{align*}
+		(También puede tratar de hacerlo a mano y mandarme su solución, pero le advierto que no trabajo después del 20 de diciembre.)
+\end{enumerate}
+
+\section{Comentarios y sage}
+El lector familiarizado con el primer capítulo de \citeauthor{hartshorne:algebraic}~\cite{hartshorne:algebraic} reconocerá que la respuesta
+al ejercicio~\ref{ex:twisted_cubic} es siempre afirmativa.
+Mejor aún, $\mathfrak{a}$ siempre es \emph{primo} puesto que la clausura de la imagen es irreducible (debido a que el dominio lo es).
+
+La manera de calcular bases de Gröbner (con el orden lexicográfico) en \textsf{sagemath} es como prosigue (para el
+ej.~\ref{ex:twisted_cubic}):
+\begin{minted}{sage}
+from sage.rings.polynomial.toy_buchberger import buchberger
+set_verbose(1) # para ver los cálculos
+
+R.<t,x,y> = PolynomialRing(QQ, order='lex')
+I = R.ideal([t^2 - x, t^3 - y])
+buchberger(I)
+\end{minted}
+
 \printbibliography
 \end{additional}
 

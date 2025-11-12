@@ -1,0 +1,91 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\usepackage{minted}
+\usemintedstyle{colorful}
+\setminted{
+	mathescape,
+	% linenos,
+	autogobble,
+	bgcolor=black!5,
+	tabsize=2,
+	fontsize=\small
+}
+
+% \usepackage{../ayud-template}
+% \input{../general.tex}
+% % \input{../graphics.tex}
+
+% \usepackage{multicol}
+% \DeclareMathOperator{\LT}{\text{\textsc{lt}}}
+\DeclareMathOperator{\init}{in}
+
+\title{Eliminación e ideales radicales}
+\date{\DTMdate{2025-11-12}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Ordenes monomiales}
+\begin{enumerate}
+	\item Sea $\mathfrak{a} \nsl k[\vec x]$ el ideal generado por los polinomios simétricos elementales en $n$ variables.
+		Para un orden monomial $\prec$ calcule $\init_\prec(\mathfrak{a})$.
+
+	\item \textbf{Implicitación racional:}
+		Sea $K$ un cuerpo infinito y considere el morfismo racional $F \colon \A^m_K \setminus W \to \A^n_K$ dado por
+		\begin{align*}
+			x_1 &= \frac{f_1(t_1, \dots, t_m)}{g_1(t_1, \dots, t_m)}, \\
+			    &\vdots \\
+			x_n &= \frac{f_n(t_1, \dots, t_m)}{g_n(t_1, \dots, t_m)}.
+		\end{align*}
+		Sea $\mathfrak{b} := (g_1x_1 - f_1, \dots, g_nx_n - f_n, 1 - gy) \nsle k[y, \vec t, \vec x]$, donde $g = g_1 g_2 \cdots g_n$ y $W = \VV(g)$.
+		Entonces $\VV(\mathfrak{b} \cap k[\vec x]) \subseteq \A^n_K$ es la clausura de Zariski de $\Img F$.
+\end{enumerate}
+
+\section{Radicalidad}
+Sea $\mathfrak{a} \nsle A$ un ideal en un anillo, se define su radical como
+\[
+	\rad \mathfrak{a} := \{ \alpha \in A : \exists n \ge 1 \quad \alpha^n \in \mathfrak{a} \}.
+\]
+Se dice que $\mathfrak{a}$ es radical si $\rad\mathfrak{a} = \mathfrak{a}$.
+\begin{enumerate}[resume]
+	\item Sean $\mathfrak{a, b} \nsl k[x_1, \dots, x_n]$ un par de ideales.
+		Pruebe que se tienen las siguientes inclusiones
+		\[
+			\rad(\mathfrak{a}) \rad(\mathfrak{b}) \subseteq \rad(\mathfrak{a\cdot b}), \qquad
+			\init_\prec(\rad\mathfrak{a}) \subseteq \rad( \init_\prec\mathfrak{a} ),
+		\]
+		donde $\prec$ es un orden monomial.
+		Muestre ejemplos donde las inclusiones sean estrictas.
+
+	\item Pruebe que si $\mathfrak{a}$ es tal que $\init_\prec(\mathfrak{a})$ es radical, entonces $\mathfrak{a}$ también.
+		¿El recíproco es cierto?
+
+	\item Considere el morfismo $f\colon \A^1 \to \A^2$ dado por $t \mapsto (t^2, t^3)$.
+		Calcule el ideal $\mathfrak{a} \nsl k[x, y]$ tal que $\VV(\mathfrak{a}) = \overline{\Img f}$.
+		¿Es $\mathfrak{a}$ radical?
+\end{enumerate}
+
+\begin{additional}
+\appendix
+\printbibliography
+\end{additional}
+
+\end{document}

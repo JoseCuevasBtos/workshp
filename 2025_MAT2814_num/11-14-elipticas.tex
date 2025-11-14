@@ -1,0 +1,79 @@
+\documentclass[11pt, reqno]{amsart}
+
+% \input{../ayud-template.tex}
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\title{Curvas elípticas}
+\date{\DTMdate{2025-11-07}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{enumerate}
+	\item Pruebe que la curva proyectiva $X^3 + Y^3 = Z^3$ es una curva elíptica sobre un cuerpo $k$ de característica $\car k \ne 3$
+		y dé una ecuación de Weierstrass corta (i.e., de la forma $y^2 = x^3 + ax + b$) cuando $\car k \nmid 6$.
+
+		¿Qué falla exactamente en $\car k = 3$?
+
+	\item Sea $C \colon y^2 = f(x) := x^3 + b_2x^2 + b_4x + b_6$ una curva afín con clausura proyectiva $\overline{C}$.
+		\begin{enumerate}
+			\item Pruebe que posee un único punto $o \in \overline{C}(k) \setminus C(k)$ \textquote{al infinito}.
+			\item Pruebe que $o$ es un punto suave y, más generalmente, calcule cuales son los posibles puntos singulares.
+				Dé un ejemplo concreto donde efectivamente los puntos que satisfagan esta propiedad sean los singulares.
+		\end{enumerate}
+
+	\item Sea $C \colon y^2 = f(x)$ una curva elíptica como antes.
+		\begin{enumerate}
+			\item Pruebe que si $P = (x, y)$, entonces tenemos la siguiente fórmula de duplicación
+				\[
+					x(2P) = \frac{x^4 - 2bx^2 - 8cx + b^2 - 4ac}{4x^3 + 4ax^2 + 4bx + 4c}.
+				\]
+				\begin{hint}
+					Recuerde que las relaciones de Viète dicen que si un polinomio cúbico $x^3 + \alpha x^2 + \beta x +
+					\gamma = 0$ tiene raíces $r_1, r_2, r_3$, entonces $\alpha = -r_1 - r_2 - r_3$.
+				\end{hint}
+
+			\item Concluya que los polinomios $x^4 - 2bx^2 - 8cx + b^2 - 4ac$ y $f(x)$ no tienen raíces comunes (en $\algcl k$).
+		\end{enumerate}
+
+	\item Más en general, la cúbica $E\colon \; X^3 + Y^3 = \alpha Z^3$ (con $\alpha \ne 0$) tiene un punto racional $o := [1 : -1 : 0] \in E(k)$ al infinito.
+		\begin{enumerate}
+			\item Calcule una fórmula para la suma (con neutro $o$) $P + Q$ de dos puntos afines distintos $P = (u_1, v_1)$ y $Q = (u_2, v_2)$.
+			\item Encuentre una fórmula de duplicación para el punto afín $P = (u, v)$.
+		\end{enumerate}
+
+	\item Sea $C \colon y^2 = f(x)$ una curva afín con clausura proyectiva $\overline{C}$, donde $f$ es un polinomio mónico de $\deg f \ge 3$.
+		\begin{enumerate}
+			\item Pruebe que, en el cuerpo finito $\Fp$, tenemos la fórmula
+				\[
+					|C(\Fp)| = p + 1 + \sum_{j=0}^{p-1} \left(\frac{f(j)}{p}\right),
+				\]
+				donde $(a/p)$ es el símbolo de Legendre.
+			\item Muestre que si $f(x) = x^3 + d$; entonces para $p \equiv 2 \pmod 3$, se cumple que $|C(\Fp)| = p + 1$.
+				\begin{hint}
+					Muestre que $x \mapsto x^3$ es un automorfismo de $\Fp^\times$.
+				\end{hint}
+		\end{enumerate}
+\end{enumerate}
+
+\appendix
+\nocite{silverman:rational}
+\printbibliography
+
+\end{document}

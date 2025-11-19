@@ -1,0 +1,107 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+% \usepackage{minted}
+% \usemintedstyle{colorful}
+% \setminted{
+% 	mathescape,
+% 	% linenos,
+% 	autogobble,
+% 	bgcolor=black!5,
+% 	tabsize=2,
+% 	fontsize=\small
+% }
+
+% \usepackage{multicol}
+\DeclareMathOperator{\init}{in}
+\DeclareMathOperator{\HF}{HF}
+
+\title{Dimensión y polinomios de Hilbert}
+\date{\DTMdate{2025-11-19}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{enumerate}
+	\item Calcule el polinomio de Hilbert afín de los siguientes ideales:
+		\begin{enumerate}
+			\item $(x^3 - y^2) \nsl k[x, y]$.
+			\item $(x^3y^2 + 3x^2y^2 + y^3 + 1) \nsl k[x, y]$.
+			\item $(x^3yz^5, xy^3z^2) \nsl k[x, y, z]$.
+			\item $(x^3 - yz^2, y^4 - x^2yz) \nsl k[x, y, z]$.
+		\end{enumerate}
+
+	\item Decimos que un polinomio $f(t) \in \Q[t]$ es \emph{numérico} si para todo entero $n \in \Z$, su evaluación $f(n) \in \Z$ es
+		también entera.
+		Pruebe que todo polinomio numérico es de la forma
+		\[
+			f(t) = \sum_{j=0}^{d} a_j\binom{t}{j}, \qquad a_j \in \Z
+		\]
+		donde $\displaystyle \binom{t}{j} = \frac{t(t-1)\cdots(t-j+1)}{j!}$.
+
+	\item
+		\begin{enumerate}
+			\item Dado un polinomio $f(x, y)$ no constante pruebe que la dimensión de $\VV(f)$ es 1.
+				(Eslógan: \textquote{las hipersuperficies en el plano son curvas (posiblemente reducibles).})
+			\item\label{ex:krull_hauptidealsatz}\lookright
+				Más generalmente, pruebe que si $f(\vec x) \in k[x_1, \dots, x_n]$ es no constante, entonces la
+				dimensión de la hipersuperficie $\VV(f)$ es $n - 1$.
+		\end{enumerate}
+
+	\item Pruebe que si $\mathfrak{a \subseteq b} \nsl k[\vec x]$ son ideales, entonces $\dim \VV(\mathfrak{a}) \ge \dim
+		\VV(\mathfrak{b})$.
+		Teniendo inclusión estricta $\mathfrak{a \subset b}$ muestre ejemplos donde las dimensiones coinciden o no.
+
+	\item Un polinomio $f$ en $R := k[\vec x]$ se dice \emph{homogéneo} si todos sus monomios no nulos tienen el mismo grado (total).
+		Un ideal $\mathfrak{a}$ en $k[\vec x]$ se dice \strong{homogéneo} si está generado por polinomios homogéneos.
+		\begin{enumerate}
+			\item Defina la \emph{función de Hilbert proyectiva} de un ideal homogéneo $\mathfrak{a}$ como
+				\[
+					\HF_{R/\mathfrak{a}}(s) := \dim_k R_s - \dim_k \mathfrak{a}_s,
+				\]
+				donde el subíndice $\mathfrak{b}_s$ denota el $k$-subespacio vectorial de los polinomios homogéneos en
+				$\mathfrak{b}$ de grado (total) $s$.
+
+				Pruebe que $\HF_{R/\mathfrak{a}}(s) = \HF^{\rm af}_{R/\mathfrak{a}}(s) - \HF^{\rm
+				af}_{R/\mathfrak{a}}(s-1)$.
+
+			\item Sea $f \in R$ un polinomio no necesariamente homogéneo.
+				Definamos su \textquote{homogenización en la nueva indeterminada $t$} como
+				\[
+					f^{\rm hom}(\vec x, t) := t^{\deg f}f\left( \frac{x_1}{t}, \dots, \frac{x_n}{t} \right).
+				\]
+				Pruebe que la función de Hilbert afín del ideal $(f) \nsl R$ es igual a la función de Hilbert proyectiva del
+				ideal $(f^{\rm hom}) \nsl R[t] = k[\vec x, t]$.
+		\end{enumerate}
+\end{enumerate}
+
+\begin{additional}
+\nocite{cox:ideals}
+\section{Comentarios adicionales}
+El ejercicio~\ref{ex:krull_hauptidealsatz} es un caso particular del \textquote{teorema de ideales principales de Krull} (vea
+% \citeauthor{matsumura:ring}~\cite{matsumura:ring})
+\citeauthor{eisenbud:commutative}~\cite{eisenbud:commutative})
+o también conocido por su nombre en alemán, \emph{Hauptidealsatz}.
+
+\printbibliography
+\end{additional}
+
+\end{document}

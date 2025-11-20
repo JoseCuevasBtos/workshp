@@ -1,0 +1,142 @@
+\documentclass[11pt, reqno]{amsart}
+
+% \input{../ayud-template.tex}
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\title{Torsión y estructura de grupo}
+\date{\DTMdate{2025-11-21}}
+
+\author[José Cuevas]{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Teoría de Números}
+\coursecode{MAT2814}
+\professor{Ricardo Menares}
+
+\begin{document}
+
+\maketitle
+
+\section{Reticulados}
+\begin{enumerate}
+	\item Sean $\omega_1, \omega_2 \in \C^\times$ dos complejos $\R$-linealmente independientes y sea $\Lambda := \omega_1\Z +
+		\omega_2\Z$ su reticulado.
+		\begin{enumerate}
+			\item Pruebe que el área $A$ del paralelogramo de vértices $\{ 0, \omega_1, \omega_1 + \omega_2, \omega_2 \}$ no
+				depende de la elección de $\Z$-base de $\Lambda$.
+
+			\item Pruebe que
+				\[
+					|\{ \omega \in \Lambda : |\omega| \le R \}| = \frac{\pi}{A} R^2 + O(R).
+				\]
+
+			\item Concluya que existe $c > 0$ tal que 
+				\[
+					|\{ \omega \in \Lambda : R \le |\omega| < R + 1 \}| \le c R.
+				\]
+		\end{enumerate}
+
+	\item Sean $\omega_1, \omega_2 \in \C^\times$ dos complejos $\R$-linealmente independientes y sea $\Lambda := \omega_1\Z +
+		\omega_2\Z$ su reticulado.
+		\begin{enumerate}
+			\item Verifique que, para todo $s \in \C$ con $\Re s > 2$, la serie
+				\[
+					\sum_{\substack{\omega\in \Lambda \\ \omega\ne 0}} \frac{1}{|\omega|^s} < \infty.
+				\]
+
+			\item\lookst
+				Pruebe que la serie
+				\[
+					\wp(z) := \frac{1}{z^2} + \sum_{\substack{\omega \in \Lambda \\ \omega \ne 0}} \left(
+					\frac{1}{(\omega - z)^2} - \frac{1}{\omega^2} \right),
+				\]
+				converge absoluta y uniformemente en compactos del abierto $\C \setminus \Lambda$.
+				Por ende, concluya que es holomorfa allí.
+
+			\item Pruebe que $\wp$ es una función par (i.e., $\wp(z) = \wp(-z)$) y que es periódica respecto a $\Lambda$, a
+				decir, $\wp(z + \omega) = \wp(z)$ para todo $\omega \in \Lambda$.
+		\end{enumerate}
+
+	\item\label{ex:endomorphism_ring}
+		Recuerde que en clases vió que toda curva elíptica compleja es de la forma $\C/\Lambda$, donde $\Lambda$ es un
+		\emph{reticulado} (i.e., un subgrupo abeliano libre generado por dos vectores $\R$-linealmente independientes).
+		Definiremos el conjunto de endomorfismos como
+		\[
+			\End(\C/\Lambda) := \{ \alpha \in \C \colon \alpha\Lambda \subseteq \Lambda \}.
+		\]
+		\begin{enumerate}
+			\item Pruebe que $\End(\C/\Lambda)$ es un subanillo de $\C$.
+			\item\label{ex:complex_mult}
+				Pruebe que, o bien $\End(\C/\Lambda) = \Z$, o bien $\End(\C/\Lambda)$ es un anillo de enteros de una extensión
+				cuadrática imaginaria.
+			\item\label{ex:automorphism_gr}
+				Defina $\Aut(\C/\Lambda) = \End(\C/\Lambda)^\times$ como el grupo de unidades.
+				Concluya que $\lvert\Aut(\C/\Lambda)\rvert \in \{ 2, 4, 6 \}$.
+				\begin{hint}
+					Para esto puede ser útil saber que el anillo de enteros algebraicos de la extensión cuadrática
+					$\Q(\sqrt{-d})$ está generado como $\Z$-álgebra por el elemento $\sqrt{-d}$ si $d \not\equiv 3
+					\pmod 4$ o por $\frac{1}{2}(1 + \sqrt{-d})$ si $d \equiv 3 \pmod 4$.
+				\end{hint}
+		\end{enumerate}
+\end{enumerate}
+
+\section{Torsión}
+\begin{enumerate}[resume]
+	\item Sea $E \colon y^2 = f(x) = x^3 + b_2x^2 + b_4x + b_6$ una curva elíptica.
+		\begin{enumerate}
+			\item Verifique que un punto $P \in E(k)$ tiene orden 3 syss es un punto de inflexión de $C$ (i.e., su tangente solo
+				corta a $C$ solamente en $P$).
+
+			\item Pruebe que
+				\[
+					% \displaystyle
+					\frac{\ud^2 y}{\ud x^2} = \frac{2f''(x)f(x) - f'(x)^2}{4yf(x)}.
+				\]
+
+			\item Concluya que $E(\R)[3] = \Z/3\Z$.
+		\end{enumerate}
+
+	\item Pruebe que las siguientes curvas elípticas tienen infinitos puntos racionales:
+		\begin{enumerate}
+			\item $y^2 = x^3 - 2$. % (3, 5)
+			\item $y^2 = x^3 + 8$. % (1, 3)
+			% \item $y^2 = x^3 + 4x$. % (2, 4)
+		\end{enumerate}
+\end{enumerate}
+
+\appendix
+\section{Comentarios adicionales}
+El \textquote{conjunto de endomorfismos} del ejercicio~\ref{ex:endomorphism_ring} es el honesto anillo de endomorfismos de la curva elíptica
+$\C/\Lambda$ como superficie de Riemann.
+La correspondencia viene probada en \citeauthor{silverman:elliptic}~\cite{silverman:elliptic}, \S VI.4.
+
+Si una curva elíptica compleja $E = \C/\Lambda$ satisface que $\End(E) \not\cong \Z$ como en el ejercicio~\ref{ex:complex_mult}, entonces
+diremos que tiene \emph{multiplicación compleja}.
+Mirando las condiciones para $\Lambda$ es visible de dónde viene el nombre.
+\begin{enumerate}[resume]
+	\item Sea $\mathfrak{H} := \{ \tau \in \C : \Im\tau > 0 \}$ el semiplano superior.
+		Pruebe que hay numerables $\tau \in \mathfrak{H}$ tales que $E_\tau := \C/\Lambda_\tau$, con $\Lambda_\tau = \Z + \tau \Z$,
+		tiene multiplicación compleja.
+
+	\item Vamos a probar la pista del ejercicio~\ref{ex:automorphism_gr}.
+		Defina $\mathcal{O}_{\Q(\sqrt{-d})} \subseteq \Q(\sqrt{-d})$ como el subanillo de los elementos cuyo polinomio minimal tiene
+		coeficientes en $\Z$.
+		\begin{enumerate}
+			\item Pruebe que $\gamma = a + b \sqrt{-d} \in \Q(\sqrt{-d})$ yace en $\mathcal{O}_{\Q(\sqrt{-d})}$ syss
+				$\gamma + \overline{\gamma} = 2a, \; \gamma \cdot \overline{\gamma} = a^2 + db^2 \in \Z$.
+			\item Concluya que $\sqrt{-d}$ genera a $\mathcal{O}_{\Q(\sqrt{-d})}$ cuando $d \not\equiv 3 \pmod 4$ y
+				$\frac{1}{2}(1 + \sqrt{-d})$ genera cuando $d \equiv 3 \pmod 4$.
+		\end{enumerate}
+\end{enumerate}
+
+\nocite{silverman:rational}
+\printbibliography
+
+\end{document}

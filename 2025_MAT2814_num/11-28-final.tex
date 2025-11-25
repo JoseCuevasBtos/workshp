@@ -1,0 +1,306 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[spanish]{babel}
+\usepackage[LGR, T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\input{../general.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\newenvironment{sol}{\textbf{Solución:}\ }{}
+
+\title{Preparación para el examen}
+\subtitle{Coda}
+\date{\DTMdate{2025-11-28}}
+
+\author{José Cuevas Barrientos}
+% \email{josecuevasbtos@uc.cl}
+% \urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+% \logo{../puc_negro.png}
+% \institution{Pontificia Universidad Católica de Chile}
+% \department{Facultad de Matemáticas}
+% \course{Álgebra abstracta II}
+% \coursecode{MAT2244}
+% \professor{Héctor Pastén Vásquez}
+
+\tikzset{
+	every picture/.prefix style={
+		execute at begin picture=\shorthandoff{"}
+	}
+}
+\listfiles % https://tex.stackexchange.com/a/211948
+
+\beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Congruencias}
+	\begin{block}{Problema (teorema de Wilson)}
+		Pruebe que $(p - 1)! \equiv (-1)^p \pmod{p}$.
+	\end{block}
+\end{frame}
+\begin{frame}{(Una) solución}
+	Hay mil maneras de demostrarlo. Procederemos de manera no estándar.
+
+	\pause
+	Considere el polinomio mónico de grado $p-1$
+	\[
+		f(x) := (x - 1) \cdots (x - (p-1)) = x^{p-1} + a_{p-2}x^{p-2} + \cdots + a_1x + a_0,
+	\]
+	cuyas raíces son los elementos de $\Fp^\times$ sin repetición.
+	\pause
+	Por otro lado, el polinomio $g(x) := x^{p-1} - 1$ también es mónico del mismo grado y tiene raíz en cada elemento de $\Fp^\times$
+	por el pequeño teorema de Fermat.
+	\pause
+	Por tanto, $f \equiv g \pmod p$ y, en particular, $a_0 = -1$; pero
+	\[
+		a_0 = (-1)(-2)\cdots (-p+1) = (-1)^{p-1} (p - 1)!
+	\]
+	de lo que se sigue el enunciado.
+\end{frame}
+
+\begin{frame}{Congruencias}
+	\begin{block}{Problema (teorema de Wolstenholme)}
+		Sea $p \ge 5$ primo.
+		Pruebe que
+		\[
+			1 + \frac{1}{2} + \cdots + \frac{1}{p-1} \equiv 0 \pmod{p^2}.
+		\]
+	\end{block}
+\end{frame}
+\begin{frame}{Solución}
+	Igual que antes considere el polinomio
+	\[
+		f(x) := (x - 1) \cdots (x - (p-1)) = x^{p-1} + a_{p-2}x^{p-2} + \cdots + a_1x + a_0,
+	\]
+	cuyas raíces son los elementos de $\Fp^\times$.
+	\pause
+	Como $f(x) \equiv x^{p-1} - 1 \pmod p$, se sigue que
+	\[
+		a_1 = (-1)^p(p-1)!\left( 1 + \frac{1}{2} + \cdots + \frac{1}{p - 1} \right) \equiv 0 \pmod p
+	\]
+	y, además, cada $a_j \equiv 0 \pmod p$ cuando $j > 0$.
+	% Supongamos que $a_{p-1} \not\equiv 0 \pmod p^2$
+
+	\pause
+	Mejor aún, el lector puede notar que $f(0) = f(p) = (p-1)! = a_0$ (¡recuerde que $p \ne 2$!),
+	de modo que $f(p) - a_0 = 0$.
+	\pause
+	Cancelando por $p$, obtenemos la igualdad
+	\[
+		p^{p-2} + a_{p-2}p^{p-3} + \cdots + a_2p + a_1 = 0.
+	\]
+	Mirando congruencias módulo $p^2$ se sigue el enunciado.
+\end{frame}
+
+\begin{frame}{Caracteres}
+	\begin{block}{Problema}
+		Pruebe que si $\chi, \psi$ son caracteres \emph{primitivos} módulo $n, m$ resp., donde $n$ y $m$ son enteros coprimos.
+		Entonces $\chi\cdot\psi$ es un caracter primitivo módulo $nm$.
+	\end{block}
+	\pause
+	(Recuerde que un caracter $\chi$ módulo $n$ se dice \strong{primitivo} si no existe un divisor $r \mid n$ con $|r| < |n|$, y un
+	caracter $\theta$ módulo $r$ tales que $\chi(a) = \theta(a)$ para todo $a \in \Z$.)
+\end{frame}
+\begin{frame}{Solución}
+	Claramente $\chi\cdot\psi$ es caracter módulo $nm$.
+	Si no fuera primitivo, existe $r \mid nm$ y un caracter $\theta$ módulo $r$ tal que $\chi(a)\psi(a) = \theta(a)$.
+	\pause
+	Por coprimalidad, $r = n'm'$ de manera única con $n' \mid n$ y $m' \mid m$;
+	y por teorema chino del resto, existen caracteres $\chi', \psi'$ módulo $n', m'$ resp.\ tales que $\theta(a) = \chi'(a) \psi'(a)$.
+
+	\pause
+	Dado una clase $[b]$ coprima a $n$, siempre podemos elegir un representante tal que $b \equiv 1 \pmod m$ (y, por ende, $\equiv 1
+	\pmod{m'}$) de modo que $\chi(b) = \theta(b) = \chi'(b)$, y análogamente se verifica que $\psi = \psi'$; esto contradice la
+	primitividad de $\chi$ y $\psi$.
+\end{frame}
+
+\begin{frame}{Caracteres}
+	\begin{block}{Problema}
+		Definimos el \strong{símbolo de Kronecker} $\left( \frac{d}{n} \right)_K$ mediante las siguientes propiedades:
+		\begin{enumerate}
+			\item $\left( \dfrac{d}{-1} \right)_K =
+				\begin{cases}
+					\phantom{-}1, & d > 0, \\
+					-1, & d < 0.
+				\end{cases}$
+			\item $\left( \frac{d}{p} \right)_K = 0$ si $p \mid d$.
+			\item\label{ax:kron2}
+				$\left( \dfrac{d}{2} \right)_K =
+				\begin{cases}
+					\phantom{-}1, & d \equiv 1 \pmod 8, \\
+					-1, & d \equiv 5 \pmod 8.
+				\end{cases}$
+			\item\label{ax:kron_leg}
+				$\left( \frac{d}{p} \right)_K = \left( \frac{d}{p} \right)_L$ si $p > 2$ y $p \nmid d$.
+			\item\label{ax:kron_mult}
+				$\left( \frac{d}{n} \right)_K$ es completamente multiplicativa en el parámetro $n$.
+		\end{enumerate}
+		\pause
+		Pruebe que $\chi_d(n) := \left( \frac{d}{n} \right)_K$ es un caracter primitivo módulo $|d|$ cuando $d$ satisface una de las
+		dos:
+		\begin{enumerate}[(a)]
+			\item $d \equiv 1 \pmod 4$ y es libre de cuadrados.
+			\item $4 \mid d$, $d/4 \not\equiv 1 \pmod 4$ y $d/4$ es libre de cuadrados.
+		\end{enumerate}
+	\end{block}
+\end{frame}
+\begin{frame}{Solución}
+	Es inmediato que $\chi_4(n) := \left( \frac{-4}{n} \right)_K$ es un caracter primitivo módulo 4.
+	\pause
+	Así mismo, $\chi_8$ y $\chi_{-8}$ son caracteres y son primitivos pues $\chi_8(q) = 1$ para un primo $q \equiv 1 \pmod 8$ y
+	$\chi_8(q) = -1$ para $q \equiv 5 \pmod 8$.
+	Similarmente, $\chi_{-8}(3) = 1 \ne -1 = \chi_{-8}(7)$.
+
+	\pause
+	Si $d = p \equiv 1 \pmod 4$ es primo, entonces $\left( \frac{p}{n} \right)_K = \left( \frac{n}{p} \right)_L$ pues la igualdad
+	se da por reciprocidad cuadrática, y por propiedades \ref{ax:kron_leg} y \ref{ax:kron_mult},
+	notando que $\left( \frac{p}{2} \right)_K = \left( \frac{2}{p} \right)_L$ para $p > 2$ primo, y que $\left( \frac{p}{-1} \right)_K =
+	-1 = \left( \frac{-1}{p} \right)_L$.
+
+	\pause
+	Si $p \equiv 3 \pmod 4$ es primo, entonces $\left( \frac{-p}{n} \right)_K = \left( \frac{n}{p} \right)_L$ notando nuevamente que
+	$\left( \frac{-p}{2} \right)_K = \left( \frac{2}{p} \right)_L$, que $\left( \frac{-p}{-1} \right)_K = 1 = \left( \frac{-1}{p}
+	\right)_L$ y aplicando reciprocidad cuadrática.
+
+	\pause
+	Sean pues $d_1, d_2$ enteros coprimos que satisfagan (a) y (b), y sea $d := d_1d_2$.
+	Basta notar ahora que $\chi_d(n) = \chi_{d_1}(n)\chi_{d_2}(n)$ para ver que $\chi_d$ es un caracter primitivo por inducción sobre
+	$|d|$ (usando el ejercicio anterior).
+	\pause
+	En efecto, coinciden en $\chi_d(2)$ por propiedad~\ref{ax:kron2};
+	coinciden en $\chi_d(p)$ para un primo $p > 2$ por~\ref{ax:kron_leg} y evidentemente también en $-1$.
+\end{frame}
+
+\begin{frame}{Series de Dirichlet}
+	\begin{block}{Problema}
+		Pruebe que
+		\[
+			\frac{1}{x} \sum_{n\le x} \sigma(n) = \frac{\pi^2}{12}x^2 + O(\log x).
+			% \frac{1}{x} \sum_{n\le x} \sigma_k(n) = \frac{\zeta(k+1)}{k+1}x^{k+1} + O(x^{k-1}).
+			% \frac{\pi^2}{12}x^2 + O(\log x).
+		\]
+	\end{block}
+	(Recuerde que
+	\[
+		% \sigma_k(n) := \sum_{\substack{d\mid n \\ d > 0}} d^k.)
+		\sigma(n) := \sum_{\substack{d\mid n \\ d > 0}} d.)
+	\]
+	% \pause
+	% \emph{Pista:} También recuerde de la prueba que $\zeta^2$
+\end{frame}
+\begin{frame}[fragile]{Solución}
+	% Es claro de la definición que $\sigma = 1*\Id$.
+	% Luego, en términos de series de Dirichlet
+	% \[
+	% 	L(\sigma, s) = L(1, s)L(\Id, s)
+	% 	\pause
+	% 	= \zeta(s) \left( \sum_{n=1}^{\infty} \frac{n}{n^s} \right)
+	% 	= \zeta(s) \zeta(s - 1),
+	% 	\quad \Re s > 2.
+	% \]
+	% Así, intuitivamente
+	% \[
+	% 	\frac{1}{x} \sum_{n\le x} \sigma(n) \to \Res_{s = 0} \zeta(s) \zeta(s-1)
+	% \]
+	Expandamos
+	\begin{eqnarray*}
+		\sum_{n\le x} \sigma(n)
+		&=& \sum_{n\le x} \sum_{dm = n} d = \sum_{1 \le dm \le x} d \\
+		% &= \lfloor \sqrt{x} \rfloor \sum_{d\le \sqrt{x}} d
+		% + 2 \sum_{d = 1}^{\sqrt{x}} d \sum_{\lfloor \sqrt{x} \rfloor \le m < x/d} 1 \\
+		% &= -\lfloor \sqrt{x} \rfloor \frac{ \lfloor \sqrt{x} \rfloor ( \lfloor \sqrt{x} \rfloor + 1 ) }{2}
+		% + 2\sum_{d = 1}^{\sqrt{x}} d \lfloor \frac{x}{d} \rfloor \\
+		% &= -x \cdot \frac{\sqrt{x} + 1}{2} + 2 \sum_{d \le \sqrt{x}} x + O\left( \sum_{d\le\sqrt{x}} d \right) +  O(\sqrt{x}).
+		\pause
+		  &=& \sum_{m \le x} \sum_{\substack{d \\ dm \le x}} d
+		 % = \sum_{m \le x} \left\lfloor \frac{x}{m} \right\rfloor \sum_{dm \le x} 1
+		 \pause
+		 = \frac{1}{2} \sum_{m\le x} \left\lfloor \frac{x}{m} \right\rfloor \left( \left\lfloor \frac{x}{m} \right\rfloor + 1
+		 \right) \\
+		 \pause
+		  &=& \frac{1}{2} \sum_{m\le x} \frac{x^2}{m^2} + O\mathopen{}\left( x \sum_{m\le x} \frac{1}{m} \right)\mathclose{}.
+	\end{eqnarray*}
+	\pause
+	El primer término es $x^2 \sum_{m\le x} \frac{1}{m^2} = x^2 \zeta(2) + O(x)$
+	\pause
+	pues
+	\[
+		\sum_{m > x} \frac{1}{m^2} \le \int_{x-1}^{\infty} \frac{1}{t^2} \, \ud t = \frac{1}{x-1} \sim \frac{1}{x};
+	\]
+	\pause
+	el segundo término es $\sum_{m\le x} \frac{1}{m} = \log x + \gamma + O(\frac{1}{x})$.
+	Se concluye el enunciado.
+\end{frame}
+
+\begin{frame}{Curvas elípticas}
+	\begin{block}{Problema}
+		Calcule todos los puntos racionales de torsión de la curva elíptica $E\colon \; y^2 = x^3 + px$ para un primo $p$.
+	\end{block}
+\end{frame}
+\begin{frame}{Solución}
+	Primero comenzamos por calcular el discriminante del polinomio cúbico $f(x) := x^3 + px$
+	\pause
+	dado por el determinante
+	\[
+		\footnotesize
+		D := \Res(f, f') =
+		\begin{vmatrix}
+			1 & 0 & p & 0 \\
+			  & 1 & 0 & p & 0 \\
+			3 & 0 & p \\
+			  & 3 & 0 & p \\
+			  &   & 3 & 0 & p
+		\end{vmatrix}
+		= 4p^3.
+	\]
+	\pause
+	Ahora bien, el teorema de Nagell-Lutz dice que si $(x, y) \in E(\Q)$ es de torsión, entonces $y = 0$ o $y \mid D$.
+	En el segundo caso, nos da que $y = \pm 2^a p^b$ con $a \le 2$ y $b \le 3$.
+
+	\pause
+	Si $a = 0$ (i.e., $y = \pm p^b$), entonces resolvemos la ecuación diofántica $p^{2b} = x(x^2 + p)$.
+	\pause
+	Note que $x^2 + p \ge p > 1$, de modo que $b > 0$.
+	Mirando congruencias módulo $p$, obtenemos $x^3 \equiv 0 \pod p$, es decir, $x = pu$ y obtenemos
+	\[
+		p^{2b-2} = u(pu^2 + 1),
+	\]
+	como $u$ y $pu^2 + 1$ son coprimos (¿por qué?), se sigue que $u = \pm 1$ o $pu^2 + 1 = \pm 1$.
+	El segundo caso implica $u = 0$, lo que es absurdo.
+
+	\pause
+	Si $u = \pm 1$, entonces $pu^2 + 1 = p + 1 = p^{2b-2}$ lo que es imposible.
+\end{frame}
+
+\begin{frame}{Solución (cont.)}
+	Si $a \in \{ 1, 2 \}$, entonces obtenemos $4^a p^{2b} = x(x^2 + p)$.
+	Nuevamente, mirando módulo $p$ se sigue que $x = pu$ y tenemos la ecuación
+	\[
+		4^a p^{2b-2} = u(pu^2 + 1).
+	\]
+	\pause
+	Igual que antes, $u$ y $pu^2 + 1$ son coprimos, y $p \nmid pu^2 + 1$,
+	así que $pu^2 + 1 \in \{ 4, 16 \}$.
+	\pause
+	Por inspección solo nos deja $p = 3$ y $u = \pm 1$, lo que a su vez implica $b = 0$.
+
+	\pause
+	Esto nos dice que los únicos puntos de torsión de $E(\Q)$ son $(0, 0)$ en general,
+	y posiblemente $P := (3, \pm 6)$ cuando la ecuación es $y^2 = x^3 + 3x$.
+	\pause
+	Finalmente, operamos $P$ consigo mismo para ver que sea de torsión:
+	\[
+		2P = \left(\frac{1}{4}, \pm\frac{7}{8}\right) \notin \tors{E(\Q)}.
+	\]
+	Así que $\tors{E(\Q)} = \{ (0, 0), o \}$
+\end{frame}
+
+\printbibliography
+
+\end{document}

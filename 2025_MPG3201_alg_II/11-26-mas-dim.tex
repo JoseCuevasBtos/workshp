@@ -1,0 +1,105 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\hyphenation{Harts-horne}
+
+% \usepackage{minted}
+% \usemintedstyle{colorful}
+% \setminted{
+% 	mathescape,
+% 	% linenos,
+% 	autogobble,
+% 	bgcolor=black!5,
+% 	tabsize=2,
+% 	fontsize=\small
+% }
+
+% \usepackage{multicol}
+\DeclareMathOperator{\init}{in}
+\DeclareMathOperator{\HF}{HF}
+
+\title{Dimensión II}
+\date{\DTMdate{2025-11-26}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicios}
+\begin{enumerate}
+	\item Considere $\mathfrak{a} := (xz - x^2, yz - xy) \nsl k[x, y, z]$.
+		\begin{enumerate}
+			\item Pruebe que $\mathfrak{a} \cap k[z] = 0$.
+				¿Podría darse que $\mathfrak{a} \cap k[x, z] = 0$ o $\mathfrak{a} \cap k[y, z] = 0$?
+			\item Muestre que $\mathfrak{a} \cap k[x, y] = 0$,
+				pero $\mathfrak{a} \ne 0$.
+			\item ¿Qué puede decir de $\dim\VV(\mathfrak{a})$?
+		\end{enumerate}
+		\nocite{cox:ideals}
+
+	\item Sea $f \in R := k[x_0, \dots, x_n]$ homogéneo de grado $r > 0$.
+		\begin{enumerate}
+			\item Calcule el polinomio de Hilbert (proyectivo) del ideal $(f)$.
+			\item Sea $\mathfrak{a}$ un ideal y suponga que $f$ no es un divisor de cero en $R/\mathfrak{a}$.
+				Pruebe que el polinomio de Hilbert $\mathfrak{a} + (f)$ solo depende de $\mathfrak{a}$ y $r$.
+		\end{enumerate}
+
+	\item\lookright
+		Sea $V \subseteq \PP^n(k)$ una variedad%
+		\footnote{Para mí, todas las variedades son irreducibles y, para quienes sepan esquemas, \emph{reducidas}.}
+		proyectiva.
+		\begin{enumerate}
+			% \item Pruebe que dado $f \in k[x_0, \dots, x_n]$ existen finitos ideales primos \emph{minimales} que le contienen.
+			\item Pruebe que, si $\dim V > 0$, entonces existe una subvariedad $W \subseteq V$ de $\dim W = \dim V - 1$.
+				\begin{hint}
+					Para ello, pueden resultar útiles el hecho de que para todo $f \in k[x_0, \dots, x_n]$ que no se
+					anula idénticamente en $V$ se cumple que $\dim(V \cap \VV(f)) = \dim V - 1$; así como el siguiente
+					resultado de álgebra conmutativa:
+					\begin{displayquote}
+						El conjunto de primos ($\subseteq$-)minimales de un anillo noetheriano es finito
+						(Ex.~8 de \cite{atiyah:commutative}, Ch.~6).
+						\qedhere
+					\end{displayquote}
+				\end{hint}
+
+			\item\label{ex:dimension_th}
+				Pruebe que si $\dim V = m$, entonces existe una cadena de $m+1$ subvariedades distintas:
+				\[
+					V_0 \subset V_1 \subset \cdots \subset V_m = V
+				\]
+				y que no hay cadenas más largas.
+		\end{enumerate}
+
+	\item Sea $F \colon \A^m(k) \to \A^n(k)$ un morfismo regular y sea $V = \overline{\Img F} \subseteq \A^n(k)$ la clausura de su imagen
+		(\textquote{$F$ es una parametrización racional de $V$}).
+		Pruebe que $m \ge \dim V$, y dé un ejemplo donde $m > \dim V$.
+\end{enumerate}
+
+\begin{additional}
+\appendix
+\section{Comentarios adicionales}
+El ejercicio~\ref{ex:dimension_th} muestra que la dimensión topológica o combinatórica de $V$ (en sentido de
+% \cite{ega-iv1}, \S 0.14.1)
+\citeauthor{hartshorne:algebraic}~\cite[5]{hartshorne:algebraic})
+coincide con la \textquote{dimensión} que ya hemos definido (mediante polinomios de\break Hilbert).
+
+\printbibliography
+\end{additional}
+
+\end{document}

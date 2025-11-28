@@ -105,19 +105,20 @@
 	\end{block}
 	\pause
 	(Recuerde que un caracter $\chi$ módulo $n$ se dice \strong{primitivo} si no existe un divisor $r \mid n$ con $|r| < |n|$, y un
-	caracter $\theta$ módulo $r$ tales que $\chi(a) = \theta(a)$ para todo $a \in \Z$.)
+	caracter $\theta$ módulo $r$ tales que $\chi(a) = \theta(a)$ para todo $a$ coprimo a $n$.)
 \end{frame}
 \begin{frame}{Solución}
 	Claramente $\chi\cdot\psi$ es caracter módulo $nm$.
-	Si no fuera primitivo, existe $r \mid nm$ y un caracter $\theta$ módulo $r$ tal que $\chi(a)\psi(a) = \theta(a)$.
+	Si no fuera primitivo, existe $r \mid nm$ y un caracter $\theta$ módulo $r$ tal que $\chi(a)\psi(a) = \theta(a)$ para $(a; n) = 1$.
 	\pause
 	Por coprimalidad, $r = n'm'$ de manera única con $n' \mid n$ y $m' \mid m$;
-	y por teorema chino del resto, existen caracteres $\chi', \psi'$ módulo $n', m'$ resp.\ tales que $\theta(a) = \chi'(a) \psi'(a)$.
+	y por teorema chino del resto, existen caracteres $\chi', \psi'$ módulo $n', m'$ resp.\ tales que $\theta(a) = \chi'(a) \psi'(a)$
+	para todo $a \in \Z$.
 
 	\pause
 	Dado una clase $[b]$ coprima a $n$, siempre podemos elegir un representante tal que $b \equiv 1 \pmod m$ (y, por ende, $\equiv 1
-	\pmod{m'}$) de modo que $\chi(b) = \theta(b) = \chi'(b)$, y análogamente se verifica que $\psi = \psi'$; esto contradice la
-	primitividad de $\chi$ y $\psi$.
+	\pmod{m'}$) de modo que $\chi(b) = \theta(b) = \chi'(b)$, y análogamente se verifica que $\psi(a) = \psi'(a)$ para $(a; m) = 1$;
+	esto contradice la primitividad de $\chi$ y $\psi$.
 \end{frame}
 
 \begin{frame}{Caracteres}
@@ -181,7 +182,7 @@
 	\begin{block}{Problema}
 		Pruebe que
 		\[
-			\frac{1}{x} \sum_{n\le x} \sigma(n) = \frac{\pi^2}{12}x^2 + O(\log x).
+			\frac{1}{x} \sum_{n\le x} \sigma(n) = \frac{\pi^2}{12}x^2 + O(x\log x).
 			% \frac{1}{x} \sum_{n\le x} \sigma_k(n) = \frac{\zeta(k+1)}{k+1}x^{k+1} + O(x^{k-1}).
 			% \frac{\pi^2}{12}x^2 + O(\log x).
 		\]
@@ -267,10 +268,12 @@
 	Si $a = 0$ (i.e., $y = \pm p^b$), entonces resolvemos la ecuación diofántica $p^{2b} = x(x^2 + p)$.
 	\pause
 	Note que $x^2 + p \ge p > 1$, de modo que $b > 0$.
+	\pause
 	Mirando congruencias módulo $p$, obtenemos $x^3 \equiv 0 \pod p$, es decir, $x = pu$ y obtenemos
 	\[
 		p^{2b-2} = u(pu^2 + 1),
 	\]
+	\pause
 	como $u$ y $pu^2 + 1$ son coprimos (¿por qué?), se sigue que $u = \pm 1$ o $pu^2 + 1 = \pm 1$.
 	El segundo caso implica $u = 0$, lo que es absurdo.
 
@@ -298,7 +301,7 @@
 	\[
 		2P = \left(\frac{1}{4}, \pm\frac{7}{8}\right) \notin \tors{E(\Q)}.
 	\]
-	Así que $\tors{E(\Q)} = \{ (0, 0), o \}$
+	Así que $\tors{E(\Q)} = \{ (0, 0), o \}$.
 \end{frame}
 
 \printbibliography

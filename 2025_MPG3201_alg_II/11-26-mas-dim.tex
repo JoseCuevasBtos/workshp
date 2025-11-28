@@ -41,15 +41,24 @@
 
 \maketitle
 
+\section*{Recordatorio}
+Será útil en los ejercicios ocupar la siguiente proposición (Prop.~10 de \cite[511]{cox:ideals}, \S 9.4):
+\begin{displayquote}
+	Sea $V \subseteq \A^n(k)$ (resp.\ $V \subseteq \PP^n(k)$) una variedad\footnotemark{} algebraica.
+	\footnotetext{Para mí, todas las variedades son irreducibles y, para quienes sepan esquemas, \emph{reducidas}.}
+	Entonces dado un polinomio (homogéneo) $f \in k[\vec x]$ que no se anula en todo $V$, se cumple que $\dim(V \cap \VV(f)) = \dim V - 1$.
+	Además, si $W \subset V$ es una subvariedad propia, entonces $\dim W < \dim V$.
+\end{displayquote}
+Como comentamos la semana pasada, este es un caso del teorema de ideales principales de Krull.
+
 \section{Ejercicios}
 \begin{enumerate}
 	\item Considere $\mathfrak{a} := (xz - x^2, yz - xy) \nsl k[x, y, z]$.
 		\begin{enumerate}
 			\item Pruebe que $\mathfrak{a} \cap k[z] = 0$.
-				¿Podría darse que $\mathfrak{a} \cap k[x, z] = 0$ o $\mathfrak{a} \cap k[y, z] = 0$?
-			\item Muestre que $\mathfrak{a} \cap k[x, y] = 0$,
-				pero $\mathfrak{a} \ne 0$.
+				Verifique o contradiga que $\mathfrak{a} \cap k[x_i, x_j] = 0$ donde $\{ x_i, x_j \}$ recorre todas las parejas $\{ \{ x, y \}, \{ x, z \}, \{ y, z \} \}$.
 			\item ¿Qué puede decir de $\dim\VV(\mathfrak{a})$?
+			\item ¿Es $\mathfrak{a}$ un ideal radical?
 		\end{enumerate}
 		\nocite{cox:ideals}
 
@@ -61,16 +70,13 @@
 		\end{enumerate}
 
 	\item\lookright
-		Sea $V \subseteq \PP^n(k)$ una variedad%
-		\footnote{Para mí, todas las variedades son irreducibles y, para quienes sepan esquemas, \emph{reducidas}.}
+		Sea $V \subseteq \PP^n(k)$ una variedad
 		proyectiva.
 		\begin{enumerate}
 			% \item Pruebe que dado $f \in k[x_0, \dots, x_n]$ existen finitos ideales primos \emph{minimales} que le contienen.
 			\item Pruebe que, si $\dim V > 0$, entonces existe una subvariedad $W \subseteq V$ de $\dim W = \dim V - 1$.
 				\begin{hint}
-					Para ello, pueden resultar útiles el hecho de que para todo $f \in k[x_0, \dots, x_n]$ que no se
-					anula idénticamente en $V$ se cumple que $\dim(V \cap \VV(f)) = \dim V - 1$; así como el siguiente
-					resultado de álgebra conmutativa:
+					Para ello, puede resultar útil el siguiente resultado de álgebra conmutativa:
 					\begin{displayquote}
 						El conjunto de primos ($\subseteq$-)minimales de un anillo noetheriano es finito
 						(Ex.~8 de \cite{atiyah:commutative}, Ch.~6).
@@ -86,9 +92,44 @@
 				y que no hay cadenas más largas.
 		\end{enumerate}
 
-	\item Sea $F \colon \A^m(k) \to \A^n(k)$ un morfismo regular y sea $V = \overline{\Img F} \subseteq \A^n(k)$ la clausura de su imagen
-		(\textquote{$F$ es una parametrización racional de $V$}).
-		Pruebe que $m \ge \dim V$, y dé un ejemplo donde $m > \dim V$.
+	\item Sea $F \colon \A^m(k) \to \A^n(k)$ un morfismo regular (i.e., dado en coordenadas por polinomios),
+		y sean $V := \VV(\mathfrak{a}) \subseteq \A^m(k)$ y $W := \overline{\Img(F|_V)} \subseteq \A^n(k)$ subconjuntos algebraicos afines.
+		Así, $F$ se restringe a un morfismo \emph{dominante} (cuya imagen es densa) $F|_V \colon V \to W$.
+		Pruebe que $\dim V \ge \dim W$ y dé ejemplos de cuando hay desigualdad estricta.
+
+		\begin{sol}
+			Por clases ya ha visto que hay $G_1, \dots, G_d \colon W \to \A^1(k)$ morfismos regulares que son algebraicamente independientes.
+			Cada uno de ellos se escribe como una función racional $G_j(y_1, \dots, y_n) = p_j(\vec y)/q_j(\vec y)$, donde $p_j,
+			q_j \in k[y_1, \dots, y_n] = k[\A^n]$ y donde $q_j$ no se anula en ningún punto de $W$.
+
+			Luego podemos cambiar $G_j$ por $QG_j$, donde $Q := q_1\cdots q_n$, ya que si los nuevos morfismos regulares son
+			algebraicamente dependientes, existe un polinomio homogéneo
+			\[
+				0 = \sum_{\vec a} c_{\vec a} (QG_1(\vec y))^{a_1}\cdots(QG_d(\vec y))^{a_d}
+				= Q(\vec y)^e \sum_{\vec a} c_{\vec a} G_1(\vec y)^{a_1}\cdots G_d(\vec y)^{a_d},
+			\]
+			que se anula en todo $\vec y \in W$.
+			Pero $Q$ no se anula en ningún $\vec y \in W$, lo que nos da una relación polinomial en $G_j$ que es absurda.
+
+			Así, suponemos que los $G_j$'s son polinomios en $k[\vec y]$ y son algebraicamente independientes como morfismos de $W$.
+			Queremos ver que\footnotemark{} $F\circ G_j \colon V \to \A^1(k)$ también son morfismos algebraicamente independientes.
+			\footnotetext{Yo compongo al revés.}
+			Si no, existe una relación polinomial
+			\[
+				0 = \sum_{\vec a} c_{\vec a} G_1(F(\vec x))^{a_1} \cdots G_d(F(\vec x))^{a_d},
+			\]
+			que se anula en todo $\vec x \in V$.
+			Si $F$ fuera sobreyectivo, vemos que es válida para todo $\vec y \in W$, pero no es siempre cierto.
+
+			En cualquier caso, nos dice que la imagen de $F$ cae en el cerrado afín $\VV( \sum_{\vec a} c_{\vec a}
+			G_1^{a_1}\cdots G_d^{a_d} )$ y, como $W$ es la clausura de la imagen, tenemos que
+			\[
+				W \subseteq \VV\mathopen{}\left( \sum_{\vec a} c_{\vec a} G_1^{a_1}\cdots G_d^{a_d} \right)\mathclose{},
+			\]
+			es decir, todo punto de $W$ se anula en dicha expresión, lo que significa que debe ser el polinomio nulo; es decir,
+			que los $F\circ G_j$ son algebraicamente independientes.
+			Así, $d \le \dim V$ (porque la dimensión es la máxima cantidad de morfismos algebraicamente independientes).
+		\end{sol}
 \end{enumerate}
 
 \begin{additional}

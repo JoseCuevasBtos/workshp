@@ -1,0 +1,129 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\title{Complejos de módulos}
+\date{\DTMdate{2026-08-12}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Topología Algebraica}
+\coursecode{MAT2850}
+\professor{Mauricio Bustamante}
+
+\begin{document}
+
+\maketitle
+
+\section{Complejos}
+Sea $R$ un anillo.
+\begin{mydef}
+	Un \strong{complejo de $R$-módulos} es una familia de $R$-módulos $(A_n)_{n\in\Z}$ indexada por los enteros junto a homomorfismos
+	$\ud^A_n \colon A_n \to A_{n-1}$, llamados \strong{diferenciales}, tales que $\ud^A_{n-1}\circ\ud^A_n = 0$.
+	De no haber ambigüedad obviaremos supra- y subíndice en el diferencial $\ud$, de modo que con abuso de notación escribimos
+	\textquote{$\ud^2 = 0$}, y denotaremos solo por $A_\bullet$ al complejo.
+
+	Un \strong{homomorfismo de complejos}, denotado $\varphi_\bullet \colon A_\bullet \to B_\bullet$, es una familia de homomorfismos
+	$\varphi_n \colon A_n \to B_n$ tal que $\ud^B_n\circ\varphi_n = \varphi_{n-1}\circ\ud^A_n$ para cada $n \in \Z$.
+	Es decir, tal que el siguiente diagrama conmuta:
+	\[\begin{tikzcd}
+		\cdots \rar & A_n \rar["\ud"] \dar["\varphi_n"] & A_{n-1} \rar["\ud"] \dar["\varphi_{n-1}"] & \cdots \\
+		\cdots \rar & B_n \rar["\ud"]                   & B_{n-1} \rar["\ud"]                       & \cdots
+	\end{tikzcd}\]
+	Definimos el \emph{$n$-ésimo módulo de homología} de un complejo $A_\bullet$ como
+	\[
+		H_n(A_\bullet) := \frac{\ker( \ud \colon A_n \to A_{n-1} )}{\Img( \ud \colon A_{n+1} \to A_n )},
+	\]
+	un complejo $A_\bullet$ se dice \strong{exacto} o \emph{acíclico} en un índice $n \in \Z$ si $H_n(A_\bullet) = 0$;
+	y se dice \emph{exacto} a secas si lo es en cada $n$.
+\end{mydef}
+
+\section{Ejercicios}
+\begin{enumerate}
+	\item Sea $\varphi_\bullet \colon A_\bullet \to B_\bullet$ un homomorfismo entre complejos de $R$-módulos.
+		\begin{enumerate}
+			\item Muestre que $\ker\varphi_\bullet$, $\Img\varphi_\bullet$ y $\coker\varphi_\bullet$ son también complejos.
+			\item Muestre que induce, para cada $n \in \Z$, un homomorfismo entre módulos de homología $H_n(\varphi) \colon
+				H_n(A) \to H_n(B)$.
+		\end{enumerate}
+
+	\item Sean $A_\bullet, B_\bullet$ un par de complejos de $R$-módulos.
+		Dote a $(A \oplus B)_n := A_n \oplus B_n$ de un diferencial, de modo que las (familias de) inclusiones $\iota^A\colon A_\bullet \hookto (A\oplus
+		B)_\bullet$, $\iota^B\colon B_\bullet \hookto (A\oplus B)_\bullet$, y las (familias de) proyecciones $\pi^A \colon (A\oplus
+		B)_\bullet \to A_\bullet$ y $\pi^B \colon (A\oplus B)_\bullet \to B_\bullet$ sean homomorfismos \underline{de complejos}.
+		Pruebe que existe un isomorfismo natural
+		\[
+			\forall n\in\Z \qquad
+			H_n(A\oplus B) \cong H_n(A) \oplus H_n(B).
+		\]
+
+	\item (Prueba de lucidez)
+		Sea 
+		\begin{tikzcd}[cramped, sep=small]
+			0 \rar & A_\bullet \rar["\varphi"] & B_\bullet \rar["\psi"] & C_\bullet \rar & 0
+		\end{tikzcd}
+		una sucesión exacta de complejos.
+		Muestre que son equivalentes:
+		\begin{enumerate}
+			\item Existe un homomorfismo de complejos $\rho \colon B_\bullet \to A_\bullet$ (llamado \emph{retracción}) tal que
+				$\rho\circ\varphi = \Id_{A_\bullet}$.
+			\item Existe un homomorfismo de complejos $\sigma \colon C_\bullet \to B_\bullet$ (llamado \emph{sección}) tal que
+				$\psi\circ\sigma = \Id_{C_\bullet}$.
+			\item Hay un isomorfismo natural $B_\bullet \cong (A\oplus C)_\bullet$ como \underline{complejos}.
+		\end{enumerate}
+		En cuyo caso, decimos que la sucesión de complejos \emph{se escinde}.
+		\begin{hint}
+			Imite la prueba para módulos.
+		\end{hint}
+
+	\item Dé un ejemplo de una sucesión exacta de complejos
+		\begin{tikzcd}[cramped, sep=small]
+			0 \rar & A_\bullet \rar["\varphi"] & B_\bullet \rar["\psi"] & C_\bullet \rar & 0
+		\end{tikzcd}
+		tal que para $n \in \Z$ se escinde (es decir, $B_n \cong A_n\oplus C_n$ \textquote{de manera abstracta}), pero tal que la
+		sucesión de complejos no se escinde.
+		\begin{hint}
+			Tal contraejemplo inclusive existe cuando el anillo es un cuerpo.
+		\end{hint}
+\end{enumerate}
+
+\section{Algunos usos del lema de la serpiente}
+\begin{enumerate}[resume]
+	\item \textbf{Lema de los cinco:}
+		Dado un diagrama conmutativo
+		\[\begin{tikzcd}
+			A^1 \rar \dar["\varphi^1"] & A^2 \rar \dar["\varphi^2"] & A^3 \rar \dar["\varphi^3"] & A^4 \rar \dar["\varphi^4"] &
+			A^5 \dar["\varphi^5"] \\
+			B^1 \rar                   & B^2 \rar                   & B^3 \rar                   & B^4 \rar                   &
+			B^5
+			\ar[from=1-1, to=2-1, draw=none, "\sim"', sloped]
+			\ar[from=1-2, to=2-2, draw=none, "\sim"', sloped]
+			% \ar[from=1-3, to=2-3, draw=none, "\sim"', sloped]
+			\ar[from=1-4, to=2-4, draw=none, "\sim"', sloped]
+			\ar[from=1-5, to=2-5, draw=none, "\sim"', sloped]
+		\end{tikzcd}\]
+		donde $A^\bullet$ y $B^\bullet$ son exactos, y donde $\varphi^j$ es un isomorfismo para todo $j \ne 3$.
+		Pruebe que, entonces $\varphi^3$ también es un isomorfismo.
+		
+	\item Pruebe que una sucesión exacta corta de complejos 
+		\begin{tikzcd}[cramped, sep=small]
+			0 \rar & A_\bullet \rar["\varphi"] & B_\bullet \rar["\psi"] & C_\bullet \rar & 0
+		\end{tikzcd}
+		induce una sucesión exacta larga en homología
+		\[\begin{tikzcd}
+			\cdots \rar & H_{n+1}(C) \rar["\partial", red] & H_n(A) \rar["\varphi_*"] & H_n(B) \rar["\psi_*"] & H_n(C)
+			\rar["\partial", red] & H_{n-1}(A) \rar & \cdots
+		\end{tikzcd}\]
+\end{enumerate}
+
+\printbibliography
+
+\end{document}

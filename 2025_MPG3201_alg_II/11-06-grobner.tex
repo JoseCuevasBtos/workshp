@@ -1,0 +1,155 @@
+\documentclass[11pt, reqno]{amsart}
+
+\usepackage{../ayud-template}
+\input{../general.tex}
+
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+
+\usepackage{minted}
+\usemintedstyle{colorful}
+\setminted{
+	mathescape,
+	% linenos,
+	autogobble,
+	bgcolor=black!5,
+	tabsize=2,
+	fontsize=\small
+}
+
+% \usepackage{../ayud-template}
+% \input{../general.tex}
+% % \input{../graphics.tex}
+
+% \usepackage{multicol}
+\DeclareMathOperator{\LT}{\text{\textsc{lt}}}
+
+\title{Bases de Gröbner}
+\date{\DTMdate{2025-11-05}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2025-2-alg/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile y Universidad de Chile}
+\department{Facultad de Matemáticas}
+\course{Álgebra II}
+\coursecode{MPG3201}
+\professor{José Samper}
+
+\begin{document}
+
+\maketitle
+
+\section{Teoría}
+De aquí en adelante, $\N = \Z_{\ge 0}$.
+Escribiremos una tupla $\vec\alpha = (\alpha_1, \dots, \alpha_n) \in \N^n$ en negritas y emplearemos notación multiíndice, es decir,
+en $k[x_1, \dots, x_n] =: k[\vec x]$ se denota
+\[
+	\vec{x}^{\vec\alpha} := x_1^{\alpha_1} \cdots x_n^{\alpha_n}.
+\]
+\begin{mydef}
+	Un \strong{orden monomial} $\preceq$ sobre $\N^n$ es una relación de orden total tal que:
+	\begin{enumerate}[{OM}1., ref=OM\arabic*]
+		\item Es un buen orden; es decir, todo subconjunto de $\N^n$ tiene $\preceq$-mínimo.
+		\item\label{ax:sum_invariant}
+			Si $\vec\alpha \prec \vec\beta$ y $\vec\gamma \in \N^n$, entonces $\vec\alpha + \vec\gamma \prec \vec\beta + \vec\gamma$.
+	\end{enumerate}
+\end{mydef}
+\begin{obs}
+	Sea $\preceq$ un orden total en $\N^n$ que satisface \ref{ax:sum_invariant}.
+	Entonces $\preceq$ es un orden monomial syss $\vec 0 \in \N^n$ es el $\preceq$-mínimo de $\N^n$
+	(cfr.\ \cite{cox:ideals}, Cor.~2.4.6).
+\end{obs}
+\begin{ex}
+	Recuerde que el \emph{orden lexicográfico} $\leq_{\rm lex}$ (\textquote{del diccionario}) en $\N^n$ es aquel en donde $\vec\alpha
+	<_{\rm lex} \vec\beta$ si, $\alpha_i < \beta_i$, donde $1 \le i \le n$ es la mínima coordenada $j$ tal que $\alpha_j \ne \beta_j$.
+	Por ejemplo, $(10, 1, 2025) <_{\rm lex} (11, 0, 0)$.
+	Este orden es monomial.
+
+	Similarmente, definimos el orden $\leq_{\rm grlex}$ en $\N^n$ dado por
+	\[
+		(\alpha_1, \dots, \alpha_n) \leq_{\rm grlex} (\beta_1, \dots, \beta_n) \iff
+		(\alpha_n, \dots, \alpha_1) \leq_{\rm lex} (\beta_n, \dots, \beta_1).
+	\]
+\end{ex}
+
+\begin{thm}[de las bases de Hilbert]
+	Todo ideal en $k[\vec x]$ está finitamente generado.
+\end{thm}
+Querremos ahora obtener un sistema generador para un ideal $\mathfrak{a}$ de manera algorítmica, replicando el caso de una variable.
+
+\begin{mydef}
+	Sea $f = \sum_{\vec\alpha} c_{\vec\alpha} \vec x^{\vec\alpha} \in k[\vec x]$ un polinomio.
+	Tras fijar un orden monomial $\preceq$ sobre $\N^n$ se define su \emph{término lider} como $\LT(f) = c_{\vec\beta} \vec
+	x^{\vec\beta}$, donde $\vec\beta$ es el $\preceq$-máximo multiíndice $\vec\alpha$ tal que $c_{\vec\alpha} \ne 0$.
+
+	Sea $\mathfrak{a} \nsle k[x_1, \dots, x_n]$ un ideal.
+	Se define
+	\[
+		\LT\mathfrak{a} := \sum_{f \in \mathfrak{a}} \LT(f)k[\vec x],
+	\]
+	es decir, es el ideal generado por los términos lider.
+	Se dice que un subconjunto finito $\{ g_1, \dots, g_t \} \subseteq \mathfrak{a}$ es una \strong{base de Gröbner} si $\LT\mathfrak{a}
+	= (\LT(g_1), \dots, \LT(g_t))$.
+\end{mydef}
+Siguiendo la misma demostración de que $k[x]$ (en una variable) es finitamente generado, obtenemos que:
+\begin{cor}
+	Toda base de Gröbner de un ideal $\mathfrak{a} \nsle k[\vec x]$ es un sistema generador.
+\end{cor}
+
+\begin{obs}
+	Sea $\mathfrak{a} = (f_1, \dots, f_r)$, entonces no es cierto que $\LT\mathfrak{a} = (\LT(f_1), \dots, \LT(f_r))$, sino que solo hay
+	una inclusión \textquote{$\supseteq$} en general.
+	% Vea el siguiente 
+\end{obs}
+\begin{ex}\label{ex:non-grob}
+	En $k[x, y]$ tome el orden ${\leq} := {\leq_{\rm lex}}$ (donde $y < x$),
+	y considere el ideal $\mathfrak{a} = (f_1, f_2)$ con $f_1 = x^3 - 2xy$ y $f_2 = x^2y - 2y^2 + x$.
+	Entonces $\LT(f_1) = x^3$ y $\LT(f_2) = x^2y$, de modo que $(\LT(f_1), \LT(f_2)) = x^2\cdot (x, y)$.
+
+	No obstante,
+	\[
+		x f_1 - y f_2 = x^2 \in \mathfrak{a},
+	\]
+	y $\LT(x^2) = x^2 \notin (\LT(f_1), \LT(f_2))$.
+	Así pues, $f_1, f_2$ \emph{no} es una ($\le_{\rm lex}$-)base de Gröbner de $\mathfrak{a}$.
+	% Cambiando el orden por $\le_{\rm grlex}$ tampoco funciona pues
+\end{ex}
+
+\begin{mydef}
+	Dada una tupla ordenada $F := (f_1, \dots, f_s)$ de polinomios en $k[\vec x]$ y otro $g \in k[\vec x]$, denotamos por
+	$\overline{g}^F$ al resto de $g$ por división por $f_1, \dots, f_s$ en orden.
+	Dados $f, g \in k[\vec x]$ (y tras fijar un orden monomial) denotamos por
+	\[
+		S(f, g) := \frac{\vec x^{\vec\gamma}}{\LT(f)} \cdot f - \frac{\vec x^{\vec\gamma}}{\LT(g)} \cdot g,
+	\]
+	donde $\gamma_j := \max\{ \alpha_j, \beta_j \}$ y donde $\vec x^{\vec\alpha} = \LT(f)$ y $\vec x^{\vec\beta} = \LT(g)$ salvo
+	escalares.
+\end{mydef}
+\begin{thm}[algoritmo de Buchberger]
+	Sea $G := (g_1, \dots, g_s)$ una tupla de polinomios en $k[\vec x]$ que genera el ideal $\mathfrak{a}$.
+	% Tras adjuntar sucesivamente $\overline{S(p, q)}^G$ donde $p, q \in G$, podemos obtendremos una base de Gröbner del ideal generado
+	% por $G$.
+	Si $\overline{S(g_i, g_j)}^G = 0$ para todo $i \ne j$, entonces $G$ es una base de Gröbner.
+\end{thm}
+\begin{ex}
+	Volvamos al ejemplo de $\mathfrak{a} = (f_1, f_2)$ con $f_1 = x^3 - 2xy$ y $f_2 = x^2y - 2y^2 + x$.
+	Aquí,
+	\[
+		S(f_1, f_2) = yf_1 - xf_2 = -2xy^2 + 2xy^2 - x^2 = -x^2,
+	\]
+	y como $\LT(x^2) < \LT(f_1) < \LT(f_2)$, vemos que el resto $f_3$ es sí mismo.
+	Luego, considere $G_1 := (f_1, f_2, f_3)$.
+
+	Calculamos $S(f_1, f_3) = -2xy^2 =: f_4$ y $S(f_2, f_3) = -2y^2 + x =: f_5$, en ambos casos su resto es sí mismo.
+	Finalmente el conjunto $G_2 := (f_1, \dots, f_5)$ es una base de Gröbner.
+\end{ex}
+
+\begin{additional}
+\appendix
+\printbibliography
+\end{additional}
+
+\end{document}

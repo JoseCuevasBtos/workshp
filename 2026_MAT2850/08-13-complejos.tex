@@ -10,7 +10,7 @@
 
 \author{José Cuevas Barrientos}
 \email{josecuevasbtos@uc.cl}
-\urladdr{https://josecuevas.xyz/teach/2025-1-ayud/}
+\urladdr{https://josecuevas.xyz/teach/2026-2-ayud/}
 
 \logo{../puc_negro.png}
 \institution{Pontificia Universidad Católica de Chile}
@@ -48,7 +48,7 @@ Sea $R$ un anillo.
 
 \section{Ejercicios}
 \begin{enumerate}
-	\item Sea $\varphi_\bullet \colon A_\bullet \to B_\bullet$ un homomorfismo entre complejos de $R$-módulos.
+	\item\lookright Sea $\varphi_\bullet \colon A_\bullet \to B_\bullet$ un homomorfismo entre complejos de $R$-módulos.
 		\begin{enumerate}
 			\item Muestre que $\ker\varphi_\bullet$, $\Img\varphi_\bullet$ y $\coker\varphi_\bullet$ son también complejos.
 			\item Muestre que induce, para cada $n \in \Z$, un homomorfismo entre módulos de homología $H_n(\varphi) \colon
@@ -98,8 +98,7 @@ Sea $R$ un anillo.
 \section{Algunos usos del lema de la serpiente}
 \begin{enumerate}[resume]
 	\item \textbf{Lema de los cinco:}
-		Dado un diagrama conmutativo
-		\[\begin{tikzcd}
+		Dado un diagrama conmutativo \[\begin{tikzcd}
 			A^1 \rar \dar["\varphi^1"] & A^2 \rar \dar["\varphi^2"] & A^3 \rar \dar["\varphi^3"] & A^4 \rar \dar["\varphi^4"] &
 			A^5 \dar["\varphi^5"] \\
 			B^1 \rar                   & B^2 \rar                   & B^3 \rar                   & B^4 \rar                   &
@@ -112,8 +111,21 @@ Sea $R$ un anillo.
 		\end{tikzcd}\]
 		donde $A^\bullet$ y $B^\bullet$ son exactos, y donde $\varphi^j$ es un isomorfismo para todo $j \ne 3$.
 		Pruebe que, entonces $\varphi^3$ también es un isomorfismo.
-		
-	\item Pruebe que una sucesión exacta corta de complejos 
+		\begin{hint}
+			Puede ser útil primero probar que dado un diagrama conmutativo de módulos
+			% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiQSciXSxbMCwxLCJCIl0sWzEsMSwiQiciXSxbMiwzLCJcXGJldGEiLDJdLFswLDEsIlxcYWxwaGEiXSxbMCwyLCJcXHNpbSIsMl0sWzEsMywiXFxzaW0iXV0=
+			\[\begin{tikzcd}
+				A & {A'} \\
+				B & {B'}
+				\arrow["\alpha", from=1-1, to=1-2]
+				\arrow[sloped, "\sim"', from=1-1, to=2-1]
+				\arrow[sloped, "\sim", from=1-2, to=2-2]
+				\arrow["\beta"', from=2-1, to=2-2]
+			\end{tikzcd}\]
+			Se tiene que $\Img\alpha \cong \Img\beta$, $\ker\alpha \cong \ker\beta$ y $\coker\alpha \cong \coker\beta$.
+		\end{hint}
+
+	\item\lookright Pruebe que una sucesión exacta corta de complejos 
 		\begin{tikzcd}[cramped, sep=small]
 			0 \rar & A_\bullet \rar["\varphi"] & B_\bullet \rar["\psi"] & C_\bullet \rar & 0
 		\end{tikzcd}

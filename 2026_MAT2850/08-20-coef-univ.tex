@@ -1,0 +1,120 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\title{El teorema de coeficientes universales}
+\date{\DTMdate{2026-08-20}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2026-2-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Topología Algebraica}
+\coursecode{MAT2850}
+\professor{Mauricio Bustamante}
+
+\begin{document}
+
+\maketitle
+
+\section{Cohomología}
+\begin{mydef}
+	Un \emph{cocomplejo} de módulos, denotado $A^\bullet$, será una familia $(A^n)_{n\in\Z}$ de módulos con diferenciales $\ud^n_A \colon
+	A^n \to A^{n+1}$ \textquote{creciendo en grado} tales que $\ud_A^{n+1}\circ\ud_A^n = 0$ para todo $n \in \Z$.
+\end{mydef}
+Uno puede imitar la definición de homomorfismo de complejos para cocomplejos y de homología para obtener la \emph{cohomología}:
+\[
+	H^n(A) := \frac{\ker( \ud \colon A^n \to A^{n+1} )}{\Img( \ud \colon A^{n-1} \to A^n )}.
+\]
+Por ejemplo, es inmediato que:
+\begin{obs}
+	Las categorías de complejos y de cocomplejos son isomorfas mediante la aplicación que a un complejo $A_\bullet$ le asocia el
+	cocomplejo $A^n := A_{-n}$ con $\ud^n_A := \ud^A_n$.
+	Más aún, $H_n(A_\bullet) = H^n(A^\bullet)$ (aquí hay honesta igualdad).
+\end{obs}
+
+\begin{mydef}
+	Sea $A$ un $R$-módulo.
+	Una \strong{resolución libre} es un complejo de módulos exacto
+	\[\begin{tikzcd}
+		\cdots \rar & F_2 \rar & F_1 \rar & F_0 \rar["\varepsilon"] & A
+	\end{tikzcd}\]
+	donde cada $F_n$ es un módulo libre.
+\end{mydef}
+
+\begin{enumerate}
+	\item Pruebe que todo $R$-módulo admite una resolución libre.
+
+	\item Sea $A_\bullet$ un complejo de módulos.
+		\begin{enumerate}
+			\item Muestre que para todo $R$-módulo $B$, la familia $C^n := \Hom_R(A_n, B)$ con las aplicaciones
+				\[
+					\ud^n_C \colon C^n \longrightarrow C^{n+1}, \qquad \varphi \longmapsto \varphi\circ\ud^A_n
+				\]
+				forma un cocomplejo.
+
+			\item ¿Se cumple que $H^n(C^\bullet) \cong H_n(A_\bullet)$?
+		\end{enumerate}
+\end{enumerate}
+
+\section{El funtor Ext}
+Puede tomar por sabido el siguiente hecho:
+\begin{prop}[{\cite[129-131]{hilton:homological}}]
+	Sean $A, B$ un par de $R$-módulos.
+	Se cumple que
+	\[
+		\forall n\in\Z, \qquad
+		H^n( \Hom(F_\bullet, B) ) \cong H^n( \Hom(G_\bullet, B) ),
+	\]
+	donde $F_\bullet \to A$ y $G_\bullet \to A$ son dos resoluciones libres.
+	A este módulo lo denotamos por $\Ext_R^n(A, B)$.
+\end{prop}
+\begin{enumerate}[resume]
+	\item Pruebe que $\Ext_R^0(A, B) \cong \Hom_R(A, B)$.
+
+	\item Sea $0 \to A \to B \to C \to 0$ una sucesión exacta de módulos, pruebe que para todo módulo $M$ hay una sucesión exacta
+		\[\begin{tikzcd}
+			{} & \Ext_R(C, M) \rar & \Ext_R(B, M) \rar & \Ext_R(A, M) & \\
+			{} & \Hom_R(C, M) \rar & \Hom_R(B, M) \rar & \Hom_R(A, M) \rar & 0
+			\arrow["\partial"{description}, from=1-4, to=2-2, out=-150, in=40]
+		\end{tikzcd}\]
+
+	\item \textbf{Teorema de coeficientes universales:}
+		Pruebe que para todo complejo $A^\bullet$ de grupos abelianos y todo grupo abeliano $M$, tenemos una sucesión exacta
+		\[\begin{tikzcd}
+			0 \rar & \Ext^1(H_{n-1}(A_\bullet), M) \rar & H^n(\Hom(A_\bullet, M)) \rar & \Hom(H_n(A_\bullet), M) \rar & 0.
+		\end{tikzcd}\]
+		\begin{hint}
+			% Dada una resolución libre $F_\bullet \to A$, note que los núcleos $K_n := \ker(\ud \colon F_n \to F_{n-1})$ son
+			% también libres.
+			Podrían resultar útiles los siguientes datos:
+			\begin{itemize}
+				\item Todo subgrupo de uno abeliano libre es libre.
+				\item Si $K_n := \ker(\ud \colon B_n \to B_{n-1})$ denota el núcleo de un complejo arbitrario $B_\bullet$, tenemos una sucesión exacta de
+					complejos $0 \to K_\bullet \to B_\bullet \to \ud B_\bullet \to 0$.
+				\item Y análogamente $0 \to \ud B_{\bullet+1} \to K_\bullet \to H_\bullet(B) \to 0$.
+					\qedhere
+			\end{itemize}
+		\end{hint}
+\end{enumerate}
+
+\section*{Notas adicionales}
+El nombre \textquote{Ext} tiene que ver con que $\Ext^1(A, B)$ clasifica \textquote{extensiones} $C$ de $B$ sobre $A$, es decir, objetos que
+calzan en una sucesión exacta corta $0 \to B \to C \to A \to 0$.
+De hecho, uno podría tomar esto como definición para obtener un conjunto, ocasionalmente llamado el \textquote{funtor Ext de Yoneda}, al
+cual podemos dotar manualmente de una operación de grupo (cfr.\ \cite{hilton:homological}, \S IV.9); este enfoque tiene sus ventajas al
+trabajar con grupos no conmutativos.
+
+Se entienden por \textquote{teorema de coeficientes universales} a otros enunciados similares, entre ellos, uno que dice cómo calcular la
+homología del tensor de un complejo $A_\bullet \otimes_R S$ con \textquote{otros coeficientes} (cfr.\ \cite{hilton:homological}, Th.~V.2.5);
+de ahí el nombre.
+
+\printbibliography
+
+\end{document}

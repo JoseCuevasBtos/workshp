@@ -46,10 +46,12 @@ Por ejemplo, es inmediato que:
 		\cdots \rar & F_2 \rar & F_1 \rar & F_0 \rar["\varepsilon"] & A
 	\end{tikzcd}\]
 	donde cada $F_n$ es un módulo libre.
+	Denotaremos por $F_\bullet$ al complejo (sin incluír a la flecha $\varepsilon \colon F_0 \epicto A$).
 \end{mydef}
 
 \begin{enumerate}
-	\item Pruebe que todo $R$-módulo admite una resolución libre.
+	\item\lookright
+		Pruebe que todo $R$-módulo admite una resolución libre.
 
 	\item Sea $A_\bullet$ un complejo de módulos.
 		\begin{enumerate}
@@ -59,11 +61,11 @@ Por ejemplo, es inmediato que:
 				\]
 				forma un cocomplejo.
 
-			\item ¿Se cumple que $H^n(C^\bullet) \cong H_n(A_\bullet)$?
+			\item\lookup ¿Se cumple que $H^n(C^\bullet) \cong H_n(A_\bullet)$?
 		\end{enumerate}
 \end{enumerate}
 
-\section{El funtor Ext}
+\section{El funtor $\Ext$}
 Puede tomar por sabido el siguiente hecho:
 \begin{prop}[{\cite[129-131]{hilton:homological}}]
 	Sean $A, B$ un par de $R$-módulos.
@@ -78,15 +80,20 @@ Puede tomar por sabido el siguiente hecho:
 \begin{enumerate}[resume]
 	\item Pruebe que $\Ext_R^0(A, B) \cong \Hom_R(A, B)$.
 
+	\item\lookright Calcule $\Ext^1_\Z(\Z, \Z/n\Z)$ y $\Ext^1_\Z(\Z/n\Z, \Z)$.
+
 	\item Sea $0 \to A \to B \to C \to 0$ una sucesión exacta de módulos, pruebe que para todo módulo $M$ hay una sucesión exacta
 		\[\begin{tikzcd}
-			{} & \Ext_R(C, M) \rar & \Ext_R(B, M) \rar & \Ext_R(A, M) & \\
-			{} & \Hom_R(C, M) \rar & \Hom_R(B, M) \rar & \Hom_R(A, M) \rar & 0
+			0 \rar & \Hom(C, M) \rar & \Hom(B, M) \rar & \Hom(A, M) \\
+			{} & \Ext^1(C, M) \rar & \Ext^1(B, M) \rar & \Ext^1(A, M)
 			\arrow["\partial"{description}, from=1-4, to=2-2, out=-150, in=40]
 		\end{tikzcd}\]
+		% \begin{hint}
+		% 	Neces
+		% \end{hint}
 
-	\item \textbf{Teorema de coeficientes universales:}
-		Pruebe que para todo complejo $A^\bullet$ de grupos abelianos y todo grupo abeliano $M$, tenemos una sucesión exacta
+	\item\lookst \textbf{Teorema de coeficientes universales:}
+		Pruebe que para todo complejo $A_\bullet$ de \underline{grupos abelianos} \underline{libres} y todo grupo abeliano $M$, tenemos una sucesión exacta
 		\[\begin{tikzcd}
 			0 \rar & \Ext^1(H_{n-1}(A_\bullet), M) \rar & H^n(\Hom(A_\bullet, M)) \rar & \Hom(H_n(A_\bullet), M) \rar & 0.
 		\end{tikzcd}\]
@@ -98,13 +105,13 @@ Puede tomar por sabido el siguiente hecho:
 				\item Todo subgrupo de uno abeliano libre es libre.
 				\item Si $K_n := \ker(\ud \colon B_n \to B_{n-1})$ denota el núcleo de un complejo arbitrario $B_\bullet$, tenemos una sucesión exacta de
 					complejos $0 \to K_\bullet \to B_\bullet \to \ud B_\bullet \to 0$.
-				\item Y análogamente $0 \to \ud B_{\bullet+1} \to K_\bullet \to H_\bullet(B) \to 0$.
+				\item Y para cada $n\in\Z$ una sucesión exacta $0 \to \ud B_{n+1} \to K_n \to H_n(B) \to 0$ de grupos.
 					\qedhere
 			\end{itemize}
 		\end{hint}
 \end{enumerate}
 
-\section*{Notas adicionales}
+\section*{Comentarios adicionales}
 El nombre \textquote{Ext} tiene que ver con que $\Ext^1(A, B)$ clasifica \textquote{extensiones} $C$ de $B$ sobre $A$, es decir, objetos que
 calzan en una sucesión exacta corta $0 \to B \to C \to A \to 0$.
 De hecho, uno podría tomar esto como definición para obtener un conjunto, ocasionalmente llamado el \textquote{funtor Ext de Yoneda}, al
@@ -114,6 +121,11 @@ trabajar con grupos no conmutativos.
 Se entienden por \textquote{teorema de coeficientes universales} a otros enunciados similares, entre ellos, uno que dice cómo calcular la
 homología del tensor de un complejo $A_\bullet \otimes_R S$ con \textquote{otros coeficientes} (cfr.\ \cite{hilton:homological}, Th.~V.2.5);
 de ahí el nombre.
+
+El \textquote{teorema de coeficientes universales en \emph{cohomología}} también es cierto cuando $A_\bullet$ y $M$ son módulos sobre un DIP
+sin ninguna modificación.
+Si el anillo base no es un DIP, existen submódulos de uno libre que no son libres (¿se le ocurre un ejemplo?) y el estudiante puede
+verificar que el argumento se cae.
 
 \printbibliography
 

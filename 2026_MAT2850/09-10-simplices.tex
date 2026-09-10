@@ -1,0 +1,78 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\DeclareMathOperator\Cono{Cono}
+
+\title{Símplices}
+\date{\DTMdate{2026-09-10}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2026-2-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Topología Algebraica}
+\coursecode{MAT2850}
+\professor{Mauricio Bustamante}
+
+\begin{document}
+
+\maketitle
+
+\section{Símplices}
+\begin{enumerate}
+	\item \textbf{Lema de Sperner:}
+		Sea $K$ una subdivisión de $\Delta^n$ y sea $g \colon K \to \Delta^n$ una aproximación simplicial a la identidad.
+		Pruebe que la cantidad de $n$-símplices $\sigma$ de $K$ para los cuales $g\colon |\sigma| \to |\Delta|^n$ es sobreyectivo, es impar.
+
+		\begin{hint}
+			Aquí hay (al menos) dos posibles enfoques.
+			Uno puede ser probar los casos $n \in \{ 1, 2 \}$ y luego proceder inductivamente.
+
+			Para la otra prueba (más elegante en mi opinión), considere, dado un $n$-símplice, la homotopía lineal en tiempo
+			$[0, 1]$ que lleva un vértice hacia su imagen de $g$, y note que el volúmen signado (con signo dependiendo de la
+			orientación) es entonces una función polinomial $f(t)$.
+			Vid.\ \cite{mclennan2008sperner} para más detalles.
+		\end{hint}
+
+	\item
+		\begin{enumerate}
+			\item Sea $K$ un complejo simplicial, realizado en $\R^N$.
+				Dado un punto $p \notin K$ defina el \strong{cono} $p * K$ como la familia de simplices en $\R^{N+1}$ tales
+				que, o bien son simplices de $K$ en $\R^N \cong \R^N \times \{ 0 \} \subseteq \R^{N+1}$; o bien son un
+				símplice formado por vértices de $K$ junto a $p$.
+
+				Pruebe que los conos son complejos simpliciales.
+
+			\item Muestre que $\tilde H_n(p * K; \Z) = 0$ para todo complejo simplicial $K$.
+
+			\item Dado un complejo simplicial $K$, definamos la \strong{suspensión} $\Sigma K$ como el complejo dado por unir
+				dos conos $(w_0 * K) \cup (w_1 * K)$.
+				Muestre que
+				\[
+					\tilde H_n(\Sigma K; \Z) \cong \tilde H_{n-1}(K; \Z).
+				\]
+		\end{enumerate}
+
+	\item
+		\begin{enumerate}
+			\item Pruebe que la suspensión del borde del $n$-símplice $\Sigma\partial\Delta^n$ es una triangulación de la
+				$n$-esfera $\Sn$.
+
+			\item Calcule la homología (simplicial) de la $n$-esfera.
+
+			\item \textbf{Bonus:}
+				Muestre que, para todo $d \in \Z$ entero, existe una aplicación continua $h \colon \Sn \to \Sn$ que induce
+				la multiplicación por $d$ en $H_n(\Sn; \Z)$.
+		\end{enumerate}
+\end{enumerate}
+
+\printbibliography
+
+\end{document}

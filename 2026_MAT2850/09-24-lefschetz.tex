@@ -1,0 +1,116 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+% \DeclareMathOperator\Cono{Cono}
+
+\title{El teorema del punto fijo de Hopf--Lefschetz}
+\date{\DTMdate{2026-09-24}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2026-2-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Topología Algebraica}
+\coursecode{MAT2850}
+\professor{Mauricio Bustamante}
+
+\begin{document}
+
+\maketitle
+
+Recuerde que si $V$ es un espacio vectorial de dimensión finita sobre un cuerpo arbitrario y $\varphi \in \End(V)$ es un endomorfismo,
+entonces la \emph{traza} $\tr\varphi$ es la traza usual de cualquier representación matricial de $\varphi$ (i.e., la suma de su diagonal).
+No depende de la elección de base ordenada por la fórmula usual $\tr(A\cdot B) = \tr(B\cdot A)$.
+
+\section{Traza}
+\begin{enumerate}
+	\item Sea $f \colon V \to V$ un endomorfismo de un espacio vectorial y sea $W \le V$ un subespacio $\varphi$-estable (i.e., $\varphi[W] \subseteq W$).
+		Pruebe que $\tr\varphi = \tr(\varphi|_W) + \tr(\overline{\varphi} \colon V/W \to V/W)$.
+
+	\item \textbf{Fórmula de la traza de Hopf:}
+		Sea $C_\bullet$ un complejo finito de espacios vectoriales de dimensión finita y sea $\varphi_\bullet \colon C_\bullet \to
+		C_\bullet$ un endomorfismo.
+		Pruebe que
+		\[
+			\sum_{n\in\Z} (-1)^n \tr(\varphi_n) = \sum_{n\in\Z} (-1)^n \tr H_n(\varphi).
+		\]
+\end{enumerate}
+
+\section{El teorema de Lefschetz}
+En esta sección, $H_n(K)_\Q := H_n(K; \Z) \otimes_\Z \Q$.
+Cuando $K$ es un complejo finito, recuerde que los grupos de homología $H_n(K; \Q)$ son finitamente generados, de modo que los $H_n(K)_\Q$
+son $\Q$-espacios vectoriales de dimensión finita.
+
+\begin{enumerate}[resume]
+	\item Sea $K$ un complejo simplicial finito y $f \colon |K| \to |K|$ una función continua.
+		Defina
+		\[
+			\mathcal{L}(f) := \sum_{n\ge 0} (-1)^n \tr H_n(f)_\Q.
+		\]
+		\begin{enumerate}
+			\item Pruebe que $\mathcal{L}(\Id) = \chi(K)$.
+
+			\item Pruebe que $\mathcal{L}(f)$ es invariante bajo homotopía.
+
+			\item \textbf{Teorema del punto fijo de Lefschetz:}
+				Demuestre que si $f$ no tiene puntos fijos, entonces $\mathcal{L}(f) = 0$.
+
+				\begin{hint}
+					Para esto, considere una aproximación simplicial a $f$ que, como bien sabe el lector, requiere
+					subdividir primero al complejo $K$.
+					Tras encajar a la realización geométrica $|K| \subseteq \R^N$ en un espacio euclídeo, pruebe que
+					\[
+						\delta := \min\{ |f(x) - x| : x \in |K| \} > 0.
+					\]
+					Mediante subdivisión baricéntrica puede suponer que la subdivisión es tal que las caras tienen
+					diámetro menor que $\delta$, ¿qué sucede entonces con la aproximación simplicial?
+				\end{hint}
+		\end{enumerate}
+
+	\item Concluya el \textbf{teorema del punto fijo de Brouwer:}
+		toda función continua $f$ sobre la $n$-bola cerrada $\D^n$ tiene un punto fijo.
+	\item Calcule $\chi(\Sn)$.
+\end{enumerate}
+
+\appendix
+\section{Comentarios}
+El lector instruído en la teoría de variedades diferenciales podría intentar demostrar las siguientes consecuencias al teorema de Lefschetz
+(o en su defecto consultar \citeauthor{fomenko:homotopical}~\cite[235]{fomenko:homotopical}):
+\begin{enumerate}[resume]
+	\item Sea $X$ una variedad diferencial con borde compacta, y sea $\xi$ un campo vectorial sobre $X$.
+		Suponga que $\xi$ no se anula en ningún punto y que está dirigida en el borde $\partial X$.
+		Pruebe que $\chi(X) = 0$.
+
+	\item \textbf{El \textquote{teorema de la bola peluda}:}
+		Pruebe que todo campo vectorial sobre $\Sn[2]$ se anula en al menos un punto.
+\end{enumerate}
+
+El número de Lefschetz $\mathcal{L}(f)$ no funciona \textquote{porque sí}.
+Tenemos la siguiente caracterización algebraica:
+\begin{thm}
+	Sea $X$ una $n$-variedad compleja compacta (e.g., proyectiva) y sea $f \colon X \to X$ un morfismo de $\C$-variedades.
+	Si $\Gamma_f, \Delta$ denotan las subvariedades de $X \times X$ de dimensión $n$ correspondientes al gráfico de $f$ y a la diagonal
+	$\Delta$ resp., entonces el número de intersección
+	\[
+		(\Gamma_f.\Delta) = \mathcal{L}(f) = \sum_{q\ge 0} (-1)^q \tr H^q(f)_\Q,
+	\]
+	donde $H^q(X)_\Q = H_{\rm sing}^q(X; \Q)$ denota el grupo de cohomología singular (más usual en geometría algebraica).
+\end{thm}
+En particular, si la intersección de la diagonal es transversal y \textquote{orientada} (en el sentido de que $\det(I_n - \ud_x f) > 0$ para
+todo punto fijo $x$), entonces $\mathcal{L}(f)$ cuenta exactamente la cantidad de puntos fijos.
+% Otra consecuencia es que $f$ tiene al menos $|\mathcal{L}(f)|$
+
+Definiendo \textquote{número de intersección} (cfr.\ \cite{fomenko:homotopical}, \S 17.5) para variedades diferenciales cerradas (i.e.,
+compactas sin borde) orientables y triángulables (i.e., homeomorfas a un $|K|$ para un complejo finito $K$), el teorema anterior sigue
+siendo válido.
+
+\printbibliography
+
+\end{document}

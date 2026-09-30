@@ -31,7 +31,8 @@ No depende de la elección de base ordenada por la fórmula usual $\tr(A\cdot B)
 
 \section{Traza}
 \begin{enumerate}
-	\item Sea $f \colon V \to V$ un endomorfismo de un espacio vectorial y sea $W \le V$ un subespacio $\varphi$-estable (i.e., $\varphi[W] \subseteq W$).
+	\item Sea $f \colon V \to V$ un endomorfismo de un espacio vectorial de dimensión finita y sea $W \le V$ un subespacio
+		$\varphi$-estable (i.e., $\varphi[W] \subseteq W$).
 		Pruebe que $\tr\varphi = \tr(\varphi|_W) + \tr(\overline{\varphi} \colon V/W \to V/W)$.
 
 	\item \textbf{Fórmula de la traza de Hopf:}
@@ -43,7 +44,7 @@ No depende de la elección de base ordenada por la fórmula usual $\tr(A\cdot B)
 		\]
 \end{enumerate}
 
-\section{El teorema de Lefschetz}
+\section{El teorema del punto fijo de Lefschetz}
 En esta sección, $H_n(K)_\Q := H_n(K; \Z) \otimes_\Z \Q$.
 Cuando $K$ es un complejo finito, recuerde que los grupos de homología $H_n(K; \Q)$ son finitamente generados, de modo que los $H_n(K)_\Q$
 son $\Q$-espacios vectoriales de dimensión finita.
@@ -74,9 +75,15 @@ son $\Q$-espacios vectoriales de dimensión finita.
 				\end{hint}
 		\end{enumerate}
 
-	\item Concluya el \textbf{teorema del punto fijo de Brouwer:}
+	\item\lookright
+		Concluya el \textbf{teorema del punto fijo de Brouwer:}
 		toda función continua $f$ sobre la $n$-bola cerrada $\D^n$ tiene un punto fijo.
+
 	\item Calcule $\chi(\Sn)$.
+
+	\item\lookup
+		Exhiba un ejemplo de un complejo simplicial infinito, cuya homología racional $H_n(K)_\Q$ tiene dimensión finita, para el
+		cual el teorema del punto fijo de Lefschetz falla.
 \end{enumerate}
 
 \appendix
@@ -89,19 +96,20 @@ El lector instruído en la teoría de variedades diferenciales podría intentar 
 		Pruebe que $\chi(X) = 0$.
 
 	\item \textbf{El \textquote{teorema de la bola peluda}:}
-		Pruebe que todo campo vectorial sobre $\Sn[2]$ se anula en al menos un punto.
+		Pruebe que todo campo vectorial sobre $\Sn[2]$ (y sobre $\Sn[2n]$ en general) se anula en al menos un punto.
 \end{enumerate}
 
 El número de Lefschetz $\mathcal{L}(f)$ no funciona \textquote{porque sí}.
 Tenemos la siguiente caracterización algebraica:
-\begin{thm}
+\begin{thm}[{\citeauthor{griffiths:principles}~\cite[421]{griffiths:principles}}]
 	Sea $X$ una $n$-variedad compleja compacta (e.g., proyectiva) y sea $f \colon X \to X$ un morfismo de $\C$-variedades.
 	Si $\Gamma_f, \Delta$ denotan las subvariedades de $X \times X$ de dimensión $n$ correspondientes al gráfico de $f$ y a la diagonal
 	$\Delta$ resp., entonces el número de intersección
 	\[
-		(\Gamma_f.\Delta) = \mathcal{L}(f) = \sum_{q\ge 0} (-1)^q \tr H^q(f)_\Q,
+		(\Gamma_f.\Delta) = \mathcal{L}(f) = \sum_{q\ge 0} (-1)^q \tr H_{\rm dR}^q(f),
 	\]
-	donde $H^q(X)_\Q = H_{\rm sing}^q(X; \Q)$ denota el grupo de cohomología singular (más usual en geometría algebraica).
+	donde $H_{\rm dR}^q(X)$ denota el grupo de cohomología de de Rham, los cuales son $\R$-espacios vectoriales naturalmente isomorfos a
+	$H^q_{\rm sing}(X; \Z) \otimes_\Z \R$.
 \end{thm}
 En particular, si la intersección de la diagonal es transversal y \textquote{orientada} (en el sentido de que $\det(I_n - \ud_x f) > 0$ para
 todo punto fijo $x$), entonces $\mathcal{L}(f)$ cuenta exactamente la cantidad de puntos fijos.

@@ -35,32 +35,16 @@
 				\beta(0)$ y $\alpha(1) = \beta(1)$), hay una homotopía (relativa a $\{0, 1 \}$) entre ellos.
 			\item Toda función continua $f \colon \SS^1 \to X$ admite una extensión (continua) $\D^2 \to X$ al disco cerrado $\D^2 \subseteq \R^2$.
 		\end{enumerate}
-
-	\item Sea $X$ un espacio arcoconexo.
-		Suponga que todo lazo $f \colon \SS^1 \to X$ es homotópico a un lazo constante, pero posiblemente mediante una homotopía no
+		Con ello pruebe que si todo lazo $f \colon \SS^1 \to X$ es homotópico a un lazo constante, pero posiblemente mediante una homotopía no
 		relativa o sin punto base.
-		Muestre que $X$ es simplemente conexo.
+		Entonces $X$ es simplemente conexo.
 
 	\item\label{ex:easy_van_Kampen}
-		Sea $X$ un espacio topológico y sean $U_1, U_2 \subseteq X$ dos abiertos tales que $X = U_1 \cup U_2$.
-		Suponga que $U_1, U_2$ son simplemente conexos y que su intersección $U_1 \cap U_2 \ne \emptyset$ es arcoconexa.
-		Pruebe que $X$ es simplemente conexo.
-
-	\item Sea $X$ un espacio arcoconexo.
+		Sea $X$ un espacio topológico y sean $U_1, U_2 \subseteq X$ dos abiertos simplemente conexos tales que $X = U_1 \cup U_2$.
 		\begin{enumerate}
-			\item Sea
-				\[
-					C X := X \times [0,1] / {\sim}
-				\]
-				su cono, donde la relación de equivalencia $\sim$ identifica $(x,1) \sim (y,1)$.
-				Pruebe que $CX$ es simplemente conexo.
-
-			\item Sea 
-				\[
-					\Sigma X := X \times [-1,1] / {\sim}
-				\]
-				su suspensión, donde la relación de equivalencia $\sim$ identifica $(x,1) \sim (y,1)$ y $(x,-1) \sim (y,-1)$.
-				Pruebe que $\Sigma X$ es simplemente conexo.
+			\item Pruebe que si su intersección $U_1 \cap U_2 \ne \emptyset$ es arcoconexa, entonces $X$ es simplemente conexo.
+			\item\lookst
+				Pruebe que si su intersección $U_1 \cap U_2$ tiene exactamente dos componentes arcoconexas, entonces $\pi_1(X,*) \cong \Z$.
 		\end{enumerate}
 
 	\item Suponga que $Y$ es contráctil a un punto $y \in Y$.
@@ -69,22 +53,40 @@
 			i \colon X \longrightarrow X \times Y, \qquad x \longmapsto (x, y)
 		\]
 		y $\pr_1 \colon X\times Y \to X$ son equivalencias homotópicas.
+
+	\item Sea $X$ un espacio arcoconexo.
+		\begin{enumerate}
+			\item Sea
+				\[
+					C X := X \times [0,1] / {\sim}
+				\]
+				su cono, donde la relación de equivalencia $\sim$ identifica $(x,1) \sim (y,1)$.
+				Pruebe que $CX$ es contráctil.
+
+			\item\label{ex:suspension_simply_conn}
+				Sea 
+				\[
+					\Sigma X := X \times [-1,1] / {\sim}
+				\]
+				su suspensión, donde la relación de equivalencia $\sim$ identifica $(x,1) \sim (y,1)$ y $(x,-1) \sim (y,-1)$.
+				Pruebe que $\Sigma X$ es simplemente conexo.
+		\end{enumerate}
 \end{enumerate}
 
-\section{Ejercicios sugeridos}
-Empleando el cálculo de que $\SS^2$ es simplemente conexo, uno puede probar el siguiente clásico
-\begin{thm}[Borsuk--Ulam]
-	Para toda función continua $f \colon \SS^n \to \R$ existe un punto $\vec x \in \SS^n \subseteq \R^{n+1}$ tal que $f(\vec x) =
-	f(-\vec x)$.
-\end{thm}
-\begin{enumerate}[resume]
-	\item Sean $A_1, A_2, A_3 \subseteq \R^3$ conjuntos compactos (por ende, Lebesgue-medibles de medida finita).
-		Pruebe que existe un plano $P \subseteq \R^3$ (que no necesariamente pasa por el origen) tal que corta a cada $A_j$ en dos
-		partes de igual medida.
+% \section{Ejercicios sugeridos}
+% Empleando el cálculo de que $\SS^2$ es simplemente conexo, uno puede probar el siguiente clásico
+% \begin{thm}[Borsuk--Ulam]
+% 	Para toda función continua $f \colon \SS^n \to \R$ existe un punto $\vec x \in \SS^n \subseteq \R^{n+1}$ tal que $f(\vec x) =
+% 	f(-\vec x)$.
+% \end{thm}
+% \begin{enumerate}[resume]
+% 	\item Sean $A_1, A_2, A_3 \subseteq \R^3$ conjuntos compactos (por ende, Lebesgue-medibles de medida finita).
+% 		Pruebe que existe un plano $P \subseteq \R^3$ (que no necesariamente pasa por el origen) tal que corta a cada $A_j$ en dos
+% 		partes de igual medida.
 
-	\item ¿El teorema de Borsuk--Ulam aplica para el toro $\SS^1 \times \SS^1$?
-		% Dicho de otro modo, toda función continua en $\S$
-\end{enumerate}
+% 	\item ¿El teorema de Borsuk--Ulam aplica para el toro $\SS^1 \times \SS^1$?
+% 		% Dicho de otro modo, toda función continua en $\S$
+% \end{enumerate}
 
 \section*{Comentarios}
 El ejercicio~\ref{ex:easy_van_Kampen} es un caso sencillo del teorema de Seifert--van Kampen cuyo eslógan es más o menos el siguiente:
@@ -92,6 +94,9 @@ El ejercicio~\ref{ex:easy_van_Kampen} es un caso sencillo del teorema de Seifert
 	Si cubrimos un espacio topológico $X$ por abiertos $U_j$ y conocemos el tipo de homotopía de cada $U_j$ y de las intersecciones
 	sucesivas; entonces podemos calcular el tipo de homotopía de $X$.
 \end{displayquote}
+En el ejercicio~\ref{ex:suspension_simply_conn} uno puede preguntarse si $\Sigma X$ es contráctil.
+La respuesta es que no siempre, pero no quise incluírlo como ejercicio ya que desconozco si en clases han probado algún ejemplo de un
+espacio simplemente conexo que no sea contráctil.
 
 \printbibliography
 

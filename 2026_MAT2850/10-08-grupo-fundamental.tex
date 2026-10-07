@@ -1,0 +1,116 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\DeclareMathOperator\pr{pr}
+
+\title{El grupo fundamental de Poincaré}
+\date{\DTMdate{2026-10-08}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2026-2-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Topología Algebraica}
+\coursecode{MAT2850}
+\professor{Mauricio Bustamante}
+
+\begin{document}
+
+\maketitle
+
+\section{Recubrimientos}
+\begin{enumerate}
+	\item\lookright
+		Sea $a \colon G\times X \to X$ la acción de un grupo $G$ sobre un espacio topológico $X$ por homeomorfismos
+		(i.e., para cada $g \in G$, la aplicación $a(g, -) \colon X \to X$ es un homeomorfismo).
+		Se dice que $a$ es \strong{libre y propiamente discontinua} si cada punto $x \in X$ posee un entorno $U$ tal que
+		\[
+			gU \cap U \ne \emptyset \implies g = 1.
+		\]
+		% En particular, para nosotros toda acción propiamente discontinua es fiel.
+		% \begin{enumerate}
+		% 	\item Dada cualquier acción $G \acts X$, 
+		% \end{enumerate}
+		\par
+		Pruebe que si $G \acts X$ es una acción libre y propiamente discontinua, entonces la aplicación cociente $X \epicto G
+		\coquot X$ es un recubrimiento.
+
+	\item Pruebe que el recubrimiento de una variedad topológica (con o sin borde) es también una variedad topológica (con o sin borde)
+		de la misma dimensión.
+
+	\item Sea $X$ un espacio topológico compacto y sea $f\colon Y \to X$ un recubrimiento.
+		Pruebe que $Y$ es compacto syss $f$ tiene fibras finitas (i.e., cada punto posee finitas preimágenes).
+
+		(Para la implicancia \textquote{$\implies$} puede suponer que $X$ es metrizable; no obstante,
+		recomendamos al lector más experimentado intentar el problema sin hipótesis adicionales.)
+\end{enumerate}
+
+\section{$\pi_1$ y $H_n$}
+\begin{enumerate}[resume]
+	\item Sea $G$ un grupo.
+		Decimos que el espacio topológico $(G, \mathcal{T})$ es un \strong{grupo topológico} si las funciones de inversa y de
+		multiplicación son continuas respecto a la topología $\mathcal{T}$.
+		\begin{enumerate}
+			\item Pruebe que $\pi_1(G, 1)$ es un grupo abeliano.
+			\item Concluya que $\pi_1(\Sn[1], *) \cong \Z$.
+		\end{enumerate}
+
+	\item\lookst
+		Sea $X$ un espacio topológico arbitrario y sea $\overline{\gamma} \in H_2^{\rm sing}(X)$ una clase de homología singular.
+		Demuestre que existen funciones continuas $f_j\colon \Sigma_{g_j} \to X$ (donde $\Sigma_g$ es la \textquote{esfera con $g$
+		agarraderas} con $g \ge 0$) tal que la suma de las imágenes de los generadores de $H_2(\Sigma_g) \cong \Z$ es
+		\[
+			\overline{\gamma} = \sum_j H_2(f_j)(1).
+		\]
+\end{enumerate}
+
+\appendix
+\section{Problemas adicionales}
+\begin{enumerate}[resume]
+	\item Ocasionalmente se dice que una acción $a \colon G \acts X$ por homeomorfismos es \emph{propiamente discontinua} cuando todo
+		punto $x$ posee un abierto $U$ para el cuál el conjunto
+		\[
+			\{ g \in G : gU \cap U \ne \emptyset \}
+		\]
+		es finito.
+		Sea $a \colon G \acts X$ una acción fiel (i.e., todos los estabilizadores son triviales) y propiamente discontinua en este
+		sentido.
+		\begin{enumerate}
+			\item Pruebe que la aplicación cociente $\pi \colon X \to G\coquot X$ siempre es un recubrimiento cuando
+				$X$ es un \underline{espacio métrico}.
+			\item Dé un contraejemplo de una acción $a$ como antes para la cual la aplicación cociente $\pi \colon X \to
+				G\coquot X$ no es un recubrimiento.
+			\item ¿Qué condición ha de imponerle a $X$ para que $\pi$ siempre sea un recubrimiento?
+				\textcolor{white}{Resp.: $T_3$.}
+		\end{enumerate}
+
+	\item Sea $G$ un grupo cualquiera.
+		Una \strong{presentación} de $G$, denotada $G = \langle S : R \rangle$ consiste en un complejo de homomorfismos
+		\[\begin{tikzcd}
+			F(R) \rar["\varphi"] & F(S) \rar["\pi"] & G
+			% \rar & 1
+		\end{tikzcd}\]
+		de modo que $G \cong F(S)/\langle\!\langle \Img \varphi \rangle\!\rangle$, donde $\langle\!\langle T \rangle\!\rangle$
+		denota el mínimo subgrupo \emph{normal} que contiene al conjunto $T$.
+		% Cuando $R = \langle r_1, \dots, r_n \rangle $, típicamente denotamos a la presentación por $\langle S : r_1 = \cdots = r_n =
+		% 1 \rangle$.
+		\begin{enumerate}
+			\item Muestre que si $G = \langle S : R \rangle$ es una presentación, entonces $\abcl G = \langle S : R \cup \{ [s,
+				t] : s, t \in S \} \rangle$, donde $[s, t] = sts^{-1}t^{-1}$ es el conmutador.
+			\item Considere\footnotemark{} la presentación $A_5 = \langle x, y : x^5 = y^2 = (xy)^3 = 1 \rangle$.
+				\footnotetext{Entiéndase, no demuestre que esto es presentación. Si le interesa, vid.\
+				\url{https://math.stackexchange.com/a/1999793}.}
+				Calcule $\abcl A_5$.
+		\end{enumerate}
+\end{enumerate}
+
+\printbibliography
+
+\end{document}

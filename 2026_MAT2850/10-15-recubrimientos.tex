@@ -1,0 +1,96 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\DeclareMathOperator\pr{pr}
+
+\title{Recubrimientos}
+\date{\DTMdate{2026-10-15}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2026-2-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Topología Algebraica}
+\coursecode{MAT2850}
+\professor{Mauricio Bustamante}
+
+\begin{document}
+
+\maketitle
+
+\section{Recubrimientos normales}
+Sea $f \colon Y \to X$ un recubrimiento.
+Recuerde que una \strong{transformación de cubrierta} (eng.\ \emph{deck-transformation}) es un homeomorfismo $g \colon Y \to Y$ tal que el
+diagrama conmuta:
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJZIl0sWzIsMCwiWSJdLFsxLDEsIlgiXSxbMCwxLCJcXHNpbSIsMl0sWzAsMiwiZiIsMl0sWzEsMiwiZiJdXQ==
+\[\begin{tikzcd}
+	Y && Y \\
+	& X
+	\arrow["g", "\sim"', from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=2-2]
+	\arrow["f", from=1-3, to=2-2]
+\end{tikzcd}\]
+Es inmediato que éstas conforman un grupo, denotado $\Aut(Y/X)$ ó $\Aut_X(Y)$.
+\begin{mydef}
+	Diremos que un recubrimiento $f\colon Y \to X$ es \strong{normal} (o \emph{regular}) si para cada par de puntos $y, y' \in Y$ con
+	$f(y) = f(y')$, existe una transformación de cubierta $g \in \Aut(Y/X)$ tal que $g(y) = y'$.
+\end{mydef}
+\begin{enumerate}
+	\item\lookright
+		Sea $G \acts X$ la acción de un grupo sobre un espacio que es libre y propiamente discontinua.
+		Pruebe que el recubrimiento $X \epicto G\coquot X$ es normal.
+
+	\item\label{ex:twofold_cov}
+		Pruebe que todo recubrimiento de dos hojas es normal.
+
+	\item Sea $f \colon Y \to X$ un recubrimiento normal de un espacio arcoconexo.
+		Muestre que, para todo $y\in Y$ con $x := f(y)$, el homomorfismo $\pi_1(f, y) \colon \pi_1(Y, y) \to \pi_1(X, x)$ es
+		inyectivo e identifica a $\pi_1(Y, y)$ con un subgrupo normal.
+		Más aún,
+		\[
+			\pi_1(X, x) / f_*\pi_1(Y, y) \cong \Aut(Y/X).
+		\]
+
+% 	\item Dadas funciones continuas $f \colon Y \to X$ y $g \colon Z \to X$, se define el \emph{producto fibrado} como el subespacio
+% 		\[
+% 			Y \times_X Z := \{ (y, z) \in Y \times Z : f(y) = g(z) \} \subseteq Y \times Z.
+% 		\]
+% 		\begin{enumerate}
+% 			\item Pruebe que si $f$ es un recubrimiento, entonces $\pr_2 \colon Y\times_X Z \to Z$ también lo es.
+% 			\item Pruebe que un recubrimiento $f\colon Y \to X$ es normal con $\Aut_X(Y) = G$ syss $\pr_1 \colon Y\times_X Y \to
+% 				Y$ es homeomorfo (relativo a $Y$) al recubrimiento $\pr_1\colon Y \times G \to Y$, donde $G$ posee la
+% 				topología discreta.
+% 		\end{enumerate}
+\end{enumerate}
+
+\section{Recubrimientos universales}
+\begin{enumerate}[resume]
+	\item \textbf{Existencia de recubrimiento universal:}
+		Sea $X$ un espacio arcoconexo.
+		Se dice que $f\colon Y \to X$ es un \emph{recubrimiento universal} si $f$ es recubrimiento e $Y$ es simplemente conexo.
+		\begin{enumerate}
+			\item Pruebe que si $X$ posee un recubrimiento universal, entonces es único salvo homeomorfismo (relativo a $X$).
+			\item Pruebe que $X$ posee algún recubrimiento universal cuando todo punto $x$ posee un entorno $U$ tal que todo
+				lazo basado en $x$ contenido en $U$ es contráctil \underline{en} $X$ (en cuyo caso, decimos que $X$ es
+				\emph{semilocalmente simplemente conexo}).
+			\item\lookup
+				Dé un ejemplo de un espacio que no sea semilocalmente simplemente conexo.
+		\end{enumerate}
+
+	\item Sea $f \colon \tilde X \to X$ el recubrimiento universal de un espacio arcoconexo $X$ (si existe).
+		Muestre que $f$ es un recubrimiento normal y que $\Aut(\tilde X/X) \cong \pi_1(X, x)$ para cualquier punto $x \in X$.
+\end{enumerate}
+
+\section*{Comentarios adicionales}
+El ejercicio~\ref{ex:twofold_cov} será, con la correspondencia de Galois, una traducción del hecho de que todo subgrupo de índice~2 es normal.
+
+\printbibliography
+
+\end{document}

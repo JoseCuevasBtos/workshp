@@ -1,0 +1,126 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\DeclareMathOperator\pr{pr}
+
+\title{Conexión del tipo Galois}
+\date{\DTMdate{2026-10-22}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2026-2-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Topología Algebraica}
+\coursecode{MAT2850}
+\professor{Mauricio Bustamante}
+
+\begin{document}
+
+\maketitle
+
+En esta ayudantía, abreviaremos \emph{semilocalmente simplemente conexo} por \strong{slsc}.
+Dado un grupo $(G, \cdot)$, denotaremos por $(G^{\rm op}, *)$ al \emph{grupo opuesto}, cuyos elementos son los mismos, pero cuya operación es $x*y := y\cdot x$.
+
+% \section{Recubrimientos}
+\begin{enumerate}
+	\item Sea $f\colon Y \to X$ un recubrimiento de un espacio slsc $X$.
+		\begin{enumerate}
+			\item Pruebe que dado todo recubrimiento $Z \to Y$, la composición $Z \to X$ es un recubrimiento.
+			\item\lookright
+				Pruebe que, cuando $Y$ es conexo, siempre existe un único recubrimiento $Z \to Y$ tal que $Z \to X$ es un
+				recubrimiento normal y, para el cual, dado todo recubrimiento normal $Z' \to Y \to X$ hay factorización
+				única $Z' \to Z$.
+			\item Pruebe que si $Z \to Y$ satisface que $Z \to X$ es un recubrimiento normal, entonces $Z \to Y$ también lo es.
+		\end{enumerate}
+
+	\item\lookup
+		Considere el espacio $X$ dado en la fig.~\ref{fig:hawaiian_earring_a}, conocido comúnmente como los \emph{aretes hawaianos}.
+		\begin{enumerate}
+			\item Explique por qué el espacio $X$ no es slsc.
+			\item Muestre que el espacio $Y$ (fig.~\ref{fig:hawaiian_earring_b}) es un recubrimiento de $X$, y que $Z$
+				(fig.~\ref{fig:hawaiian_earring_c}) es un recubrimiento doble de $Y$.
+				Sin embargo, $Z$ no es recubrimiento de $X$.
+		\end{enumerate}
+		\begin{figure}[!hbtp]
+			\centering
+			\begin{subfigure}{3cm}
+				\centering
+				\includegraphics{hawaiian_earring_a.pdf}
+				\caption{}
+				\label{fig:hawaiian_earring_a}
+			\end{subfigure}
+			\begin{subfigure}{7cm}
+				\centering
+				\includegraphics{hawaiian_earring_b.pdf}
+				\caption{}
+				\label{fig:hawaiian_earring_b}
+			\end{subfigure}
+			\begin{subfigure}{7cm}
+				\centering
+				\includegraphics{hawaiian_earring_c.pdf}
+				\caption{}
+				\label{fig:hawaiian_earring_c}
+			\end{subfigure}
+			\caption{}
+		\end{figure}
+
+	\item Sea $G$ un grupo topológico conexo y slsc, y sea $\pi \colon \tilde G \to G$ su recubrimiento universal.
+		\begin{enumerate}
+			\item Pruebe que, tras elegir $e \in \tilde G$ con $\pi(e) = 1$, existe una estructura natural de
+				grupo topológico sobre $\tilde G$ para la cual $e$ es el neutro, y $\pi \colon \tilde G \to G$ es un homomorfismo continuo.
+				\begin{hint}
+					Puede resultar útil recordar la construcción manual del recubrimiento universal.
+				\end{hint}
+			\item Pruebe que la sucesión
+				\[\begin{tikzcd}
+					1 \rar & \pi_1(G, 1)^{\rm op} \rar & \tilde G \rar["\pi"] & G \rar & 1
+				\end{tikzcd}\]
+				de grupos topológicos es exacta.
+		\end{enumerate}
+
+	\item Dadas funciones continuas $f \colon Y \to X$ y $g \colon Z \to X$, se define el \emph{producto fibrado} como el subespacio
+		\[
+			Y \times_{f,X,g} Z = Y \times_X Z := \{ (y, z) \in Y \times Z : f(y) = g(z) \} \subseteq Y \times Z.
+		\]
+		\begin{enumerate}
+			\item Pruebe que si $f$ es un recubrimiento, entonces $\pr_2 \colon Y\times_X Z \to Z$ también lo es.
+			\item Pruebe que un recubrimiento $f\colon Y \to X$ es normal con $\Aut_X(Y) = G$ syss $\pr_1 \colon Y\times_X Y \to
+				Y$ es homeomorfo (relativo a $Y$) al recubrimiento $\pr_1\colon Y \times G \to Y$, donde $G$ posee la
+				topología discreta.
+		\end{enumerate}
+
+	% \item Un \strong{grupoide} es una categoría (pequeña, es decir, cuyos objetos forman un conjunto), donde todas las flechas son isomorfismos.
+	% 	% Intuitivamente, un grupoide \textquote{se ve} como una unión disjunta de grupos sin una identidad distinguida.
+	% 	\begin{enumerate}
+	% 		\item Pruebe que darse un grupoide es lo mismo que darse un conjunto $G$ (de objetos) y un conjunto $F$ (de flechas),
+	% 			con funciones $d, c \colon F \to G$ (de dominio y codominio), una función $e \colon G \to F$ (de identidad),
+	% 			y una función $\iota \colon F \to F$ (de inversa), tales que
+	% 	\end{enumerate}
+\end{enumerate}
+
+\section*{Comentarios adicionales}
+La relación entre la teoría de Galois y la correspondencia galoisiana de recubrimientos topológicos es patente (pese a que las flechas vayan
+en direcciones opuestas).
+El lector podría pues considerar que hay un \textquote{yoga galoisiano} subyacente que se exhibe cuando un objeto $X$ de una categoría posee
+una familia de flechas (\textquote{recubrimientos}) $Y \to X$ de modo que, por ejemplo, todo recubrimiento se extienda a uno \emph{de
+Galois} $\tilde Y \to X$, donde $X$ sea el cociente de $\tilde Y$ bajo el grupo de automorfismos relativos $\Aut(Y/X)$.
+Así, el $\pi_1(X)$ como grupo \textquote{sin punto base}, se recupera mediante alguna construcción basada en esta categoría de
+\textquote{recubrimientos}.
+Esta es una idea de Grothendieck explorada en \cite{sga-1} en el capítulo sobre categorías de Galois, y su utilidad es dar una definición
+\emph{puramente algebraica} (que no depende de lazos ni métodos transcendentales) del $\pi_1$ de una variedad.\footnotemark{}
+\footnotetext{O bueno, casi.
+	El único problema es que, cuando permitimos recubrimientos de fibras infinitas, aparecen construcciones con funciones transcendentes no algebraicas
+	(el análogo es como una función analítica puede tener infinitos ceros, como $\sin z$ por ejemplo; pero una función racional no).
+	Así, el $\pi_1$ que construye Grothendieck es la \emph{compleción profinita} del $\pi_1$ topológico.
+}
+
+\printbibliography
+
+\end{document}

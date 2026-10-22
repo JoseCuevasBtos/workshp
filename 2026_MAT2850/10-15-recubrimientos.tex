@@ -43,14 +43,14 @@ Es inmediato que éstas conforman un grupo, denotado $\Aut(Y/X)$ ó $\Aut_X(Y)$.
 	$f(y) = f(y')$, existe una transformación de cubierta $g \in \Aut(Y/X)$ tal que $g(y) = y'$.
 \end{mydef}
 \begin{enumerate}
-	\item\lookright
+	\item \textbf{Prueba de lucidez:}
 		Sea $G \acts X$ la acción de un grupo sobre un espacio que es libre y propiamente discontinua.
 		Pruebe que el recubrimiento $X \epicto G\coquot X$ es normal.
 
 	\item\label{ex:twofold_cov}
 		Pruebe que todo recubrimiento de dos hojas es normal.
 
-	\item Sea $f \colon Y \to X$ un recubrimiento normal de un espacio arcoconexo.
+	\item\lookright Sea $f \colon Y \to X$ un recubrimiento normal de un espacio arcoconexo.
 		Muestre que, para todo $y\in Y$ con $x := f(y)$, el homomorfismo $\pi_1(f, y) \colon \pi_1(Y, y) \to \pi_1(X, x)$ es
 		inyectivo e identifica a $\pi_1(Y, y)$ con un subgrupo normal.
 		Más aún,
@@ -77,9 +77,10 @@ Es inmediato que éstas conforman un grupo, denotado $\Aut(Y/X)$ ó $\Aut_X(Y)$.
 		Se dice que $f\colon Y \to X$ es un \emph{recubrimiento universal} si $f$ es recubrimiento e $Y$ es simplemente conexo.
 		\begin{enumerate}
 			\item Pruebe que si $X$ posee un recubrimiento universal, entonces es único salvo homeomorfismo (relativo a $X$).
-			\item Pruebe que $X$ posee algún recubrimiento universal cuando todo punto $x$ posee un entorno $U$ tal que todo
-				lazo basado en $x$ contenido en $U$ es contráctil \underline{en} $X$ (en cuyo caso, decimos que $X$ es
-				\emph{semilocalmente simplemente conexo}).
+			\item\lookst
+				Pruebe que $X$ posee algún recubrimiento universal cuando todo punto $x$ posee un entorno arcoconexo $U$ tal
+				que todo lazo basado en $x$ contenido en $U$ es contráctil \underline{en} $X$ (en cuyo caso, decimos que $X$
+				es \emph{semilocalmente simplemente conexo}).
 			\item\lookup
 				Dé un ejemplo de un espacio que no sea semilocalmente simplemente conexo.
 		\end{enumerate}

@@ -1,0 +1,100 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\DeclareMathOperator\pr{pr}
+
+\title{Aún más sobre recubrimientos y usos de van Kampen}
+\date{\DTMdate{2026-10-29}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2026-2-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Topología Algebraica}
+\coursecode{MAT2850}
+\professor{Mauricio Bustamante}
+
+\begin{document}
+
+\maketitle
+
+\section{Recubrimientos}
+Sea $X$ un espacio topológico conexo.
+Un recubrimiento $Y \to X$ se dice un \strong{$G$-recubrimiento} si existe una acción fiel propiamente discontinua $G \acts Y$ tal que $X = G \coquot Y$.
+Un par de $G$-recubrimientos $Y \to X$ e $Y' \to X$ se dicen \emph{isomorfos} si existen isomorfismos de recubrimientos $Y \to Y'$ que además respetan la
+acción del grupo $G$ (a estos se les suelen llamar \textquote{$G$-equivariantes}).
+
+\begin{enumerate}
+	\item \textbf{Correspondencia de Galois:}
+		Sea $X$ un espacio conexo y slsc.
+		Describa y demuestre una biyección entre homomorfismos $\pi_1(X, x) \to G$ y $G$-recubrimientos de $X$ (posiblemente disconexos) salvo isomorfismo.
+
+	\item Pruebe que el grupo fundamental $\pi_1(X, x)$ de toda variedad topológica $X$ basada en cualquier punto $x$ es numerable.
+		% \begin{hint}
+		% 	Construya un cubrimiento numerable por abiertos contráctiles (¿por qué se puede?).
+		% 	Note que dos caminos que pasan por los mismos abiertos en orden son homotópicos... bueno, no en realidad, pero casi
+		% 	*guiño*.
+		% \end{hint}
+\end{enumerate}
+
+\section{Aplicaciones de Seifert--van Kampen}
+% Donde $*$ denota el \emph{producto libre} de grupos, descrito a continuación.
+Recuerde que una \emph{presentación} de un grupo $G$ es una sucesión exacta 
+\begin{tikzcd}[cramped, sep=small]
+	F_2 \rar["\rho"] & F_1 \rar["\varepsilon"] & G \rar & 1
+\end{tikzcd}
+de grupos, donde $F_j$ son libres.
+Si $S = \{ x_j \}_j \subseteq F_1$ y $T = \{ y_k \}_k \subseteq F_2$ denotan bases, entonces escribimos de manera compacta
+\[
+	G = \langle S : \rho(T) \rangle = \langle \{ x_j \}_j : \{ \rho(y_k) = 1 \}_k \rangle.
+\]
+Dado un diagrama 
+\begin{tikzcd}[cramped, sep=small]
+	H & \lar["\varphi"'] K \rar["\psi"] & L
+\end{tikzcd}
+de grupos, donde la presentación de $H = \langle \{ x_j^H \} : \{ r_k^H \}_k \rangle$ y análogamente para $L$ y $K$; definimos
+\[
+	H *_K L := \langle \{ x_j^H, x_{j'}^L \}_{j,j'} : \{ r_k^H = r_{k'}^L = 1 \}_{k, k'} \cup \{ \varphi(x_j^K) = \psi(x_j^K) \}_j \rangle.
+\]
+\begin{enumerate}[resume]
+	\item Demuestre que el producto libre de grupos posee la propiedad universal de ser un coproducto fibrado (eng.\ \emph{push-out})
+		del diagrama y, por ende, concluya que está bien definido.
+		\begin{hint}
+			Para esto puede usar el \textbf{teorema de von Dyck} que dice que dado un grupo presentado $G = \langle \{ x_j \}_j
+			: \{ r_k = 1\}_k \rangle$, darse un homomorfismo $\varphi\colon G \to J$ es lo mismo que darse una función
+			$\{ x_j \}_j \to J$ de modo que cada relación $r_k$ (que es una palabra en los $x_j$) se anule.
+		\end{hint}
+
+	\item
+		\begin{enumerate}
+			\item Pruebe que, cuando $H, L$ son grupos no triviales, entonces $H * L$ (con $K = 1$) no es abeliano.
+			\item\lookup
+				Si $H, L$ son no triviales, ¿será que $H *_K L$ nunca sea abeliano?
+		\end{enumerate}
+\end{enumerate}
+
+En esta sección, pretendemos emplear el siguiente resultado:
+\begin{thm}[Seifert--van Kampen]
+	Sea $X = U \cup V$ un espacio topológico cubierto por dos abiertos $U, V$ con $U \cap V \ne \emptyset$.
+	Dado $x \in U \cap V$, se tiene
+	\[
+		\pi_1(X, x) \cong \pi_1(U, x) *_{\pi_1(U\cap V, x)} \pi_1(V, x).
+	\]
+\end{thm}
+\begin{enumerate}[resume]
+	\item\lookright
+		Calcule el grupo fundamental de la \emph{rosa de $n$ pétalos} (o la \textquote{cuña de círculos}).
+		
+	\item Dé una presentación para el grupo fundamental de la botella de Klein.
+\end{enumerate}
+
+% \printbibliography
+
+\end{document}

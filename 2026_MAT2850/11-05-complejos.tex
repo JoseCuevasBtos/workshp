@@ -1,0 +1,91 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{../ayud-template.tex}
+\usepackage{tikz}
+\usetikzlibrary{babel,cd}
+% \DeclareMathOperator\Gr{Gr}
+
+\DeclareMathOperator\pr{pr}
+
+\title{Complejos celulares}
+\date{\DTMdate{2026-11-05}}
+
+\author{José Cuevas Barrientos}
+\email{josecuevasbtos@uc.cl}
+\urladdr{https://josecuevas.xyz/teach/2026-2-ayud/}
+
+\logo{../puc_negro.png}
+\institution{Pontificia Universidad Católica de Chile}
+\department{Facultad de Matemáticas}
+\course{Topología Algebraica}
+\coursecode{MAT2850}
+\professor{Mauricio Bustamante}
+
+\begin{document}
+
+\maketitle
+
+\section{Complejos celulares}
+\begin{mydef}
+	Un \strong{complejo celular} (eng.\ \emph{complejo CW}) es un espacio topológico de Hausdorff $X$ que admite una descomposición (o
+	\textquote{estratificación})
+	\[
+		X = \coprod_{q=0}^\infty \coprod_{i\in I_q} e_i^q
+	\]
+	(unión disjunta dos a dos), donde cada $e_i^q$ se llama una \emph{célula} (donde al superindice $q$ le decimos la
+	\textquote{dimensión} de la célula) y tal que para cada célula existe una función continua $f_i^q \colon \D^q \to X$ con las
+	siguientes propiedades:
+	\begin{description}
+		\item[(C)] La función $f^q_i$ se restringe a un homeomorfismo 
+			\begin{tikzcd}[cramped, sep=small]
+				f_i^q \restrict \Int\D^q \rar["\sim"] & e^q_i
+			\end{tikzcd}
+			y la imagen del borde
+			\[
+				f_i^q[ \partial\D^q ] \subseteq \bigcup_{r<q} \bigcup_{j\in I_r} e^r_j
+			\]
+			está contenida en finitas células de dimensión $<q$.
+		\item[(W)]
+			Un conjunto $F \subseteq X$ es cerrado syss para cada célula $e_i^q$ la intersección $F \cap \overline{e}_i^q$ es
+			cerrada (es decir, $(f^q_i)^{-1}[F] \subseteq \D^q$ es cerrado).
+	\end{description}
+	Se dice que el complejo celular es \strong{finito} cuando admite tal descomposición con finitas celulas.
+	% en cuyo caso, el mayor $q$ para el cual hay una célula $e^q_i$ en $X$ se dice su \emph{dimensión}.
+\end{mydef}
+
+\begin{enumerate}
+	\item
+		\begin{enumerate}
+			\item Sean $f \colon X \to Y$ y $g \colon X \to Z$ un par de funciones continuas entre espacios cualesquiera.
+				Defina el espacio topológico cociente $Y \amalg_{f,X,g} Z = Y \amalg_X Z := (Y \amalg Z)/{\sim}$ bajo la
+				relación de equivalencia de que $f(x) \sim g(x)$.
+				
+				Pruebe que esta es una \href{https://ncatlab.org/nlab/show/pushout#definition}{unión amalgamada o coproducto
+				fibrado (eng.\ \emph{pushout})} de espacios topológicos.
+
+			\item Muestre que todo complejo finito se forma recursivamente a partir de finitas uniones amalgamadas de bolas cerradas $\D^n$.
+		\end{enumerate}
+
+	\item Sea $X$ un complejo celular.
+		\begin{enumerate}
+			\item Pruebe que todo punto de $X$ yace en un subcomplejo celular finito.
+
+			\item Pruebe que una función $f \colon X \to Y$ hacia otro espacio topológico $Y$ es continua syss lo es en cada
+				restricción a todo subcomplejo finito.
+		\end{enumerate}
+
+	\item Sea $X$ un complejo celular \strong{localmente finito}, es decir, tal que cada punto posee una vecindad contenida en un
+		subcomplejo finito.
+		\begin{enumerate}
+			\item Pruebe que $X$ es localmente compacto.
+
+			\item Pruebe que $X$ es metrizable.
+		\end{enumerate}
+
+	\item Sea $X$ un complejo celular finito.
+		Tras elegir una descomposición celular, sea $d$ el mayor superíndice tal que hay una célula $e^d \subseteq X$, a este entero
+		lo llamaremos la \strong{dimensión de $X$}.
+		Pruebe que es un invariante topológico.
+\end{enumerate}
+
+\end{document}

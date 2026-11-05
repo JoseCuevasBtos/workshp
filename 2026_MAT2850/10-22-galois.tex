@@ -26,27 +26,44 @@
 \maketitle
 
 En esta ayudantía, abreviaremos \emph{semilocalmente simplemente conexo} por \strong{slsc}.
-Dado un grupo $(G, \cdot)$, denotaremos por $(G^{\rm op}, *)$ al \emph{grupo opuesto}, cuyos elementos son los mismos, pero cuya operación es $x*y := y\cdot x$.
+% Dado un grupo $(G, \cdot)$, denotaremos por $(G^{\rm op}, *)$ al \emph{grupo opuesto}, cuyos elementos son los mismos, pero cuya operación es $x*y := y\cdot x$.
 
 % \section{Recubrimientos}
 \begin{enumerate}
+	\item Sea $G$ un grupo topológico conexo y slsc, y sea $\pi \colon \tilde G \to G$ su recubrimiento universal.
+		\begin{enumerate}
+			\item Pruebe que, tras elegir $e \in \tilde G$ con $\pi(e) = 1$, existe una estructura natural de
+				grupo topológico sobre $\tilde G$ para la cual $e$ es el neutro, y $\pi \colon \tilde G \to G$ es un homomorfismo continuo.
+				\begin{hint}
+					Puede resultar útil recordar la construcción manual del recubrimiento universal.
+				\end{hint}
+
+			\item\lookright
+				Pruebe que la sucesión
+				\[\begin{tikzcd}
+					1 \rar & \pi_1(G, 1) \rar["i"] & \tilde G \rar["\pi"] & G \rar & 1
+				\end{tikzcd}\]
+				de grupos topológicos (donde $\pi_1(G, 1)$ está dotado de la topología discreta) es exacta
+				(es decir, la sucesión de grupos es exacta, los homomorfismos son todos continuos, $\pi$ es identificación o
+				\textquote{aplicación cociente}, e $i$ es encaje topológico).
+		\end{enumerate}
+
 	\item Sea $f\colon Y \to X$ un recubrimiento de un espacio slsc $X$.
 		\begin{enumerate}
 			\item Pruebe que dado todo recubrimiento $Z \to Y$, la composición $Z \to X$ es un recubrimiento.
-			\item\lookright
+			\item Pruebe que si $Z \to Y$ satisface que $Z \to X$ es un recubrimiento normal, entonces $Z \to Y$ también lo es.
+			\item\lookst
 				Pruebe que, cuando $Y$ es conexo, siempre existe un único recubrimiento $Z \to Y$ tal que $Z \to X$ es un
 				recubrimiento normal y, para el cual, dado todo recubrimiento normal $Z' \to Y \to X$ hay factorización
 				única $Z' \to Z$.
-			\item Pruebe que si $Z \to Y$ satisface que $Z \to X$ es un recubrimiento normal, entonces $Z \to Y$ también lo es.
 		\end{enumerate}
 
 	\item\lookup
 		Considere el espacio $X$ dado en la fig.~\ref{fig:hawaiian_earring_a}, conocido comúnmente como los \emph{aretes hawaianos}.
 		\begin{enumerate}
 			\item Explique por qué el espacio $X$ no es slsc.
-			\item Muestre que el espacio $Y$ (fig.~\ref{fig:hawaiian_earring_b}) es un recubrimiento de $X$, y que $Z$
-				(fig.~\ref{fig:hawaiian_earring_c}) es un recubrimiento doble de $Y$.
-				Sin embargo, $Z$ no es recubrimiento de $X$.
+			\item Muestre que el espacio $Y$ (fig.~\ref{fig:hawaiian_earring_b}) es un recubrimiento de $X$, y que existe un
+				recubrimiento doble $Z$ de $Y$ tal que la composición $Z \to X$ no es un recubrimiento.
 		\end{enumerate}
 		\begin{figure}[!hbtp]
 			\centering
@@ -62,28 +79,14 @@ Dado un grupo $(G, \cdot)$, denotaremos por $(G^{\rm op}, *)$ al \emph{grupo opu
 				\caption{}
 				\label{fig:hawaiian_earring_b}
 			\end{subfigure}
-			\begin{subfigure}{7cm}
-				\centering
-				\includegraphics{hawaiian_earring_c.pdf}
-				\caption{}
-				\label{fig:hawaiian_earring_c}
-			\end{subfigure}
+			% \begin{subfigure}{7cm}
+			% 	\centering
+			% 	\includegraphics{hawaiian_earring_c.pdf}
+			% 	\caption{}
+			% 	\label{fig:hawaiian_earring_c}
+			% \end{subfigure}
 			\caption{}
 		\end{figure}
-
-	\item Sea $G$ un grupo topológico conexo y slsc, y sea $\pi \colon \tilde G \to G$ su recubrimiento universal.
-		\begin{enumerate}
-			\item Pruebe que, tras elegir $e \in \tilde G$ con $\pi(e) = 1$, existe una estructura natural de
-				grupo topológico sobre $\tilde G$ para la cual $e$ es el neutro, y $\pi \colon \tilde G \to G$ es un homomorfismo continuo.
-				\begin{hint}
-					Puede resultar útil recordar la construcción manual del recubrimiento universal.
-				\end{hint}
-			\item Pruebe que la sucesión
-				\[\begin{tikzcd}
-					1 \rar & \pi_1(G, 1)^{\rm op} \rar & \tilde G \rar["\pi"] & G \rar & 1
-				\end{tikzcd}\]
-				de grupos topológicos es exacta.
-		\end{enumerate}
 
 	\item Dadas funciones continuas $f \colon Y \to X$ y $g \colon Z \to X$, se define el \emph{producto fibrado} como el subespacio
 		\[
